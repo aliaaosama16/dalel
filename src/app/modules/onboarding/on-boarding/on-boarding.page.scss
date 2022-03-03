@@ -1,0 +1,62 @@
+ion-content.background {
+  --background: url(./../../../../assets/images/boarding.svg) 0 0 /100% 100%
+    no-repeat;
+}
+.swiper{
+  width: 100%;
+  height: 100%;
+}
+
+
+.swiper-pagination {
+  position: fixed;
+  top: 0px;
+  padding-bottom: 3px;
+  text-align: start;
+  height:20 !important;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.boarding {
+
+ .custom-row{
+  padding-top: 16px;
+ }
+  ion-col{
+    padding: 0px !important;
+    .skip{
+      padding-top: 15px;
+      span{
+        color: var(--ion-color-black);
+      font-size: 14px;
+      font-family: "Cairo-SemiBold";
+      }
+    }
+  }
+    padding: 50px 36px 0;
+  .boardng-title {
+    font-size: 24px;
+    font-family: "Cairo-Bold";
+    color:var(--ion-color-secondary);
+    margin:0 0 10px 0;
+  }
+  .boardng-subtitle{
+    font-size: 14px;
+    font-family: "Cairo-Regular";
+    margin:0 0 64px 0;
+  }
+
+  .btn-custom {
+    width: 45% !important;
+    margin: 0px !important;
+    --color: var(--ion-color-white);
+    font-size: 16;
+    font-family: "Cairo-Bold";
+    height: 48px;
+  }
+}

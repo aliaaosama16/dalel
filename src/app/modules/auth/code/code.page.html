@@ -1,0 +1,102 @@
+<ion-content class="background">
+  <div class="auth-login-register">
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" />
+    </div>
+
+    <ion-card class="auth-container">
+      <div class="auth-container-title">
+        <h5>{{"code-verification"|translate}}</h5>
+      </div>
+
+      <div class="auth-container-sub-title">
+        <p>{{"enter code sent to mobile"|translate}}</p>
+      </div>
+
+      <form class="auth-form" (ngSubmit)="confirmVerificationCode()">
+
+        <!-- <div class="code-verification-container">
+        <div>
+          <ion-item lines="none">
+            <ion-input
+              (ionFocus)="focusPhone(true)"
+              (ionBlur)="focusPhone(false)"
+              type="number"
+            ></ion-input>
+          </ion-item>
+        </div>
+
+        <div>
+          <ion-item lines="none">
+            <ion-input
+              (ionFocus)="focusPhone(true)"
+              (ionBlur)="focusPhone(false)"
+              type="number"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item lines="none">
+            <ion-input
+              (ionFocus)="focusPhone(true)"
+              (ionBlur)="focusPhone(false)"
+              type="number"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item lines="none">
+            <ion-input
+              (ionFocus)="focusPhone(true)"
+              (ionBlur)="focusPhone(false)"
+              type="number"
+            ></ion-input>
+          </ion-item>
+        </div>
+         
+        </div> -->
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-input
+                (ionFocus)="focusPhone(true)"
+                (ionBlur)="focusPhone(false)"
+                type="number"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-input
+                (ionFocus)="focusPhone(true)"
+                (ionBlur)="focusPhone(false)"
+                type="number"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-input
+                (ionFocus)="focusPhone(true)"
+                (ionBlur)="focusPhone(false)"
+                type="number"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-input
+                (ionFocus)="focusPhone(true)"
+                (ionBlur)="focusPhone(false)"
+                type="number"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-button expand="block" type="submit">
+          <span class="auth-btn"> {{"confirm"|translate}} </span>
+        </ion-button>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>

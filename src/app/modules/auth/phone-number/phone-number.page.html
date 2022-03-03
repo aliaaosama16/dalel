@@ -1,0 +1,37 @@
+<ion-content class="background">
+  <div class="auth-login-register">
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" />
+    </div>
+
+    <ion-card class="auth-container">
+      <div class="auth-container-title">
+        <h5>{{"phone-number"|translate}}</h5>
+      </div>
+
+      <div class="auth-container-sub-title">
+        <p>{{"enter phone-number to send code"|translate}}</p>
+      </div>
+
+      <form class="auth-form" (ngSubmit)="sendVerificationCode()">
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
+          ></ion-icon>
+          <ion-input
+            (ionFocus)="focusPhone(true)"
+            (ionBlur)="focusPhone(false)"
+            placeholder="{{'phone-number'|translate}}"
+            type="number"
+          ></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit">
+          <span class="auth-btn"> {{"confirm"|translate}} </span>
+        </ion-button>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>

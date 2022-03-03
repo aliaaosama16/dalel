@@ -1,0 +1,12 @@
+ion-content.background {
+    --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
+      no-repeat;
+  }
+  .auth-form ion-item{
+      margin-bottom: 0px !important;
+  }
+
+  .code-verification-container{
+      display: flex;
+      justify-content: space-between;
+  }

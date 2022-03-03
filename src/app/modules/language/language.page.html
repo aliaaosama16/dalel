@@ -1,0 +1,36 @@
+<ion-content class="background">
+  <div
+    class="language"
+    [ngClass]="currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'"
+  >
+    <ion-list >
+      <ion-radio-group (ionChange)="chooseLanguage($event)">
+        <ion-list-header >
+          <ion-label>
+            <h5 class="title">{{ "choose_langauge"|translate}}</h5></ion-label
+          >
+        </ion-list-header>
+
+        <ion-item class="lang-item" lines="none">
+          <ion-radio
+            value="ar"
+            [ngClass]="currentlangauge == 'ar' ? 'arabic' : 'english'"
+          ></ion-radio>
+          <ion-label class="lang-label">{{'arabic'|translate}}</ion-label>
+        </ion-item>
+
+        <ion-item class="lang-item" lines="none">
+          <ion-radio
+            value="en"
+            [ngClass]="currentlangauge == 'en' ? 'english' : 'arabic'"
+          ></ion-radio>
+          <ion-label class="lang-label"> {{'english'|translate}}</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button expand="block" class="btn-custom" routerLink="/on-boarding" routerDirection="forward">
+      <span>{{"start"|translate}}</span>
+    </ion-button>
+  </div>
+</ion-content>

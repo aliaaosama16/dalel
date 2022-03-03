@@ -9,6 +9,21 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+@font-face {
+  font-family: "Cairo-Regular";
+  src: url("./assets/fonts/Cairo-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Cairo-Bold";
+  src: url("./assets/fonts/Cairo-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Cairo-SemiBold";
+  src: url("./assets/fonts/Cairo-SemiBold.ttf");
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -16,7 +31,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +39,170 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "~swiper/css";
+@import "~swiper/css/bundle";
+.arabic_padding {
+  padding-right: 36px !important;
+}
+.english_padding {
+  padding-left: 36px !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--ion-color-primary) !important;
+  height: 10px;
+  width: 30px !important;
+  border-radius: 10px;
+  height: 20 !important;
+}
+.swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal {
+  height: 20 !important;
+}
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  background-color: var(--ion-color-primary) !important;
+  height: 10px;
+  width: 15px;
+  border-radius: 10px;
+}
+
+.swiper-pagination-bullet-inactive {
+  background-color: rgba(var(--ion-color-primary), 0.5) !important;
+  height: 10px;
+  width: 15px;
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullets {
+  top: 23% !important;
+
+  right: 36px;
+
+  left: 32px !important;
+
+  height: fit-content;
+}
+
+.swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  height: 21 !important;
+  display: block;
+}
+.btn-custom {
+  width: 35%;
+  margin: 0 5%;
+  --color: var(--ion-color-white);
+  font-size: 16;
+  font-family: "Cairo-Bold";
+  height: 48px;
+}
+
+.auth-login-register {
+  .logo {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 2.5%;
+    img {
+      height: 97.84 !important;
+      width: 108.48 !important;
+    }
+  }
+
+  .auth-container {
+    margin-top: 24px;
+
+    .auth-container-title {
+      text-align: center;
+      h5 {
+        margin: 16px 0px;
+        font-size: 24px;
+        font-family: "Cairo-Bold";
+        color: var(--ion-color-primary);
+      }
+    }
+
+    .auth-container-sub-title {
+      text-align: center;
+      p {
+        margin: 16px 0px;
+        font-size: 14px;
+        font-family: "Cairo-Regular";
+      }
+    }
+    ion-segment {
+      border-radius: 0px !important;
+    }
+    ion-segment-button {
+      height: 48px;
+      --background: #ffaa7670; //rgba(var(--ion-color-secondary),0.51);
+      --color-checked: var(--ion-color-white);
+      --color: var(--ion-color-secondary);
+      --background-checked: var(--ion-color-primary);
+      --border-radius: 0 10px 0 0;
+      --indicator-color: none;
+      ion-label {
+        font-size: 14px;
+        font-family: "Cairo-SemiBold";
+      }
+    }
+
+    .auth-form {
+      margin: 24px 16px;
+
+      ion-row {
+        ion-col {
+          //padding: 0px ;
+        }
+      }
+      ion-item {
+        --border-color: var(--ion-color-secondary);
+        --border-radius: 10px;
+        --border-width: 1px;
+        margin-bottom: 16px;
+        ion-icon {
+          width: 20px !important;
+          height: 20px !important;
+          //padding-top: 6px !important;
+        }
+        ion-input {
+          --placeholder-color: var(--ion-color-secondary);
+          font-size: 14px;
+          margin: 0 5px;
+          --ion-font-family: "Cairo-Regular";
+        }
+      }
+      ion-button {
+        --color: var(--ion-color-white);
+      }
+      ion-button::part(native) {
+        height: 50px !important;
+        background-image: linear-gradient(
+          to left,
+          var(--ion-color-primary),
+          var(--ion-color-secondary)
+        );
+      }
+
+      .auth-btn {
+        font-size: 16px;
+        font-family: "Cairo-Bold";
+      }
+    }
+  }
+
+  .auth-page-rest {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    .forget-password {
+      font-size: 14px;
+      font-family: "Cairo-Regular";
+      color: var(--ion-color-primary);
+      text-align: center;
+    }
+    .auth-text {
+      font-size: 18px;
+      font-family: "Cairo-SemiBold";
+      text-align: center;
+    }
+  }
+}

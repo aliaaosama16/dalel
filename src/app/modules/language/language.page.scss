@@ -1,0 +1,39 @@
+ion-content.background {
+  --background: url(../../../assets/images/bg.svg) 0 0 /100% 100% no-repeat;
+}
+
+
+.language {
+  .title {
+    font-family: "Cairo-Bold";
+    font-size: 22px;
+  }
+  ion-list {
+    //padding-inline-start
+
+    background: none;
+    padding-top: 50px;
+
+    .lang-item {
+      --background: none;
+      .input-wrapper {
+        flex: none;
+        margin-left: auto;
+      }
+      .lang-label {
+        font-family: "Cairo-SemiBold";
+        font-size: 16px;
+        display: contents;
+      }
+
+      .arabic {
+        margin-left: 10px;
+      }
+
+      .english {
+        margin-right: 10px;
+      }
+    }
+  }
+ 
+}

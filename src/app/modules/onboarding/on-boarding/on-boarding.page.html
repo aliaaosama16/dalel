@@ -1,0 +1,31 @@
+<ion-content class="background">
+  <swiper
+    #swiper
+    [config]="config"
+    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+  >
+    <ng-template swiperSlide *ngFor="let i of [{},{},{}]">
+      <div class="boarding">
+        <h5 class="boardng-title">{{"test_title"|translate}}</h5>
+
+        <p class="boardng-subtitle">{{"test_subtitle"|translate}}</p>
+
+        <ion-row [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
+          <ion-col size="10">
+            <ion-button expand="block" class="btn-custom">
+              <span>{{"next"|translate}}</span>
+            </ion-button>
+          </ion-col>
+
+          <ion-col text-center size="2" (click)="skipBoarding()">
+            <div class="ion-text-center skip">
+              <span> {{"skip"|translate}} </span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ng-template>
+
+  
+  </swiper>
+</ion-content>

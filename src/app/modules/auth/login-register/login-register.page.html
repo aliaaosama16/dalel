@@ -1,0 +1,130 @@
+<ion-content [ngClass]="authType=='register' ? 'bg-left' : 'bg-right' ">
+  <div class="auth-login-register">
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" />
+    </div>
+
+    <ion-card class="auth-container">
+      <ion-segment
+        (ionChange)="authTypeChange($event)"
+        value="register"
+        [(ngModel)]="authType"
+      >
+        <ion-segment-button value="register" class="register-btn">
+          <ion-label>{{"register"|translate}}</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="signin" class="signin-btn">
+          <ion-label>{{"signin"|translate}}</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <form
+        class="auth-form"
+        *ngIf=" authType=='register'"
+        (ngSubmit)="signUp()"
+      >
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPerson?inputFocusPersonIcon:inputInFocusPersonIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusPerson(true)" (ionBlur)="focusPerson(false)"
+            placeholder="{{'user-name'|translate}}"
+            type="text"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusPhone(true)" (ionBlur)="focusPhone(false)"
+            placeholder="{{'phone-number'|translate}}"
+            type="number"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusEmail?inputFocusEmailIcon:inputInFocusEmailIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusEmail(true)" (ionBlur)="focusEmail(false)"
+            placeholder="{{'email-address'|translate}}"
+            type="email"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPassword?inputFocusPasswordIcon:inputInFocusPasswordIcon}}"
+          ></ion-icon>
+          <ion-input  (ionFocus)="focusPassword(true)" (ionBlur)="focusPassword(false)"
+            placeholder="{{'password'|translate}}"
+            type="password"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusConfirmPassword?inputFocusConfirmPasswordIcon:inputInFocusConfirmPasswordIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusConfirmPassword(true)" (ionBlur)="focusConfirmPassword(false)"
+            placeholder="{{'confirm-password'|translate}}"
+            type="password"
+          ></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit">
+          <span class="auth-btn"> {{ "sign-up"|translate}} </span>
+        </ion-button>
+      </form>
+
+      <form class="auth-form" *ngIf=" authType=='signin'" (ngSubmit)="signIn()">
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusPhone(true)" (ionBlur)="focusPhone(false)"
+            placeholder="{{'phone-number'|translate}}"
+            type="number"
+          ></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPassword?inputFocusPasswordIcon:inputInFocusPasswordIcon}}"
+          ></ion-icon>
+          <ion-input (ionFocus)="focusPassword(true)" (ionBlur)="focusPassword(false)"
+            placeholder="{{'password'|translate}}"
+            type="password"
+          ></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit">
+          <span class="auth-btn"> {{"login"|translate}} </span>
+        </ion-button>
+      </form>
+    </ion-card>
+    <div class="auth-page-rest">
+      <div *ngIf=" authType=='signin'">
+        <p (click)="forgetPassword()" class="forget-password">{{"forget-password"|translate}}</p>
+        <p (click)="changAuthType('register')" class="auth-text">{{"register"|translate}}</p>
+      </div>
+
+      <div *ngIf=" authType=='register'">
+        <p (click)="changAuthType('signin')"class="auth-text">{{"have an account"|translate}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
