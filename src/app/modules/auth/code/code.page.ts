@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-code',
@@ -9,13 +10,15 @@ export class CodePage implements OnInit {
   inputFocusPhone: boolean = false;
   codeValues: string;
   code: number;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
   confirmVerificationCode() {
     this.code = parseInt(this.codeValues);
-    console.log('code is :'+this.codeValues.substring(9));
+    console.log('code is :' + this.codeValues.substring(9));
+
+    this.router.navigateByUrl('/tabs');
   }
 
   focusPhone(focusStatus: boolean) {
@@ -36,10 +39,7 @@ export class CodePage implements OnInit {
     if (length >= maxLength) {
       nextInput.setFocus();
     }
-  
   }
 
-  focusFristNumber(){
-    
-  }
+  focusFristNumber() {}
 }

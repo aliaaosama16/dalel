@@ -22,5 +22,10 @@
     "confirm":"تأكيد",
     "enter phone-number to send code":"ادخل رقم الجوال الخاص بك لارسال كود التفعيل",
     "enter code sent to mobile":"ادخل كود التفعيل المرسل على رقم الجوال",
-    "code-verification":"كود التفعيل"
+    "code-verification":"كود التفعيل",
+    "main":"الرئيسية",
+    "notifications":"الأشعارات",
+    "profile":"حسابي",
+    "my-reservations":"حجوزاتي"
+    
 }

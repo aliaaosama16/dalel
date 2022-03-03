@@ -5,11 +5,15 @@ ion-content.background {
 .auth-form ion-item {
   margin-bottom: 0px !important;
 }
-
+ion-row {
+  margin-bottom: 24px;
+}
 ion-item {
   --inner-padding-end: 0px !important;
 }
-
+ion-button {
+  margin-bottom: 32px;
+}
 ion-input {
   text-align: center;
   --padding-end: 0px !important;

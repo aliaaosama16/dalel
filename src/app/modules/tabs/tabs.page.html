@@ -1,0 +1,11 @@
+<ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()">
+  <ion-tab-bar slot="bottom">
+    
+    <ion-tab-button [tab]="tab.tabName" *ngFor="let tab of tabsData">
+      <ion-icon [src]="selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon  "></ion-icon>
+      <ion-label> {{tab.tabName|translate}} </ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
+

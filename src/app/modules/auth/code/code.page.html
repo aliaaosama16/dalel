@@ -12,7 +12,6 @@
       <div class="auth-container-sub-title">
         <p>{{"enter code sent to mobile"|translate}}</p>
       </div>
-      <!-- onkeydown="if(event.target.value.length>1 ){event.preventDefault();}" -->
 
       <form class="auth-form" (ngSubmit)="confirmVerificationCode()">
         <ion-row>
@@ -25,7 +24,6 @@
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n2)"
-              
                 type="number"
               ></ion-input>
             </ion-item>

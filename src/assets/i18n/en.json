@@ -22,5 +22,9 @@
     "confirm":"confirm",
     "enter phone-number to send code":"enter phone-number to send code",
     "enter code sent to mobile":"enter code sent to mobile",
-    "code-verification":"code verification"
+    "code-verification":"code verification",
+    "main": "main",
+    "notifications":"notifications",
+    "profile":"account",
+    "my-reservations":"my reservations"
 }
