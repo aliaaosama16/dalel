@@ -21,4 +21,9 @@ export class CodePage implements OnInit {
     console.log('input focus'+focusStatus);
     this.inputFocusPhone=focusStatus;
   }
+
+  next(ev,nextInput){
+   console.log(ev)
+   nextInput.setFocus()
+  }
 }
