@@ -12,19 +12,20 @@
       <div class="auth-container-sub-title">
         <p>{{"enter code sent to mobile"|translate}}</p>
       </div>
+      <!-- onkeydown="if(event.target.value.length>1 ){event.preventDefault();}" -->
 
       <form class="auth-form" (ngSubmit)="confirmVerificationCode()">
         <ion-row>
           <ion-col size="3">
             <ion-item lines="none">
               <ion-input
+                class="otp"
                 #n1
                 min="0"
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n2)"
-                (ionFocus)="focusPhone(true)"
-                (ionBlur)="focusPhone(false)"
+              
                 type="number"
               ></ion-input>
             </ion-item>
@@ -32,13 +33,12 @@
           <ion-col size="3">
             <ion-item lines="none">
               <ion-input
+                class="otp"
                 #n2
                 min="0"
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n3)"
-                (ionFocus)="focusPhone(true)"
-                (ionBlur)="focusPhone(false)"
                 type="number"
               ></ion-input>
             </ion-item>
@@ -46,13 +46,12 @@
           <ion-col size="3">
             <ion-item lines="none">
               <ion-input
+                class="otp"
                 #n3
                 min="0"
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n4)"
-                (ionFocus)="focusPhone(true)"
-                (ionBlur)="focusPhone(false)"
                 type="number"
               ></ion-input>
             </ion-item>
@@ -60,13 +59,12 @@
           <ion-col size="3">
             <ion-item lines="none">
               <ion-input
+                class="otp"
                 #n4
                 min="0"
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,'')"
-                (ionFocus)="focusPhone(true)"
-                (ionBlur)="focusPhone(false)"
                 type="number"
               ></ion-input>
             </ion-item>

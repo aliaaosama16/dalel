@@ -1,32 +1,44 @@
 ion-content.background {
-    --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
-      no-repeat;
-  }
-  .auth-form ion-item{
-      margin-bottom: 0px !important;
+  --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
+    no-repeat;
+}
+.auth-form ion-item {
+  margin-bottom: 0px !important;
+}
 
+ion-item {
+  --inner-padding-end: 0px !important;
+}
 
+ion-input {
+  text-align: center;
+  --padding-end: 0px !important;
+  .native-input {
+    font-size: 24px !important;
+    padding: 0px;
+    margin: 0px;
+    font-family: "Cairo-SemiBold";
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
   }
+  //   .native-input.sc-ion-input-ios{
+  //     padding-top
+  //   }
+}
 
-  ion-input{
-      text-align: center;
-      --padding-end:0px !important;
-     .native-input{
-        font-size: 24px !important;
-        padding: 0px;
-        margin: 0px;
-        font-family: "Cairo-SemiBold";
-      }
-   
-  }
+ion-item::part(native) {
+  padding: 6px 0px !important;
+  text-align: center;
 
-  ion-item::part(native){
-      padding: 6px 0px !important;
-      text-align: center;
+  .item-inner {
+    padding-inline-end: 0px !important;
+  }
+}
 
-    
-  }
-  .code-verification-container{
-      display: flex;
-      justify-content: space-between;
-  }
+// background: red;
+//     color: white;
+//     border: none;
+.code-verification-container {
+  display: flex;
+  justify-content: space-between;
+}
