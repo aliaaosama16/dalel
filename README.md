@@ -1,5 +1,8 @@
 # dalel
 
+
+
+
 to prevent flickering:
 -webkit-transform-style: preserve-3d;   
 -webkit-backface-visibility: hidden;
