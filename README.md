@@ -185,3 +185,7 @@ ion-header {
     </div>
 
 </ion-content>
+
+ input:focus {
+      border-color: var(--ion-color-);
+    }
