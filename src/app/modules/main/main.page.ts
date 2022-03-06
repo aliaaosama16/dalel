@@ -52,4 +52,8 @@ export class MainPage implements OnInit {
     return await modal.present();
   }
 
+
+  showAllCategories(){
+    this.router.navigateByUrl('/categories');
+  }
 }

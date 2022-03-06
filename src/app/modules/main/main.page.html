@@ -7,7 +7,7 @@
     </div>
 
     <div class="menu-title">
-      <p>{{"main"|translate}}</p>
+      <p>{{"categories"|translate}}</p>
     </div>
   </div>
 </ion-header>
@@ -18,7 +18,6 @@
       <ion-col size="10">
         <ion-item lines="none" class="search-wrapper">
           <ion-input
-            placeholder="{{'password'|translate}}"
             type="text"
             [(ngModel)]="searchText"
             placeholder="{{'search here'|translate}}"
@@ -53,11 +52,11 @@
 
   <div class="categories-section ion-padding-horizontal">
     <ion-row>
-      <ion-col size="10" class="ion-align-self-start">
+      <ion-col size="10" class="ion-align-self-start" >
         <h5 class="categories-title">{{"categories"|translate}}</h5>
       </ion-col>
 
-      <ion-col size="2" class="ion-align-self-end">
+      <ion-col size="2" class="ion-align-self-end" (click)="showAllCategories()">
         <p class="categories-sub-title">{{"show all"|translate}}</p>
       </ion-col>
     </ion-row>
@@ -74,7 +73,7 @@
             <ion-thumbnail>
               <img src="./../../../assets/images/1024-500.png" />
             </ion-thumbnail>
-            <ion-label > {{'rests'|translate}} </ion-label>
+            <ion-label> {{'rests'|translate}} </ion-label>
           </ion-item>
         </ion-card>
       </ng-template>

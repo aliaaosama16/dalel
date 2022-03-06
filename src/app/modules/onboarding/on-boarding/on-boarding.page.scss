@@ -60,3 +60,45 @@ ion-content.background {
     height: 48px;
   }
 }
+
+.swiper-pagination-bullet-active {
+  background-color: var(--ion-color-primary) !important;
+  height: 10px;
+  width: 30px !important;
+  border-radius: 10px;
+  height: 20 !important;
+}
+.swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal {
+  height: 20 !important;
+}
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  background-color: var(--ion-color-primary) !important;
+  height: 10px;
+  width: 15px;
+  border-radius: 10px;
+}
+
+.swiper-pagination-bullet-inactive {
+  background-color: rgba(var(--ion-color-primary), 0.5) !important;
+  height: 10px;
+  width: 15px;
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullets {
+  top: 23% !important;
+
+  right: 36px;
+
+  left: 32px !important;
+
+  height: fit-content;
+}
+
+.swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  height: 21 !important;
+  display: block;
+}
