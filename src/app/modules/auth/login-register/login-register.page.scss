@@ -6,3 +6,6 @@ ion-content.bg-right {
   --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
     no-repeat;
 }
+
+input:focus { border-color: var(--ion-color-primary); }
+

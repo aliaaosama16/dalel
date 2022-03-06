@@ -26,6 +26,9 @@
     "main":"الرئيسية",
     "notifications":"الأشعارات",
     "profile":"حسابي",
-    "my-reservations":"حجوزاتي"
+    "my-reservations":"حجوزاتي",
+    "please enter user name":"من فضلك ادخل الاسم",
+    "user name should be min 2 chars long":"كلمة المرور لا تقل عن حرفين",
+    "please enter phone number":"من فضلك ادخل رقم الجوال"
     
 }

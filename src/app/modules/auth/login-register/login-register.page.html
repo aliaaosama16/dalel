@@ -22,6 +22,7 @@
         class="auth-form"
         *ngIf=" authType=='register'"
         (ngSubmit)="signUp()"
+        [formGroup]="registerForm"
       >
         <ion-item lines="none">
           <ion-icon
@@ -29,23 +30,60 @@
             color="primary"
             src="{{inputFocusPerson?inputFocusPersonIcon:inputInFocusPersonIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusPerson(true)" (ionBlur)="focusPerson(false)"
+          <ion-input
+            (ionFocus)="focusPerson(true)"
+            (ionBlur)="focusPerson(false)"
             placeholder="{{'user-name'|translate}}"
             type="text"
+            formControlName="userName"
           ></ion-input>
         </ion-item>
+        <!-- <div class="error-box"
+        *ngIf="registerForm.controls['userName'].hasError('required') && registerForm.controls['userName'].touched">
+         {{'please enter user name' | translate}}
+      </div> -->
 
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && errorControl.userName.errors?.required"
+        >
+          {{'please enter user name' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && errorControl.userName.errors?.minlength"
+        >
+          {{'user name should be min 2 chars long' | translate}}
+        </div>
         <ion-item lines="none">
           <ion-icon
             item-start
             color="primary"
             src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusPhone(true)" (ionBlur)="focusPhone(false)"
+          <ion-input
+            (ionFocus)="focusPhone(true)"
+            (ionBlur)="focusPhone(false)"
             placeholder="{{'phone-number'|translate}}"
             type="number"
+            formControlName="phoneNumber"
           ></ion-input>
         </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && errorControl.phoneNumber.errors?.required"
+        >
+          {{'please enter phone number' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && errorControl.phoneNumber.errors?.minlength"
+        >
+          {{'phone number should be 10 numbers' | translate}}
+        </div>
 
         <ion-item lines="none">
           <ion-icon
@@ -53,9 +91,12 @@
             color="primary"
             src="{{inputFocusEmail?inputFocusEmailIcon:inputInFocusEmailIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusEmail(true)" (ionBlur)="focusEmail(false)"
+          <ion-input
+            (ionFocus)="focusEmail(true)"
+            (ionBlur)="focusEmail(false)"
             placeholder="{{'email-address'|translate}}"
             type="email"
+            formControlName="email"
           ></ion-input>
         </ion-item>
 
@@ -65,9 +106,12 @@
             color="primary"
             src="{{inputFocusPassword?inputFocusPasswordIcon:inputInFocusPasswordIcon}}"
           ></ion-icon>
-          <ion-input  (ionFocus)="focusPassword(true)" (ionBlur)="focusPassword(false)"
+          <ion-input
+            (ionFocus)="focusPassword(true)"
+            (ionBlur)="focusPassword(false)"
             placeholder="{{'password'|translate}}"
             type="password"
+            formControlName="password"
           ></ion-input>
         </ion-item>
 
@@ -77,9 +121,12 @@
             color="primary"
             src="{{inputFocusConfirmPassword?inputFocusConfirmPasswordIcon:inputInFocusConfirmPasswordIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusConfirmPassword(true)" (ionBlur)="focusConfirmPassword(false)"
+          <ion-input
+            (ionFocus)="focusConfirmPassword(true)"
+            (ionBlur)="focusConfirmPassword(false)"
             placeholder="{{'confirm-password'|translate}}"
             type="password"
+            formControlName="confirmPassword"
           ></ion-input>
         </ion-item>
         <ion-button expand="block" type="submit">
@@ -87,14 +134,21 @@
         </ion-button>
       </form>
 
-      <form class="auth-form" *ngIf=" authType=='signin'" (ngSubmit)="signIn()">
+      <form
+        class="auth-form"
+        *ngIf=" authType=='signin'"
+        (ngSubmit)="signIn()"
+        [formGroup]="signinForm"
+      >
         <ion-item lines="none">
           <ion-icon
             item-start
             color="primary"
             src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusPhone(true)" (ionBlur)="focusPhone(false)"
+          <ion-input
+            (ionFocus)="focusPhone(true)"
+            (ionBlur)="focusPhone(false)"
             placeholder="{{'phone-number'|translate}}"
             type="number"
           ></ion-input>
@@ -105,7 +159,9 @@
             color="primary"
             src="{{inputFocusPassword?inputFocusPasswordIcon:inputInFocusPasswordIcon}}"
           ></ion-icon>
-          <ion-input (ionFocus)="focusPassword(true)" (ionBlur)="focusPassword(false)"
+          <ion-input
+            (ionFocus)="focusPassword(true)"
+            (ionBlur)="focusPassword(false)"
             placeholder="{{'password'|translate}}"
             type="password"
           ></ion-input>
@@ -118,12 +174,18 @@
     </ion-card>
     <div class="auth-page-rest">
       <div *ngIf=" authType=='signin'">
-        <p (click)="forgetPassword()" class="forget-password">{{"forget-password"|translate}}</p>
-        <p (click)="changAuthType('register')" class="auth-text">{{"register"|translate}}</p>
+        <p (click)="forgetPassword()" class="forget-password">
+          {{"forget-password"|translate}}
+        </p>
+        <p (click)="changAuthType('register')" class="auth-text">
+          {{"register"|translate}}
+        </p>
       </div>
 
       <div *ngIf=" authType=='register'">
-        <p (click)="changAuthType('signin')"class="auth-text">{{"have an account"|translate}}</p>
+        <p (click)="changAuthType('signin')" class="auth-text">
+          {{"have an account"|translate}}
+        </p>
       </div>
     </div>
   </div>

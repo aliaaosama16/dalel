@@ -14,6 +14,7 @@
         <ion-item class="lang-item" lines="none">
           <ion-radio
             value="ar"
+            slot="start"
             [ngClass]="currentlangauge == 'ar' ? 'arabic' : 'english'"
           ></ion-radio>
           <ion-label class="lang-label">{{'arabic'|translate}}</ion-label>
@@ -22,6 +23,7 @@
         <ion-item class="lang-item" lines="none">
           <ion-radio
             value="en"
+            slot="start"
             [ngClass]="currentlangauge == 'en' ? 'english' : 'arabic'"
           ></ion-radio>
           <ion-label class="lang-label"> {{'english'|translate}}</ion-label>
