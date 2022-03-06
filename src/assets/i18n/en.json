@@ -29,5 +29,10 @@
     "my-reservations":"my reservations",
     "please enter user name":"please enter user name",
     "user name should be min 2 chars long":"user name should be min 2 chars long",
-    "please enter phone number":"please enter phone number"
+    "please enter phone number":"please enter phone number",
+    "please enter email":"please enter email",
+    "please enter valid email":"please enter valid email",
+    "please enter password":"please enter password",
+    "both password and confirm password should be equal":"both password and confirm password should be equal"   ,
+    "search here":"search here"
 }

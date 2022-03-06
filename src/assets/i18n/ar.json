@@ -29,6 +29,12 @@
     "my-reservations":"حجوزاتي",
     "please enter user name":"من فضلك ادخل الاسم",
     "user name should be min 2 chars long":"كلمة المرور لا تقل عن حرفين",
-    "please enter phone number":"من فضلك ادخل رقم الجوال"
+    "please enter phone number":"من فضلك ادخل رقم الجوال",
+    "please enter email":"من فضلك ادخل البريد الالكتروني",
+    "please enter valid email":"من فضلك ادخل بريد الكتروني صالح",
+    "please enter password":"ادخل كلمة المرور",
+    "both password and confirm password should be equal":"كلمتا المرور غير متطابقتان",
+    "search here":"ابحث هنا "
+    
     
 }

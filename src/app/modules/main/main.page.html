@@ -1,5 +1,36 @@
+<ion-header class="ion-no-border">
+  <div class="menu-container">
+    <img src="./../../../assets/images/wave app.svg" />
 
+    <div class="menu-icon" (click)="openMenu()">
+      <img src="./../../../assets/icon/menu.svg" />
+    </div>
+
+    <div class="menu-title">
+      <p>{{"main"|translate}}</p>
+    </div>
+  </div>
+</ion-header>
 
 <ion-content>
-
+  <div class="search-section">
+    <ion-row>
+      <ion-col size="10">
+        <ion-item lines="none" class="search-wrapper">
+          <ion-input
+            placeholder="{{'password'|translate}}"
+            type="password"
+            [(ngModel)]="searchText"
+            placeholder="{{'search here'|translate}}"
+          ></ion-input>
+          <ion-icon item-start color="primary" name="search"></ion-icon>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2">
+        <ion-fab-button color="secondary" (click)="openFilterModal()">
+          <ion-icon name="funnel-outline" color="white"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

@@ -45,14 +45,14 @@
 
         <div
           class="error-box"
-          *ngIf="isRegisterSubmitted && errorControl.userName.errors?.required"
+          *ngIf="isRegisterSubmitted && registerErrorControl .userName.errors?.required"
         >
           {{'please enter user name' | translate}}
         </div>
 
         <div
           class="error-box"
-          *ngIf="isRegisterSubmitted && errorControl.userName.errors?.minlength"
+          *ngIf="isRegisterSubmitted && registerErrorControl .userName.errors?.minlength"
         >
           {{'user name should be min 2 chars long' | translate}}
         </div>
@@ -66,21 +66,21 @@
             (ionFocus)="focusPhone(true)"
             (ionBlur)="focusPhone(false)"
             placeholder="{{'phone-number'|translate}}"
-            type="number"
+            type="tel"
             formControlName="phoneNumber"
           ></ion-input>
         </ion-item>
 
         <div
           class="error-box"
-          *ngIf="isRegisterSubmitted && errorControl.phoneNumber.errors?.required"
+          *ngIf="isRegisterSubmitted && registerErrorControl .phoneNumber.errors?.required"
         >
           {{'please enter phone number' | translate}}
         </div>
 
         <div
           class="error-box"
-          *ngIf="isRegisterSubmitted && errorControl.phoneNumber.errors?.minlength"
+          *ngIf="isRegisterSubmitted && registerErrorControl .phoneNumber.errors?.minlength"
         >
           {{'phone number should be 10 numbers' | translate}}
         </div>
@@ -100,6 +100,20 @@
           ></ion-input>
         </ion-item>
 
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && registerErrorControl .email.errors?.required "
+        >
+          {{'please enter email' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && registerErrorControl .email.errors?.pattern "
+        >
+          {{'please enter valid email' | translate}}
+        </div>
+
         <ion-item lines="none">
           <ion-icon
             item-start
@@ -115,6 +129,13 @@
           ></ion-input>
         </ion-item>
 
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted && registerErrorControl .password.errors?.required"
+        >
+          {{'please enter password' | translate}}
+        </div>
+
         <ion-item lines="none">
           <ion-icon
             item-start
@@ -129,6 +150,14 @@
             formControlName="confirmPassword"
           ></ion-input>
         </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isRegisterSubmitted &&  (registerErrorControl .confirmPassword.value!=registerErrorControl .password.value)"
+        >
+          {{'both password and confirm password should be equal' | translate}}
+        </div>
+
         <ion-button expand="block" type="submit">
           <span class="auth-btn"> {{ "sign-up"|translate}} </span>
         </ion-button>
@@ -150,9 +179,24 @@
             (ionFocus)="focusPhone(true)"
             (ionBlur)="focusPhone(false)"
             placeholder="{{'phone-number'|translate}}"
-            type="number"
+            type="tel"
+            formControlName="phoneNumber"
           ></ion-input>
         </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf=" isSignInSubmitted && signinErrorControl.phoneNumber.errors?.required"
+        >
+          {{'please enter phone number' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isSignInSubmitted && signinErrorControl.phoneNumber.errors?.minlength"
+        >
+          {{'phone number should be 10 numbers' | translate}}
+        </div>
         <ion-item lines="none">
           <ion-icon
             item-start
@@ -164,8 +208,16 @@
             (ionBlur)="focusPassword(false)"
             placeholder="{{'password'|translate}}"
             type="password"
+            formControlName="password"
           ></ion-input>
         </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isSignInSubmitted && signinErrorControl.password.errors?.required"
+        >
+          {{'please enter password' | translate}}
+        </div>
 
         <ion-button expand="block" type="submit">
           <span class="auth-btn"> {{"login"|translate}} </span>

@@ -16,7 +16,7 @@ import {
 })
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
-  isRegisterSubmitted = false;
+
   authType: string = 'register';
   inputFocusPerson: boolean = false;
   inputFocusPersonIcon: string = './../../../../assets/icon/person-active.svg';
@@ -46,7 +46,10 @@ export class LoginRegisterPage implements OnInit {
     './../../../../assets/icon/password-inactive.svg';
 
   public registerForm: FormGroup;
+  isRegisterSubmitted = false;
+
   public signinForm: FormGroup;
+  isSignInSubmitted = false;
   constructor(
     private langaugeservice: LanguageService,
     private router: Router,
@@ -71,13 +74,19 @@ export class LoginRegisterPage implements OnInit {
           //10
         ],
       ],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+        ],
+      ],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
 
     this.signinForm = this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(2)]],
       phoneNumber: [
         '',
         [
@@ -88,6 +97,7 @@ export class LoginRegisterPage implements OnInit {
           //10
         ],
       ],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -95,25 +105,40 @@ export class LoginRegisterPage implements OnInit {
     console.log('Segment changed', ev.detail.value);
   }
 
-  get errorControl() {
+  get registerErrorControl() {
     return this.registerForm.controls;
+  }
+
+  get signinErrorControl() {
+    return this.signinForm.controls;
   }
 
   signUp() {
     // api call for register new account
     this.isRegisterSubmitted = true;
+    console.log(this.registerForm.value);
     if (!this.registerForm.valid) {
       console.log('Please provide all the required values!');
       return false;
     } else {
       console.log(this.registerForm.value);
     }
-    console.log(this.registerForm.value);
+
     this.router.navigateByUrl('/phone-number');
   }
 
   signIn() {
     // api call for login current user
+    this.isSignInSubmitted = true;
+    console.log('signinForm : '+this.signinForm.value);
+    if (!this.signinForm.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      console.log(this.signinForm.value);
+    }
+
+    this.router.navigateByUrl('/tabs/main');
   }
 
   forgetPassword() {
