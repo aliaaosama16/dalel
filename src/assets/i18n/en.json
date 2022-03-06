@@ -34,5 +34,9 @@
     "please enter valid email":"please enter valid email",
     "please enter password":"please enter password",
     "both password and confirm password should be equal":"both password and confirm password should be equal"   ,
-    "search here":"search here"
+    "search here":"search here",
+    "categories":"categories",
+    "show all":"show all",
+    "rests":"rests",
+    "nearby places":"nearby places"
 }

@@ -34,7 +34,11 @@
     "please enter valid email":"من فضلك ادخل بريد الكتروني صالح",
     "please enter password":"ادخل كلمة المرور",
     "both password and confirm password should be equal":"كلمتا المرور غير متطابقتان",
-    "search here":"ابحث هنا "
+    "search here":"ابحث هنا ",
+    "categories":"الأقسام",
+    "show all":"عرض الكل",
+    "rests":"استراحات",
+    "nearby places":"أماكن قريبة منك"
     
     
 }

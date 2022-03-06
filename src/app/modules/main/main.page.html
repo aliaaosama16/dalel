@@ -14,23 +14,113 @@
 
 <ion-content>
   <div class="search-section">
-    <ion-row>
+    <ion-row class="ion-align-items-center">
       <ion-col size="10">
         <ion-item lines="none" class="search-wrapper">
           <ion-input
             placeholder="{{'password'|translate}}"
-            type="password"
+            type="text"
             [(ngModel)]="searchText"
             placeholder="{{'search here'|translate}}"
           ></ion-input>
           <ion-icon item-start color="primary" name="search"></ion-icon>
         </ion-item>
       </ion-col>
-      <ion-col size="2">
-        <ion-fab-button color="secondary" (click)="openFilterModal()">
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-fab-button
+          size="small"
+          color="secondary"
+          (click)="openFilterModal()"
+        >
           <ion-icon name="funnel-outline" color="white"></ion-icon>
         </ion-fab-button>
       </ion-col>
     </ion-row>
+  </div>
+
+  <div class="slider-section ion-padding">
+    <swiper
+      #swiper
+      [config]="configSlider"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template swiperSlide *ngFor="let i of [{},{},{}]">
+        <img src="./../../../assets/images/1024-500.png" />
+      </ng-template>
+    </swiper>
+  </div>
+
+  <div class="categories-section ion-padding-horizontal">
+    <ion-row>
+      <ion-col size="10" class="ion-align-self-start">
+        <h5 class="categories-title">{{"categories"|translate}}</h5>
+      </ion-col>
+
+      <ion-col size="2" class="ion-align-self-end">
+        <p class="categories-sub-title">{{"show all"|translate}}</p>
+      </ion-col>
+    </ion-row>
+
+    <swiper
+      #swiper
+      [config]="configContent"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template swiperSlide *ngFor="let i of [{},{},{},{},{},{}]">
+        <ion-card class="ion-no-margin">
+          <ion-item>
+            <ion-thumbnail>
+              <img src="./../../../assets/images/1024-500.png" />
+            </ion-thumbnail>
+            <ion-label > {{'rests'|translate}} </ion-label>
+          </ion-item>
+        </ion-card>
+      </ng-template>
+    </swiper>
+  </div>
+
+  <div class="naerby-section ion-padding-horizontal">
+    <ion-row>
+      <ion-col size="12" class="ion-align-self-start">
+        <h5 class="categories-title">{{"nearby places"|translate}}</h5>
+      </ion-col>
+    </ion-row>
+
+    <swiper
+      #swiper
+      [config]="configContent"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template swiperSlide *ngFor="let i of [{},{},{},{},{},{}]">
+        <ion-card class="ion-no-margin">
+          <div class="container">
+            <img src="./../../../assets/images/1024-500.png" />
+
+            <div class="title">
+              <p>اسم تجريبي</p>
+            </div>
+
+            <div class="address">
+              <ion-icon
+                class="location"
+                name="location-outline"
+                color="primary"
+              ></ion-icon>
+
+              <p class="location-address">الرياض</p>
+
+              <ion-icon
+                class="address-detail"
+                name="arrow-back-circle-outline"
+                color="white"
+              ></ion-icon>
+            </div>
+          </div>
+        </ion-card>
+      </ng-template>
+    </swiper>
   </div>
 </ion-content>

@@ -8,6 +8,8 @@ import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     MainPageRoutingModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SwiperModule
   ],
   declarations: [MainPage]
 })
