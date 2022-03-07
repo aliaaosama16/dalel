@@ -105,6 +105,10 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let item of categoryItems">
+
+        <!-- /tabs/main/categories/1/{{item.id}} -->
+
+        <!-- /tabs/main/categories/ cat id=>    1/item id=>   {{item.id}} -->
         <ion-card
           class="ion-no-margin"
           routerLink="/tabs/main/categories/1/{{item.id}}"
