@@ -46,7 +46,7 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let i of [{},{},{}]">
+      <ng-template swiperSlide *ngFor="let cat of [{},{},{}]">
         <img src="./../../../assets/images/1024-500.png" />
       </ng-template>
     </swiper>
@@ -61,7 +61,7 @@
       <ion-col
         size="2"
         class="ion-align-self-end"
-        (click)="showAllCategories()"
+        routerLink="/tabs/main/categories"
       >
         <p class="categories-sub-title">{{"show all"|translate}}</p>
       </ion-col>
@@ -74,7 +74,10 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let cat of categories">
-        <ion-card class="ion-no-margin" routerLink="/tabs/main/category-list">
+        <ion-card
+          class="ion-no-margin"
+          routerLink="/tabs/main/categories/{{cat.id}}"
+        >
           <ion-item>
             <ion-thumbnail>
               <img [src]="cat.image" />
@@ -101,13 +104,16 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let i of [{},{},{},{},{},{}]">
-        <ion-card class="ion-no-margin">
+      <ng-template swiperSlide *ngFor="let item of categoryItems">
+        <ion-card
+          class="ion-no-margin"
+          routerLink="/tabs/main/categories/1/{{item.id}}"
+        >
           <div class="container">
-            <img src="./../../../assets/images/1024-500.png" />
+            <img [src]="item.image" />
 
             <div class="title">
-              <p>اسم تجريبي</p>
+              <p>{{item.name}}</p>
             </div>
 
             <div class="location">
@@ -115,10 +121,13 @@
             </div>
 
             <div class="location-address">
-              <p>الرياض</p>
+              <p>{{item.location}}</p>
             </div>
 
-            <div class="address-detail" routerLink="/tabs/main/category-details">
+            <div
+              class="address-detail"
+              routerLink="/tabs/main/category-details"
+            >
               <ion-icon
                 name="arrow-forward-circle-outline"
                 color="white"

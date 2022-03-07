@@ -58,6 +58,13 @@ ion-header {
       margin: 0px;
     }
   }
+
+  ion-input {
+    --placeholder-color: #d4d4d4;
+    //--placeholder-font-style:  "Cairo-Regular";
+    --placeholder-opacity: 1;
+    font-size: 16px;
+  }
 }
 
 .slider-section {
@@ -89,12 +96,9 @@ ion-header {
   }
 
   .swiper-pagination-bullets {
-    top: 23% !important;
-
+    top: 37% !important;
     right: 36px;
-
     left: 32px !important;
-
     height: fit-content;
   }
 

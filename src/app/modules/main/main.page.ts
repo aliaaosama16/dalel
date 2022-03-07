@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
+import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
 
@@ -10,7 +11,7 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  searchText:string;
+  searchText: string;
   currentlangauge: string;
 
   configSlider: SwiperOptions = {
@@ -21,52 +22,105 @@ export class MainPage implements OnInit {
   configContent: SwiperOptions = {
     slidesPerView: 2.3,
     spaceBetween: 10,
-    pagination: true,
+    pagination: false,
   };
 
   categories: any[] = [
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:1,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:2,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:3,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:4,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:5,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:6,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:7,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:8,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:9,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id:10,name: 'rests', image: './../../../assets/images/1024-500.png' },
+  ];
+
+  categoryItems: any[] = [
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:1
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:2
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:3
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:4
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:5
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:6
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:7
+    },
+    {
+      name: 'اسم تجريبي',
+      location: 'الرياض',
+      image: './../../../assets/images/1024-500.png',
+      id:8
+    },
   ];
 
   constructor(
-    private menuCtrl:MenuController,public modalController: ModalController,
+    private menuCtrl: MenuController,
+    public modalController: ModalController,
     private langaugeservice: LanguageService,
-    private router: Router
+    private router: Router,
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
   }
-  
 
-  openMenu(){
+  openMenu() {
     this.menuCtrl.open();
   }
 
-  openFilterModal(){
 
-  }
-
-  async presentModal() {
+  async openFilterModal() {
     const modal = await this.modalController.create({
-      component:'search-filter' ,
-      cssClass: 'my-custom-class'
+      component: 'search-filter',
+      cssClass: 'my-custom-class',
     });
     return await modal.present();
   }
 
-
-  showAllCategories(){
+  showAllCategories() {
     this.router.navigateByUrl('/tabs/main/categories');
+  }
+
+  openCatList(catID, catName) {
+    this.dataService.setData(catID, catName);
+    this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
   }
 }

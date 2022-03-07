@@ -33,12 +33,6 @@ export class TabsPage implements OnInit {
     }
   ];
 
-  // main-icon-active.svg
-  // main-icon-inactive.svg
-
-
-  // notifications-icon-active.svg
-  // notifications-icon-inactive.svg
   constructor() { }
 
   ngOnInit() {

@@ -1,21 +1,4 @@
 <ion-header class="ion-no-border">
-<!-- 
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-  
-    </ion-buttons>
-   
-    <ion-title>Left side menu toggle</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button routerLink="/tabs/main">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar> -->
-
-
   <div class="menu-container">
     <img src="./../../../assets/images/wave app.svg" />
 
@@ -27,18 +10,17 @@
       <p>{{ "categories"|translate}}</p>
     </div>
 
-    <div class="back-icon"  routerLink="/tabs/main">
-      <ion-icon name="arrow-forward-outline" color="primary" ></ion-icon>
+    <div class="back-icon" routerLink="/tabs/main">
+      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
     </div>
   </div>
 </ion-header>
 
-<ion-content >
-  <!-- class="ion-no-margin" -->
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let cat of categories">
-        <ion-card class="ion-no-margin" routerLink="/tabs/main/category-list" >
+        <ion-card class="ion-no-margin" (click)="openCatList(cat.id,cat.name)">
           <ion-item>
             <ion-thumbnail>
               <img [src]="cat.image" />
@@ -49,5 +31,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

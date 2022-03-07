@@ -117,12 +117,12 @@ export class LoginRegisterPage implements OnInit {
     // api call for register new account
     this.isRegisterSubmitted = true;
     console.log(this.registerForm.value);
-    if (!this.registerForm.valid) {
-      console.log('Please provide all the required values!');
-      return false;
-    } else {
-      console.log(this.registerForm.value);
-    }
+    // if (!this.registerForm.valid) {
+    //   console.log('Please provide all the required values!');
+    //   return false;
+    // } else {
+    //   console.log(this.registerForm.value);
+    // }
 
     this.router.navigateByUrl('/phone-number');
   }
@@ -130,13 +130,13 @@ export class LoginRegisterPage implements OnInit {
   signIn() {
     // api call for login current user
     this.isSignInSubmitted = true;
-    console.log('signinForm : '+this.signinForm.value);
-    if (!this.signinForm.valid) {
-      console.log('Please provide all the required values!');
-      return false;
-    } else {
-      console.log(this.signinForm.value);
-    }
+    // console.log('signinForm : '+this.signinForm.value);
+    // if (!this.signinForm.valid) {
+    //   console.log('Please provide all the required values!');
+    //   return false;
+    // } else {
+    //   console.log(this.signinForm.value);
+    // }
 
     this.router.navigateByUrl('/tabs/main');
   }

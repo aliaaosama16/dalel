@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DataResolverService } from 'src/app/services/resolver/data-resolver.service';
 
 import { TabsPage } from './tabs.page';
 
@@ -24,14 +25,17 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'category-list',
+            path: 'categories/:id',
+            resolve: {
+              special: DataResolverService
+            },
             loadChildren: () =>
               import('./../../modules/category-list/category-list.module').then(
                 (m) => m.CategoryListPageModule
               ),
           },
           {
-            path: 'category-details',
+            path: 'categories/:id/:subCatId',
             loadChildren: () =>
               import(
                 './../../modules/category-details/category-details.module'
