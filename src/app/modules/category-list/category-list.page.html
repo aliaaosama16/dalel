@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border">
+    <div class="menu-container">
+      <img src="./../../../assets/images/wave app.svg" />
+  
+      <div class="menu-icon" (click)="openMenu()">
+        <img src="./../../../assets/icon/menu.svg" />
+      </div>
+  
+      <div class="menu-title">
+        <p>{{ "categories"|translate}}</p>
+      </div>
+  
+      <div class="back-icon"  routerLink="/tabs/main">
+        <ion-icon name="arrow-forward-outline" color="primary" ></ion-icon>
+      </div>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin" *ngFor="let cat of categoriesList">
+    <div class="container">
+      <img src="./../../../assets/images/1024-500.png" />
+
+      <div class="title">
+        <p>اسم تجريبي</p>
+      </div>
+
+      <div class="location">
+        <ion-icon name="location-sharp" color="primary"></ion-icon>
+      </div>
+
+      <div class="location-address">
+        <p>الرياض</p>
+      </div>
+
+      <div class="address-detail" routerLink="/tabs/main/category-details">
+        <ion-icon
+          name="arrow-forward-circle-outline"
+          color="white"
+        ></ion-icon>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>
