@@ -24,6 +24,19 @@ export class MainPage implements OnInit {
     pagination: true,
   };
 
+  categories: any[] = [
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+  ];
+
   constructor(
     private menuCtrl:MenuController,public modalController: ModalController,
     private langaugeservice: LanguageService,
@@ -54,6 +67,6 @@ export class MainPage implements OnInit {
 
 
   showAllCategories(){
-    this.router.navigateByUrl('/categories');
+    this.router.navigateByUrl('/tabs/main/categories');
   }
 }

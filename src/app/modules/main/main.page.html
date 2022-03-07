@@ -7,15 +7,17 @@
     </div>
 
     <div class="menu-title">
-      <p>{{"categories"|translate}}</p>
+      <p>{{"main"|translate}}</p>
     </div>
   </div>
 </ion-header>
 
 <ion-content>
   <div class="search-section">
-    <ion-row class="ion-align-items-center">
-      <ion-col size="10">
+    <ion-row
+      class="ion-justify-content-center ion-padding-horizontal ion-align-items-stretch"
+    >
+      <ion-col size="11">
         <ion-item lines="none" class="search-wrapper">
           <ion-input
             type="text"
@@ -25,7 +27,7 @@
           <ion-icon item-start color="primary" name="search"></ion-icon>
         </ion-item>
       </ion-col>
-      <ion-col size="2" class="ion-align-self-center">
+      <ion-col size="1" class="ion-align-self-center filter-fab">
         <ion-fab-button
           size="small"
           color="secondary"
@@ -52,11 +54,15 @@
 
   <div class="categories-section ion-padding-horizontal">
     <ion-row>
-      <ion-col size="10" class="ion-align-self-start" >
+      <ion-col size="10" class="ion-align-self-start">
         <h5 class="categories-title">{{"categories"|translate}}</h5>
       </ion-col>
 
-      <ion-col size="2" class="ion-align-self-end" (click)="showAllCategories()">
+      <ion-col
+        size="2"
+        class="ion-align-self-end"
+        (click)="showAllCategories()"
+      >
         <p class="categories-sub-title">{{"show all"|translate}}</p>
       </ion-col>
     </ion-row>
@@ -67,13 +73,15 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let i of [{},{},{},{},{},{}]">
-        <ion-card class="ion-no-margin">
+      <ng-template swiperSlide *ngFor="let cat of categories">
+        <ion-card class="ion-no-margin" routerLink="/tabs/main/category-list">
           <ion-item>
             <ion-thumbnail>
-              <img src="./../../../assets/images/1024-500.png" />
+              <img [src]="cat.image" />
             </ion-thumbnail>
-            <ion-label> {{'rests'|translate}} </ion-label>
+            <ion-label class="cat-title-text">
+              {{cat.name|translate}}
+            </ion-label>
           </ion-item>
         </ion-card>
       </ng-template>
@@ -102,18 +110,17 @@
               <p>اسم تجريبي</p>
             </div>
 
-            <div class="address">
-              <ion-icon
-                class="location"
-                name="location-outline"
-                color="primary"
-              ></ion-icon>
+            <div class="location">
+              <ion-icon name="location-sharp" color="primary"></ion-icon>
+            </div>
 
-              <p class="location-address">الرياض</p>
+            <div class="location-address">
+              <p>الرياض</p>
+            </div>
 
+            <div class="address-detail" routerLink="/tabs/main/category-details">
               <ion-icon
-                class="address-detail"
-                name="arrow-back-circle-outline"
+                name="arrow-forward-circle-outline"
                 color="white"
               ></ion-icon>
             </div>

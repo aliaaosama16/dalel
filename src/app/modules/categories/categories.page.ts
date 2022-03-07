@@ -7,13 +7,23 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
+  categories: any[] = [
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { name: 'rests', image: './../../../assets/images/1024-500.png' },
+  ];
+  constructor(private menuCtrl: MenuController) {}
 
-  constructor(private menuCtrl:MenuController) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  openMenu(){
-
+  openMenu() {
+    this.menuCtrl.open();
   }
 }
