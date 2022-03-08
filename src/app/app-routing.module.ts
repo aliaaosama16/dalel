@@ -57,15 +57,6 @@ const routes: Routes = [
         (m) => m.PasswordPageModule
       ),
   },
-
-  {
-    path: 'edit-profile',
-    loadChildren: () =>
-      import('./modules/auth/edit-profile/edit-profile.module').then(
-        (m) => m.EditProfilePageModule
-      ),
-  },
-
   {
     path: 'notifications',
     loadChildren: () =>
@@ -75,10 +66,11 @@ const routes: Routes = [
   },
   {
     path: 'search-filter',
-    loadChildren: () => import('./modules/search-filter/search-filter.module').then( m => m.SearchFilterPageModule)
+    loadChildren: () =>
+      import('./modules/search-filter/search-filter.module').then(
+        (m) => m.SearchFilterPageModule
+      ),
   },
-  
-  
 ];
 
 @NgModule({

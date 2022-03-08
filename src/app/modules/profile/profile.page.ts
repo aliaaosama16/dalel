@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  userData=
+   {
+    name:'aliaa',
+    phone:'01077262662',
+    email:'engaliaa@gmail.com'
+   }
+  ;
+  constructor(
+    private menuCtrl: MenuController,
+    private langaugeservice: LanguageService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  openMenu() {
+    this.menuCtrl.open();
   }
-
 }

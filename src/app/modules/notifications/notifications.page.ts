@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language/language.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications',
@@ -10,38 +11,86 @@ import { LanguageService } from 'src/app/services/language/language.service';
 export class NotificationsPage implements OnInit {
   currentlangauge: string;
 
-  notifications:any[]=[
+  notifications: any[] = [
     {
-    id:1,text:'تم الموافقة على طلبك',date:'الأن',isRead:true
-  },
-  {
-    id:2,text:'تم الموافقة على طلبك',date:'الأن',isRead:false
-  },
-  {
-    id:3,text:'تم الموافقة على طلبك',date:'الأن',isRead:true
-  },
-  {
-    id:4,text:'تم الموافقة على طلبك',date:'الأن',isRead:false
-  },
-  {
-    id:5,text:'تم الموافقة على طلبك',date:'الأن',isRead:true
-  },
-  {
-    id:6,text:'تم الموافقة على طلبك',date:'الأن',isRead:false
-  },
-  {
-    id:7,text:'تم الموافقة على طلبك',date:'الأن',isRead:true
-  },
-]
+      id: 1,
+      text: 'تم الموافقة على طلبك',
+      date: moment('2022-3-7').locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+    {
+      id: 2,
+      text: 'تم الموافقة على طلبك',
+       date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: false,
+    },
+    {
+      id: 3,
+      text: 'تم الموافقة على طلبك',
+      date: moment('2022-3-7').locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+    {
+      id: 4,
+      text: 'تم الموافقة على طلبك',
+       date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: false,
+    },
+    {
+      id: 5,
+      text: 'تم الموافقة على طلبك',
+      date: moment('2022-3-7').locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+    {
+      id: 6,
+      text: 'تم الموافقة على طلبك',
+       date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: false,
+    },
+    {
+      id: 7,
+      text: 'تم الموافقة على طلبك',
+      date: moment('2022-3-7').locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+    {
+      id: 8,
+      text: 'تم الموافقة على طلبك',
+       date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: false,
+    },
+    {
+      id: 9,
+      text: 'تم الموافقة على طلبك',
+      date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+    {
+      id: 10,
+      text: 'تم الموافقة على طلبك',
+      date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: false,
+    },
+    {
+      id: 11,
+      text: 'تم الموافقة على طلبك',
+      date: moment(new Date()).locale('ar').startOf('day').fromNow(),
+      isRead: true,
+    },
+  ];
 
-  constructor(private menuCtrl:MenuController,private langaugeservice:LanguageService) { }
+  constructor(
+    private menuCtrl: MenuController,
+    private langaugeservice: LanguageService
+  ) {}
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
   }
 
-  openMenu(){
+  openMenu() {
     this.menuCtrl.open();
   }
 }

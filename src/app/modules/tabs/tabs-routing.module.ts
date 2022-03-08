@@ -27,7 +27,7 @@ const routes: Routes = [
           {
             path: 'categories/:id',
             resolve: {
-              name: DataResolverService
+              name: DataResolverService,
             },
             loadChildren: () =>
               import('./../../modules/category-list/category-list.module').then(
@@ -50,13 +50,24 @@ const routes: Routes = [
             (m) => m.NotificationsPageModule
           ),
       },
-
       {
         path: 'profile',
-        loadChildren: () =>
-          import('./../profile/profile.module').then(
-            (m) => m.ProfilePageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../../modules/profile/profile.module').then(
+                (m) => m.ProfilePageModule
+              ),
+          },
+          {
+            path: 'edit-profile',
+            loadChildren: () =>
+              import(
+                './../../modules/auth/edit-profile/edit-profile.module'
+              ).then((m) => m.EditProfilePageModule),
+          },
+        ],
       },
       {
         path: 'my-reservations',
