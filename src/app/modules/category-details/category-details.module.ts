@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CategoryDetailsPageRoutingModule } from './category-details-routing.module';
 
 import { CategoryDetailsPage } from './category-details.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CategoryDetailsPageRoutingModule
+    CategoryDetailsPageRoutingModule,
+    TranslateModule
   ],
   declarations: [CategoryDetailsPage]
 })

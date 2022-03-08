@@ -1,7 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>category-details</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <div class="menu-container">
+    <img src="./../../../assets/images/wave app.svg" />
+
+    <div class="menu-icon" (click)="openMenu()">
+      <img src="./../../../assets/icon/menu.svg" />
+    </div>
+
+    <div class="menu-title">
+      <p>{{ "details"|translate}}</p>
+    </div>
+
+    <div class="back-icon" routerLink="/tabs/main">
+      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
+    </div>
+  </div>
 </ion-header>
 
 <ion-content>

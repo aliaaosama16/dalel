@@ -1,9 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>notifications</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <div class="menu-container">
+    <img src="./../../../assets/images/wave app.svg" />
+
+    <div class="menu-icon" (click)="openMenu()">
+      <img src="./../../../assets/icon/menu.svg" />
+    </div>
+
+    <div class="menu-title">
+      <p>{{ "notifications"|translate}}</p>
+    </div>
+
+    <div class="back-icon" routerLink="/tabs/main">
+      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
+    </div>
+  </div>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-card class="ion-no-margin">
+    <ion-item *ngFor="let item of notifications">
+      <ul>
+        <li>
+          <ion-label>
+            <h5 class="fn-14 dalel-regular">{{item.text}}</h5>
+            <p item-start class="fn-12 dalel-regular">{{item.date}}</p>
+          </ion-label>
+        </li>
+      </ul>
+    </ion-item>
+  </ion-card>
 </ion-content>

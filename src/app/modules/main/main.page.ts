@@ -4,6 +4,7 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
+import { SearchFilterPage } from '../search-filter/search-filter.page';
 
 @Component({
   selector: 'app-main',
@@ -26,16 +27,16 @@ export class MainPage implements OnInit {
   };
 
   categories: any[] = [
-    { id:1,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:2,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:3,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:4,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:5,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:6,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:7,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:8,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:9,name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id:10,name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
+    { id: 3, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 4, name: 'chalets', image: './../../../assets/images/1024-500.png' },
+    { id: 5, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 6, name: 'chalets', image: './../../../assets/images/1024-500.png' },
+    { id: 7, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 8, name: 'chalets', image: './../../../assets/images/1024-500.png' },
+    { id: 9, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
   ];
 
   categoryItems: any[] = [
@@ -43,49 +44,49 @@ export class MainPage implements OnInit {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:1
+      id: 1,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:2
+      id: 2,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:3
+      id: 3,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:4
+      id: 4,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:5
+      id: 5,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:6
+      id: 6,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:7
+      id: 7,
     },
     {
       name: 'اسم تجريبي',
       location: 'الرياض',
       image: './../../../assets/images/1024-500.png',
-      id:8
+      id: 8,
     },
   ];
 
@@ -106,10 +107,9 @@ export class MainPage implements OnInit {
     this.menuCtrl.open();
   }
 
-
   async openFilterModal() {
     const modal = await this.modalController.create({
-      component: 'search-filter',
+      component: SearchFilterPage,
       cssClass: 'my-custom-class',
     });
     return await modal.present();

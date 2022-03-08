@@ -41,13 +41,13 @@ ion-card{
 
     .container {
         position: relative;
-        height: 140px;
+        height: 150px;
         img {
           width:100%;
-          height: 140px;
+          height: 152px;
           object-fit: cover;
           object-position: initial;
-          border-radius: 10px;
+          //border-radius: 10px;
         }
     
         .title {

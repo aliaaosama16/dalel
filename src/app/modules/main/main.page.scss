@@ -1,6 +1,10 @@
 // ion-content.background {
 //     --background: url(../../../assets/images/mainBg.svg) 0 0 /100% 100% no-repeat;
 //   }
+
+.swiper-slide {
+  align-items: self-start;
+}
 .menu-container {
   position: relative;
   img {
@@ -33,6 +37,9 @@ ion-header {
 }
 
 .search-section {
+  .search-bar-input {
+    padding-right: 0px;
+  }
   .search-wrapper {
     border: 1px solid #e1e1e1;
     border-radius: 25px;
@@ -159,7 +166,7 @@ ion-header {
     position: relative;
     height: 140px;
     img {
-      width: 160px;
+      width: 100%;
       height: 140px;
       object-fit: cover;
       object-position: initial;

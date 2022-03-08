@@ -136,6 +136,39 @@ ion-color-tertiary {
   --ion-color-shade: var(--ion-color-black-shade);
   --ion-color-tint: var(--ion-color-black-tint);
 }
+
+.fn-12 {
+  font-size: 12px !important;
+}
+
+.fn-14 {
+  font-size: 14px !important;
+}
+
+.fn-15 {
+  font-size: 15px !important;
+}
+
+.fn-16 {
+  font-size: 16px !important;
+}
+
+.fn-18 {
+  font-size: 18px !important;
+}
+
+.dalel-regular {
+  font-family: "Cairo-Regular";
+}
+
+.dalel-Bold {
+  font-family: "Cairo-Bold";
+}
+
+.dalel-SemiBold {
+  font-family: "Cairo-SemiBold";
+}
+
 :root[dir="rtl"] {
   .swiper-pagination-bullets {
     top: 23% !important;
@@ -162,13 +195,13 @@ ion-color-tertiary {
   }
 
   .signin-btn {
-    --border-radius: 10px 0 0 0!important;
+    --border-radius: 10px 0 0 0 !important;
   }
 }
 
 :root[dir="ltr"] {
   .register-btn {
-    --border-radius:  10px 0 0 0 !important;
+    --border-radius: 10px 0 0 0 !important;
   }
 
   .signin-btn {

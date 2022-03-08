@@ -27,7 +27,7 @@ const routes: Routes = [
           {
             path: 'categories/:id',
             resolve: {
-              special: DataResolverService
+              name: DataResolverService
             },
             loadChildren: () =>
               import('./../../modules/category-list/category-list.module').then(

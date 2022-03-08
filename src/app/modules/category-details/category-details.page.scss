@@ -1,0 +1,40 @@
+.menu-container {
+    position: relative;
+    img {
+      width: 100%;
+    }
+  }
+  
+  ion-header {
+    .menu-icon {
+      position: absolute;
+      top: 30%;
+      right: 16px;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  
+    .menu-title {
+      position: absolute;
+      top: 35%;
+      right: 18%;
+      font-size: 18px;
+      color: var(--ion-color-primary);
+      font-weight: bold;
+      p {
+        margin: 0px;
+      }
+    }
+  
+    .back-icon {
+      position: absolute;
+      top: 33%;
+      left: 16px;
+      ion-icon {
+        font-size: 25px;
+      }
+    }
+  }
+  

@@ -10,6 +10,7 @@ export class DataService {
   constructor() { }
  
   setData(id, data) {
+    console.log(JSON.stringify(data))
     this.data[id] = data;
   }
  
