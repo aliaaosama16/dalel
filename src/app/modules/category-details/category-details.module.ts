@@ -8,6 +8,7 @@ import { CategoryDetailsPageRoutingModule } from './category-details-routing.mod
 
 import { CategoryDetailsPage } from './category-details.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     CategoryDetailsPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsModule
   ],
   declarations: [CategoryDetailsPage]
 })

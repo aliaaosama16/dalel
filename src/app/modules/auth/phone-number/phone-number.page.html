@@ -14,7 +14,7 @@
       </div>
 
       <form class="auth-form" (ngSubmit)="sendVerificationCode()">
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPhone ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"

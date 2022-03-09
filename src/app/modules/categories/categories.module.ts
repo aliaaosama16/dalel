@@ -8,6 +8,7 @@ import { CategoriesPageRoutingModule } from './categories-routing.module';
 
 import { CategoriesPage } from './categories.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CategoriesPageRoutingModule,
     ReactiveFormsModule,
     TranslateModule ,
+    ComponentsModule
   ],
   declarations: [CategoriesPage]
 })

@@ -15,8 +15,8 @@
 
       <form class="auth-form" (ngSubmit)="confirmVerificationCode()">
         <ion-row>
-          <ion-col size="3">
-            <ion-item lines="none">
+          <ion-col size="3" [ngClass]="inputFocusNumber1 ? 'focused' : 'unfocused' ">
+            <ion-item lines="none" >
               <ion-input
                 class="otp"
                 #n1
@@ -24,12 +24,14 @@
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n2)"
+                (ionFocus)="focusNumber1(true)"
+                (ionBlur)="focusNumber1(false)"
                 type="number"
               ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3">
-            <ion-item lines="none">
+            <ion-item lines="none" [ngClass]="inputFocusNumber2 ? 'focused' : 'unfocused' ">
               <ion-input
                 class="otp"
                 #n2
@@ -37,12 +39,14 @@
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n3)"
+                (ionFocus)="focusNumber2(true)"
+                (ionBlur)="focusNumber2(false)"
                 type="number"
               ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="3">
-            <ion-item lines="none">
+          <ion-col size="3" [ngClass]="inputFocusNumber3 ? 'focused' : 'unfocused' ">
+            <ion-item lines="none" >
               <ion-input
                 class="otp"
                 #n3
@@ -50,12 +54,14 @@
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,n4)"
+                (ionFocus)="focusNumber3(true)"
+                (ionBlur)="focusNumber3(false)"
                 type="number"
               ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="3">
-            <ion-item lines="none">
+          <ion-col size="3" [ngClass]="inputFocusNumber4 ? 'focused' : 'unfocused' ">
+            <ion-item lines="none" >
               <ion-input
                 class="otp"
                 #n4
@@ -63,6 +69,8 @@
                 max="9"
                 maxlength="1"
                 (keyup)="next($event,'')"
+                (ionFocus)="focusNumber4(true)"
+                (ionBlur)="focusNumber4(false)"
                 type="number"
               ></ion-input>
             </ion-item>

@@ -1,23 +1,9 @@
-<!-- <ion-header class="ion-no-border">
-  <div class="menu-container">
-    <img src="./../../../assets/images/wave app.svg" />
-
-    <div class="menu-icon" (click)="openMenu()">
-      <img src="./../../../assets/icon/menu.svg" />
-    </div>
-
-    <div class="menu-title">
-      <p>{{ "notifications"|translate}}</p>
-    </div>
-
-    <div class="back-icon" routerLink="/tabs/main">
-      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
-    </div>
-  </div>
-</ion-header> -->
-
-<app-header [title]="'notifications'"></app-header>
-
+<app-header
+  [title]="'notifications'"
+  [backwardRoute]="'/tabs/main'"
+  [isEditable]="false"
+  [isMain]="false"
+></app-header>
 
 <ion-content class="ion-padding">
   <ion-card class="ion-no-margin">

@@ -1,9 +1,12 @@
-
-<app-custom-button [title]="'profile'"></app-custom-button>
+<app-header
+  [title]="'profile'"
+  [backwardRoute]="'/tabs/main'"
+  [forwardRoute]="'/tabs/profile/edit-profile'"
+  [isEditable]="true"
+  [isMain]="false"
+></app-header>
 
 <ion-content class="ion-padding">
-
- 
   <!-- <div class="ion-text-center picture-wrapper">
   
     <ion-icon name="person-circle-outline"></ion-icon>
@@ -12,11 +15,10 @@
 
   <div class="profile-card-wrapper">
     <div class="picture-wrapper">
-      <img src="./../../../assets/icon/person-inactive.svg">
+      <img src="./../../../assets/icon/person-inactive.svg" />
     </div>
-    
+
     <ion-card class="ion-no-margin ion-padding">
-     
       <div class="ion-text-center">
         <h4 class="dark-black-color fn-16 dalel-Bold">{{userData.name}}</h4>
       </div>
@@ -32,7 +34,7 @@
           type="text"
         ></ion-input>
       </ion-item>
-  
+
       <ion-item lines="none">
         <ion-icon
           item-start
@@ -45,7 +47,7 @@
           type="nummber"
         ></ion-input>
       </ion-item>
-  
+
       <ion-item lines="none">
         <ion-icon
           item-start
@@ -60,5 +62,4 @@
       </ion-item>
     </ion-card>
   </div>
-  
 </ion-content>

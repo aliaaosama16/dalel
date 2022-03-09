@@ -24,7 +24,7 @@
         (ngSubmit)="signUp()"
         [formGroup]="registerForm"
       >
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPerson ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -38,10 +38,6 @@
             formControlName="userName"
           ></ion-input>
         </ion-item>
-        <!-- <div class="error-box"
-        *ngIf="registerForm.controls['userName'].hasError('required') && registerForm.controls['userName'].touched">
-         {{'please enter user name' | translate}}
-      </div> -->
 
         <div
           class="error-box"
@@ -56,7 +52,7 @@
         >
           {{'user name should be min 2 chars long' | translate}}
         </div>
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPhone ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -85,7 +81,7 @@
           {{'phone number should be 10 numbers' | translate}}
         </div>
 
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusEmail ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -114,7 +110,7 @@
           {{'please enter valid email' | translate}}
         </div>
 
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPassword ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -136,7 +132,7 @@
           {{'please enter password' | translate}}
         </div>
 
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusConfirmPassword ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -169,7 +165,7 @@
         (ngSubmit)="signIn()"
         [formGroup]="signinForm"
       >
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPhone ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"
@@ -197,7 +193,7 @@
         >
           {{'phone number should be 10 numbers' | translate}}
         </div>
-        <ion-item lines="none">
+        <ion-item lines="none" [ngClass]="inputFocusPassword ? 'focused' : 'unfocused' ">
           <ion-icon
             item-start
             color="primary"

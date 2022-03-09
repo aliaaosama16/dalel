@@ -7,7 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./code.page.scss'],
 })
 export class CodePage implements OnInit {
-  inputFocusPhone: boolean = false;
+  inputFocusNumber1: boolean = false;
+  inputFocusNumber2: boolean = false;
+  inputFocusNumber3: boolean = false;
+  inputFocusNumber4: boolean = false;
   codeValues: string;
   code: number;
   constructor(private router: Router) {}
@@ -21,9 +24,27 @@ export class CodePage implements OnInit {
     this.router.navigateByUrl('/tabs');
   }
 
-  focusPhone(focusStatus: boolean) {
+  focusNumber1(focusStatus: boolean) {
     console.log('input focus' + focusStatus);
-    this.inputFocusPhone = focusStatus;
+    this.inputFocusNumber1 = focusStatus;
+  }
+
+
+  focusNumber2(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusNumber2 = focusStatus;
+  }
+
+
+  focusNumber3(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusNumber3 = focusStatus;
+  }
+
+
+  focusNumber4(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusNumber4 = focusStatus;
   }
 
   next(ev, nextInput) {

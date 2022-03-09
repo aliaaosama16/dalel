@@ -7,17 +7,17 @@
     </div>
 
     <div class="menu-title">
-      <p>{{ title|translate}}</p>
+      <p>{{ title | translate }}</p>
     </div>
 
-    <div class="edit-icon" routerLink="/tabs/profile/edit-profile">
+    <div *ngIf="isEditable" class="edit-icon" (click)="navigate(forwardRoute)">
       <ion-icon
         src="./../../../assets/icon/edit.svg"
         color="primary"
       ></ion-icon>
     </div>
 
-    <div class="back-icon" routerLink="/tabs/main">
+    <div class="back-icon" (click)="navigate(backwardRoute)" *ngIf="!isMain">
       <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
     </div>
   </div>

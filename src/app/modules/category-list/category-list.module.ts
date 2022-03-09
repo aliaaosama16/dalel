@@ -8,6 +8,7 @@ import { CategoryListPageRoutingModule } from './category-list-routing.module';
 
 import { CategoryListPage } from './category-list.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     CategoryListPageRoutingModule,
-    TranslateModule 
+    TranslateModule ,
+    ComponentsModule
   ],
   declarations: [CategoryListPage]
 })

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -7,13 +8,23 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() title:string;
-  constructor(private menuCtrl:MenuController ) { }
+  @Input() title: string;
+  @Input() isEditable: boolean;
+  @Input() isMain: boolean;
+  @Input() forwardRoute: string;
+  @Input() backwardRoute: string;
+  @Output()  navigateTo = new EventEmitter<string>()
+  constructor(private menuCtrl: MenuController, private router: Router) {}
 
   ngOnInit() {}
 
-  openMenu(){
+  openMenu() {
     this.menuCtrl.open();
   }
 
+  navigate(route) {
+    console.log('current route is :  '+route);
+    this.navigateTo.emit(route);
+    this.router.navigateByUrl(route);
+  }
 }
