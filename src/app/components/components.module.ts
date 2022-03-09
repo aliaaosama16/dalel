@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
-    CustomButtonComponent
+    CustomButtonComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { CustomButtonComponent } from './custom-button/custom-button.component';
     TranslateModule.forChild(),
   ],
   exports: [
-    CustomButtonComponent
+    CustomButtonComponent,
+    HeaderComponent
   ]
 })
 export class ComponentsModule { }

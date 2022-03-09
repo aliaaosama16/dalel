@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <div class="menu-container">
+    <img src="./../../../assets/images/wave app.svg" />
+
+    <div class="menu-icon" (click)="openMenu()">
+      <img src="./../../../assets/icon/menu.svg" />
+    </div>
+
+    <div class="menu-title">
+      <p>{{ title|translate}}</p>
+    </div>
+
+    <div class="edit-icon" routerLink="/tabs/profile/edit-profile">
+      <ion-icon
+        src="./../../../assets/icon/edit.svg"
+        color="primary"
+      ></ion-icon>
+    </div>
+
+    <div class="back-icon" routerLink="/tabs/main">
+      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
+    </div>
+  </div>
+</ion-header>

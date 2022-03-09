@@ -1,74 +1,64 @@
-<ion-header class="ion-no-border">
-  <div class="menu-container">
-    <img src="./../../../assets/images/wave app.svg" />
 
-    <div class="menu-icon" (click)="openMenu()">
-      <img src="./../../../assets/icon/menu.svg" />
-    </div>
+<app-custom-button [title]="'profile'"></app-custom-button>
 
-    <div class="menu-title">
-      <p>{{ "profile"|translate}}</p>
-    </div>
-
-    <div class="edit-icon" routerLink="/tabs/profile/edit-profile">
-      <ion-icon
-        src="./../../../assets/icon/edit.svg"
-        color="primary"
-      ></ion-icon>
-    </div>
-
-    <div class="back-icon" routerLink="/tabs/main">
-      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
-    </div>
-  </div>
-</ion-header>
 <ion-content class="ion-padding">
-  <ion-card class="ion-no-margin ion-padding">
-    <div class="ion-text-center">
-      <ion-avatar class="secondary-color">
-        <img src="'./../../../../assets/icon/person-inactive.svg" />
-      </ion-avatar>
-    </div>
-    <div class="ion-text-center">
-      <h4 class="dark-black-color fn-16 dalel-Bold">{{userData.name}}</h4>
-    </div>
-    <ion-item lines="none">
-      <ion-icon
-        item-start
-        color="primary"
-        src="'./../../../../assets/icon/person-inactive.svg"
-      ></ion-icon>
-      <ion-input
-        readonly="true"
-        [value]="userData.name"
-        type="text"
-      ></ion-input>
-    </ion-item>
 
-    <ion-item lines="none">
-      <ion-icon
-        item-start
-        color="primary"
-        src="'./../../../../assets/icon/phone-inactive.svg"
-      ></ion-icon>
-      <ion-input
-        readonly="true"
-        [value]="userData.phone"
-        type="nummber"
-      ></ion-input>
-    </ion-item>
+ 
+  <!-- <div class="ion-text-center picture-wrapper">
+  
+    <ion-icon name="person-circle-outline"></ion-icon>
+    
+  </div> -->
 
-    <ion-item lines="none">
-      <ion-icon
-        item-start
-        color="primary"
-        src="'./../../../../assets/icon/email-inactive.svg"
-      ></ion-icon>
-      <ion-input
-        readonly="true"
-        [value]="userData.email"
-        type="email"
-      ></ion-input>
-    </ion-item>
-  </ion-card>
+  <div class="profile-card-wrapper">
+    <div class="picture-wrapper">
+      <img src="./../../../assets/icon/person-inactive.svg">
+    </div>
+    
+    <ion-card class="ion-no-margin ion-padding">
+     
+      <div class="ion-text-center">
+        <h4 class="dark-black-color fn-16 dalel-Bold">{{userData.name}}</h4>
+      </div>
+      <ion-item lines="none">
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/person-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userData.name"
+          type="text"
+        ></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/phone-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userData.phone"
+          type="nummber"
+        ></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/email-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userData.email"
+          type="email"
+        ></ion-input>
+      </ion-item>
+    </ion-card>
+  </div>
+  
 </ion-content>

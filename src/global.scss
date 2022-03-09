@@ -41,6 +41,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "~swiper/css";
 @import "~swiper/css/bundle";
+
+
+.swiper-slide {
+  display: block !important;
+}
 .arabic_padding {
   padding-right: 36px !important;
 }
@@ -114,11 +119,7 @@
         --padding-bottom:0px !important;
         --padding-top:0px !important;
       }
-      ion-row {
-        ion-col {
-          //padding: 0px ;
-        }
-      }
+     
       ion-item {
         --border-color: var(--ion-color-secondary);
         --border-radius: 10px;

@@ -123,4 +123,11 @@ export class MainPage implements OnInit {
     this.dataService.setData(catID, catName);
     this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
   }
+
+  slideNext() {
+   // const swiper = document.querySelector('.swiper').swiper;
+
+    // Now you can use all slider methods like
+   // swiper.slideNext();
+  }
 }

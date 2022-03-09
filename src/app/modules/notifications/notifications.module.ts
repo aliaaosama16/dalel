@@ -8,6 +8,7 @@ import { NotificationsPageRoutingModule } from './notifications-routing.module';
 
 import { NotificationsPage } from './notifications.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     NotificationsPageRoutingModule,
-    TranslateModule 
+    TranslateModule,
+    ComponentsModule,
   ],
-  declarations: [NotificationsPage]
+  declarations: [NotificationsPage],
 })
 export class NotificationsPageModule {}

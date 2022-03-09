@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-custom-button',
@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custom-button.component.scss'],
 })
 export class CustomButtonComponent implements OnInit {
-
+  @Input() title:string;
   constructor() { }
 
   ngOnInit() {}
 
+  openMenu(){
+    
+  }
 }
