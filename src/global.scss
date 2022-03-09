@@ -110,7 +110,7 @@ ion-input {
     }
     ion-segment-button {
       height: 48px;
-      --background:  rgba(var(--ion-color-secondary-rgb),0.51);
+      --background: rgba(var(--ion-color-secondary-rgb), 0.51);
       --color-checked: var(--ion-color-white);
       --color: var(--ion-color-secondary);
       --background-checked: var(--ion-color-primary);
@@ -125,12 +125,12 @@ ion-input {
     .auth-form {
       margin: 24px 16px;
 
-      .otp{
+      .otp {
         font-size: 24px;
-        --padding-bottom:0px !important;
-        --padding-top:0px !important;
+        --padding-bottom: 0px !important;
+        --padding-top: 0px !important;
       }
-     
+
       ion-item {
         --border-color: var(--ion-color-secondary);
         --border-radius: 10px;
@@ -139,7 +139,6 @@ ion-input {
         ion-icon {
           width: 20px !important;
           height: 20px !important;
-          //padding-top: 6px !important;
         }
         ion-input {
           --placeholder-color: var(--ion-color-secondary);
@@ -165,8 +164,8 @@ ion-input {
         font-family: "Cairo-Bold";
       }
 
-      .error-box{
-        color: red;
+      .error-box {
+        color: var(--ion-color-danger);
         margin: 10px auto;
         font-size: 12px;
         text-align: center;
@@ -191,26 +190,23 @@ ion-input {
   }
 }
 
-ion-tab-bar{
-  --background:rgba(var(--ion-color-secondary-rgb),0.2) !important;
+ion-tab-bar {
+  --background: rgba(var(--ion-color-secondary-rgb), 0.2) !important;
   margin: 16px;
   border-radius: 5px;
 
-
-  ion-tab-button{
-    ion-icon{
+  ion-tab-button {
+    ion-icon {
       width: 16px;
-    height: 14.4px;
+      height: 14.4px;
     }
   }
 }
 
-.float-right{
+.float-right {
   float: right;
 }
 
-
-.float-left{
+.float-left {
   float: left;
 }
-

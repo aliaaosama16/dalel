@@ -8,6 +8,7 @@ import { MyReservationsPageRoutingModule } from './my-reservations-routing.modul
 
 import { MyReservationsPage } from './my-reservations.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     MyReservationsPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [MyReservationsPage]
 })

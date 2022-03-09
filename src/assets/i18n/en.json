@@ -43,5 +43,7 @@
     "phone number should be 10 numbers":"phone number should be 10 numbers",
     "details":"details",
     "edit profile":"edit profile",
-    "save":"save"
+    "save":"save",
+    "old":"old",
+    "current":"current"
 }

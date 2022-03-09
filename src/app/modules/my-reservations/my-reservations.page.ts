@@ -6,10 +6,70 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-reservations.page.scss'],
 })
 export class MyReservationsPage implements OnInit {
+  reservationsType: string = 'old';
 
-  constructor() { }
+  oldReservations = [
+    {
+      id: 1,
+      name: 'rests',
+      image: './../../../assets/images/1024-500.png',
+      city: 'الرياض',
+      country: 'المملكة العربية السعودية',
+      price: 1120,
+      unit: 'ر.س',
+      perUnit: 'ليلة',
+      rating: 3,
+    },
+  ];
+  currentReservations = [
+    {
+      id: 1,
+      name: 'rests',
+      image: './../../../assets/images/1024-500.png',
+      city: 'الرياض',
+      country: 'المملكة العربية السعودية',
+      price: 1120,
+      unit: 'ر.س',
+      perUnit: 'ليلة',
+      rating: 3,
+    },
+    {
+      id: 1,
+      name: 'rests',
+      image: './../../../assets/images/1024-500.png',
+      city: 'الرياض',
+      country: 'المملكة العربية السعودية',
+      price: 1120,
+      unit: 'ر.س',
+      perUnit: 'ليلة',
+      rating: 3,
+    },
+    {
+      id: 1,
+      name: 'rests',
+      image: './../../../assets/images/1024-500.png',
+      city: 'الرياض',
+      country: 'المملكة العربية السعودية',
+      price: 1120,
+      unit: 'ر.س',
+      perUnit: 'ليلة',
+      rating: 3,
+    },
+    {
+      id: 1,
+      name: 'rests',
+      image: './../../../assets/images/1024-500.png',
+      city: 'الرياض',
+      country: 'المملكة العربية السعودية',
+      price: 1120,
+      unit: 'ر.س',
+      perUnit: 'ليلة',
+      rating: 3,
+    },
+  ];
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  reservationsTypeChange($event) {}
 }

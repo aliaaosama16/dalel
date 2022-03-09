@@ -1,0 +1,120 @@
+ion-segment {
+  border-radius: 10px !important;
+  margin-bottom: 24px;
+  --background: #ffeee3;
+  .selected {
+    background-image: linear-gradient(
+      to left,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
+    --border-radius: 10px !important;
+  }
+  .old-unselected {
+    --border-radius: 0 10px 10px 0 !important;
+  }
+
+  .current-unselected {
+    --border-radius: 10px 0 0 10px !important;
+  }
+}
+ion-segment-button {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  height: 48px;
+  --background: #ffeee3; // rgba(var(--ion-color-secondary-rgb), 0.51);
+  --color-checked: var(--ion-color-white);
+  --color: var(--ion-color-secondary);
+  --background-checked: var(--ion-color-primary);
+  --border-radius: 10px !important;
+  --indicator-color: none;
+  ion-label {
+    font-size: 14px;
+    font-family: "Cairo-SemiBold";
+  }
+}
+ion-card {
+  margin-bottom: 16px;
+
+  .container {
+    position: relative;
+    height: 160px;
+
+    .price {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      color: var(--ion-color-secondary);
+      p {
+        font-size: 14px;
+        margin: 0px;
+        font-family: "Cairo-Bold";
+      }
+    }
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      object-position: initial;
+      //border-radius: 10px;
+    }
+
+    .title {
+      position: absolute;
+      bottom: 30px;
+      right: 13px;
+      color: var(--ion-color-white);
+      margin-bottom: 7px;
+      p {
+        font-size: 15px;
+        margin: 0px;
+        font-family: "Cairo-SemiBold";
+      }
+    }
+
+    .location {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      font-size: 14px;
+      font-family: "Cairo-Regular";
+      ion-icon {
+        font-size: 20px;
+      }
+      //text-decoration: underline;
+    }
+
+    .location-address {
+      position: absolute;
+      color: var(--ion-color-white);
+      font-family: "Cairo-Regular";
+      font-size: 10px;
+      bottom: 13px;
+      right: 35px;
+      p {
+        margin: 0px;
+      }
+    }
+
+    .rating {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      text-align: center;
+      padding: 2px 0px;
+      width: 40px;
+      height: 25px;
+      background-color: var(--ion-color-primary);
+      border-radius: 5px;
+      ion-icon {
+        font-size: 12px;
+
+        margin-top: 5px;
+      }
+      span {
+        margin: 0 4px;
+        font-size: 14px;
+      }
+    }
+  }
+}
