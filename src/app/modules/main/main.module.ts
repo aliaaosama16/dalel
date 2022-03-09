@@ -9,6 +9,7 @@ import { MainPageRoutingModule } from './main-routing.module';
 import { MainPage } from './main.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { SwiperModule } from 'swiper/angular';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { SwiperModule } from 'swiper/angular';
     MainPageRoutingModule,
     TranslateModule,
     ReactiveFormsModule,
-    SwiperModule
+    SwiperModule,
+    ComponentsModule
   ],
   declarations: [MainPage]
 })
