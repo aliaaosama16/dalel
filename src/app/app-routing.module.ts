@@ -71,10 +71,7 @@ const routes: Routes = [
         (m) => m.SearchFilterPageModule
       ),
   },
-  {
-    path: 'my-reservations-details',
-    loadChildren: () => import('./modules/my-reservations-details/my-reservations-details.module').then( m => m.MyReservationsDetailsPageModule)
-  },
+ 
 ];
 
 @NgModule({

@@ -71,10 +71,22 @@ const routes: Routes = [
       },
       {
         path: 'my-reservations',
-        loadChildren: () =>
-          import('./../my-reservations/my-reservations.module').then(
-            (m) => m.MyReservationsPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../my-reservations/my-reservations.module').then(
+                (m) => m.MyReservationsPageModule
+              ),
+          },
+          {
+            path: 'my-reservations-details',
+            loadChildren: () =>
+              import(
+                './../my-reservations-details/my-reservations-details.module'
+              ).then((m) => m.MyReservationsDetailsPageModule),
+          },
+        ],
       },
       {
         path: '',
