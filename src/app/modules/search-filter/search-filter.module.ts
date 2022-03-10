@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { SearchFilterPageRoutingModule } from './search-filter-routing.module';
 
 import { SearchFilterPage } from './search-filter.page';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchFilterPageRoutingModule
+    SearchFilterPageRoutingModule,
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [SearchFilterPage]
 })

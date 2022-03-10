@@ -46,5 +46,7 @@
     "save":"save",
     "old":"old",
     "current":"current",
-    "my-reservations-details": "my-reservations-details"
+    "my-reservations-details": "my-reservations-details",
+     "search-filter":"search-filter"
+
 }

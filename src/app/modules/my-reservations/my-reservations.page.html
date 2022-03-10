@@ -27,7 +27,11 @@
   </ion-segment>
 
   <div *ngIf="reservationsType=='old'">
-    <ion-card class="ion-no-margin" *ngFor="let item of oldReservations" routerLink="/tabs/my-reservations-details">
+    <ion-card
+      class="ion-no-margin"
+      *ngFor="let item of oldReservations"
+      routerLink="/tabs/my-reservations/my-reservations-details"
+    >
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />
 
@@ -40,7 +44,10 @@
         </div>
 
         <div class="location">
-            <ion-icon src="./../../../assets/icon/pin-underline.svg" color="primary"></ion-icon>
+          <ion-icon
+            src="./../../../assets/icon/pin-underline.svg"
+            color="primary"
+          ></ion-icon>
         </div>
 
         <div class="location-address">
@@ -56,7 +63,11 @@
   </div>
 
   <div *ngIf="reservationsType=='current'">
-    <ion-card class="ion-no-margin" *ngFor="let item of currentReservations" routerLink="/tabs/my-reservations-details">
+    <ion-card
+      class="ion-no-margin"
+      *ngFor="let item of currentReservations"
+      routerLink="/tabs/my-reservations/my-reservations-details"
+    >
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />
 
@@ -69,7 +80,10 @@
         </div>
 
         <div class="location">
-          <ion-icon src="./../../../assets/icon/pin-underline.svg" color="primary"></ion-icon>
+          <ion-icon
+            src="./../../../assets/icon/pin-underline.svg"
+            color="primary"
+          ></ion-icon>
         </div>
 
         <div class="location-address">

@@ -41,6 +41,20 @@ const routes: Routes = [
                 './../../modules/category-details/category-details.module'
               ).then((m) => m.CategoryDetailsPageModule),
           },
+          {
+            path: 'search-filter',
+            loadChildren: () =>
+              import('./../../modules/search-filter/search-filter.module').then(
+                (m) => m.SearchFilterPageModule
+              ),
+          },
+          {
+            path: 'search-results',
+            loadChildren: () =>
+              import(
+                './../../modules/search-results/search-results.module'
+              ).then((m) => m.SearchResultsPageModule),
+          },
         ],
       },
       {

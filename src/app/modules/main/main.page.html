@@ -15,11 +15,12 @@
           <ion-icon item-start color="primary" name="search"></ion-icon>
         </ion-item>
       </ion-col>
+      (click)="openFilterModal()"
       <ion-col size="1" class="ion-align-self-center filter-fab">
         <ion-fab-button
           size="small"
           color="secondary"
-          (click)="openFilterModal()"
+          routerLink="/tabs/main/search-filter"
         >
           <ion-icon name="funnel-outline" color="white"></ion-icon>
         </ion-fab-button>

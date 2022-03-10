@@ -64,13 +64,7 @@ const routes: Routes = [
         (m) => m.NotificationsPageModule
       ),
   },
-  {
-    path: 'search-filter',
-    loadChildren: () =>
-      import('./modules/search-filter/search-filter.module').then(
-        (m) => m.SearchFilterPageModule
-      ),
-  },
+
  
 ];
 
