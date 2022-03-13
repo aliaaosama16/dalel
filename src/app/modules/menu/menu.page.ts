@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -28,9 +29,11 @@ export class MenuPage implements OnInit {
       url: '/menu/favourites'
     }
   ];
-  constructor() { }
+  constructor(private menuCtrl:MenuController) { }
 
   ngOnInit() {
   }
-
+  // ionViewWillEnter() {
+  //   this.menuCtrl.enable(true);
+  // }
 }

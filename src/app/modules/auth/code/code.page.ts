@@ -15,12 +15,12 @@ export class CodePage implements OnInit {
   codeValues: string;
   code: number;
   constructor(private router: Router,private menuCtrl:MenuController) {
-    // this.menCtrl.enable(false,'main-content')
+    this.menuCtrl.enable(false,'main')
   }
 
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
+  // ionViewWillEnter() {
+  //   this.menuCtrl.enable(false);
+  // }
 
   ngOnInit() {}
 

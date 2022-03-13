@@ -11,11 +11,11 @@ import { MenuController } from '@ionic/angular';
 export class LanguagePage implements OnInit {
   currentlangauge: string;
   constructor(private langaugeservice: LanguageService,private menuCtrl:MenuController) {
-    //this.menuCtrl.enable(false, 'main-content');
+    this.menuCtrl.enable(false, 'main');
   }
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
+  // ionViewWillEnter() {
+  //   this.menuCtrl.enable(false);
+  // }
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
   }

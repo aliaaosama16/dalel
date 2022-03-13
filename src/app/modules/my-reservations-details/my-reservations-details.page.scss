@@ -30,6 +30,9 @@ ion-button::part(native) {
   justify-content: space-between;
   .name, .rating{
     flex-direction: row;
+    h5{
+      margin-top: 10px !important;
+    }
   }
 }
 

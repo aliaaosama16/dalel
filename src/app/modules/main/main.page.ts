@@ -99,7 +99,9 @@ export class MainPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     private translate:TranslateService
-  ) {}
+  ) {
+    this.menuCtrl.enable(true, 'main');
+  }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

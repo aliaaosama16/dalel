@@ -19,13 +19,13 @@
   --ion-color-secondary-shade: #e09668;
   --ion-color-secondary-tint: #ffb384;
 
-/** secondary **/
-  --ion-color-orange-light: #FFEEE3;
-	--ion-color-orange-light-rgb: 255,238,227;
-	--ion-color-orange-light-contrast: #000000;
-	--ion-color-orange-light-contrast-rgb: 0,0,0;
-	--ion-color-orange-light-shade: #e0d1c8;
-	--ion-color-orange-light-tint: #fff0e6;
+  /** secondary **/
+  --ion-color-orange-light: #ffeee3;
+  --ion-color-orange-light-rgb: 255, 238, 227;
+  --ion-color-orange-light-contrast: #000000;
+  --ion-color-orange-light-contrast-rgb: 0, 0, 0;
+  --ion-color-orange-light-shade: #e0d1c8;
+  --ion-color-orange-light-tint: #fff0e6;
 
   /** tertiary **/
   --ion-color-tertiary: #fffda1;
@@ -50,6 +50,14 @@
   --ion-color-black-contrast-rgb: 255, 255, 255;
   --ion-color-black-shade: #0b0b0b;
   --ion-color-black-tint: #252525;
+
+  /** gray-black**/
+  --ion-color-gray-black: #303030;
+  --ion-color-gray-black-rgb: 48, 48, 48;
+  --ion-color-gray-black-contrast: #ffffff;
+  --ion-color-gray-black-contrast-rgb: 255, 255, 255;
+  --ion-color-gray-black-shade: #2a2a2a;
+  --ion-color-gray-black-tint: #454545;
 
   /** success **/
   --ion-color-success: #2dd36f;
@@ -101,11 +109,11 @@
 
   /** black **/
   --ion-color-dark-black: #000000;
-	--ion-color-dark-black-rgb: 0,0,0;
-	--ion-color-dark-black-contrast: #ffffff;
-	--ion-color-dark-black-contrast-rgb: 255,255,255;
-	--ion-color-dark-black-shade: #000000;
-	--ion-color-dark-black-tint: #1a1a1a;
+  --ion-color-dark-black-rgb: 0, 0, 0;
+  --ion-color-dark-black-contrast: #ffffff;
+  --ion-color-dark-black-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-black-shade: #000000;
+  --ion-color-dark-black-tint: #1a1a1a;
 }
 
 .ion-color-primary {
@@ -126,14 +134,13 @@
   --ion-color-tint: var(--ion-color-secondary-tint);
 }
 
-
 .ion-color-orange-light {
-	--ion-color-base: var(--ion-color-orange-light);
-	--ion-color-base-rgb: var(--ion-color-orange-light-rgb);
-	--ion-color-contrast: var(--ion-color-orange-light-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-orange-light-contrast-rgb);
-	--ion-color-shade: var(--ion-color-orange-light-shade);
-	--ion-color-tint: var(--ion-color-orange-light-tint);
+  --ion-color-base: var(--ion-color-orange-light);
+  --ion-color-base-rgb: var(--ion-color-orange-light-rgb);
+  --ion-color-contrast: var(--ion-color-orange-light-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-orange-light-contrast-rgb);
+  --ion-color-shade: var(--ion-color-orange-light-shade);
+  --ion-color-tint: var(--ion-color-orange-light-tint);
 }
 
 .ion-color-tertiary {
@@ -154,13 +161,21 @@
   --ion-color-tint: var(--ion-color-white-tint);
 }
 
+.ion-color-gray-black {
+  --ion-color-base: var(--ion-color-gray-black);
+  --ion-color-base-rgb: var(--ion-color-gray-black-rgb);
+  --ion-color-contrast: var(--ion-color-gray-black-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-gray-black-contrast-rgb);
+  --ion-color-shade: var(--ion-color-gray-black-shade);
+  --ion-color-tint: var(--ion-color-gray-black-tint);
+}
 .ion-color-dark-black {
-	--ion-color-base: var(--ion-color-dark-black);
-	--ion-color-base-rgb: var(--ion-color-dark-black-rgb);
-	--ion-color-contrast: var(--ion-color-dark-black-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-dark-black-contrast-rgb);
-	--ion-color-shade: var(--ion-color-dark-black-shade);
-	--ion-color-tint: var(--ion-color-dark-black-tint);
+  --ion-color-base: var(--ion-color-dark-black);
+  --ion-color-base-rgb: var(--ion-color-dark-black-rgb);
+  --ion-color-contrast: var(--ion-color-dark-black-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-dark-black-contrast-rgb);
+  --ion-color-shade: var(--ion-color-dark-black-shade);
+  --ion-color-tint: var(--ion-color-dark-black-tint);
 }
 
 .primary-color {
@@ -174,8 +189,12 @@
   color: var(--ion-color-white) !important;
 }
 
-.dark-black-color{
-  color:var(--ion-color-dark-black) !important;
+.dark-black-color {
+  color: var(--ion-color-dark-black) !important;
+}
+
+.gray-black-color{
+  color:var(--ion-color-gray-black) !important;
 }
 
 .fn-10 {

@@ -14,12 +14,12 @@ export class PhoneNumberPage implements OnInit {
     './../../../../assets/icon/phone-inactive.svg';
 
   constructor(private router: Router, private menuCtrl: MenuController) {
-    //this.menuCtrl.enable(false, 'main-content');
+    this.menuCtrl.enable(false, 'main');
   }
 
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
+  // ionViewWillEnter() {
+  //   this.menuCtrl.enable(false);
+  // }
   ngOnInit() {}
 
   sendVerificationCode() {

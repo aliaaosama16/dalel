@@ -55,13 +55,13 @@ export class LoginRegisterPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private formBuilder: FormBuilder,private menuCtrl:MenuController) {
-      //this.menuCtrl.enable(false,'main-content')
+      this.menuCtrl.enable(false,'main')
     
    }
 
-   ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
+  //  ionViewWillEnter() {
+  //   this.menuCtrl.enable(false);
+  // }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
