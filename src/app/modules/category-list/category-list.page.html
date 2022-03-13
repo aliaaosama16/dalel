@@ -1,6 +1,6 @@
 
 
-<app-header [title]="'categories'" [isEditable]="false" [backwardRoute]="'/tabs/main'" [isMain]="false"></app-header>
+<app-header title='{{categoryName|translate}}' [isEditable]="false" [backwardRoute]="'/tabs/main'" [isMain]="false"></app-header>
 
 
 <ion-content class="ion-padding">
@@ -13,7 +13,7 @@
       <img src="./../../../assets/images/1024-500.png" />
 
       <div class="title">
-        <p>اسم تجريبي</p>
+        <p> {{cat.name}} </p>
       </div>
 
       <div class="location">

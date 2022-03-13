@@ -1,46 +1,112 @@
-.menu-container {
-    position: relative;
-    img {
-      width: 100%;
-    }
+// .header-ios.ion-no-border ion-toolbar:last-of-type{
+//   opacity: 1 !important;
+// }
+
+ion-toolbar {
+  --background: url("./../../../assets/images/wave app.svg") !important;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  --min-height: 139px !important;
+  --padding-end: 0px !important;
+  --padding-start: 0px !important;
+  --opacity: 1 !important;
+
+  .toolbar-container {
+    padding-inline-start: 0px !important;
+    padding-inline-end: 0px !important;
   }
-  
-  ion-header {
-    .menu-icon {
-      position: absolute;
-      top: 30%;
-      right: 16px;
-      img {
-        width: 40px;
-        height: 40px;
-      }
+  .custom-title {
+    padding: 0 47px !important;
+    margin-top: 4px !important;
+  }
+
+  .menu-icon {
+    ion-button::part(native) {
+      width: 40px !important;
+      height: 40px !important;
     }
-  
-    .menu-title {
-      position: absolute;
-      top: 35%;
-      right: 18%;
-      font-size: 18px;
-      color: var(--ion-color-primary);
-      font-weight: bold;
-      p {
-        margin: 0px;
-      }
-    }
-  .edit-icon{
-    position: absolute;
-    top: 33%;
-    left: 55px;
     ion-icon {
-      font-size: 23px;
+      font-size: 40px !important;
     }
   }
-    .back-icon {
-      position: absolute;
-      top: 33%;
-      left: 16px;
-      ion-icon {
-        font-size: 25px;
-      }
-    }
-  }
+}
+
+:host {
+  // this is the page itself
+  //background-color: green;
+
+  //   .toolbar-background{
+  //     background: none !important;
+  //   }
+  // --background: url('./../../../assets/images/wave app.svg')!important;
+  // 	ion-header ion-toolbar::shadow {
+  //     background-image: url('./../../../assets/images/wave app.svg')!important;
+  //     background-size: cover;
+  //     background-position: center center;
+  //     background-repeat: no-repeat;
+  // 	}
+}
+// ion-header {
+//    .my-toolbar {
+//   background-image: url('./../../../assets/images/wave app.svg')!important;
+//   background-size: cover;
+//   background-position: center center;
+//   background-repeat: no-repeat;
+// }
+
+// .sub-toolbar{
+//   // background-image: url('./../../../assets/images/wave app.svg')!important;
+//   // background-size: cover;
+//   // background-position: center center;
+//   // background-repeat: no-repeat;
+//   background: red;
+// }
+// }
+
+// .menu-container {
+//     position: relative;
+//     img {
+//       width: 100%;
+//     }
+//   }
+
+//   ion-header {
+//     .menu-icon {
+//       position: absolute;
+//       top: 30%;
+//       right: 16px;
+//       img {
+//         width: 40px;
+//         height: 40px;
+//       }
+//     }
+
+//     .menu-title {
+//       position: absolute;
+//       top: 35%;
+//       right: 18%;
+//       font-size: 18px;
+//       color: var(--ion-color-primary);
+//       font-weight: bold;
+//       p {
+//         margin: 0px;
+//       }
+//     }
+//   .edit-icon{
+//     position: absolute;
+//     top: 33%;
+//     left: 55px;
+//     ion-icon {
+//       font-size: 23px;
+//     }
+//   }
+//     .back-icon {
+//       position: absolute;
+//       top: 33%;
+//       left: 16px;
+//       ion-icon {
+//         font-size: 25px;
+//       }
+//     }
+//   }

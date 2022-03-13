@@ -55,6 +55,13 @@ const routes: Routes = [
                 './../../modules/search-results/search-results.module'
               ).then((m) => m.SearchResultsPageModule),
           },
+          // {
+          //   path:'menu',
+          //   loadChildren: () =>
+          //     import('./../../modules/menu/menu.module').then(
+          //       (m) => m.MenuPageModule
+          //     ),
+          // }
         ],
       },
       {

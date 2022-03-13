@@ -19,6 +19,14 @@
   --ion-color-secondary-shade: #e09668;
   --ion-color-secondary-tint: #ffb384;
 
+/** secondary **/
+  --ion-color-orange-light: #FFEEE3;
+	--ion-color-orange-light-rgb: 255,238,227;
+	--ion-color-orange-light-contrast: #000000;
+	--ion-color-orange-light-contrast-rgb: 0,0,0;
+	--ion-color-orange-light-shade: #e0d1c8;
+	--ion-color-orange-light-tint: #fff0e6;
+
   /** tertiary **/
   --ion-color-tertiary: #fffda1;
   --ion-color-tertiary-rgb: 255, 253, 161;
@@ -118,7 +126,17 @@
   --ion-color-tint: var(--ion-color-secondary-tint);
 }
 
-ion-color-tertiary {
+
+.ion-color-orange-light {
+	--ion-color-base: var(--ion-color-orange-light);
+	--ion-color-base-rgb: var(--ion-color-orange-light-rgb);
+	--ion-color-contrast: var(--ion-color-orange-light-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-orange-light-contrast-rgb);
+	--ion-color-shade: var(--ion-color-orange-light-shade);
+	--ion-color-tint: var(--ion-color-orange-light-tint);
+}
+
+.ion-color-tertiary {
   --ion-color-base: var(--ion-color-tertiary);
   --ion-color-base-rgb: var(--ion-color-tertiary-rgb);
   --ion-color-contrast: var(--ion-color-tertiary-contrast);
@@ -160,6 +178,10 @@ ion-color-tertiary {
   color:var(--ion-color-dark-black) !important;
 }
 
+.fn-10 {
+  font-size: 10px !important;
+}
+
 .fn-12 {
   font-size: 12px !important;
 }
@@ -180,7 +202,7 @@ ion-color-tertiary {
   font-size: 18px !important;
 }
 
-.dalel-regular {
+.dalel-Regular {
   font-family: "Cairo-Regular";
 }
 

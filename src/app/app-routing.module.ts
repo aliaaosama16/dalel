@@ -1,71 +1,93 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'language',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "language",
+    pathMatch: "full",
   },
   {
-    path: 'tabs',
+    path: "tabs",
     loadChildren: () =>
-      import('./modules/tabs/tabs.module').then((m) => m.TabsPageModule),
+      import("./modules/tabs/tabs.module").then((m) => m.TabsPageModule),
   },
   {
-    path: 'folder/:id',
+    path: "folder/:id",
     loadChildren: () =>
-      import('./folder/folder.module').then((m) => m.FolderPageModule),
+      import("./folder/folder.module").then((m) => m.FolderPageModule),
   },
   {
-    path: 'language',
+    path: "language",
     loadChildren: () =>
-      import('./modules/language/language.module').then(
+      import("./modules/language/language.module").then(
         (m) => m.LanguagePageModule
       ),
   },
   {
-    path: 'on-boarding',
+    path: "on-boarding",
     loadChildren: () =>
-      import('./modules/onboarding/on-boarding/on-boarding.module').then(
+      import("./modules/onboarding/on-boarding/on-boarding.module").then(
         (m) => m.OnBoardingPageModule
       ),
   },
   {
-    path: 'login-register',
+    path: "login-register",
     loadChildren: () =>
-      import('./modules/auth/login-register/login-register.module').then(
+      import("./modules/auth/login-register/login-register.module").then(
         (m) => m.LoginRegisterPageModule
       ),
   },
   {
-    path: 'phone-number',
+    path: "phone-number",
     loadChildren: () =>
-      import('./modules/auth/phone-number/phone-number.module').then(
+      import("./modules/auth/phone-number/phone-number.module").then(
         (m) => m.PhoneNumberPageModule
       ),
   },
   {
-    path: 'code',
+    path: "code",
     loadChildren: () =>
-      import('./modules/auth/code/code.module').then((m) => m.CodePageModule),
+      import("./modules/auth/code/code.module").then((m) => m.CodePageModule),
   },
   {
-    path: 'password',
+    path: "password",
     loadChildren: () =>
-      import('./modules/auth/password/password.module').then(
+      import("./modules/auth/password/password.module").then(
         (m) => m.PasswordPageModule
       ),
   },
   {
-    path: 'notifications',
+    path: "notifications",
     loadChildren: () =>
-      import('./modules/notifications/notifications.module').then(
+      import("./modules/notifications/notifications.module").then(
         (m) => m.NotificationsPageModule
       ),
   },
-
- 
+  {
+    path: "contact-us",
+    loadChildren: () =>
+      import("./modules/contact-us/contact-us.module").then(
+        (m) => m.ContactUsPageModule
+      ),
+  },
+  {
+    path: "policy",
+    loadChildren: () =>
+      import("./modules/policy/policy.module").then((m) => m.PolicyPageModule),
+  },
+  {
+    path: "about",
+    loadChildren: () =>
+      import("./modules/about/about.module").then((m) => m.AboutPageModule),
+  },
+  {
+    path: "favourites",
+    loadChildren: () =>
+      import("./modules/favourites/favourites.module").then(
+        (m) => m.FavouritesPageModule
+      ),
+  }
 ];
 
 @NgModule({

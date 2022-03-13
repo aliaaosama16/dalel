@@ -13,67 +13,67 @@ export class CategoryListPage implements OnInit {
   categoriesList: any[] = [
     {
       id: 1,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 2,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 3,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 4,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 5,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 6,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 7,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 8,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 9,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 10,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
     {
       id: 11,
-      name: 'rests',
+      name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
       location: 'الرياض',
     },
@@ -85,11 +85,12 @@ export class CategoryListPage implements OnInit {
 
   ngOnInit() {
     console.log(`category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`)
-    if (this.activatedRoute.snapshot.data['data']) {
-      this.categoryName = this.activatedRoute.snapshot.data['data'];
+    if (this.activatedRoute.snapshot.data['name']) {
+      this.categoryName = this.activatedRoute.snapshot.data['name'];
       console.log(`categoryName is ${this.categoryName}`);
     }
     this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(`category id is ${this.categoryID}`);
   }
 
   openMenu() {

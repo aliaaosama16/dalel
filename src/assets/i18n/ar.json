@@ -47,5 +47,12 @@
   "old":"سابقة",
   "current":"حالية",
   "my-reservations-details":"تفاصيل الحجز",
-  "search-filter":"فلتر البحث"
+  "search-filter":"فلتر البحث",
+  "arrival-date":"تاريخ الوصول",
+  "search-results":"نتائج البحث",
+  "please enter search text":"من فضلك ادخل كلمه البحث",
+  "contact-us":"اتصل بنا",
+  "policy":"سياسة الخصوصية",
+  "about":"عن التطبيق",
+  "favourites":"المفضلة"
 }

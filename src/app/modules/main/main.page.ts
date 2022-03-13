@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuController, ModalController } from '@ionic/angular';
-import { DataService } from 'src/app/services/data/data.service';
-import { LanguageService } from 'src/app/services/language/language.service';
-import { SwiperOptions } from 'swiper';
-import { SearchFilterPage } from '../search-filter/search-filter.page';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { MenuController, ModalController } from "@ionic/angular";
+import { DataService } from "src/app/services/data/data.service";
+import { LanguageService } from "src/app/services/language/language.service";
+import { SwiperOptions } from "swiper";
+import { SearchFilterPage } from "../search-filter/search-filter.page";
+import { Toast } from "@capacitor/toast";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.page.html',
-  styleUrls: ['./main.page.scss'],
+  selector: "app-main",
+  templateUrl: "./main.page.html",
+  styleUrls: ["./main.page.scss"],
 })
 export class MainPage implements OnInit {
-  searchText: string;
+  searchText: string = "";
   currentlangauge: string;
 
   configSlider: SwiperOptions = {
@@ -27,65 +29,65 @@ export class MainPage implements OnInit {
   };
 
   categories: any[] = [
-    { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 3, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 4, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 5, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 6, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 7, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 8, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 9, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
+    { id: 1, name: "rests", image: "./../../../assets/images/1024-500.png" },
+    { id: 2, name: "chalets", image: "./../../../assets/images/1024-500.png" },
+    { id: 3, name: "rests", image: "./../../../assets/images/1024-500.png" },
+    { id: 4, name: "chalets", image: "./../../../assets/images/1024-500.png" },
+    { id: 5, name: "rests", image: "./../../../assets/images/1024-500.png" },
+    { id: 6, name: "chalets", image: "./../../../assets/images/1024-500.png" },
+    { id: 7, name: "rests", image: "./../../../assets/images/1024-500.png" },
+    { id: 8, name: "chalets", image: "./../../../assets/images/1024-500.png" },
+    { id: 9, name: "rests", image: "./../../../assets/images/1024-500.png" },
+    { id: 10, name: "rests", image: "./../../../assets/images/1024-500.png" },
   ];
 
   categoryItems: any[] = [
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 1,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 2,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 3,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 4,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 5,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 6,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 7,
     },
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
+      name: "اسم تجريبي",
+      location: "الرياض",
+      image: "./../../../assets/images/1024-500.png",
       id: 8,
     },
   ];
@@ -95,7 +97,8 @@ export class MainPage implements OnInit {
     public modalController: ModalController,
     private langaugeservice: LanguageService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private translate:TranslateService
   ) {}
 
   ngOnInit() {
@@ -107,16 +110,36 @@ export class MainPage implements OnInit {
     this.menuCtrl.open();
   }
 
-  async openFilterModal() {
-    const modal = await this.modalController.create({
-      component: SearchFilterPage,
-      cssClass: 'my-custom-class',
+  categoryList(categoryName,categoryID){
+   // routerLink="/tabs/main/categories/{{cat.id}}";
+this.dataService.setData(categoryID,categoryName);
+    this.router.navigateByUrl(`/tabs/main/categories/${categoryID}`)
+  }
+  // async openFilterModal() {
+  //   const modal = await this.modalController.create({
+  //     component: SearchFilterPage,
+  //     cssClass: "my-custom-class",
+  //   });
+  //   return await modal.present();
+  // }
+
+  showResults() {
+    console.log(`this.searchText is ${this.searchText}`);
+    if (this.searchText != "") {
+      this.router.navigateByUrl("/tabs/main/search-results");
+    } else {
+      this.errorMessage();
+    }
+  }
+
+  async errorMessage() {
+    await Toast.show({
+      text: this.translate.instant('please enter search text'),
     });
-    return await modal.present();
   }
 
   showAllCategories() {
-    this.router.navigateByUrl('/tabs/main/categories');
+    this.router.navigateByUrl("/tabs/main/categories");
   }
 
   openCatList(catID, catName) {
@@ -125,9 +148,8 @@ export class MainPage implements OnInit {
   }
 
   slideNext() {
-   // const swiper = document.querySelector('.swiper').swiper;
-
+    // const swiper = document.querySelector('.swiper').swiper;
     // Now you can use all slider methods like
-   // swiper.slideNext();
+    // swiper.slideNext();
   }
 }

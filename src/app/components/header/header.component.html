@@ -1,5 +1,26 @@
-<ion-header class="ion-no-border">
-  <div class="menu-container">
+<ion-header class="ion-no-border"  >
+
+    <ion-toolbar class="my-toolbar">
+      <ion-buttons slot="start" class="menu-icon">
+          <ion-button  (click)="openMenu()">
+            <ion-icon  src="./../../../assets/icon/menu.svg"></ion-icon>
+          </ion-button>
+          
+        </ion-buttons>
+      <ion-title class="ion-text-start primary-color dalel-Bold fn-18 custom-title">{{ title | translate }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button *ngIf="isEditable" (click)="navigate(forwardRoute)">
+          <ion-icon slot="icon-only" src="./../../../assets/icon/edit.svg"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!isMain" (click)="navigate(backwardRoute)" >
+          <ion-icon slot="icon-only" name="arrow-forward-outline" color="primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+    <!-- <ion-toolbar class="sub-toolbar">
+    </ion-toolbar> -->
+  <!-- <div class="menu-container">
     <img src="./../../../assets/images/wave app.svg" />
 
     <div class="menu-icon" (click)="openMenu()">
@@ -20,5 +41,5 @@
     <div class="back-icon" (click)="navigate(backwardRoute)" *ngIf="!isMain">
       <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
     </div>
-  </div>
+  </div> -->
 </ion-header>
