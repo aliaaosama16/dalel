@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>about</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<app-header
+  [title]="'about'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/my-reservations'"
+  [isMain]="false"
+></app-header>
+<ion-content class="ion-padding">
+<ion-card class="ion-no-margin" >
+  <img src="./../../../assets/images/about-image.svg">
+</ion-card>
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language/language.service';
 import Swiper, {
   Navigation,
@@ -25,8 +26,15 @@ export class OnBoardingPage implements OnInit {
 
   constructor(
     private langaugeservice: LanguageService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private menuCtrl: MenuController
+  ) {
+   // this.menuCtrl.enable(false, 'main-content');
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

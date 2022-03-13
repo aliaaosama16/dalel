@@ -20,7 +20,11 @@ export class PasswordPage implements OnInit {
     './../../../../assets/icon/password-inactive.svg';
 
   constructor(private menuCtrl: MenuController) {
-    this.menuCtrl.enable(false, 'main-content');
+   // this.menuCtrl.enable(false, 'main-content');
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
   ngOnInit() {}

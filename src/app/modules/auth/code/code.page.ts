@@ -14,8 +14,12 @@ export class CodePage implements OnInit {
   inputFocusNumber4: boolean = false;
   codeValues: string;
   code: number;
-  constructor(private router: Router,private menCtrl:MenuController) {
-    this.menCtrl.enable(false,'main-content')
+  constructor(private router: Router,private menuCtrl:MenuController) {
+    // this.menCtrl.enable(false,'main-content')
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
   ngOnInit() {}
