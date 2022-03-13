@@ -9,40 +9,37 @@
       </ion-header>
 
       <ion-content class="my-menu-content">
-        <ion-list>
+        <ion-list class="ion-padding">
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of pages; let i = index"
             (click)="selectedIndex = i"
             routerDirection="root"
             [routerLink]="[p.url]"
-            [class.selectedArabic]="selectedIndex == i && currentLanguage == 'ar'"
-            [class.selectedEnglish]="selectedIndex == i && currentLanguage == 'en'"
+            [class.selected]="selectedIndex == i"
           >
-            <!-- <ion-button
-              shape="round"
-              expand="block"
-              [routerLink]="p.url"
-              routerDirection="root"
-              routerLinkActive="active-item"
-            >
-              <ion-icon slot="start" name="star" color="white"></ion-icon>
-              <span class="fn-16 Cairo-Regular white-color ">
-                {{ p.title | translate }}
-              </span>
-            </ion-button> -->
-
-            <!-- [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" -->
+          <!-- [class.selectedArabic]="selectedIndex == i && currentLanguage == 'ar'"
+          [class.selectedEnglish]="selectedIndex == i && currentLanguage == 'en'" -->
             <ion-item lines="none" detail="false">
               <ion-icon
                 slot="start"
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
               ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-label>{{ p.title|translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+
+      <ion-footer class="ion-padding logout-section  ion-no-border">
+        <ion-item lines="none" detail="false"  routerLink="/login-register">
+          <ion-icon
+            slot="start"
+            src="./../assets/icon/logout.svg"
+          ></ion-icon>
+          <ion-label>{{ "logout"|translate }}</ion-label>
+        </ion-item>
+      </ion-footer>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>

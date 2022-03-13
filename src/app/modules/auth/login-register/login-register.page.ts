@@ -9,6 +9,7 @@ import {
   AbstractControl,
   ValidatorFn,
 } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.page.html',
@@ -53,8 +54,10 @@ export class LoginRegisterPage implements OnInit {
   constructor(
     private langaugeservice: LanguageService,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,private menuCtrl:MenuController) {
+      this.menuCtrl.enable(false,'main-content')
+    
+   }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

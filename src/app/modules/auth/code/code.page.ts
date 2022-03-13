@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-code',
@@ -13,7 +14,9 @@ export class CodePage implements OnInit {
   inputFocusNumber4: boolean = false;
   codeValues: string;
   code: number;
-  constructor(private router: Router) {}
+  constructor(private router: Router,private menCtrl:MenuController) {
+    this.menCtrl.enable(false,'main-content')
+  }
 
   ngOnInit() {}
 
