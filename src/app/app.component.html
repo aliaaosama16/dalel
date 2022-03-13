@@ -16,7 +16,8 @@
             (click)="selectedIndex = i"
             routerDirection="root"
             [routerLink]="[p.url]"
-            [class.selected]="selectedIndex == i"
+            [class.selectedArabic]="selectedIndex == i && currentLanguage == 'ar'"
+            [class.selectedEnglish]="selectedIndex == i && currentLanguage == 'en'"
           >
             <!-- <ion-button
               shape="round"
@@ -33,7 +34,10 @@
 
             <!-- [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" -->
             <ion-item lines="none" detail="false">
-              <ion-icon slot="start" [src]="selectedIndex == i ? p.iconActive :p.iconInActive"></ion-icon>
+              <ion-icon
+                slot="start"
+                [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
+              ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>

@@ -9,7 +9,7 @@ import { LanguageService } from './services/language/language.service';
 })
 export class AppComponent {
   currentLanguage:string='';
-  selectedIndex:number=1;
+  selectedIndex:number=0;
   // public appPages = [
   //   { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
   //   { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
