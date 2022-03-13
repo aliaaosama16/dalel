@@ -20,9 +20,12 @@
           >
           <!-- [class.selectedArabic]="selectedIndex == i && currentLanguage == 'ar'"
           [class.selectedEnglish]="selectedIndex == i && currentLanguage == 'en'" -->
+
+          <!-- [ngClass]="  currentLanguage == 'ar'?'icon-margin-left':'icon-margin-right'" -->
             <ion-item lines="none" detail="false">
               <ion-icon
                 slot="start"
+                
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
               ></ion-icon>
               <ion-label>{{ p.title|translate }}</ion-label>

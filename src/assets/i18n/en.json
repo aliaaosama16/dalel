@@ -55,6 +55,8 @@
   "policy":"policy",
   "about":"about",
   "favourites":"favourites",
-  "logout":"logout"
+  "logout":"logout",
+  "send":"send",
+  "your message":  "your message"
 
 }

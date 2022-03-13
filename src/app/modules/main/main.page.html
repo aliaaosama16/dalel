@@ -4,19 +4,40 @@
   <div class="search-section ion-padding-horizontal">
     <div class="search-input">
       <ion-item lines="none" class="search-wrapper">
-        <ion-input type="search" [(ngModel)]="searchText" placeholder="{{'search here'|translate}}"></ion-input>
-        <ion-icon item-start color="primary" name="search" (click)="showResults()"></ion-icon>
+        <ion-input
+          type="search"
+          [(ngModel)]="searchText"
+          placeholder="{{'search here'|translate}}"
+        ></ion-input>
+        <ion-icon
+          item-start
+          color="primary"
+          name="search"
+          (click)="showResults()"
+        ></ion-icon>
       </ion-item>
     </div>
-    <div class="search-filter" [ngClass]="currentlangauge == 'ar'?'margin-right':'margin-left'">
-      <ion-fab-button size="small" color="secondary" routerLink="/tabs/main/search-filter">
+    <div
+      class="search-filter"
+      [ngClass]="currentlangauge == 'ar'?'margin-right':'margin-left'"
+    >
+      <ion-fab-button
+        size="small"
+        color="secondary"
+        routerLink="/tabs/main/search-filter"
+      >
         <ion-icon name="funnel-outline" color="white"></ion-icon>
       </ion-fab-button>
     </div>
   </div>
 
   <div class="slider-section ion-padding">
-    <swiper #swiper [config]="configSlider" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+    <swiper
+      #swiper
+      [config]="configSlider"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
       <ng-template swiperSlide *ngFor="let cat of [{},{},{}]">
         <img src="./../../../assets/images/1024-500.png" />
       </ng-template>
@@ -24,7 +45,6 @@
   </div>
 
   <div class="categories-section ion-padding-horizontal">
-
     <div class="categories-section-title">
       <div>
         <h5 class="categories-title">{{"categories"|translate}}</h5>
@@ -34,7 +54,12 @@
       </div>
     </div>
 
-    <swiper #swiper [config]="configContent" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+    <swiper
+      #swiper
+      [config]="configContent"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
       <ng-template swiperSlide *ngFor="let cat of categories">
         <ion-card class="ion-no-margin" (click)="categoryList(cat.name,cat.id)">
           <ion-item>
@@ -57,10 +82,17 @@
       </ion-col>
     </ion-row>
 
-    <swiper #swiper [config]="configContent" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+    <swiper
+      #swiper
+      [config]="configContent"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
       <ng-template swiperSlide *ngFor="let item of categoryItems">
-
-        <ion-card class="ion-no-margin" routerLink="/tabs/main/categories/1/{{item.id}}">
+        <ion-card
+          class="ion-no-margin"
+          routerLink="/tabs/main/categories/1/{{item.id}}"
+        >
           <div class="container">
             <img [src]="item.image" />
             <div class="title">
@@ -72,8 +104,14 @@
             <div class="location-address">
               <p>{{item.location}}</p>
             </div>
-            <div class="address-detail" routerLink="/tabs/main/category-details">
-              <ion-icon name="arrow-forward-circle-outline" color="white"></ion-icon>
+            <div
+              class="address-detail"
+              routerLink="/tabs/main/category-details"
+            >
+              <ion-icon
+                name="arrow-forward-circle-outline"
+                color="white"
+              ></ion-icon>
             </div>
           </div>
         </ion-card>

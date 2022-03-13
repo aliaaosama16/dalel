@@ -34,9 +34,7 @@ export class EditProfilePage implements OnInit {
     './../../../../assets/icon/phone-inactive.svg';
 
   constructor(
-    private langaugeservice: LanguageService,
     private menuCtrl: MenuController,
-    private router: Router,
     private formBuilder: FormBuilder
   ) {}
   ngOnInit() {

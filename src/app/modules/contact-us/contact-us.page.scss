@@ -1,0 +1,16 @@
+.logo {
+  text-align: center;
+  margin: 24px 0 20px 0;
+}
+
+.message {
+  ion-textarea {
+    --placeholder-color: var(--ion-color-secondary);
+    --color: var(--ion-color-primary);
+    margin: 0px 10px !important;
+  }
+
+  ion-icon {
+    margin-top: 10px;
+  }
+}

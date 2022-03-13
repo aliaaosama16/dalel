@@ -1,9 +1,114 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>contact-us</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header
+  [title]="'contact-us'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/main'"
+  [isMain]="false"
+></app-header>
+<ion-content class="ion-padding">
 
-<ion-content>
 
+  <div class="auth-login-register">
+    <ion-card class="auth-container ion-no-margin">
+
+      <div class="logo">
+        <img src="./../../../assets/images/about-image.svg" />
+      </div>
+      <form
+        class="auth-form"
+        (ngSubmit)="sendMessage()"
+        [formGroup]="contactForm"
+      >
+        <ion-item lines="none" [ngClass]="inputFocusPerson ? 'focused' : 'unfocused' ">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPerson?inputFocusPersonIcon:inputInFocusPersonIcon}}"
+          ></ion-icon>
+          <ion-input
+            (ionFocus)="focusPerson(true)"
+            (ionBlur)="focusPerson(false)"
+            placeholder="{{'user-name'|translate}}"
+            type="text"
+            formControlName="userName"
+          ></ion-input>
+        </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.userName.errors?.required"
+        >
+          {{'please enter user name' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.userName.errors?.minlength"
+        >
+          {{'user name should be min 2 chars long' | translate}}
+        </div>
+
+        <ion-item lines="none" [ngClass]="inputFocusPhone ? 'focused' : 'unfocused' ">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}"
+          ></ion-icon>
+          <ion-input
+            (ionFocus)="focusPhone(true)"
+            (ionBlur)="focusPhone(false)"
+            placeholder="{{'phone-number'|translate}}"
+            type="tel"
+            formControlName="phoneNumber"
+          ></ion-input>
+        </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.phoneNumber.errors?.required"
+        >
+          {{'please enter phone number' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.phoneNumber.errors?.minlength"
+        >
+          {{'phone number should be 10 numbers' | translate}}
+        </div>
+
+        <ion-item lines="none" class="message" [ngClass]="inputFocusMessage ? 'focused' : 'unfocused' ">
+          <ion-icon
+            item-start
+            color="primary"
+            src="{{inputFocusMessage?inputFocusMessageIcon:inputInFocusMessageIcon}}"
+          ></ion-icon>
+          <ion-textarea rows="5"
+            (ionFocus)="focusMessage(true)"
+            (ionBlur)="focusMessage(false)"
+            placeholder="{{'your message'|translate}}"
+            type="text"
+            formControlName="message"
+          ></ion-textarea>
+        </ion-item>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.email.errors?.required "
+        >
+          {{'please enter email' | translate}}
+        </div>
+
+        <div
+          class="error-box"
+          *ngIf="isContactSubmitted && contactErrorControl.email.errors?.pattern "
+        >
+          {{'please enter valid email' | translate}}
+        </div>
+
+        <ion-button expand="block" type="submit">
+          <span class="auth-btn"> {{ "send"|translate}} </span>
+        </ion-button>
+      </form>
+    </ion-card>
+  </div>
 </ion-content>
