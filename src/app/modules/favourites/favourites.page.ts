@@ -7,6 +7,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavouritesPage implements OnInit {
 
+  favourites:any[]=[
+    {
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },
+    {
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },{
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },{
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },{
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },{
+      name:'اسم تجريبي',
+      city:'الرياض',
+      rating:'3+',
+      price:3000,
+      unit:'ر.س'
+    },
+  ]
   constructor() { }
 
   ngOnInit() {
