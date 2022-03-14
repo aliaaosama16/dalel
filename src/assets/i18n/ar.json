@@ -57,5 +57,11 @@
   "favourites":"المفضلة",
   "logout":"تسجيل خروج",
   "send":"ارسل",
-  "your message":"رسالتك"
+  "your message":"رسالتك",
+  "description":"الوصف",
+  "chalet":"شاليه",
+  "place-images":"صور المكان",
+  "map":"الخريطة",
+  "reservation-rules":"شروط الحجز",
+  "reserve now":"احجز الأن"
 }

@@ -9,6 +9,7 @@ import { CategoryDetailsPageRoutingModule } from './category-details-routing.mod
 import { CategoryDetailsPage } from './category-details.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     CategoryDetailsPageRoutingModule,
     TranslateModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule,
   ],
   declarations: [CategoryDetailsPage]
 })

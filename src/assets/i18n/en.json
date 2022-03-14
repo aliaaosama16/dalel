@@ -57,6 +57,12 @@
   "favourites":"favourites",
   "logout":"logout",
   "send":"send",
-  "your message":  "your message"
+  "your message":  "your message",
+  "description":"description",
+  "chalet":"chalet",
+  "place-images": "place-images",
+  "map":"map",
+  "reservation-rules":"reservation-rules",
+  "reserve now":"reserve now"
 
 }

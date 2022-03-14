@@ -12,42 +12,87 @@
       [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
       [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
     ></ion-icon>
+  </div>
+  <div class="item-details ion-padding">
+    <div class="name-rating-container">
+      <div class="name">
+        <h5 class="fn-16 dalel-Bold"> {{itemDetails.name}}</h5>
+      </div>
 
-    <div class="item-details ion-padding">
-      <div class="name-rating-container">
-        <div class="name">
-          <h5 class="fn-16 dalel-Bold"> {{itemDetails.name}}</h5>
-        </div>
-
-        <div class="rating">
-          <div class="rating-address-container">
-            <div class="rating-container">
-              <ion-icon color="secondary" slot="start" name="star"></ion-icon>
-              <span class="white-color fn-12 dalel-Regular"
-                >{{itemDetails.rating}}</span
-              >
-            </div>
+      <div class="rating">
+        <div class="rating-address-container">
+          <div class="rating-container">
+            <ion-icon color="secondary" slot="start" name="star"></ion-icon>
+            <span class="white-color fn-12 dalel-Regular"
+              >{{itemDetails.rating}}</span
+            >
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="address-price-container">
-        <div class="address">
-          <ion-icon name="location-sharp" color="primary"></ion-icon>
-          <p class="fn-14 dalel-Regular">
-             {{itemDetails.city}} - {{itemDetails.address}}
-          </p>
-        </div>
+    <div class="address-price-container">
+      <div class="address">
+        <ion-icon name="location-sharp" color="primary"></ion-icon>
+        <p class="fn-14 dalel-Regular">
+           {{itemDetails.city}} - {{itemDetails.address}}
+        </p>
+      </div>
 
-        <div class="price">
-          <p
-            class="fn-10 dalel-Bold primary-color"
-            [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
-          >
-             {{itemDetails.price}} {{itemDetails.unit}}/{{itemDetails.perUnit}}
-          </p>
-        </div>
+      <div class="price">
+        <p
+          class="fn-10 dalel-Bold primary-color"
+          [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
+        >
+           {{itemDetails.price}} {{itemDetails.unit}}/{{itemDetails.perUnit}}
+        </p>
       </div>
     </div>
+  </div>
+
+  <div class="services">
+    <div>
+      <ion-icon src="./../../../assets/icon/icon1.svg"></ion-icon>
+      <p class="fn-14 dalel-Regular secondary-color">{{"chalet"|translate}}</p>
+    </div>
+    <div>
+      <ion-icon src="./../../../assets/icon/icon1.svg"></ion-icon>
+      <p class="fn-14 dalel-Regular secondary-color">450 م</p>
+    </div>
+    <div>
+      <ion-icon src="./../../../assets/icon/icon4.svg"></ion-icon>
+      <p class="fn-14 dalel-Regular secondary-color">10 غرف</p>
+    </div>
+    <div>
+      <ion-icon src="./../../../assets/icon/icon4.svg"></ion-icon>
+      <p class="fn-14 dalel-Regular secondary-color">4 حمام</p>
+    </div>
+  </div>
+
+  <div class="description">
+    <h5 class="fn-16 dalel-SemiBold">{{"description"|translate}}</h5>
+    <p class="fn-12 dalel-Regular">{{itemDetails.description}}</p>
+  </div>
+
+  <div class="place-images">
+    <div class="header">
+      <div>
+        <h5 class="fn-16 dalel-SemiBold">  {{"place-images"|translate}} </h5>
+      </div>
+      <div>
+        <ion-icon src="./../../../assets/icon/place.svg"></ion-icon>
+      </div>
+    </div>
+
+    <swiper
+    #swiper
+    [config]="configSlider"
+    class="custom-swiper"
+    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+  >
+    <ng-template swiperSlide *ngFor="let cat of [{},{},{},{},{},{},{},{},{},{},{},{}]">
+      <img src="./../../../assets/images/512.png" />
+    </ng-template>
+  </swiper>
   </div>
 </ion-content>
