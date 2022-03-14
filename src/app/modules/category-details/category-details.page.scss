@@ -134,3 +134,36 @@
     }
   }
 }
+
+.map-container{
+  .map{
+    
+    height: 100px;
+    border: 1px solid #80808042;
+    border-radius: 10px;
+  }
+}
+
+.rules{
+  p{
+    color: rgb(var(--ion-color-dark-black-rgb), 0.55);
+  }
+}
+
+.btn-custom {
+  //width: 35%;
+  margin: 0 5%;
+  --color: var(--ion-color-white);
+  font-size: 16;
+  font-family: "Cairo-Bold";
+  height: 48px;
+}
+
+ion-button::part(native) {
+  height: 50px !important;
+  background-image: linear-gradient(
+    to left,
+    var(--ion-color-primary),
+    var(--ion-color-secondary)
+  );
+}

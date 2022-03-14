@@ -77,7 +77,7 @@
   <div class="place-images">
     <div class="header">
       <div>
-        <h5 class="fn-16 dalel-SemiBold">  {{"place-images"|translate}} </h5>
+        <h5 class="fn-16 dalel-SemiBold">{{"place-images"|translate}}</h5>
       </div>
       <div>
         <ion-icon src="./../../../assets/icon/place.svg"></ion-icon>
@@ -85,14 +85,44 @@
     </div>
 
     <swiper
-    #swiper
-    [config]="configSlider"
-    class="custom-swiper"
-    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-  >
-    <ng-template swiperSlide *ngFor="let cat of [{},{},{},{},{},{},{},{},{},{},{},{}]">
-      <img src="./../../../assets/images/512.png" />
-    </ng-template>
-  </swiper>
+      #swiper
+      [config]="configSlider"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template
+        swiperSlide
+        *ngFor="let cat of [{},{},{},{},{},{},{},{},{},{},{},{}]"
+      >
+        <img src="./../../../assets/images/512.png" />
+      </ng-template>
+    </swiper>
   </div>
+  <div class="map-container">
+    <div class="header">
+      <div>
+        <h5 class="fn-16 dalel-SemiBold">{{"map"|translate}}</h5>
+      </div>
+      
+    </div>
+    <div #map class="map">
+
+    </div>
+  </div>
+
+  <div class="rules">
+    <div class="header">
+      <div>
+        <h5 class="fn-16 dalel-SemiBold">{{"reservation-rules"|translate}}</h5>
+      </div>
+      
+    </div>
+    <div >
+      <p  class="fn-12 dalel-Regular"> {{itemDetails.reservationRules}}   </p>
+    </div>
+  </div>
+
+  <ion-button expand="block" (click)="reserve()">
+    <span class="auth-btn fn-16 white-color dalel-Bold"> {{ "reserve now"|translate}} </span>
+  </ion-button>
 </ion-content>

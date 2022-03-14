@@ -44,4 +44,8 @@ export class CategoryDetailsPage implements OnInit {
   openMenu() {
     this.menuCtrl.open();
   }
+
+  reserve(){
+    
+  }
 }
