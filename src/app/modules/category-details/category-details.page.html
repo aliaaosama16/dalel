@@ -1,6 +1,67 @@
+<app-header
+  [title]="'details'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/main'"
+  [isMain]="false"
+></app-header>
 
-<app-header [title]="'details'" [isEditable]="false" [backwardRoute]="'/tabs/main'"[isMain]="false" ></app-header>
+<ion-content class="ion-padding">
+  <div class="item-image">
+    <img src="./../../../assets/images/1024-500.png" />
+    <ion-icon
+      [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
+      [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
+    ></ion-icon>
 
-<ion-content>
+    <div class="item-details ion-padding">
+      <div class="name-rating-container">
+        <div class="name">
+          <h5 class="fn-16 dalel-Bold"> {{itemDetails.name}}</h5>
+        </div>
 
+        <div class="rating">
+          <!-- <ion-button disabled="true" color="primary">
+            <ion-icon color="secondary" slot="start" name="star"></ion-icon>
+            <span class="white-color fn-14 dalel-Regular"
+              >{{itemDetails.rating}}</span
+            >
+          </ion-button> -->
+
+          <div class="rating-address-container">
+            <!-- <div class="address-container">
+              <ion-icon name="location-sharp" color="primary"></ion-icon>
+              <p class="fn-14 dalel-Regular dark-black-color">
+                 {{itemDetails.city}}
+              </p>
+            </div> -->
+
+            <div class="rating-container">
+              <ion-icon color="secondary" slot="start" name="star"></ion-icon>
+              <span class="white-color fn-12 dalel-Regular"
+                >{{itemDetails.rating}}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="address-price-container">
+        <div class="address">
+          <ion-icon name="location-sharp" color="primary"></ion-icon>
+          <p class="fn-14 dalel-Regular">
+             {{itemDetails.city}} - {{itemDetails.address}}
+          </p>
+        </div>
+
+        <div class="price">
+          <p
+            class="fn-10 dalel-Bold primary-color"
+            [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
+          >
+             {{itemDetails.price}} {{itemDetails.unit}}/{{itemDetails.perUnit}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

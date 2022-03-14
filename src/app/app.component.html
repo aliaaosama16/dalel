@@ -18,29 +18,22 @@
             [routerLink]="[p.url]"
             [class.selected]="selectedIndex == i"
           >
-          <!-- [class.selectedArabic]="selectedIndex == i && currentLanguage == 'ar'"
-          [class.selectedEnglish]="selectedIndex == i && currentLanguage == 'en'" -->
-
-          <!-- [ngClass]="  currentLanguage == 'ar'?'icon-margin-left':'icon-margin-right'" -->
             <ion-item lines="none" detail="false">
               <ion-icon
                 slot="start"
-                
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
+                [ngClass]="currentLanguage == 'ar'? 'icon-ar':'icon-en'  "
               ></ion-icon>
-              <ion-label>{{ p.title|translate }}</ion-label>
+              <ion-label>{{ p.title | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
 
-      <ion-footer class="ion-padding logout-section  ion-no-border">
-        <ion-item lines="none" detail="false"  routerLink="/login-register">
-          <ion-icon
-            slot="start"
-            src="./../assets/icon/logout.svg"
-          ></ion-icon>
-          <ion-label>{{ "logout"|translate }}</ion-label>
+      <ion-footer class="ion-padding logout-section ion-no-border">
+        <ion-item lines="none" detail="false" routerLink="/login-register">
+          <ion-icon slot="start" src="./../assets/icon/logout.svg"></ion-icon>
+          <ion-label>{{ "logout" | translate }}</ion-label>
         </ion-item>
       </ion-footer>
     </ion-menu>

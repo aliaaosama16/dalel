@@ -20,9 +20,18 @@
 
 .my-menu-content {
   ion-item {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     ion-icon {
       font-size: 16px;
+    }
+
+    .icon-ar{
+      margin: 0px 8px 0 0 ;
+    }
+
+    .icon-en{
+      
+      margin: 0px 0 0 8px;
     }
 
     .icon-margin-left {

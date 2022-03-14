@@ -41,6 +41,7 @@ ion-button::part(native) {
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   .address, .price{
     flex-direction: row;
     p{
