@@ -29,12 +29,14 @@ ion-card {
   .rating-address-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     div {
       flex-direction: row;
       display: flex;
     }
 
     .address-container {
+     // align-items: center;
       ion-icon {
         font-size: 18px;
         height: 20px;
@@ -44,8 +46,12 @@ ion-card {
     .rating-container {
       ion-icon {
         font-size: 12px;
-        margin:2px;
+        margin: 2px;
       }
+      span {
+        margin: 2px;
+      }
+
       background-color: var(--ion-color-primary);
       border-radius: 5px;
       padding: 3px 8px;
