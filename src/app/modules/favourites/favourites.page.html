@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let item of favourites">
-        <ion-card class="ion-no-margin">
+        <ion-card class="ion-no-margin"   routerLink="/tabs/main/categories/{{item.categoryID}}/{{item.id}}">
           <img src="./../../../assets/images/512.png" />
 
           <div class="price-container">
@@ -18,28 +18,15 @@
           </div>
 
           <ion-card-content>
-            <!-- <div class="rating-address-container">
-              <div>
-                <ion-icon name="location-sharp" color="primary"></ion-icon>
-                <p class="fn-14 dalel-Regular"> {{item.city}}</p>
-              </div>
-              <div>
-                <ion-button disabled="true" color="primary">
-                  <ion-icon color="secondary" slot="end" name="star"></ion-icon>
-                  <span class="white-color fn-10 dalel-Regular"
-                    >{{item.rating}}</span
-                  >
-                </ion-button>
-              </div>
-            </div> -->
-
             <div class="name">
               <p class="fn-14 dalel-Bold dark-black-color">{{item.name}}</p>
             </div>
             <div class="rating-address-container">
               <div class="address-container">
                 <ion-icon name="location-sharp" color="primary"></ion-icon>
-                <p class="fn-14 dalel-Regular dark-black-color"> {{item.city}}</p>
+                <p class="fn-14 dalel-Regular dark-black-color">
+                   {{item.city}}
+                </p>
               </div>
 
               <div class="rating-container">
