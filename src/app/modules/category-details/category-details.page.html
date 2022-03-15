@@ -12,8 +12,13 @@
       [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
       [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
     ></ion-icon>
+   
+    <div class="details-container ion-padding">
+      <app-custom-details></app-custom-details>
 
-    <div class="item-details ion-padding">
+    </div>
+
+    <!-- <div class="item-details ion-padding">
       <div class="name-rating-container">
         <div class="name">
           <h5 class="fn-16 dalel-Bold"> {{itemDetails.name}}</h5>
@@ -48,7 +53,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="services">

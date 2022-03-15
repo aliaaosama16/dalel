@@ -18,6 +18,15 @@
   }
 }
 
+.details-container{
+  position: absolute;
+  //height: 60px;
+  width: 92%;
+  margin: 0 var(--ion-padding, 16px);
+  bottom: -60px;
+  border-radius: 10px;
+  background-color: var(--ion-color-orange-light);
+}
 .item-details {
   position: absolute;
   //height: 60px;

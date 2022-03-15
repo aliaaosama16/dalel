@@ -9,41 +9,8 @@
     <img [src]="reservationDaetails.image " />
   </div>
 
-  <!-- <div class="name-rating-container">
-    <div class="name">
-      <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
-    </div>
-
-    <div class="rating">
-      <ion-button disabled="true" color="primary">
-        <ion-icon color="secondary" slot="start" name="star"></ion-icon>
-        <span class="white-color fn-14 dalel-Regular"
-          >{{reservationDaetails.rating}}</span
-        >
-      </ion-button>
-    </div>
-  </div> -->
-
-  <!-- <div class="address-price-container">
-    <div class="address">
-      <ion-icon name="location-sharp" color="primary"></ion-icon>
-      <p class="fn-14 dalel-Regular">
-         {{reservationDaetails.city}} - {{reservationDaetails.address}}
-      </p>
-    </div>
-
-    <div class="price">
-      <p
-        class="fn-10 dalel-Bold primary-color"
-        [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
-      >
-         {{reservationDaetails.price}}
-        {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
-      </p>
-    </div>
-  </div> -->
-
-  <div class="item-details">
+  <app-custom-details></app-custom-details>
+  <!-- <div class="item-details">
     <div class="name-rating-container">
       <div class="name">
         <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
@@ -62,19 +29,13 @@
     </div>
 
     <div class="address-price-container">
-      <!-- <div class="address">
-        <ion-icon name="location-sharp" color="primary"></ion-icon>
-        <p class="fn-14 dalel-Regular">
-           {{reservationDaetails.city}} - {{reservationDaetails.address}}
-        </p>
-      </div> -->
       <ion-item lines="none" class="address">
         <ion-label>
           <p class="fn-14 dalel-Regular dark-black-color">
              {{reservationDaetails.city}} - {{reservationDaetails.address}}
           </p>
         </ion-label>
-        <ion-icon slot="start" name="location-sharp"   color="primary"></ion-icon>
+        <ion-icon slot="start" name="location-sharp" color="primary"></ion-icon>
       </ion-item>
 
       <div class="price">
@@ -87,7 +48,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="details">
     <h5 class="fn-14 dalel-Bold primary-color">
@@ -128,7 +89,6 @@
       </p>
     </div>
   </div>
-
 
   <ion-button expand="block" routerLink="/tabs/main">
     <span class="auth-btn fn-16 white-color dalel-Bold">
