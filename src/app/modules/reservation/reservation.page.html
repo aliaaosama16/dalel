@@ -1,9 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>reservation</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header
+  [title]="'reservation'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/main'"
+  [isMain]="false"
+></app-header>
+<ion-content class="ion-padding">
 
-<ion-content>
 
+  <ion-button expand="block" routerLink="/tabs/main/reservation">
+    <span class="auth-btn fn-16 white-color dalel-Bold"> {{ "complete reservation"|translate}} </span>
+  </ion-button>
 </ion-content>

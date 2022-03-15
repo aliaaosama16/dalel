@@ -63,6 +63,9 @@
   "place-images": "place-images",
   "map":"map",
   "reservation-rules":"reservation-rules",
-  "reserve now":"reserve now"
+  "reserve now":"reserve now",
+  "reservation":"reservation",
+  "complete reservation":"complete reservation",
+  "confirm reservation":"confirm reservation"
 
 }

@@ -1,0 +1,122 @@
+.container {
+    margin-bottom: 16px;
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      object-position: initial;
+      border-radius: 10px;
+    }
+  }
+  
+  ion-button.button-disabled {
+    opacity: 1 !important;
+  }
+  
+  ion-button {
+    margin: 0px;
+    ion-icon {
+      font-size: 16px;
+    }
+  }
+  
+  ion-button::part(native) {
+    padding-inline-start: 10px !important;
+    padding-inline-end: 10px !important;
+  }
+  
+  .name-rating-container{
+    display: flex;
+    justify-content: space-between;
+    .name, .rating{
+      flex-direction: row;
+      h5{
+        margin-top: 10px !important;
+      }
+    }
+  }
+  
+  .address-price-container{
+    margin-top: 13px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .address, .price{
+      flex-direction: row;
+      p{
+        display: inline-block;
+        margin: 0px;
+      }
+    }
+  }
+  
+  .nameandrating {
+    h5 {
+      margin: 10px 0;
+    }
+  }
+  .addressandprice {
+    p {
+      margin: 0px !important;
+    }
+  
+    ion-col {
+      //padding-top: 10px;
+      ion-icon {
+        font-size: 20px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    margin-bottom: 16px;
+  }
+  
+  .details {
+    background-color: var(--ion-color-orange-light);
+    border-radius: 10px;
+    padding: 10px 12px;
+  
+    p {
+      margin: 0px !important;
+    }
+    h5 {
+      margin: 0px !important;
+    }
+  
+    .arrival {
+      img {
+        display: inline-block;
+      }
+    }
+  
+    .arrival-date-spacer {
+      margin-top: 6px;
+    }
+    .left-date-spacer {
+      margin-top: 10px;
+    }
+    .margin-left{
+      margin-left: 6px;
+    }
+    .margin-right{
+      margin-right: 6px;
+    }
+  }
+  .btn-custom {
+    margin: 0 5%;
+    --color: var(--ion-color-white);
+    font-size: 16;
+    font-family: "Cairo-Bold";
+    height: 48px;
+  }
+  
+  ion-button::part(native) {
+    height: 50px !important;
+    background-image: linear-gradient(
+      to left,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
+  }
+  

@@ -55,6 +55,20 @@ const routes: Routes = [
                 './../../modules/search-results/search-results.module'
               ).then((m) => m.SearchResultsPageModule),
           },
+          {
+            path: 'reservation',
+            loadChildren: () =>
+              import('./../../modules/reservation/reservation.module').then(
+                (m) => m.ReservationPageModule
+              ),
+          },
+          {
+            path: 'reservation-payment',
+            loadChildren: () =>
+              import('./../../modules/reservation-payment/reservation-payment.module').then(
+                (m) => m.ReservationPaymentPageModule
+              ),
+          },
           // {
           //   path:'menu',
           //   loadChildren: () =>

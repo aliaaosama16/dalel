@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { ReservationPageRoutingModule } from './reservation-routing.module';
 
 import { ReservationPage } from './reservation.page';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReservationPageRoutingModule
+    ReservationPageRoutingModule,
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [ReservationPage]
 })

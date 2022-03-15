@@ -1,9 +1,90 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>reservation-payment</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header
+[title]="'reservation'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/my-reservations'"
+  [isMain]="false"
+></app-header>
+<ion-content class="ion-padding">
+  <div class="container">
+    <img [src]="reservationDaetails.image " />
+  </div>
 
-<ion-content>
+  <div class="name-rating-container">
+    <div class="name">
+      <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
+    </div>
 
+    <div class="rating">
+      <ion-button disabled="true" color="primary">
+        <ion-icon color="secondary" slot="start" name="star"></ion-icon>
+        <span class="white-color fn-14 dalel-Regular"
+          >{{reservationDaetails.rating}}</span
+        >
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="address-price-container">
+    <div class="address">
+      <ion-icon name="location-sharp" color="primary"></ion-icon>
+      <p class="fn-14 dalel-Regular">
+         {{reservationDaetails.city}} - {{reservationDaetails.address}}
+      </p>
+    </div>
+
+    <div class="price">
+      <p
+        class="fn-10 dalel-Bold primary-color"
+        [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
+      >
+         {{reservationDaetails.price}}
+        {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
+      </p>
+    </div>
+  </div>
+
+  <div class="details">
+    <h5 class="fn-14 dalel-Bold primary-color">
+      {{"my-reservations-details"|translate}}
+    </h5>
+
+    <div class="arrival-date-spacer">
+      <p class="arrival fn-14 dalel-Regular">
+        <img src="./../../../assets/icon/calender.svg" />
+        <span
+          [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
+        >
+          {{reservationDaetails.arrivalTime}}
+        </span>
+      </p>
+
+      <p class="arrival fn-14 dalel-Regular">
+        <span>
+          {{"arrival-date"|translate}} :{{reservationDaetails.leftTime}}
+        </span>
+      </p>
+    </div>
+
+    <div class="left-date-spacer">
+      <p class="arrival fn-14 dalel-Regular">
+        <img src="./../../../assets/icon/calender.svg" />
+        <span
+          [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
+        >
+          {{reservationDaetails.leftTime}}
+        </span>
+      </p>
+
+      <p class="arrival fn-14 dalel-Regular">
+        <span>
+          {{"arrival-date"|translate}} :{{reservationDaetails.leftDate}}
+        </span>
+      </p>
+    </div>
+  </div>
+
+
+  <ion-button expand="block" routerLink="/tabs/main/reservation">
+    <span class="auth-btn fn-16 white-color dalel-Bold"> {{ "confirm reservation"|translate}} </span>
+  </ion-button>
 </ion-content>
