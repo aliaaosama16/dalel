@@ -6,43 +6,9 @@
 ></app-header>
 <ion-content class="ion-padding">
   <div class="container">
-    <img [src]="reservationDaetails.image " />
+    <img [src]="reservationDetails.image " />
   </div>
-  <app-custom-details></app-custom-details>
-
-  <!-- <div class="name-rating-container">
-    <div class="name">
-      <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
-    </div>
-
-    <div class="rating">
-      <ion-button disabled="true" color="primary">
-        <ion-icon color="secondary" slot="start" name="star"></ion-icon>
-        <span class="white-color fn-14 dalel-Regular"
-          >{{reservationDaetails.rating}}</span
-        >
-      </ion-button>
-    </div>
-  </div>
-
-  <div class="address-price-container">
-    <div class="address">
-      <ion-icon name="location-sharp" color="primary"></ion-icon>
-      <p class="fn-14 dalel-Regular">
-         {{reservationDaetails.city}} - {{reservationDaetails.address}}
-      </p>
-    </div>
-
-    <div class="price">
-      <p
-        class="fn-10 dalel-Bold primary-color"
-        [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
-      >
-         {{reservationDaetails.price}}
-        {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
-      </p>
-    </div>
-  </div> -->
+  <app-custom-details [reservationDetails]="reservationDetails"></app-custom-details>
 
   <div class="details">
     <h5 class="fn-14 dalel-Bold primary-color">
@@ -55,13 +21,13 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{reservationDaetails.arrivalTime}}
+          {{reservationDetails.arrivalTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDaetails.leftTime}}
+          {{"arrival-date"|translate}} :{{reservationDetails.leftTime}}
         </span>
       </p>
     </div>
@@ -72,13 +38,13 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{reservationDaetails.leftTime}}
+          {{reservationDetails.leftTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDaetails.leftDate}}
+          {{"arrival-date"|translate}} :{{reservationDetails.leftDate}}
         </span>
       </p>
     </div>

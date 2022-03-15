@@ -6,49 +6,12 @@
 ></app-header>
 <ion-content class="ion-padding">
   <div class="container">
-    <img [src]="reservationDaetails.image " />
+    <img [src]="reservationDetails.image " />
   </div>
 
-  <app-custom-details></app-custom-details>
-  <!-- <div class="item-details">
-    <div class="name-rating-container">
-      <div class="name">
-        <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
-      </div>
-
-      <div class="rating">
-        <div class="rating-address-container">
-          <div class="rating-container">
-            <ion-icon color="secondary" slot="start" name="star"></ion-icon>
-            <span class="white-color fn-12 dalel-Regular"
-              >{{reservationDaetails.rating}}</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="address-price-container">
-      <ion-item lines="none" class="address">
-        <ion-label>
-          <p class="fn-14 dalel-Regular dark-black-color">
-             {{reservationDaetails.city}} - {{reservationDaetails.address}}
-          </p>
-        </ion-label>
-        <ion-icon slot="start" name="location-sharp" color="primary"></ion-icon>
-      </ion-item>
-
-      <div class="price">
-        <p
-          class="fn-10 dalel-Bold primary-color"
-          [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
-        >
-           {{reservationDaetails.price}}
-          {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
-        </p>
-      </div>
-    </div>
-  </div> -->
+  <app-custom-details
+    [reservationDetails]="reservationDetails"
+  ></app-custom-details>
 
   <div class="details">
     <h5 class="fn-14 dalel-Bold primary-color">
@@ -61,13 +24,13 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{reservationDaetails.arrivalTime}}
+          {{reservationDetails.arrivalTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDaetails.leftTime}}
+          {{"arrival-date"|translate}} :{{reservationDetails.leftTime}}
         </span>
       </p>
     </div>
@@ -78,16 +41,42 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{reservationDaetails.leftTime}}
+          {{reservationDetails.leftTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDaetails.leftDate}}
+          {{"arrival-date"|translate}} :{{reservationDetails.leftDate}}
         </span>
       </p>
     </div>
+  </div>
+
+  <div class="fees">
+    <h5 class="fn-14 dalel-Bold primary-color"> {{  "fees"|translate }}  </h5>
+
+    <div class="fees-details">
+      <div>
+        <p class="fn-14 dalel-Bold ">   ليلة واحدة* 1.220</p>
+      </div>
+      <div> <p class="fn-14 dalel-Bold "> 1.220 ر.س</p>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="fees-total">
+      <div>
+        <p class="fn-14 dalel-Bold primary-color">  المجموع  </p>
+      </div>
+      <div> <p class="fn-14 dalel-Bold primary-color"> 1.220 ر.س</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-method">
+
   </div>
 
   <ion-button expand="block" routerLink="/tabs/main">
