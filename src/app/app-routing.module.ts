@@ -87,6 +87,18 @@ const routes: Routes = [
       import("./modules/favourites/favourites.module").then(
         (m) => m.FavouritesPageModule
       ),
+  },
+  {
+    path: 'reservation',
+    loadChildren: () => import('./modules/reservation/reservation.module').then( m => m.ReservationPageModule)
+  },
+  {
+    path: 'reservation-confirm',
+    loadChildren: () => import('./modules/reservation-confirm/reservation-confirm.module').then( m => m.ReservationConfirmPageModule)
+  },
+  {
+    path: 'reservation-payment',
+    loadChildren: () => import('./modules/reservation-payment/reservation-payment.module').then( m => m.ReservationPaymentPageModule)
   }
 ];
 
