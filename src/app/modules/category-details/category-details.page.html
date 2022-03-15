@@ -13,14 +13,12 @@
       [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
     ></ion-icon>
 
-
-
     <div class="item-details ion-padding">
       <div class="name-rating-container">
         <div class="name">
           <h5 class="fn-16 dalel-Bold"> {{itemDetails.name}}</h5>
         </div>
-  
+
         <div class="rating">
           <div class="rating-address-container">
             <div class="rating-container">
@@ -32,7 +30,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="address-price-container">
         <div class="address">
           <ion-icon name="location-sharp" color="primary"></ion-icon>
@@ -40,7 +38,7 @@
              {{itemDetails.city}} - {{itemDetails.address}}
           </p>
         </div>
-  
+
         <div class="price">
           <p
             class="fn-10 dalel-Bold primary-color"
@@ -52,7 +50,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="services">
     <div>
@@ -107,11 +104,8 @@
       <div>
         <h5 class="fn-16 dalel-SemiBold">{{"map"|translate}}</h5>
       </div>
-      
     </div>
-    <div #map class="map">
-
-    </div>
+    <div #map class="map"></div>
   </div>
 
   <div class="rules">
@@ -119,14 +113,15 @@
       <div>
         <h5 class="fn-16 dalel-SemiBold">{{"reservation-rules"|translate}}</h5>
       </div>
-      
     </div>
-    <div >
-      <p  class="fn-12 dalel-Regular"> {{itemDetails.reservationRules}}   </p>
+    <div>
+      <p class="fn-12 dalel-Regular">{{itemDetails.reservationRules}}</p>
     </div>
   </div>
 
   <ion-button expand="block" routerLink="/tabs/main/reservation">
-    <span class="auth-btn fn-16 white-color dalel-Bold"> {{ "reserve now"|translate}} </span>
+    <span class="auth-btn fn-16 white-color dalel-Bold">
+      {{ "reserve now"|translate}}
+    </span>
   </ion-button>
 </ion-content>
