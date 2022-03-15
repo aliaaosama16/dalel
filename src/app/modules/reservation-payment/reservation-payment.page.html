@@ -43,7 +43,7 @@
     </div>
   </div> -->
 
-  <div class="item-details ion-padding">
+  <div class="item-details">
     <div class="name-rating-container">
       <div class="name">
         <h5 class="fn-16 dalel-Bold"> {{reservationDaetails.name}}</h5>
@@ -62,19 +62,28 @@
     </div>
 
     <div class="address-price-container">
-      <div class="address">
+      <!-- <div class="address">
         <ion-icon name="location-sharp" color="primary"></ion-icon>
         <p class="fn-14 dalel-Regular">
            {{reservationDaetails.city}} - {{reservationDaetails.address}}
         </p>
-      </div>
+      </div> -->
+      <ion-item lines="none" class="address">
+        <ion-label>
+          <p class="fn-14 dalel-Regular dark-black-color">
+             {{reservationDaetails.city}} - {{reservationDaetails.address}}
+          </p>
+        </ion-label>
+        <ion-icon slot="start" name="location-sharp"   color="primary"></ion-icon>
+      </ion-item>
 
       <div class="price">
         <p
           class="fn-10 dalel-Bold primary-color"
           [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
         >
-           {{reservationDaetails.price}} {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
+           {{reservationDaetails.price}}
+          {{reservationDaetails.unit}}/{{reservationDaetails.perUnit}}
         </p>
       </div>
     </div>
@@ -119,6 +128,7 @@
       </p>
     </div>
   </div>
+
 
   <ion-button expand="block" routerLink="/tabs/main">
     <span class="auth-btn fn-16 white-color dalel-Bold">

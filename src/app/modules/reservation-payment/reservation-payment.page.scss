@@ -1,5 +1,5 @@
 .container {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     img {
       width: 100%;
       height: 160px;
@@ -36,20 +36,20 @@
     }
   }
   
-  .address-price-container{
-    margin-top: 13px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .address, .price{
-      flex-direction: row;
-      p{
-        display: inline-block;
-        margin: 0px;
-      }
-    }
-  }
+//   .address-price-container{
+//     margin-top: 13px;
+//     margin-bottom: 16px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     .address, .price{
+//       flex-direction: row;
+//       p{
+//         display: inline-block;
+//         margin: 0px;
+//       }
+//     }
+//   }
   
   .nameandrating {
     h5 {
@@ -121,13 +121,15 @@
   }
 
   .item-details {
-    position: absolute;
-    //height: 60px;
-    width: 92%;
-    margin: 0 var(--ion-padding, 16px);
-    bottom: -60px;
-    border-radius: 10px;
-    background-color: var(--ion-color-orange-light);
+    ion-item::part(native) {
+        text-align: center;
+        padding-inline-end: 0px !important;
+        padding-inline-start: 0px !important;
+      
+        .item-inner {
+          --inner-border-width: 0px;
+        }
+    }
     .name-rating-container {
       display: flex;
       justify-content: space-between;
@@ -171,6 +173,7 @@
     }
   
     .address-price-container {
+       // margin: 13px 0 20px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -181,6 +184,13 @@
           display: inline-block;
           margin: 0px;
         }
+        ion-icon{
+            margin: 0px;
+        }
+      }
+
+      .address >ion-label{
+        margin-bottom: 4px;
       }
     }
   }
