@@ -16,7 +16,7 @@ export class ReservationPaymentPage implements OnInit {
     address: " السعودية",
     price: 1120,
     unit: "ر.س",
-    perUnit: "ليلة"  ,
+    perUnit: "ليلة واحدة"  ,
     arrivalTime:'‏12.00 مساءا',
     leftTime:'‏12.00 صباحا',
     arrivalDate:'الاربعاء 22/02/2022',

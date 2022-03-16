@@ -5,6 +5,10 @@
   [isMain]="false"
 ></app-header>
 <ion-content class="ion-padding">
+  <ion-calendar  [options]="optionsRange"
+  [type]="type"
+  [format]="'YYYY-MM-DD'" (onChange)="onChange($event)" [(ngModel)]="dateRange"> </ion-calendar>
+
   <ion-button expand="block" routerLink="/tabs/main/reservation-payment">
     <span class="auth-btn fn-16 white-color dalel-Bold">
       {{ "complete reservation"|translate}}

@@ -149,6 +149,7 @@ ion-button::part(native) {
     --checkmark-color	:var(--ion-color-white);
     --border-radius	:3px;
     --size	:20px;
+    --border-color:var(--ion-color-secondary);
   }
 
   .align-right{

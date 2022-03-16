@@ -15,6 +15,7 @@ export class CustomDetailsComponent implements OnInit {
   constructor(private langaugeservice: LanguageService) {}
 
   ngOnInit() {
+    console.log('is detailed '+this.isDetailed)
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(JSON.stringify(this.reservationDetails))
   }

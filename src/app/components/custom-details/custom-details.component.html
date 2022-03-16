@@ -1,4 +1,5 @@
-<div class="item-details">
+<div class="item-details" [ngClass]="isDetailed ? 'details' : 'notdetails'">
+
   <div class="name-rating-container">
     <div class="name">
       <h5 class="fn-16 dalel-Bold"> {{ reservationDetails.name }}</h5>
@@ -16,8 +17,8 @@
     </div>
   </div>
 
-  <div class="address-price-container" [ngClass]="isDetailed ? 'details' : 'notdetails'">
-    <ion-item lines="none" class="address" >
+  <div class="address-price-container">
+    <ion-item lines="none" class="address">
       <ion-label>
         <p class="fn-14 dalel-Regular dark-black-color">
            {{ reservationDetails.city }} - {{ reservationDetails.address }}

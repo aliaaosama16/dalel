@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CalendarModule } from "ion2-calendar";
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -17,6 +19,7 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [],
   imports: [
     BrowserModule,
+    CalendarModule,
     IonicModule.forRoot({
       backButtonText: '',
       scrollAssist: false,
