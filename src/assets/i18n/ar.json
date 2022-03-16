@@ -67,5 +67,7 @@
   "reservation":"الحجز",
   "complete reservation":"استكمال الحجز",
   "confirm reservation":"تأكيد الحجز",
-  "fees":"التكاليف"
+  "fees":"التكاليف",
+  "pay on arrival":"الدفع عند الوصول",
+  "total":"المجموع"
 }

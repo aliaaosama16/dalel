@@ -54,29 +54,42 @@
   </div>
 
   <div class="fees">
-    <h5 class="fn-14 dalel-Bold primary-color"> {{  "fees"|translate }}  </h5>
+    <h5 class="fn-14 dalel-Bold primary-color">{{ "fees"|translate }}</h5>
 
     <div class="fees-details">
       <div>
-        <p class="fn-14 dalel-Bold ">   ليلة واحدة* 1.220</p>
+        <p class="fn-14 dalel-Bold">
+          {{reservationDetails.perUnit}} * {{reservationDetails.price}}
+        </p>
       </div>
-      <div> <p class="fn-14 dalel-Bold "> 1.220 ر.س</p>
+      <div>
+        <p class="fn-14 dalel-Bold">
+          {{reservationDetails.price}} {{reservationDetails.unit}}
+        </p>
       </div>
     </div>
 
-    <hr class="separator">
+    <hr class="separator" />
 
     <div class="fees-total">
       <div>
-        <p class="fn-14 dalel-Bold primary-color">  المجموع  </p>
+        <p class="fn-14 dalel-Bold primary-color">{{"total"|translate}}</p>
       </div>
-      <div> <p class="fn-14 dalel-Bold primary-color"> 1.220 ر.س</p>
+      <div>
+        <p class="fn-14 dalel-Bold primary-color">
+          {{reservationDetails.price}} {{reservationDetails.unit}}
+        </p>
       </div>
     </div>
   </div>
 
   <div class="payment-method">
-
+    <ion-item lines="none">
+      <ion-label class="fn-14 black-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+        {{"pay on arrival"|translate}}
+      </ion-label>
+      <ion-checkbox color="secondary" slot="start" value="true"></ion-checkbox>
+    </ion-item>
   </div>
 
   <ion-button expand="block" routerLink="/tabs/main">

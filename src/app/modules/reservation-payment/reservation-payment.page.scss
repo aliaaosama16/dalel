@@ -110,7 +110,7 @@ ion-button::part(native) {
     div {
       flex-direction: row;
       p {
-        color: rgb(var(--ion-color-dark-black-rgb), 0.51);
+        color: var(--ion-color-gray-black)
       }
     }
   }
@@ -135,6 +135,29 @@ ion-button::part(native) {
   border-radius: 10px;
   padding: 10px 12px;
   margin-bottom: 16px;
+
+  ion-item::part(native) {
+    text-align: center;
+    padding-inline-end: 0px !important;
+    padding-inline-start: 0px !important;
+    background:  var(--ion-color-orange-light);
+    .item-inner {
+      --inner-border-width: 0px;
+    }
+  }
+  ion-checkbox{
+    --checkmark-color	:var(--ion-color-white);
+    --border-radius	:3px;
+    --size	:20px;
+  }
+
+  .align-right{
+    text-align: right;
+  }
+
+  .align-left{
+    text-align: left;
+  }
 }
 .btn-custom {
   margin: 0 5%;

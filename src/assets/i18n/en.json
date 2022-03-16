@@ -67,6 +67,8 @@
   "reservation":"reservation",
   "complete reservation":"complete reservation",
   "confirm reservation":"confirm reservation",
-  "fees":"fees"
+  "fees":"fees",
+  "pay on arrival":"pay on arrival",
+  "total":"total"
 
 }
