@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-search-filter',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFilterPage implements OnInit {
 
-  constructor() { }
+  currentlangauge: string;
+  constructor(private langaugeservice: LanguageService) {}
 
   ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
   }
 
+  selectPlace(ev){
+
+    console.log(ev)
+  }
 }

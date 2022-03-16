@@ -5,10 +5,320 @@
   [isMain]="false"
 ></app-header>
 
-<ion-content>
-
-  <h5>
+<ion-content class="ion-padding">
+  <h5 class="fn-14 dalel-Bold dark-black-color">
     {{"search results filter"|translate}}
   </h5>
 
+  <ion-item lines="none" class="select-container">
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{"search with place name"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="select-container">
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{"choose place"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="select-container">
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{ "choose city"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="select-container">
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{ "choose neighborhood"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="flex-container">
+    <div  [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "rooms number"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "people number"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+
+  <p class="fn-14 dalel-Regular primary-color">   {{"determine space"|translate}}</p>
+
+  <div class="flex-container">
+    <div  [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "least space"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "highest space"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+
+  <p class="fn-14 dalel-Regular primary-color">   {{"determine price"|translate}}</p>
+
+  <div class="flex-container">
+    <div  [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "least price"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
+      <ion-item lines="none" class="select-container">
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{  "highest price"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h5 class="fn-14 dalel-Bold dark-black-color">
+      {{"Miscellaneous"|translate}}
+    </h5>
+  
+    <div class="items-container">
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{"show available only"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "show offers only"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+     
+    </div>
+  </div>
+
+  <div class="section-container categories">
+    <h5 class="fn-14 dalel-Bold dark-black-color">
+      {{ "Categories"|translate}}
+    </h5>
+  
+    <div class="items-container">
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{"events"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "couples"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "travelers"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "families"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "singles"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+     
+    </div>
+  </div>
+
+  <div class="section-container facilities">
+    <h5 class="fn-14 dalel-Bold dark-black-color">
+      {{ "facilities"|translate}}
+    </h5>
+  
+    <div class="items-container">
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{"car entrance"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{"Maid's room"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "driver's room"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "pool"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "elevator"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item lines="none">
+          <ion-label class="fn-14 gray-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+            {{ "Basement"|translate}}
+          </ion-label>
+          <ion-checkbox color="secondary" slot="start" value="true" [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+        </ion-item>
+      </div>
+
+  
+     
+    </div>
+  </div>
+
+  <ion-button expand="block" routerLink="/tabs/main/search-results">
+    <span class="auth-btn fn-16 white-color dalel-Bold">
+      {{ "search"|translate}}
+    </span>
+  </ion-button> 
 </ion-content>
+
