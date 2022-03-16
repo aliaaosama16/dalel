@@ -4,13 +4,24 @@ ion-content.background {
 
 
 .language {
+
+  ion-list-header{
+    padding-inline-start: 0px !important;
+  }
+  ion-item::part(native) {
+    text-align: center;
+    padding-inline-end: 0px !important;
+    padding-inline-start: 0px !important;
+  
+    .item-inner {
+      --inner-border-width: 0px;
+    }
+  }
   .title {
     font-family: "Cairo-Bold";
     font-size: 22px;
   }
   ion-list {
-    //padding-inline-start
-
     background: none;
     padding-top: 50px;
 

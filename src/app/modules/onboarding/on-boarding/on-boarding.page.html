@@ -2,7 +2,7 @@
   <swiper
     #swiper
     [config]="config"
-    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'" (slideChange)="swiperSlideChanged($event)"
   >
     <ng-template swiperSlide *ngFor="let i of [{},{},{}]">
       <div class="boarding">
@@ -12,12 +12,9 @@
 
         <ion-row [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
           <ion-col size="10">
-            <ion-button expand="block" class="btn-custom">
+            <ion-button expand="block" class="btn-custom" (click)="nextSlide($event)" >
               <span>{{"next"|translate}}</span>
             </ion-button>
-
-
-            <!-- <app-custom-button></app-custom-button> -->
           </ion-col>
 
           <ion-col text-center size="2" (click)="skipBoarding()">
@@ -28,7 +25,5 @@
         </ion-row>
       </div>
     </ng-template>
-
-  
   </swiper>
 </ion-content>
