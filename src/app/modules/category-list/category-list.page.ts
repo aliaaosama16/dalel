@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-category-list',
@@ -10,6 +11,7 @@ import { MenuController } from '@ionic/angular';
 export class CategoryListPage implements OnInit {
   categoryID: string;
   categoryName: string;
+  currentlangauge: string;
   categoriesList: any[] = [
     {
       id: 1,
@@ -27,7 +29,7 @@ export class CategoryListPage implements OnInit {
       id: 3,
       name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      location: 'مكة المكرمة',
     },
     {
       id: 4,
@@ -39,7 +41,7 @@ export class CategoryListPage implements OnInit {
       id: 5,
       name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      location: 'مكة المكرمة',
     },
     {
       id: 6,
@@ -51,7 +53,7 @@ export class CategoryListPage implements OnInit {
       id: 7,
       name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      location: 'مكة المكرمة',
     },
     {
       id: 8,
@@ -63,7 +65,7 @@ export class CategoryListPage implements OnInit {
       id: 9,
       name: 'اسم تجريبي',
       image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      location: 'مكة المكرمة',
     },
     {
       id: 10,
@@ -80,7 +82,8 @@ export class CategoryListPage implements OnInit {
   ];
   constructor(
     private menuCtrl: MenuController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private langaugeservice:LanguageService
   ) {}
 
   ngOnInit() {
@@ -91,6 +94,11 @@ export class CategoryListPage implements OnInit {
     }
     this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(`category id is ${this.categoryID}`);
+
+   
+      this.currentlangauge = this.langaugeservice.getLanguage();
+      console.log(this.currentlangauge);
+    
   }
 
   openMenu() {

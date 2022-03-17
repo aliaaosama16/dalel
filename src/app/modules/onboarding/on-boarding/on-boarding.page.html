@@ -12,7 +12,7 @@
 
         <ion-row [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
           <ion-col size="10">
-            <ion-button expand="block" class="btn-custom" (click)="nextSlide($event)" >
+            <ion-button [disabled]="slidingNotAvailable" expand="block" class="btn-custom" (click)="nextSlide($event)" >
               <span>{{"next"|translate}}</span>
             </ion-button>
           </ion-col>

@@ -4,7 +4,13 @@ const config: CapacitorConfig = {
   appId: 'com.efada.dalel',
   appName: 'دليل',
   webDir: 'www',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 10000,
+      launchAutoHide: false,
+    },
+  },
 };
 
 export default config;

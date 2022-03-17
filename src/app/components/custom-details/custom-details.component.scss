@@ -60,35 +60,21 @@
     .address > ion-label {
       margin-bottom: 6px;
     }
-  }
-}
 
-.item-details,
-.notdetails {
-  ion-item {
-    --background: var(--ion-color-white) !important;
-  }
-  ion-item::part(native) {
-    text-align: center;
-    padding-inline-end: 0px !important;
-    padding-inline-start: 0px !important;
-    .item-inner {
-      --inner-border-width: 0px;
+    ion-item {
+      --background: var(--ion-color-white);
     }
-  }
-}
-.item-details,
-.details {
-  ion-item {
-    --background: var(--ion-color-orange-light) !important;
-  }
-  ion-item::part(native) {
-    text-align: center;
-    padding-inline-end: 0px !important;
-    padding-inline-start: 0px !important;
+    ion-item::part(native) {
+      text-align: center;
+      padding-inline-end: 0px !important;
+      padding-inline-start: 0px !important;
+      .item-inner {
+        --inner-border-width: 0px;
+      }
+    }
 
-    .item-inner {
-      --inner-border-width: 0px;
+    .details {
+      --background: var(--ion-color-orange-light) !important ;
     }
   }
 }
