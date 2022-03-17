@@ -1,6 +1,4 @@
 <ion-card class="ion-margin-bottom" (click)="navigate(forwardRoute)">
-  <!-- routerLink="/tabs/main/categories/1/{{itemDetails.id}}" -->
-
   <div class="container">
     <img [src]="itemDetails.image" />
     <div
@@ -19,7 +17,7 @@
       class="location-address"
       [ngStyle]="currentlangauge == 'ar' ? { right: '30px' } : { left: '30px' }"
     >
-      <p class="fn-14 dalel-Regular white-color">{{ itemDetails.city}}</p>
+      <p class="fn-14 dalel-Regular white-color">{{ itemDetails.city }}</p>
     </div>
     <div
       class="address-detail"

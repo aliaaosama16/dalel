@@ -7,18 +7,27 @@
 <ion-content class="ion-padding">
   <ion-grid>
     <ion-row>
-      <ion-col sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="4" sizeMd="4"  *ngFor="let item of favourites">
-        <ion-card class="ion-no-margin"   routerLink="/tabs/main/categories/{{item.categoryID}}/{{item.id}}">
+      <ion-col
+        sizeXs="6"
+        sizeSm="4"
+        sizeMd="4"
+        sizeLg="4"
+        sizeMd="4"
+        *ngFor="let item of favourites"
+      >
+        <ion-card
+          class="ion-no-margin"
+          routerLink="/tabs/main/categories/{{item.catID}}/{{item.id}}"
+        >
           <img src="./../../../assets/images/512.png" />
 
           <div class="price-container">
             <span class="white-color fn-12 dalel-Regular"
-              >{{item.price}} {{item.unit}}</span
+              >{{item.price}} {{item.unit|translate}}</span
             >
           </div>
 
           <ion-card-content>
-
             <!-- <app-custom-details [ItemDetails]="item"></app-custom-details> -->
             <div class="name">
               <p class="fn-14 dalel-Bold dark-black-color">{{item.name}}</p>

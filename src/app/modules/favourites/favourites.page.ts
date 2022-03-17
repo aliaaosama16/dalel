@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemDetails } from 'src/app/models/itemDetails';
 
 @Component({
   selector: 'app-favourites',
@@ -6,67 +7,106 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourites.page.scss'],
 })
 export class FavouritesPage implements OnInit {
-  favourites: any[] = [
+  favourites: ItemDetails[] = [
     {
       id: 1,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 2,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 3,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 4,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 5,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 6,
-      categoryID: 1,
+      catID: 1,
       name: 'اسم تجريبي',
       city: 'الرياض',
+      address: 'حي الرمال',
       rating: '3+',
       price: 3000,
-     unit: "currency",
- 
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
+
+    
+
   ];
   constructor() {}
 

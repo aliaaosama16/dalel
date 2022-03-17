@@ -27,7 +27,6 @@ export class CustomCardComponent implements OnInit {
     console.log('all object ' + JSON.stringify(this.itemDetails));
     console.log('current route is :  ' + route);
     this.navigateTo.emit(route);
-    //this.router.navigateByUrl('route/${this.itemDetails.catID}/${this.itemDetails.id}`  );
     this.router.navigate([`/${route}/${this.itemDetails.catID}/${this.itemDetails.id}`]);
   
   }
