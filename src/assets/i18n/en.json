@@ -101,6 +101,8 @@
   "pool":"pool",
   "elevator": "elevator",
   "Basement": "basement",
-  "search": "search"
+  "search": "search",
+  "one night":"one night",
+  "currency":"SR"
 
 }

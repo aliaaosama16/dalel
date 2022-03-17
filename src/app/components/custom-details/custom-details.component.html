@@ -1,7 +1,7 @@
 <div class="item-details" >
   <div class="name-rating-container">
     <div class="name">
-      <h5 class="fn-16 dalel-Bold"> {{ reservationDetails.name }}</h5>
+      <h5 class="fn-16 dalel-Bold"> {{ ItemDetails.name|translate }}</h5>
     </div>
 
     <div class="rating">
@@ -9,7 +9,7 @@
         <div class="rating-container">
           <ion-icon color="secondary" slot="start" name="star"></ion-icon>
           <span class="white-color fn-12 dalel-Regular">{{
-            reservationDetails.rating
+            ItemDetails.rating
           }}</span>
         </div>
       </div>
@@ -20,7 +20,7 @@
     <ion-item lines="none" class="address" [ngClass]="isDetailed ? 'details' : ''">
       <ion-label>
         <p class="fn-14 dalel-Regular dark-black-color">
-           {{ reservationDetails.city }} - {{ reservationDetails.address }}
+           {{ ItemDetails.city }} - {{ ItemDetails.address }}
         </p>
       </ion-label>
       <ion-icon slot="start" name="location-sharp" color="primary"></ion-icon>
@@ -31,8 +31,8 @@
         class="fn-10 dalel-Bold primary-color"
         [ngClass]="currentlangauge == 'ar' ? 'float-left' : 'float-right'"
       >
-         {{ reservationDetails.price }} {{ reservationDetails.unit }}/{{
-          reservationDetails.perUnit
+         {{ ItemDetails.price }} {{ ItemDetails.perUnit |translate }}/{{
+          ItemDetails.unit|translate
         }}
       </p>
     </div>

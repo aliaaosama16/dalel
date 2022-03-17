@@ -53,8 +53,8 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.languageService.setInitialAppLanguage();
-      //  this.currentLanguage=this.languageService.getLanguage();
-      //console.log(`language is ${this.currentLanguage}`);
+       this.currentLanguage=this.languageService.getLanguage();
+      console.log(`language is ${this.currentLanguage}`);
     });
   }
 }

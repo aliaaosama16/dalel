@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-my-reservations',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyReservationsPage implements OnInit {
   reservationsType: string = 'old';
+  currentlangauge: string;
 
   oldReservations = [
     {
@@ -16,8 +18,8 @@ export class MyReservationsPage implements OnInit {
       city: 'الرياض',
       country: 'المملكة العربية السعودية',
       price: 1120,
-      unit: 'ر.س',
-      perUnit: 'ليلة',
+      unit: 'currency',
+      perUnit: 'one night',
       rating: 3,
     },
   ];
@@ -29,8 +31,8 @@ export class MyReservationsPage implements OnInit {
       city: 'الرياض',
       country: 'المملكة العربية السعودية',
       price: 1120,
-      unit: 'ر.س',
-      perUnit: 'ليلة',
+      unit: 'currency',
+      perUnit: 'one night',
       rating: 3,
     },
     {
@@ -40,8 +42,8 @@ export class MyReservationsPage implements OnInit {
       city: 'الرياض',
       country: 'المملكة العربية السعودية',
       price: 1120,
-      unit: 'ر.س',
-      perUnit: 'ليلة',
+      unit: 'currency',
+      perUnit: 'one night',
       rating: 3,
     },
     {
@@ -51,8 +53,8 @@ export class MyReservationsPage implements OnInit {
       city: 'الرياض',
       country: 'المملكة العربية السعودية',
       price: 1120,
-      unit: 'ر.س',
-      perUnit: 'ليلة',
+      unit: 'currency',
+      perUnit: 'one night',
       rating: 3,
     },
     {
@@ -62,14 +64,17 @@ export class MyReservationsPage implements OnInit {
       city: 'الرياض',
       country: 'المملكة العربية السعودية',
       price: 1120,
-      unit: 'ر.س',
-      perUnit: 'ليلة',
+      unit: 'currency',
+      perUnit: 'one night',
       rating: 3,
     },
   ];
-  constructor() {}
+  constructor(private langaugeservice: LanguageService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+  }
 
   reservationsTypeChange($event) {}
 }

@@ -7,6 +7,7 @@ import { SwiperOptions } from 'swiper';
 import { SearchFilterPage } from '../search-filter/search-filter.page';
 import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
+import { ItemDetails } from 'src/app/models/itemDetails';
 
 @Component({
   selector: 'app-main',
@@ -55,54 +56,56 @@ export class MainPage implements OnInit {
     { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
   ];
 
-  categoryItems: any[] = [
+  categoryItems: ItemDetails[] = [
     {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
       id: 1,
+      catID: 1,
+      name: 'اسم تجريبي',
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
+      
+      
     },
     {
+      id: 1,
+      catID: 1,
       name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 2,
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
+      id: 1,
+      catID: 1,
       name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 3,
-    },
-    {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 4,
-    },
-    {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 5,
-    },
-    {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 6,
-    },
-    {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 7,
-    },
-    {
-      name: 'اسم تجريبي',
-      location: 'الرياض',
-      image: './../../../assets/images/1024-500.png',
-      id: 8,
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
   ];
 

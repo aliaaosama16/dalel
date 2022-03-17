@@ -6,13 +6,15 @@ import { IonicModule } from '@ionic/angular';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { HeaderComponent } from './header/header.component';
 import { CustomDetailsComponent } from './custom-details/custom-details.component';
+import { CustomCardComponent } from './custom-card/custom-card.component';
 
 
 @NgModule({
   declarations: [
     CustomButtonComponent,
     HeaderComponent,
-    CustomDetailsComponent
+    CustomDetailsComponent,
+    CustomCardComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { CustomDetailsComponent } from './custom-details/custom-details.componen
   exports: [
     CustomButtonComponent,
     HeaderComponent,
-    CustomDetailsComponent
+    CustomDetailsComponent,
+    CustomCardComponent
   ]
 })
 export class ComponentsModule { }

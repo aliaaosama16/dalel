@@ -22,9 +22,16 @@
               <ion-icon
                 slot="start"
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
-                [ngClass]="currentLanguage == 'ar'? 'icon-ar':'icon-en'  "
+                [ngClass]="currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'"
               ></ion-icon>
-              <ion-label>{{ p.title | translate }}</ion-label>
+              <ion-label
+                [ngStyle]="
+                  currentLanguage == 'ar'
+                    ? { 'margin-right': '10px' }
+                    : { 'margin-left': '10px' }
+                "
+                >{{ p.title | translate }}  </ion-label
+              >
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

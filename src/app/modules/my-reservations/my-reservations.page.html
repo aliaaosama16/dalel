@@ -35,26 +35,27 @@
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />
 
+
         <div class="price">
-          <p>{{item.price}} {{item.unit}} / {{item.perUnit}}</p>
+          <p class="fn-15 dalel-SemiBold white-color">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>
         </div>
 
-        <div class="title">
-          <p>{{item.name |translate}}</p>
+        <div class="title"  [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}">
+          <p class="fn-14 dalel-Bold white-color">{{item.name|translate}}</p>
         </div>
 
-        <div class="location">
+        <div class="location" [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}">
           <ion-icon
             src="./../../../assets/icon/pin-underline.svg"
             color="primary"
           ></ion-icon>
         </div>
 
-        <div class="location-address">
-          <p>{{item.city}} - {{item.country}}</p>
+        <div class="location-address" [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}">
+          <p class="fn-10 dalel-Regular white-color">{{item.city}} - {{item.country}}</p>
         </div>
 
-        <div class="rating">
+        <div class="rating" [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}">
           <span class="white-color"> {{item.rating}}</span>
           <ion-icon name="star" color="secondary"></ion-icon>
         </div>
@@ -72,25 +73,25 @@
         <img src="./../../../assets/images/1024-500.png" />
 
         <div class="price">
-          <p>{{item.price}} {{item.unit}} / {{item.perUnit}}</p>
+          <p class="fn-15 dalel-SemiBold white-color">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>
         </div>
 
-        <div class="title">
-          <p>{{item.name |translate}}</p>
+        <div class="title"  [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}">
+          <p class="fn-14 dalel-Bold white-color">{{item.name|translate}}</p>
         </div>
 
-        <div class="location">
+        <div class="location" [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}">
           <ion-icon
             src="./../../../assets/icon/pin-underline.svg"
             color="primary"
           ></ion-icon>
         </div>
 
-        <div class="location-address">
-          <p>{{item.city}} - {{item.country}}</p>
+        <div class="location-address" [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}">
+          <p class="fn-10 dalel-Regular white-color">{{item.city}} - {{item.country}}</p>
         </div>
 
-        <div class="rating">
+        <div class="rating" [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}">
           <span class="white-color"> {{item.rating}}</span>
           <ion-icon name="star" color="secondary"></ion-icon>
         </div>

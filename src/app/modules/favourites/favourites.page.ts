@@ -14,7 +14,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
     {
       id: 2,
@@ -23,7 +24,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
     {
       id: 3,
@@ -32,7 +34,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
     {
       id: 4,
@@ -41,7 +44,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
     {
       id: 5,
@@ -50,7 +54,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
     {
       id: 6,
@@ -59,7 +64,8 @@ export class FavouritesPage implements OnInit {
       city: 'الرياض',
       rating: '3+',
       price: 3000,
-      unit: 'ر.س',
+     unit: "currency",
+ 
     },
   ];
   constructor() {}

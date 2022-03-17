@@ -6,9 +6,12 @@
 ></app-header>
 <ion-content class="ion-padding">
   <div class="container">
-    <img [src]="reservationDetails.image " />
+    <img [src]="ItemDetails.image " />
   </div>
-  <app-custom-details [reservationDetails]="reservationDetails" [isDetailed]="false"></app-custom-details>
+  <app-custom-details
+    [ItemDetails]="ItemDetails"
+    [isDetailed]="false"
+  ></app-custom-details>
 
   <div class="details">
     <h5 class="fn-14 dalel-Bold primary-color">
@@ -21,14 +24,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{reservationDetails.arrivalTime}}
+          {{ItemDetails.arrivalTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span>
-          {{"arrival-date"|translate}} :{{reservationDetails.leftTime}}
-        </span>
+        <span> {{"arrival-date"|translate}} :{{ItemDetails.leftTime}} </span>
       </p>
     </div>
 
@@ -38,14 +39,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{reservationDetails.leftTime}}
+          {{ItemDetails.leftTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span>
-          {{"arrival-date"|translate}} :{{reservationDetails.leftDate}}
-        </span>
+        <span> {{"arrival-date"|translate}} :{{ItemDetails.leftDate}} </span>
       </p>
     </div>
   </div>

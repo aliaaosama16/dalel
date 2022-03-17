@@ -17,8 +17,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -28,8 +28,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -39,8 +39,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -50,8 +50,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -61,8 +61,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -72,8 +72,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -83,8 +83,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   },{
     name: "عنوان تجريبي",
@@ -94,8 +94,8 @@ export class SearchResultsPage implements OnInit {
     city: "الرياض",
     address: "المملكة العربية السعودية",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
+    unit: "currency",
+    perUnit: "one night"  ,
    
   }];
   constructor(private langaugeservice:LanguageService) { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ItemDetails } from "src/app/models/itemDetails";
 import { LanguageService } from "src/app/services/language/language.service";
 
 @Component({
@@ -7,7 +8,7 @@ import { LanguageService } from "src/app/services/language/language.service";
   styleUrls: ["./my-reservations-details.page.scss"],
 })
 export class MyReservationsDetailsPage implements OnInit {
-  reservationDetails = {
+  ItemDetails:ItemDetails = {
     name: "اسم الاستراحه",
     rating: '3+',
     id: 1,
@@ -15,16 +16,16 @@ export class MyReservationsDetailsPage implements OnInit {
     city: "الرياض",
     address: " حي الرمال",
     price: 1120,
-    unit: "ر.س",
-    perUnit: "ليلة"  ,
-    arrivalTime:'‏12.00 مساءا',
-    leftTime:'‏12.00 صباحا',
-    arrivalDate:'الاربعاء 22/02/2022',
-    leftDate:'السبت 25/02/2022',
+    unit: "currency",
+    perUnit: "one night",
+    arrivalTime: '‏12.00 مساءا',
+    leftTime: '‏12.00 صباحا',
+    arrivalDate: 'الاربعاء 22/02/2022',
+    leftDate: 'السبت 25/02/2022',
     isFav: true,
-    description:'',
-    reservationRules:''  
-  
+    description: '',
+    reservationRules: '',
+    catID: 0
   };
   currentlangauge: string;
   constructor(private langaugeservice: LanguageService) {}

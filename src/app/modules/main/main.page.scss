@@ -172,21 +172,21 @@
     .title {
       position: absolute;
       bottom: 30px;
-      right: 13px;
+     // right: 13px;
       color: white;
       p {
-        font-size: 14px;
+        //font-size: 14px;
         margin: 0px;
-        font-family: "Cairo-Bold";
+      //  font-family: "Cairo-Bold";
       }
     }
 
     .location {
       position: absolute;
       bottom: 5px;
-      right: 10px;
-      font-size: 14px;
-      font-family: "Cairo-Regular";
+    //  right: 10px;
+     // font-size: 14px;
+     // font-family: "Cairo-Regular";
       ion-icon {
         font-size: 20px;
       }
@@ -194,11 +194,11 @@
 
     .location-address {
       position: absolute;
-      color: white;
-      font-family: "Cairo-Regular";
-      font-size: 14px;
+    //  color: white;
+    //  font-family: "Cairo-Regular";
+     // font-size: 14px;
       bottom: 9px;
-      right: 30px;
+     // right: 30px;
       p {
         margin: 0px;
       }
@@ -207,7 +207,7 @@
     .address-detail {
       position: absolute;
       bottom: 5px;
-      left: 10px;
+      //left: 10px;
       ion-icon {
         font-size: 25px;
       }

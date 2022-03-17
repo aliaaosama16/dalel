@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { ItemDetails } from 'src/app/models/itemDetails';
 import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
@@ -12,73 +13,71 @@ export class CategoryListPage implements OnInit {
   categoryID: string;
   categoryName: string;
   currentlangauge: string;
-  categoriesList: any[] = [
+  categoriesList: ItemDetails[] = [
     {
       id: 1,
+      catID: 4,
       name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      city: 'مكه المكرمة',
+      address: 'الحرم',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 2,
+      catID: 2,
       name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 3,
+      catID: 1,
       name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'مكة المكرمة',
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
     },
     {
       id: 4,
+      catID: 1,
       name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
-    },
-    {
-      id: 5,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'مكة المكرمة',
-    },
-    {
-      id: 6,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
-    },
-    {
-      id: 7,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'مكة المكرمة',
-    },
-    {
-      id: 8,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
-    },
-    {
-      id: 9,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'مكة المكرمة',
-    },
-    {
-      id: 10,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
-    },
-    {
-      id: 11,
-      name: 'اسم تجريبي',
-      image: './../../../assets/images/1024-500.png',
-      location: 'الرياض',
-    },
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image:  './../../../assets/images/1024-500.png',
+      leftTime: '',
+    }
   ];
   constructor(
     private menuCtrl: MenuController,

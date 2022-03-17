@@ -9,13 +9,14 @@
   <div class="item-image">
     <img src="./../../../assets/images/1024-500.png" />
     <ion-icon
+      (click)="addToFavourite()"
       [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
       [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
     ></ion-icon>
 
     <div class="details-container ion-padding">
       <app-custom-details
-        [reservationDetails]="itemDetails"
+        [ItemDetails]="itemDetails"
         [isDetailed]="true"
       ></app-custom-details>
     </div>

@@ -1,0 +1,31 @@
+<ion-card class="ion-margin-bottom" (click)="navigate(forwardRoute)">
+  <!-- routerLink="/tabs/main/categories/1/{{itemDetails.id}}" -->
+
+  <div class="container">
+    <img [src]="itemDetails.image" />
+    <div
+      class="title"
+      [ngStyle]="currentlangauge == 'ar' ? { right: '13px' } : { left: '13px' }"
+    >
+      <p class="fn-14 dalel-Bold white-color">{{ itemDetails.name }}</p>
+    </div>
+    <div
+      class="location"
+      [ngStyle]="currentlangauge == 'ar' ? { right: '10px' } : { left: '10px' }"
+    >
+      <ion-icon name="location-sharp" color="primary"></ion-icon>
+    </div>
+    <div
+      class="location-address"
+      [ngStyle]="currentlangauge == 'ar' ? { right: '30px' } : { left: '30px' }"
+    >
+      <p class="fn-14 dalel-Regular white-color">{{ itemDetails.city}}</p>
+    </div>
+    <div
+      class="address-detail"
+      [ngStyle]="currentlangauge == 'ar' ? { left: '10px' } : { right: '10px' }"
+    >
+      <ion-icon name="arrow-forward-circle-outline" color="white"></ion-icon>
+    </div>
+  </div>
+</ion-card>

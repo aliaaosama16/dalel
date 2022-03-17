@@ -1,18 +1,19 @@
-export interface ReservationDetails {
+export interface ItemDetails {
   name: string;
   rating: string;
   id: number;
+  catID:number;
   image: string;
   city: string;
   address: string;
-  price: number;
+  price?: number;
   unit: string;
   perUnit: string;
-  arrivalTime: string;
+  arrivalTime?: string;
   leftTime: string;
-  arrivalDate: string;
-  leftDate: string;
-  isFav: boolean;
-  description: string;
-  reservationRules: string;
+  arrivalDate?: string;
+  leftDate?: string;
+  isFav?: boolean;
+  description?: string;
+  reservationRules?: string;
 }

@@ -6,11 +6,11 @@
 ></app-header>
 <ion-content class="ion-padding">
   <div class="container">
-    <img [src]="reservationDetails.image " />
+    <img [src]="ItemDetails.image " />
   </div>
 
   <app-custom-details
-    [reservationDetails]="reservationDetails" [isDetailed]="false"
+    [ItemDetails]="ItemDetails" [isDetailed]="false"
   ></app-custom-details>
 
   <div class="details">
@@ -24,13 +24,13 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{reservationDetails.arrivalTime}}
+          {{ItemDetails.arrivalTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDetails.leftTime}}
+          {{"arrival-date"|translate}} :{{ItemDetails.leftTime}}
         </span>
       </p>
     </div>
@@ -41,13 +41,13 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{reservationDetails.leftTime}}
+          {{ItemDetails.leftTime}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
         <span>
-          {{"arrival-date"|translate}} :{{reservationDetails.leftDate}}
+          {{"arrival-date"|translate}} :{{ItemDetails.leftDate}}
         </span>
       </p>
     </div>
@@ -59,12 +59,12 @@
     <div class="fees-details">
       <div>
         <p class="fn-14 dalel-Bold">
-          {{reservationDetails.perUnit}} * {{reservationDetails.price}}
+         {{ItemDetails.unit |translate}}* {{ItemDetails.price}}
         </p>
       </div>
       <div>
         <p class="fn-14 dalel-Bold">
-          {{reservationDetails.price}} {{reservationDetails.unit}}
+          {{ItemDetails.price}}   {{ItemDetails.perUnit |translate}} 
         </p>
       </div>
     </div>
@@ -77,7 +77,7 @@
       </div>
       <div>
         <p class="fn-14 dalel-Bold primary-color">
-          {{reservationDetails.price}} {{reservationDetails.unit}}
+          {{ItemDetails.price}} {{ItemDetails.unit}}
         </p>
       </div>
     </div>

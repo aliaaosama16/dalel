@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReservationDetails } from 'src/app/models/itemDetails';
+import { ItemDetails } from 'src/app/models/itemDetails';
 import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class CustomDetailsComponent implements OnInit {
 
-  @Input() reservationDetails: ReservationDetails;
+  @Input() ItemDetails: ItemDetails;
   @Input() isDetailed:boolean;
   currentlangauge: string;
   constructor(private langaugeservice: LanguageService) {}
@@ -17,6 +17,6 @@ export class CustomDetailsComponent implements OnInit {
   ngOnInit() {
     console.log('is detailed '+this.isDetailed)
     this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(JSON.stringify(this.reservationDetails))
+    console.log(JSON.stringify(this.ItemDetails))
   }
 }

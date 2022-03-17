@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { ItemDetails } from 'src/app/models/itemDetails';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
 
@@ -14,22 +15,36 @@ export class CategoryDetailsPage implements OnInit {
     slidesPerView: 3.5,
     spaceBetween: 6,
     pagination: false,
+    breakpoints: {
+      '@0.75': {
+        slidesPerView: 4.3,
+        spaceBetween: 10,
+      },
+      '@1.00': {
+        slidesPerView: 5.4,
+        spaceBetween: 10,
+      },
+      '@1.50': {
+        slidesPerView: 6.5,
+        spaceBetween: 10,
+      },
+    },
   };
-  itemDetails: any = {
+  itemDetails: ItemDetails = {
     id: 1,
-    categoryID: 1,
+    catID: 1,
     name: 'اسم تجريبي',
     city: 'الرياض',
     address: 'حي الرمال',
     rating: '3+',
     price: 3000,
-    unit: 'ر.س',
-    perUnit: 'ليلة',
+    unit: 'currency',
+    perUnit: 'one night',
     isFav: true,
-    description:
-      'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
-    reservationRules:
-      'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
+    description: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
+    reservationRules: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
+    image: '',
+    leftTime: ''
   };
   constructor(
     private menuCtrl: MenuController,
@@ -45,7 +60,10 @@ export class CategoryDetailsPage implements OnInit {
     this.menuCtrl.open();
   }
 
-  reserve(){
-    
+  reserve() {}
+
+  addToFavourite() {
+    this.itemDetails.isFav =!this.itemDetails.isFav;
+    // api 
   }
 }
