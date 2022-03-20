@@ -10,7 +10,7 @@
 
         <p class="boardng-subtitle">{{"test_subtitle"|translate}}</p>
 
-        <ion-row [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
+        <!-- <ion-row [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
           <ion-col size="10">
             <ion-button [disabled]="slidingNotAvailable" expand="block" class="btn-custom" (click)="nextSlide($event)" >
               <span>{{"next"|translate}}</span>
@@ -22,7 +22,20 @@
               <span> {{"skip"|translate}} </span>
             </div>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
+
+        <div class="boarding-buttons" [ngClass]="currentlangauge=='ar' ? '':'custom-row'">
+          <div>
+            <ion-button [disabled]="slidingNotAvailable" expand="block" class="btn-custom" (click)="nextSlide($event)" >
+              <span>{{"next"|translate}}</span>
+            </ion-button>
+          </div>
+          <div  (click)="skipBoarding()">
+            <div class="ion-text-center skip">
+              <span> {{"skip"|translate}} </span>
+            </div>
+          </div>
+        </div>
       </div>
     </ng-template>
   </swiper>

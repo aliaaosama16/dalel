@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -22,7 +22,8 @@ import { CalendarModule } from 'ion2-calendar';
     FormsModule,
    CalendarModule
   ],
-  declarations: [ReservationPage]
+  declarations: [ReservationPage],
+  providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
 })
 export class ReservationPageModule {}
 

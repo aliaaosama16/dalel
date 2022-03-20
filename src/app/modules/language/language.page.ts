@@ -23,6 +23,11 @@ export class LanguagePage implements OnInit {
   chooseLanguage(ev) {
     console.log(ev.detail.value);
     this.langaugeservice.setLanguage(ev.detail.value);
-    window.location.reload();
+   // window.location.reload();
+   if(ev.detail.value=='ar'){
+    document.documentElement.dir = 'rtl';
+   }else{
+    document.documentElement.dir = 'ltr';
+   }
   }
 }

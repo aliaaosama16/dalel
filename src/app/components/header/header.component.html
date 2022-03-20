@@ -1,45 +1,49 @@
-<ion-header class="ion-no-border"  >
+<ion-header class="ion-no-border">
 
-    <ion-toolbar class="my-toolbar">
-      <ion-buttons slot="start" class="menu-icon">
-          <ion-button  (click)="openMenu()">
-            <ion-icon  src="./../../../assets/icon/menu.svg"></ion-icon>
-          </ion-button>
-          
-        </ion-buttons>
-      <ion-title class="ion-text-start primary-color dalel-Bold fn-18 custom-title">{{ title | translate }}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button *ngIf="isEditable" (click)="navigate(forwardRoute)">
-          <ion-icon slot="icon-only" src="./../../../assets/icon/edit.svg"></ion-icon>
-        </ion-button>
-        <ion-button *ngIf="!isMain" (click)="navigate(backwardRoute)" >
-          <ion-icon slot="icon-only" name="arrow-forward-outline" color="primary"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
 
-    <!-- <ion-toolbar class="sub-toolbar">
-    </ion-toolbar> -->
-  <!-- <div class="menu-container">
-    <img src="./../../../assets/images/wave app.svg" />
 
-    <div class="menu-icon" (click)="openMenu()">
-      <img src="./../../../assets/icon/menu.svg" />
-    </div>
-
-    <div class="menu-title">
-      <p>{{ title | translate }}</p>
-    </div>
-
-    <div *ngIf="isEditable" class="edit-icon" (click)="navigate(forwardRoute)">
-      <ion-icon
-        src="./../../../assets/icon/edit.svg"
-        color="primary"
-      ></ion-icon>
-    </div>
-
-    <div class="back-icon" (click)="navigate(backwardRoute)" *ngIf="!isMain">
-      <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
-    </div>
-  </div> -->
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start" class="menu-icon">
+      <ion-button (click)="openMenu()">
+        <ion-icon src="./../../../assets/icon/menu.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title
+      class="ion-text-start primary-color dalel-Bold fn-18 custom-title"
+      >{{ title | translate }}</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button *ngIf="isEditable" (click)="navigate(forwardRoute)">
+        <ion-icon
+          slot="icon-only"
+          src="./../../../assets/icon/edit.svg"
+        ></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!isMain" (click)="navigate(backwardRoute)">
+        <ion-icon
+          slot="icon-only"
+          name="arrow-forward-outline"
+          color="primary"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
+
+<!-- <section >
+
+ 
+
+  <div class="curve"></div>
+  <div style="display: flex;  align-items: center;">
+    <div style="flex-direction: row;">
+      <ion-button  (click)="openMenu()">
+        <ion-icon  src="./../../../assets/icon/menu.svg"></ion-icon>
+      </ion-button>
+    </div>
+    <div style="flex-direction: row;">
+      <ion-title class="ion-text-start primary-color dalel-Bold fn-18 custom-title">{{ title | translate }}</ion-title>
+
+    </div>
+  </div>
+</section> -->

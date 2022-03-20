@@ -123,7 +123,7 @@ let LanguagePage = class LanguagePage {
     chooseLanguage(ev) {
         console.log(ev.detail.value);
         this.langaugeservice.setLanguage(ev.detail.value);
-        window.location.reload();
+        // window.location.reload();
     }
 };
 LanguagePage.ctorParameters = () => [

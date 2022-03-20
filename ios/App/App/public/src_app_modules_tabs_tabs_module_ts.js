@@ -58,19 +58,12 @@ const routes = [
                     },
                     {
                         path: 'reservation',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_reservation_reservation_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation/reservation.module */ 86391)).then((m) => m.ReservationPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("src_app_modules_reservation_reservation_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation/reservation.module */ 86391)).then((m) => m.ReservationPageModule),
                     },
                     {
                         path: 'reservation-payment',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_reservation-payment_reservation-payment_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation-payment/reservation-payment.module */ 84475)).then((m) => m.ReservationPaymentPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("src_app_modules_reservation-payment_reservation-payment_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation-payment/reservation-payment.module */ 84475)).then((m) => m.ReservationPaymentPageModule),
                     },
-                    // {
-                    //   path:'menu',
-                    //   loadChildren: () =>
-                    //     import('./../../modules/menu/menu.module').then(
-                    //       (m) => m.MenuPageModule
-                    //     ),
-                    // }
                 ],
             },
             {
@@ -252,6 +245,7 @@ __webpack_require__.r(__webpack_exports__);
 let DataService = class DataService {
     constructor() {
         this.data = [];
+        this.dates = { from: '', to: '' };
     }
     setData(id, data) {
         console.log(JSON.stringify(data));
@@ -260,11 +254,18 @@ let DataService = class DataService {
     getData(id) {
         return this.data[id];
     }
+    setDates(dates) {
+        this.dates = dates;
+        console.log('selected dates ' + JSON.stringify(dates));
+    }
+    getDates() {
+        return this.dates;
+    }
 };
 DataService.ctorParameters = () => [];
 DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
-        providedIn: 'root'
+        providedIn: 'root',
     })
 ], DataService);
 
@@ -330,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************************/
 /***/ ((module) => {
 
-module.exports = "ion-label {\n  font-size: 12px;\n  font-family: \"Cairo-Regular\";\n  color: var(--ion-color-secondary);\n}\n\n.selected-label {\n  color: var(--ion-color-primary);\n}\n\nion-tab-button {\n  position: relative;\n}\n\nion-tab-button::before {\n  background-color: transparent;\n  display: block;\n  content: \"\";\n  margin: 0 auto;\n  width: 20px;\n  height: 2px;\n}\n\nion-tab-button.tab-selected::before {\n  width: 10%;\n  height: 16px;\n  content: \"\";\n  border-radius: 50%;\n  position: absolute;\n  top: -17%;\n  right: 45%;\n  margin: 0 auto;\n  background-color: var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtFQUNBLDRCQUFBO0VBQ0EsaUNBQUE7QUFDRjs7QUFFQTtFQUNFLCtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxrQkFBQTtBQUNGOztBQUVFO0VBQ0UsNkJBQUE7RUFDQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLGNBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtBQUFKOztBQUdFO0VBQ0UsVUFBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsY0FBQTtFQUNBLDBDQUFBO0FBREoiLCJmaWxlIjoidGFicy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tbGFiZWwge1xuICBmb250LXNpemU6IDEycHg7XG4gIGZvbnQtZmFtaWx5OiBcIkNhaXJvLVJlZ3VsYXJcIjtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xufVxuXG4uc2VsZWN0ZWQtbGFiZWwge1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xufVxuXG5pb24tdGFiLWJ1dHRvbiB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcblxuICAvLyBkZWZhdWx0IGNhc2VcbiAgJjo6YmVmb3JlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHdpZHRoOiAyMHB4O1xuICAgIGhlaWdodDogMnB4O1xuICB9XG4gIC8vIHNlbGVjdGVkIGNhc2VcbiAgJi50YWItc2VsZWN0ZWQ6OmJlZm9yZSB7XG4gICAgd2lkdGg6IDEwJTtcbiAgICBoZWlnaHQ6IDE2cHg7XG4gICAgY29udGVudDogXCJcIjtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogLTE3JTtcbiAgICByaWdodDogNDUlO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgfVxufVxuIl19 */";
+module.exports = "ion-label {\n  font-size: 12px;\n  font-family: \"Cairo-Regular\";\n  color: var(--ion-color-secondary);\n}\n\n.selected-label {\n  color: var(--ion-color-primary);\n}\n\nion-tab-button {\n  position: relative;\n}\n\nion-tab-button::before {\n  background-color: transparent;\n  display: block;\n  content: \"\";\n  margin: 0 auto;\n  width: 20px;\n  height: 2px;\n}\n\nion-tab-button.tab-selected::before {\n  width: 15%;\n  height: 18px;\n  content: \"\";\n  border-radius: 50%;\n  position: absolute;\n  top: -20%;\n  right: 42%;\n  margin: 0 auto;\n  background-color: var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtFQUNBLDRCQUFBO0VBQ0EsaUNBQUE7QUFDRjs7QUFFQTtFQUNFLCtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxrQkFBQTtBQUNGOztBQUVFO0VBQ0UsNkJBQUE7RUFDQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLGNBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtBQUFKOztBQUdFO0VBQ0UsVUFBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsY0FBQTtFQUNBLDBDQUFBO0FBREoiLCJmaWxlIjoidGFicy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tbGFiZWwge1xuICBmb250LXNpemU6IDEycHg7XG4gIGZvbnQtZmFtaWx5OiBcIkNhaXJvLVJlZ3VsYXJcIjtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xufVxuXG4uc2VsZWN0ZWQtbGFiZWwge1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xufVxuXG5pb24tdGFiLWJ1dHRvbiB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcblxuICAvLyBkZWZhdWx0IGNhc2VcbiAgJjo6YmVmb3JlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHdpZHRoOiAyMHB4O1xuICAgIGhlaWdodDogMnB4O1xuICB9XG4gIC8vIHNlbGVjdGVkIGNhc2VcbiAgJi50YWItc2VsZWN0ZWQ6OmJlZm9yZSB7XG4gICAgd2lkdGg6IDE1JTtcbiAgICBoZWlnaHQ6IDE4cHg7XG4gICAgY29udGVudDogXCJcIjtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogLTIwJTtcbiAgICByaWdodDogNDIlO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgfVxufVxuIl19 */";
 
 /***/ })
 

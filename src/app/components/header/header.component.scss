@@ -1,5 +1,12 @@
+
+
+ion-header{
+  background-color: #fbeee3;
+  --min-height: 120px !important;
+}
 ion-toolbar {
-  --background: url("./../../../assets/images/wave app.svg") !important;
+--background: url("./../../../assets/images/wave50.jpg") no-repeat 100% 100% !important;
+  //--background: url("./../../../assets/images/header.svg") !important;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -27,4 +34,44 @@ ion-toolbar {
       font-size: 40px !important;
     }
   }
+}
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100px;
+  
+  background:  #fbeee3;
+}
+
+.curve {
+  position: absolute;
+  height: 140px;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+}
+
+.curve::before {
+  content: "";
+    display: block;
+    position: absolute;
+    border-radius: 55% 50%;
+    width: 65%;
+    height: 107%;
+    transform: translate(-66%, 75%);
+    background-color: white;
+}
+
+.curve::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 78%;
+  height: 100%;
+  background-color: #fbeee3;
+  transform: translate(30%, 12%);
+  z-index: 1;
 }

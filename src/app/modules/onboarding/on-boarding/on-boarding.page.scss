@@ -23,22 +23,31 @@ ion-content.background {
   align-items: center;
   
 }
+
+.boarding-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  div{
+    flex-direction: row;
+  }
+}
 .boarding {
 
  .custom-row{
   padding-top: 16px;
  }
-  ion-col{
-    padding: 0px !important;
-    .skip{
-      padding-top: 15px;
-      span{
-        color: var(--ion-color-black);
-      font-size: 14px;
-      font-family: "Cairo-SemiBold";
-      }
-    }
-  }
+  // ion-col{
+  //   padding: 0px !important;
+  //   .skip{
+  //     padding-top: 15px;
+  //     span{
+  //       color: var(--ion-color-black);
+  //     font-size: 14px;
+  //     font-family: "Cairo-SemiBold";
+  //     }
+  //   }
+  // }
     padding: 50px 36px 0;
   .boardng-title {
     font-size: 24px;
@@ -53,7 +62,7 @@ ion-content.background {
   }
 
   .btn-custom {
-    width: 45% !important;
+    width: 100% !important;
     margin: 0px !important;
     --color: var(--ion-color-white);
     font-size: 16;

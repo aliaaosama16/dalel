@@ -45,6 +45,9 @@ export class OnBoardingPage implements OnInit , AfterContentChecked {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
+    // this.swiper.allowSlideNext=false;
+    // this.swiper.allowSlidePrev=false;
+    
   }
 
   skipBoarding() {

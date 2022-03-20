@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'language',
+    canActivate:[ShowLanguagePageGuard],
     loadChildren: () =>
       import('./modules/language/language.module').then(
         (m) => m.LanguagePageModule

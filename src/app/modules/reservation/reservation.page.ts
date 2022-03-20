@@ -23,6 +23,7 @@ export class ReservationPage implements OnInit {
     showAdjacentMonthDay: true,
     showMonthPicker: true,
     showToggleButtons: true,
+    // color:'#FFAA76'
   };
   constructor(private router: Router,private dataService:DataService) {}
   onChange(selectedDates) {

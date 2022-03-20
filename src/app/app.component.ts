@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { LanguageService } from './services/language/language.service';
 
 @Component({
@@ -45,15 +46,16 @@ export class AppComponent {
   ];
   constructor(
     private platform: Platform,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private langaugeGuard:ShowLanguagePageGuard
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.languageService.setInitialAppLanguage();
-       this.currentLanguage=this.languageService.getLanguage();
+      //this.languageService.setInitialAppLanguage();
+       this.currentLanguage=this.langaugeGuard.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
     });
   }

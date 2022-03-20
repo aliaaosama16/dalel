@@ -4,6 +4,7 @@
     font-size: 16;
     font-family: "Cairo-Bold";
     height: 48px;
+    --box-shadow:none !important; 
   }
   
   ion-button::part(native) {
