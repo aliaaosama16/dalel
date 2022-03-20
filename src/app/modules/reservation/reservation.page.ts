@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarComponentOptions } from 'ion2-calendar';
+//mport { CalendarComponentOptions } from 'ion2-calendar';
+// import { CalendarComponentOptions } from 'ion2-calendar';
 
 @Component({
   selector: 'app-reservation',
@@ -7,26 +10,29 @@ import { CalendarComponentOptions } from 'ion2-calendar';
   styleUrls: ['./reservation.page.scss'],
 })
 export class ReservationPage implements OnInit {
-  dateRange: { from: string; to: string; };
+  // date: string;
+  // type: 'string';
+  // constructor() { }
+
+  dateRange: { from: string; to: string };
   type: 'string';
-  
+
   optionsRange: CalendarComponentOptions = {
     pickMode: 'range',
-    showToggleButtons:true,
-    showMonthPicker:true
+    showAdjacentMonthDay: true,
+    showMonthPicker: true,
+    showToggleButtons: true,
   };
- 
-  constructor() { }
+  constructor(private router: Router) {}
+  onChange(selectedDates) {
+    console.log('selecte dates : ' + JSON.stringify(selectedDates));
 
-  ngOnInit() {
+    this.dateRange = selectedDates;
+    //console.log(this.dateRange)
   }
-
-  onChange($event) {
-    console.log($event);
+  ngOnInit() {}
+  completeReservation() {
+    this.router.navigateByUrl('/tabs/main/reservation-payment');
   }
-
-
-  reloadSource(){
-  }
-
+  //routerLink="/tabs/main/reservation-payment"
 }

@@ -1,3 +1,6 @@
+ion-card{
+  margin: 0 0 16px 0 !important;
+}
 .container {
   position: relative;
   height: 140px;
@@ -6,7 +9,6 @@
     height: 140px;
     object-fit: cover;
     object-position: initial;
-   // border-radius: 10px;
   }
 
   .title {

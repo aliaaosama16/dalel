@@ -5,11 +5,44 @@
   [isMain]="false"
 ></app-header>
 <ion-content class="ion-padding">
-  <ion-calendar  [options]="optionsRange"
+  <!-- <ion-calendar  [options]="optionsRange"
   [type]="type"
-  [format]="'YYYY-MM-DD'" (onChange)="onChange($event)" [(ngModel)]="dateRange"> </ion-calendar>
+  [format]="'YYYY-MM-DD'" (onChange)="onChange($event)" [(ngModel)]="dateRange"> </ion-calendar> -->
 
-  <ion-button expand="block" routerLink="/tabs/main/reservation-payment">
+  <!-- <ion-calendar [(ngModel)]="date"
+              (change)="onChange($event)"
+              [type]="type"
+              [format]="'YYYY-MM-DD'">
+</ion-calendar> -->
+
+<!-- <calendar [eventSource]="eventSource"
+[calendarMode]="calendar.mode"
+[currentDate]="calendar.currentDate"
+(onCurrentDateChanged)="onCurrentDateChanged($event)"
+(onRangeChanged)="reloadSource(startTime, endTime)"
+(onEventSelected)="onEventSelected($event)"
+(onTitleChanged)="onViewTitleChanged($event)"
+(onTimeSelected)="onTimeSelected($event)"
+step="30"> 
+
+</calendar>-->
+
+<!-- <div class="ion-padding">
+  <ion-calendar [(ngModel)]="date"
+    (onChange)="onChange($event)"
+    [type]="type"
+    [format]="'YYYY-MM-DD'">
+  </ion-calendar>
+</div> -->
+<div class="ion-padding">
+  <ion-calendar [(ngModel)]="dateRange"    (change)="onChange($event)"
+      [options]="optionsRange" 
+      [type]="type"
+      [format]="'YYYY-MM-DD'">
+  </ion-calendar>
+  
+</div>
+  <ion-button expand="block" (click)="completeReservation()">
     <span class="auth-btn fn-16 white-color dalel-Bold">
       {{ "complete reservation"|translate}}
     </span>

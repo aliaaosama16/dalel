@@ -19,8 +19,10 @@ import { CalendarModule } from 'ion2-calendar';
     ReservationPageRoutingModule,
     ComponentsModule,
     TranslateModule,
-    CalendarModule
+    FormsModule,
+   CalendarModule
   ],
   declarations: [ReservationPage]
 })
 export class ReservationPageModule {}
+
