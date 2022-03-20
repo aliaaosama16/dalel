@@ -65,17 +65,10 @@ const routes: Routes = [
           {
             path: 'reservation-payment',
             loadChildren: () =>
-              import('./../../modules/reservation-payment/reservation-payment.module').then(
-                (m) => m.ReservationPaymentPageModule
-              ),
+              import(
+                './../../modules/reservation-payment/reservation-payment.module'
+              ).then((m) => m.ReservationPaymentPageModule),
           },
-          // {
-          //   path:'menu',
-          //   loadChildren: () =>
-          //     import('./../../modules/menu/menu.module').then(
-          //       (m) => m.MenuPageModule
-          //     ),
-          // }
         ],
       },
       {

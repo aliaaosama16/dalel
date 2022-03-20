@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarComponentOptions } from 'ion2-calendar';
+import { DataService } from 'src/app/services/data/data.service';
 //mport { CalendarComponentOptions } from 'ion2-calendar';
 // import { CalendarComponentOptions } from 'ion2-calendar';
 
@@ -23,16 +24,15 @@ export class ReservationPage implements OnInit {
     showMonthPicker: true,
     showToggleButtons: true,
   };
-  constructor(private router: Router) {}
+  constructor(private router: Router,private dataService:DataService) {}
   onChange(selectedDates) {
     console.log('selecte dates : ' + JSON.stringify(selectedDates));
 
     this.dateRange = selectedDates;
-    //console.log(this.dateRange)
   }
   ngOnInit() {}
   completeReservation() {
+    this.dataService.setDates(this.dateRange);
     this.router.navigateByUrl('/tabs/main/reservation-payment');
   }
-  //routerLink="/tabs/main/reservation-payment"
 }
