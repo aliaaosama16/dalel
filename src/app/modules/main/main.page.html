@@ -1,4 +1,4 @@
-<app-header style="height: 140px" [title]="'main'" [isMain]="true"></app-header>
+<app-header  [title]="'main'" [isMain]="true"></app-header>
 
 <ion-content>
   <div class="search-section ion-padding-horizontal">
@@ -89,29 +89,7 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let item of categoryItems">
-        <!-- <ion-card
-          class="ion-no-margin"
-          routerLink="/tabs/main/categories/1/{{item.id}}"
-        >
-          <div class="container">
-            <img [src]="item.image" />
-            <div class="title"  [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}">
-              <p class="fn-14 dalel-Bold white-color">{{item.name}}</p>
-            </div>
-            <div class="location"  [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}">
-              <ion-icon name="location-sharp" color="primary"></ion-icon>
-            </div>
-            <div class="location-address" [ngStyle]="currentlangauge=='ar'?{'right': '30px'} : {'left': '30px'}">
-              <p class="fn-14 dalel-Regular white-color">{{item.location}}</p>
-            </div>
-            <div class="address-detail" [ngStyle]="currentlangauge=='ar'?{'left': '10px'} : {'right': '10px'}">
-              <ion-icon
-                name="arrow-forward-circle-outline"
-                color="white"
-              ></ion-icon>
-            </div>
-          </div>
-        </ion-card> -->
+     
 
         <app-custom-card
           [itemDetails]="item"
