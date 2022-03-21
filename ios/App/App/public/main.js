@@ -11,9 +11,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _guards_language_show_language_page_guard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./guards/language/show-language-page.guard */ 24909);
+/* harmony import */ var _guards_on_boarding_show_boarding_page_guard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./guards/on-boarding/show-boarding-page.guard */ 91542);
+
+
 
 
 
@@ -33,10 +37,12 @@ const routes = [
     },
     {
         path: 'language',
+        canActivate: [_guards_language_show_language_page_guard__WEBPACK_IMPORTED_MODULE_0__.ShowLanguagePageGuard],
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_language_language_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/language/language.module */ 68561)).then((m) => m.LanguagePageModule),
     },
     {
         path: 'on-boarding',
+        canActivate: [_guards_on_boarding_show_boarding_page_guard__WEBPACK_IMPORTED_MODULE_1__.ShowBoardingPageGuard],
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("src_app_modules_onboarding_on-boarding_on-boarding_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/onboarding/on-boarding/on-boarding.module */ 30643)).then((m) => m.OnBoardingPageModule),
     },
     {
@@ -78,12 +84,12 @@ const routes = [
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
-AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
+AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules }),
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_4__.PreloadAllModules }),
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule],
     })
 ], AppRoutingModule);
 
@@ -102,12 +108,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 30836);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/language/language.service */ 40301);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _guards_language_show_language_page_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./guards/language/show-language-page.guard */ 24909);
+/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/language/language.service */ 40301);
+
 
 
 
@@ -115,9 +123,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, languageService) {
+    constructor(platform, languageService, langaugeGuard) {
         this.platform = platform;
         this.languageService = languageService;
+        this.langaugeGuard = langaugeGuard;
         this.currentLanguage = '';
         this.selectedIndex = 0;
         this.pages = [
@@ -156,18 +165,19 @@ let AppComponent = class AppComponent {
     }
     initializeApp() {
         this.platform.ready().then(() => {
-            this.languageService.setInitialAppLanguage();
-            this.currentLanguage = this.languageService.getLanguage();
+            //this.languageService.setInitialAppLanguage();
+            this.currentLanguage = this.langaugeGuard.getLanguage();
             console.log(`language is ${this.currentLanguage}`);
         });
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.Platform },
-    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.Platform },
+    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: _guards_language_show_language_page_guard__WEBPACK_IMPORTED_MODULE_2__.ShowLanguagePageGuard }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-root',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -246,6 +256,145 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
+/***/ 24909:
+/*!*************************************************************!*\
+  !*** ./src/app/guards/language/show-language-page.guard.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ShowLanguagePageGuard": () => (/* binding */ ShowLanguagePageGuard)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+
+
+
+
+
+
+let ShowLanguagePageGuard = class ShowLanguagePageGuard {
+    constructor(router, platform, translate) {
+        this.router = router;
+        this.platform = platform;
+        this.translate = translate;
+        this.selectedLangauge = false;
+        this.setInitialAppLanguage();
+    }
+    canActivate(route, state) {
+        return !this.selectedLangauge;
+    }
+    setInitialAppLanguage() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            const lang = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.get({ key: 'lang' });
+            console.log(`guard stored lang is obj ` + JSON.stringify(lang));
+            if (lang.value != null) {
+                this.selectedLangauge = true;
+                this.router.navigate(['/on-boarding']);
+                if (lang.value == 'ar') {
+                    document.documentElement.dir = 'rtl';
+                }
+                else {
+                    document.documentElement.dir = 'ltr';
+                }
+                this.setLanguage(lang.value);
+                console.log(`stored lang is ${lang.value}`);
+                //this.selected = lang.value;
+                this.translate.setDefaultLang(lang.value);
+            }
+            else if (lang.value == null) {
+                this.selectedLangauge = false;
+                console.log(`no language`);
+                document.documentElement.dir = 'rtl';
+                this.setLanguage('ar');
+                // this.selected = 'ar';
+                this.translate.setDefaultLang('ar');
+                this.selectedLangauge = false;
+            }
+        });
+    }
+    getLanguage() {
+        console.log('current lang is ' + this.platform.isRTL);
+        return this.platform.isRTL ? 'ar' : 'en';
+    }
+    setLanguage(lng) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            console.log('set this language :' + lng);
+            this.translate.use(lng);
+            // this.selected = lng;
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.set({
+                key: 'lang',
+                value: lng,
+            });
+        });
+    }
+};
+ShowLanguagePageGuard.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.Platform },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__.TranslateService }
+];
+ShowLanguagePageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+        providedIn: 'root',
+    })
+], ShowLanguagePageGuard);
+
+
+
+/***/ }),
+
+/***/ 91542:
+/*!****************************************************************!*\
+  !*** ./src/app/guards/on-boarding/show-boarding-page.guard.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ShowBoardingPageGuard": () => (/* binding */ ShowBoardingPageGuard)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
+let ShowBoardingPageGuard = class ShowBoardingPageGuard {
+    constructor(util) {
+        this.util = util;
+        this.openBoardingBefore();
+    }
+    canActivate(route, state) {
+        return true;
+    }
+    openBoardingBefore() {
+        const openBoarding = this.util.getDataByKey('openBoarding');
+        console.log(`guard stored openBoarding :` + JSON.stringify(openBoarding));
+        if (openBoarding) {
+        }
+    }
+};
+ShowBoardingPageGuard.ctorParameters = () => [
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_0__.UtilitiesService }
+];
+ShowBoardingPageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root',
+    })
+], ShowBoardingPageGuard);
+
+
+
+/***/ }),
+
 /***/ 40301:
 /*!*******************************************************!*\
   !*** ./src/app/services/language/language.service.ts ***!
@@ -275,8 +424,6 @@ let LanguageService = class LanguageService {
     }
     setInitialAppLanguage() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-            // let language = this.translate.getBrowserLang();
-            // console.log(`lang is ${language }`)
             const lang = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.get({ key: 'lang' });
             console.log(`stored lang is ${lang.value}`);
             console.log(`stored lang is obj ` + JSON.stringify(lang));
@@ -295,7 +442,7 @@ let LanguageService = class LanguageService {
             else if (lang.value == null) {
                 console.log(`no language`);
                 document.documentElement.dir = 'rtl';
-                this.setLanguage("ar");
+                this.setLanguage('ar');
                 this.selected = 'ar';
                 this.translate.setDefaultLang('ar');
             }
@@ -325,6 +472,92 @@ LanguageService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
         providedIn: 'root',
     })
 ], LanguageService);
+
+
+
+/***/ }),
+
+/***/ 11062:
+/*!*********************************************************!*\
+  !*** ./src/app/services/utilities/utilities.service.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UtilitiesService": () => (/* binding */ UtilitiesService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/toast */ 85188);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+
+
+
+
+
+
+let UtilitiesService = class UtilitiesService {
+    constructor(translate, loadingCtrl) {
+        this.translate = translate;
+        this.loadingCtrl = loadingCtrl;
+    }
+    showMessage(message) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__.Toast.show({
+                text: this.translate.instant(message),
+            });
+        });
+    }
+    storeData(key, value) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
+                key: key,
+                value: value,
+            });
+        });
+    }
+    getDataByKey(key) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
+            this.getValue(val);
+        });
+    }
+    getValue(value) {
+        return value;
+    }
+    showLoadingSpinner() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading = yield this.loadingCtrl.create({
+                // keyboardClose: true,
+                mode: 'md',
+                spinner: 'dots',
+                cssClass: 'my-loading-class',
+                backdropDismiss: false,
+                // message: `
+                //  <div class="custom-spinner-container">
+                //    <div class="custom-spinner-box">
+                //      <p>جار التحميل</p>
+                //    </div>
+                //  </div>`,
+            });
+            this.loading.present();
+            return this.loading;
+        });
+    }
+};
+UtilitiesService.ctorParameters = () => [
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.LoadingController }
+];
+UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+        providedIn: 'root',
+    })
+], UtilitiesService);
 
 
 

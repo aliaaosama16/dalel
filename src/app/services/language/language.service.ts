@@ -14,12 +14,9 @@ export class LanguageService {
   ) {}
 
   async setInitialAppLanguage() {
-    // let language = this.translate.getBrowserLang();
-    // console.log(`lang is ${language }`)
-
     const lang = await Storage.get({ key: 'lang' });
     console.log(`stored lang is ${lang.value}`);
-    console.log(`stored lang is obj `+JSON.stringify(lang));
+    console.log(`stored lang is obj ` + JSON.stringify(lang));
     if (lang.value != null) {
       if (lang.value == 'ar') {
         document.documentElement.dir = 'rtl';
@@ -33,7 +30,7 @@ export class LanguageService {
     } else if (lang.value == null) {
       console.log(`no language`);
       document.documentElement.dir = 'rtl';
-      this.setLanguage("ar");
+      this.setLanguage('ar');
       this.selected = 'ar';
       this.translate.setDefaultLang('ar');
     }
@@ -43,7 +40,7 @@ export class LanguageService {
     return this.platform.isRTL ? 'ar' : 'en';
   }
 
-  async setLanguage(lng:string) {
+  async setLanguage(lng: string) {
     console.log('set this language :' + lng);
     this.translate.use(lng);
     this.selected = lng;

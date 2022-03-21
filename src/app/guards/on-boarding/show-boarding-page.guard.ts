@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -12,7 +13,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   providedIn: 'root',
 })
 export class ShowBoardingPageGuard implements CanActivate {
-  constructor(private util:UtilitiesService){
+  opened: boolean = false;
+  constructor(private util: UtilitiesService, private router: Router) {
     this.openBoardingBefore();
   }
   canActivate(
@@ -23,15 +25,17 @@ export class ShowBoardingPageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    return this.opened;
   }
 
-   openBoardingBefore() {
-   const openBoarding= this.util.getDataByKey('openBoarding');
-    console.log(
-      `guard stored openBoarding :` + JSON.stringify(openBoarding)
-    );
+  openBoardingBefore() {
+    const openBoarding = this.util.getDataByKey('openBoarding');
+    console.log(`guard stored openBoarding :` + JSON.stringify(openBoarding));
     if (openBoarding) {
+      this.opened = true;
+      this.router.navigate(['/tabs/main']);
+    }else{
+      this.opened = false;
     }
   }
 }

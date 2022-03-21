@@ -1,12 +1,5 @@
-
-
-// ion-header{
-//   background-color: #fbeee3;
-//   --min-height: 120px !important;
-// }
 ion-toolbar {
-  --background: url("./../../../assets/images/wave00.png") no-repeat 100% 100% !important;
-  //--background: url("./../../../assets/images/header.svg") !important;
+  --background:  // url("./../../../assets/images/wave00.png") no-repeat 100% 100% !important;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -14,7 +7,6 @@ ion-toolbar {
   --padding-end: 0px !important;
   --padding-start: 0px !important;
   --opacity: 1 !important;
-  
 
   .toolbar-container {
     padding-inline-start: 0px !important;
@@ -35,43 +27,43 @@ ion-toolbar {
     }
   }
 }
-section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100px;
-  
-  background:  #fbeee3;
-}
+// section {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   min-height: 100px;
 
-.curve {
-  position: absolute;
-  height: 140px;
-  width: 100%;
-  bottom: 0;
-  text-align: center;
-}
+//   background: #fbeee3;
+// }
 
-.curve::before {
-  content: "";
-    display: block;
-    position: absolute;
-    border-radius: 55% 50%;
-    width: 65%;
-    height: 107%;
-    transform: translate(-66%, 75%);
-    background-color: white;
-}
+// .curve {
+//   position: absolute;
+//   height: 140px;
+//   width: 100%;
+//   bottom: 0;
+//   text-align: center;
+// }
 
-.curve::after {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 78%;
-  height: 100%;
-  background-color: #fbeee3;
-  transform: translate(30%, 12%);
-  z-index: 1;
-}
+// .curve::before {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   border-radius: 55% 50%;
+//   width: 65%;
+//   height: 107%;
+//   transform: translate(-66%, 75%);
+//   background-color: white;
+// }
+
+// .curve::after {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   border-radius: 100% 50%;
+//   width: 78%;
+//   height: 100%;
+//   background-color: #fbeee3;
+//   transform: translate(30%, 12%);
+//   z-index: 1;
+// }

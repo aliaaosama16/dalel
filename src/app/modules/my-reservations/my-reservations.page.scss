@@ -2,6 +2,8 @@ ion-segment {
   border-radius: 10px !important;
   margin-bottom: 24px;
   --background:var(--ion-color-orange-light);
+  display: flex;
+  justify-content: space-between;
   .selected {
     background-image: linear-gradient(
       to left,

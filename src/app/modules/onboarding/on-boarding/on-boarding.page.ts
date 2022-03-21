@@ -17,6 +17,7 @@ import Swiper, {
 } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
 
@@ -34,13 +35,14 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     slidesPerView: 1,
     spaceBetween: 0,
     pagination: true,
-    allowTouchMove:false
+    allowTouchMove: false,
   };
 
   constructor(
     private langaugeservice: LanguageService,
     private router: Router,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private util: UtilitiesService
   ) {
     this.menuCtrl.enable(false, 'main');
   }
@@ -52,11 +54,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
 
   async skipBoarding() {
     console.log('skip boarding pages');
-
-    await Storage.set({
-      key: 'openBoarding',
-      value: 'true',
-    });
+    this.util.storeData('openBoarding', true);
     this.router.navigateByUrl('/tabs/main');
   }
 

@@ -203,9 +203,11 @@
 	--ion-color-shade: var(--ion-color-gary-shade);
 	--ion-color-tint: var(--ion-color-gary-tint);
 }
+
 .primary-color {
   color: var(--ion-color-primary) !important;
 }
+
 .secondary-color {
   color: var(--ion-color-secondary) !important;
 }
@@ -219,7 +221,7 @@
 }
 
 .gray-color{
-  color:#B5B5B5;
+  color:var(--ion-color-gary);
 }
 
 .gray-black-color {

@@ -2082,12 +2082,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ReservationPage": () => (/* binding */ ReservationPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation.page.html */ 31421);
 /* harmony import */ var _reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation.page.scss */ 96012);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -2097,9 +2099,10 @@ __webpack_require__.r(__webpack_exports__);
 //mport { CalendarComponentOptions } from 'ion2-calendar';
 // import { CalendarComponentOptions } from 'ion2-calendar';
 let ReservationPage = class ReservationPage {
-    constructor(router, dataService) {
+    constructor(router, dataService, utilities) {
         this.router = router;
         this.dataService = dataService;
+        this.utilities = utilities;
         this.optionsRange = {
             pickMode: 'range',
             showAdjacentMonthDay: true,
@@ -2114,16 +2117,23 @@ let ReservationPage = class ReservationPage {
     }
     ngOnInit() { }
     completeReservation() {
-        this.dataService.setDates(this.dateRange);
-        this.router.navigateByUrl('/tabs/main/reservation-payment');
+        console.log('selecte dates : ' + JSON.stringify(this.dateRange));
+        if (this.dateRange == undefined) {
+            this.utilities.showMessage('please choose from and to dates');
+        }
+        else {
+            this.dataService.setDates(this.dateRange);
+            this.router.navigateByUrl('/tabs/main/reservation-payment');
+        }
     }
 };
 ReservationPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router },
-    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
 ];
-ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-reservation',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__]

@@ -573,6 +573,40 @@ const Storage = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)(
 
 /***/ }),
 
+/***/ 85898:
+/*!***************************************************************!*\
+  !*** ./node_modules/@capacitor/toast/dist/esm/definitions.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ 85188:
+/*!*********************************************************!*\
+  !*** ./node_modules/@capacitor/toast/dist/esm/index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Toast": () => (/* binding */ Toast)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 85898);
+
+const Toast = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Toast', {
+    web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_toast_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 18627)).then(m => new m.ToastWeb()),
+});
+
+
+
+
+/***/ }),
+
 /***/ 78099:
 /*!***************************************************************!*\
   !*** ./node_modules/@ionic/angular/fesm2015/ionic-angular.js ***!
