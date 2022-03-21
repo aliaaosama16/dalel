@@ -193,7 +193,7 @@
   color: var(--ion-color-dark-black) !important;
 }
 .gray-color {
-  color: #B5B5B5;
+  color: var(--ion-color-gary);
 }
 .gray-black-color {
   color: var(--ion-color-gray-black) !important;

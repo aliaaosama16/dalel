@@ -296,7 +296,7 @@ let ShowLanguagePageGuard = class ShowLanguagePageGuard {
             console.log(`guard stored lang is obj ` + JSON.stringify(lang));
             if (lang.value != null) {
                 this.selectedLangauge = true;
-                this.router.navigate(['/on-boarding']);
+                //this.router.navigate(['/on-boarding']);
                 if (lang.value == 'ar') {
                     document.documentElement.dir = 'rtl';
                 }
@@ -305,7 +305,6 @@ let ShowLanguagePageGuard = class ShowLanguagePageGuard {
                 }
                 this.setLanguage(lang.value);
                 console.log(`stored lang is ${lang.value}`);
-                //this.selected = lang.value;
                 this.translate.setDefaultLang(lang.value);
             }
             else if (lang.value == null) {
@@ -313,10 +312,9 @@ let ShowLanguagePageGuard = class ShowLanguagePageGuard {
                 console.log(`no language`);
                 document.documentElement.dir = 'rtl';
                 this.setLanguage('ar');
-                // this.selected = 'ar';
                 this.translate.setDefaultLang('ar');
-                this.selectedLangauge = false;
             }
+            this.router.navigateByUrl('/on-boarding');
         });
     }
     getLanguage() {
@@ -327,7 +325,6 @@ let ShowLanguagePageGuard = class ShowLanguagePageGuard {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             console.log('set this language :' + lng);
             this.translate.use(lng);
-            // this.selected = lng;
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.set({
                 key: 'lang',
                 value: lng,
@@ -361,32 +358,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ShowBoardingPageGuard": () => (/* binding */ ShowBoardingPageGuard)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
 
 
 
+
 let ShowBoardingPageGuard = class ShowBoardingPageGuard {
-    constructor(util) {
+    constructor(util, router) {
         this.util = util;
+        this.router = router;
+        this.opened = false;
         this.openBoardingBefore();
     }
     canActivate(route, state) {
-        return true;
+        console.log(this.opened);
+        return this.opened;
     }
     openBoardingBefore() {
         const openBoarding = this.util.getDataByKey('openBoarding');
         console.log(`guard stored openBoarding :` + JSON.stringify(openBoarding));
         if (openBoarding) {
+            this.opened = true;
+            this.router.navigate(['/tabs/main']);
+        }
+        else {
+            this.opened = false;
         }
     }
 };
 ShowBoardingPageGuard.ctorParameters = () => [
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_0__.UtilitiesService }
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_0__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__.Router }
 ];
-ShowBoardingPageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+ShowBoardingPageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
         providedIn: 'root',
     })
 ], ShowBoardingPageGuard);

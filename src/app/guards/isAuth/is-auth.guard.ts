@@ -6,19 +6,19 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CanEnterLoginPageGuard implements CanActivate {
-
+export class IsAuthGuard implements CanActivate {
   constructor(
-     private util: UtilitiesService,
-     private router: Router,
-     private authService:AuthService) {}
+    private authService: AuthService,
+    private router: Router,
+    private util: UtilitiesService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,12 +27,13 @@ export class CanEnterLoginPageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+      console.log('is auth guard :'+this.authService.logined.value);
     if (this.authService.logined) {
-      return true;
+      return this.authService.logined;
     } else {
       this.util.showMessage('please login first');
       this.router.navigateByUrl('/login-register');
-      return false;
+      return this.authService.logined;
     }
   }
 }

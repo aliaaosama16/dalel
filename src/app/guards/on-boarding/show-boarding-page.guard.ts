@@ -25,6 +25,7 @@ export class ShowBoardingPageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+      console.log(this.opened)
     return this.opened;
   }
 

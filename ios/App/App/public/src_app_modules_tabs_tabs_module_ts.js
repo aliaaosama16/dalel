@@ -1,6 +1,59 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_modules_tabs_tabs_module_ts"],{
 
+/***/ 37350:
+/*!************************************************!*\
+  !*** ./src/app/guards/isAuth/is-auth.guard.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsAuthGuard": () => (/* binding */ IsAuthGuard)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
+
+
+let IsAuthGuard = class IsAuthGuard {
+    constructor(authService, router, util) {
+        this.authService = authService;
+        this.router = router;
+        this.util = util;
+    }
+    canActivate(route, state) {
+        console.log('is auth guard :' + this.authService.logined.value);
+        if (this.authService.logined) {
+            return this.authService.logined;
+        }
+        else {
+            this.util.showMessage('please login first');
+            this.router.navigateByUrl('/login-register');
+            return this.authService.logined;
+        }
+    }
+};
+IsAuthGuard.ctorParameters = () => [
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__.AuthService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__.UtilitiesService }
+];
+IsAuthGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+        providedIn: 'root',
+    })
+], IsAuthGuard);
+
+
+
+/***/ }),
+
 /***/ 53647:
 /*!*****************************************************!*\
   !*** ./src/app/modules/tabs/tabs-routing.module.ts ***!
@@ -11,11 +64,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TabsPageRoutingModule": () => (/* binding */ TabsPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var src_app_services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/resolver/data-resolver.service */ 8873);
-/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page */ 71622);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_guards_isAuth_is_auth_guard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/guards/isAuth/is-auth.guard */ 37350);
+/* harmony import */ var src_app_services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/resolver/data-resolver.service */ 8873);
+/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page */ 71622);
+
 
 
 
@@ -24,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        component: _tabs_page__WEBPACK_IMPORTED_MODULE_1__.TabsPage,
+        component: _tabs_page__WEBPACK_IMPORTED_MODULE_2__.TabsPage,
         children: [
             {
                 path: 'main',
@@ -40,7 +95,7 @@ const routes = [
                     {
                         path: 'categories/:id',
                         resolve: {
-                            name: src_app_services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_0__.DataResolverService,
+                            name: src_app_services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_1__.DataResolverService,
                         },
                         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_category-list_category-list_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/category-list/category-list.module */ 15450)).then((m) => m.CategoryListPageModule),
                     },
@@ -72,6 +127,7 @@ const routes = [
             },
             {
                 path: 'profile',
+                canActivate: [src_app_guards_isAuth_is_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsAuthGuard],
                 children: [
                     {
                         path: '',
@@ -85,6 +141,7 @@ const routes = [
             },
             {
                 path: 'my-reservations',
+                canActivate: [src_app_guards_isAuth_is_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsAuthGuard],
                 children: [
                     {
                         path: '',
@@ -106,10 +163,10 @@ const routes = [
 ];
 let TabsPageRoutingModule = class TabsPageRoutingModule {
 };
-TabsPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule.forChild(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule],
+TabsPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule.forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule],
     })
 ], TabsPageRoutingModule);
 
@@ -223,6 +280,54 @@ TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
         styles: [_tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], TabsPage);
+
+
+
+/***/ }),
+
+/***/ 9171:
+/*!***********************************************!*\
+  !*** ./src/app/services/auth/auth.service.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AuthService": () => (/* binding */ AuthService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 41119);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
+
+
+
+let AuthService = class AuthService {
+    constructor(httpclient) {
+        this.httpclient = httpclient;
+        this.logined = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(false);
+    }
+    login() {
+        this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});
+    }
+    register() {
+        this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});
+    }
+    forgetPassword() {
+        this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});
+    }
+};
+AuthService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient }
+];
+AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+        providedIn: 'root'
+    })
+], AuthService);
 
 
 

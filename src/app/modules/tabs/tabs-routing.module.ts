@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IsAuthGuard } from 'src/app/guards/isAuth/is-auth.guard';
 import { DataResolverService } from 'src/app/services/resolver/data-resolver.service';
 
 import { TabsPage } from './tabs.page';
@@ -80,6 +81,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        canActivate: [IsAuthGuard],
         children: [
           {
             path: '',
@@ -99,6 +101,7 @@ const routes: Routes = [
       },
       {
         path: 'my-reservations',
+        canActivate: [IsAuthGuard],
         children: [
           {
             path: '',

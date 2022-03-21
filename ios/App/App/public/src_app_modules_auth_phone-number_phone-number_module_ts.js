@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.background {\n  --background: url('authBg-right.png') no-repeat 100% 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBob25lLW51bWJlci5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx5REFBQTtBQUNKIiwiZmlsZSI6InBob25lLW51bWJlci5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudC5iYWNrZ3JvdW5kIHtcbiAgICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLXJpZ2h0LnBuZykgbm8tcmVwZWF0IDEwMCUgMTAwJTtcbiAgfVxuIl19 */";
+module.exports = "ion-content.background {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBob25lLW51bWJlci5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSTthQUFBO0FBRUoiLCJmaWxlIjoicGhvbmUtbnVtYmVyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJhY2tncm91bmQge1xuICAgIC0tYmFja2dyb3VuZDogdXJsKC4vLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9hdXRoQmctcmlnaHQucG5nKSAwIDAgLzEwMCUgMTAwJVxuICAgICAgbm8tcmVwZWF0O1xuICB9XG4iXX0= */";
 
 /***/ })
 

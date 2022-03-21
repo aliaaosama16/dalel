@@ -39,7 +39,7 @@ export class ShowLanguagePageGuard implements CanActivate {
     console.log(`guard stored lang is obj ` + JSON.stringify(lang));
     if (lang.value != null) {
       this.selectedLangauge = true;
-      this.router.navigate(['/on-boarding']);
+      //this.router.navigate(['/on-boarding']);
       if (lang.value == 'ar') {
         document.documentElement.dir = 'rtl';
       } else {
@@ -47,29 +47,26 @@ export class ShowLanguagePageGuard implements CanActivate {
       }
       this.setLanguage(lang.value);
       console.log(`stored lang is ${lang.value}`);
-      //this.selected = lang.value;
+
       this.translate.setDefaultLang(lang.value);
-     
     } else if (lang.value == null) {
       this.selectedLangauge = false;
       console.log(`no language`);
       document.documentElement.dir = 'rtl';
       this.setLanguage('ar');
-      // this.selected = 'ar';
       this.translate.setDefaultLang('ar');
-      this.selectedLangauge = false;
     }
+    this.router.navigateByUrl('/on-boarding');
   }
 
   getLanguage() {
-    console.log('current lang is '+this.platform.isRTL);
+    console.log('current lang is ' + this.platform.isRTL);
     return this.platform.isRTL ? 'ar' : 'en';
   }
 
   async setLanguage(lng: string) {
     console.log('set this language :' + lng);
     this.translate.use(lng);
-    // this.selected = lng;
     await Storage.set({
       key: 'lang',
       value: lng,
