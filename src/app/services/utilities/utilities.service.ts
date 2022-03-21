@@ -38,17 +38,10 @@ export class UtilitiesService {
 
   public async showLoadingSpinner() {
     this.loading = await this.loadingCtrl.create({
-      // keyboardClose: true,
       mode: 'md',
       spinner: 'dots',
       cssClass: 'my-loading-class',
       backdropDismiss: false,
-      // message: `
-      //  <div class="custom-spinner-container">
-      //    <div class="custom-spinner-box">
-      //      <p>جار التحميل</p>
-      //    </div>
-      //  </div>`,
     });
     this.loading.present();
     return this.loading;

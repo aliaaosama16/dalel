@@ -8,3 +8,8 @@ ion-content.bg-right {
 }
 
 
+ion-item{
+  --highlight-color-focused:var(--ion-color-primary);
+  --highlight-color-valid:var(--ion-color-primary);
+  --highlight-color-invalid:var(--ion-color-primary);
+}

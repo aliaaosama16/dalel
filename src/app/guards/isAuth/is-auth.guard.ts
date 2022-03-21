@@ -28,12 +28,12 @@ export class IsAuthGuard implements CanActivate {
     | boolean
     | UrlTree {
       console.log('is auth guard :'+this.authService.logined.value);
-    if (this.authService.logined) {
-      return this.authService.logined;
+    if (this.authService.logined.value) {
+      return this.authService.logined.value;
     } else {
       this.util.showMessage('please login first');
       this.router.navigateByUrl('/login-register');
-      return this.authService.logined;
+      return this.authService.logined.value;
     }
   }
 }

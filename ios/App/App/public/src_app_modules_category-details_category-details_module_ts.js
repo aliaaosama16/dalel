@@ -99,12 +99,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CategoryDetailsPage": () => (/* binding */ CategoryDetailsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-details.page.html */ 39917);
 /* harmony import */ var _category_details_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category-details.page.scss */ 13576);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
 
 
 
@@ -112,9 +118,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CategoryDetailsPage = class CategoryDetailsPage {
-    constructor(menuCtrl, langaugeservice) {
+    constructor(menuCtrl, langaugeservice, authService, util, router) {
         this.menuCtrl = menuCtrl;
         this.langaugeservice = langaugeservice;
+        this.authService = authService;
+        this.util = util;
+        this.router = router;
         this.configSlider = {
             slidesPerView: 3.5,
             spaceBetween: 6,
@@ -148,7 +157,7 @@ let CategoryDetailsPage = class CategoryDetailsPage {
             description: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
             reservationRules: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
             image: '',
-            leftTime: ''
+            leftTime: '',
         };
     }
     ngOnInit() {
@@ -161,15 +170,25 @@ let CategoryDetailsPage = class CategoryDetailsPage {
     reserve() { }
     addToFavourite() {
         this.itemDetails.isFav = !this.itemDetails.isFav;
-        // api 
+        if (this.authService.logined.value) {
+            // call api to add to favourite
+        }
+        else {
+            this.util.showMessage('please login first');
+            this.router.navigateByUrl('/login-register');
+            return this.authService.logined.value;
+        }
     }
 };
 CategoryDetailsPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.MenuController },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router }
 ];
-CategoryDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+CategoryDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-category-details',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_category_details_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -190,7 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'details'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <div class=\"item-image\">\n    <img src=\"./../../../assets/images/1024-500.png\" />\n    <ion-icon\n      (click)=\"addToFavourite()\"\n      [ngClass]=\"currentlangauge =='ar' ?'fav-ar':'fav-en' \"\n      [src]=\"itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'\"\n    ></ion-icon>\n\n    <div class=\"details-container ion-padding\">\n      <app-custom-details\n        [ItemDetails]=\"itemDetails\"\n        [isDetailed]=\"true\"\n      ></app-custom-details>\n    </div>\n  </div>\n\n  <div class=\"services\">\n    <div>\n      <ion-icon src=\"./../../../assets/icon/icon1.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">{{\"chalet\"|translate}}</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/space.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">450 م</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/bed.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">10 غرف</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/icon4.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">4 حمام</p>\n    </div>\n  </div>\n\n  <div class=\"description\">\n    <h5 class=\"fn-16 dalel-SemiBold\">{{\"description\"|translate}}</h5>\n    <p class=\"fn-12 dalel-Regular\">{{itemDetails.description}}</p>\n  </div>\n\n  <div class=\"place-images\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"place-images\"|translate}}</h5>\n      </div>\n      <div>\n        <ion-icon src=\"./../../../assets/icon/place.svg\"></ion-icon>\n      </div>\n    </div>\n\n    <swiper\n      #swiper\n      [config]=\"configSlider\"\n      class=\"custom-swiper\"\n      [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n    >\n      <ng-template\n        swiperSlide\n        *ngFor=\"let cat of [{},{},{},{},{},{},{},{},{},{},{},{}]\"\n      >\n        <img src=\"./../../../assets/images/512.png\" />\n      </ng-template>\n    </swiper>\n  </div>\n  <div class=\"map-container\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"map\"|translate}}</h5>\n      </div>\n    </div>\n    <div #map class=\"map\"></div>\n  </div>\n\n  <div class=\"rules\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"reservation-rules\"|translate}}</h5>\n      </div>\n    </div>\n    <div>\n      <p class=\"fn-12 dalel-Regular\">{{itemDetails.reservationRules}}</p>\n    </div>\n  </div>\n\n  <ion-button expand=\"block\" routerLink=\"/tabs/main/reservation\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"reserve now\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'details'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <div class=\"item-image\">\n    <img src=\"./../../../assets/images/1024-500.png\" />\n    <ion-icon\n      (click)=\"addToFavourite()\"\n      [ngClass]=\"currentlangauge =='ar' ?'fav-ar':'fav-en' \"\n      [src]=\"itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'\"\n    ></ion-icon>\n\n    <div class=\"details-container ion-padding\">\n      <app-custom-details\n        [ItemDetails]=\"itemDetails\"\n        [isDetailed]=\"true\"\n      ></app-custom-details>\n    </div>\n  </div>\n\n  <div class=\"services\">\n    <div>\n      <ion-icon src=\"./../../../assets/icon/icon1.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">{{\"chalet\"|translate}}</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/space.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">450 م</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/bed.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">10 غرف</p>\n    </div>\n    <div>\n      <ion-icon src=\"./../../../assets/icon/icon4.svg\"></ion-icon>\n      <p class=\"fn-14 dalel-Regular secondary-color\">4 حمام</p>\n    </div>\n  </div>\n\n  <div class=\"description\">\n    <h5 class=\"fn-16 dalel-SemiBold\">{{\"description\"|translate}}</h5>\n    <p class=\"fn-12 dalel-Regular\">{{itemDetails.description}}</p>\n  </div>\n\n  <div class=\"place-images\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"place-images\"|translate}}</h5>\n      </div>\n      <div>\n        <ion-icon src=\"./../../../assets/icon/place.svg\"></ion-icon>\n      </div>\n    </div>\n\n    <swiper\n      #swiper\n      [config]=\"configSlider\"\n      class=\"custom-swiper\"\n      [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n    >\n      <ng-template\n        swiperSlide\n        *ngFor=\"let cat of [{},{},{},{},{},{},{},{}]\"\n      >\n        <img src=\"./../../../assets/images/512.png\" />\n      </ng-template>\n    </swiper>\n  </div>\n  <div class=\"map-container\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"map\"|translate}}</h5>\n      </div>\n    </div>\n    <div #map class=\"map\"></div>\n  </div>\n\n  <div class=\"rules\">\n    <div class=\"header\">\n      <div>\n        <h5 class=\"fn-16 dalel-SemiBold\">{{\"reservation-rules\"|translate}}</h5>\n      </div>\n    </div>\n    <div>\n      <p class=\"fn-12 dalel-Regular\">{{itemDetails.reservationRules}}</p>\n    </div>\n  </div>\n\n  <ion-button expand=\"block\" routerLink=\"/tabs/main/reservation\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"reserve now\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 

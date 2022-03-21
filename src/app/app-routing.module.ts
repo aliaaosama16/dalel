@@ -15,13 +15,7 @@ const routes: Routes = [
       import('./modules/tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
-    path: 'folder/:id',
-    loadChildren: () =>
-      import('./folder/folder.module').then((m) => m.FolderPageModule),
-  },
-  {
     path: 'language',
-    canActivate:[ShowLanguagePageGuard],
     loadChildren: () =>
       import('./modules/language/language.module').then(
         (m) => m.LanguagePageModule
@@ -29,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'on-boarding',
-    canActivate:[ShowBoardingPageGuard],
+
     loadChildren: () =>
       import('./modules/onboarding/on-boarding/on-boarding.module').then(
         (m) => m.OnBoardingPageModule
@@ -92,7 +86,6 @@ const routes: Routes = [
         (m) => m.FavouritesPageModule
       ),
   },
- 
 ];
 
 @NgModule({

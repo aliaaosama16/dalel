@@ -30,6 +30,7 @@ Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
 export class OnBoardingPage implements OnInit, AfterContentChecked {
   @ViewChild('swiper') swiper: SwiperComponent;
   slidingNotAvailable: boolean = false;
+  nextClicked:number=0;
   currentlangauge: string;
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -60,11 +61,17 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
 
   nextSlide(ev) {
     console.log('pointerId : ' + ev.pointerId);
-    if (ev.pointerId <= 5 && ev.pointerId >= 3) {
-      this.swiper.swiperRef.slideNext(500);
-    } else {
-      this.slidingNotAvailable = true;
+    // if (ev.pointerId <= 5 && ev.pointerId >= 3) {
+    //   this.swiper.swiperRef.slideNext(500);
+    // } else {
+    //   this.slidingNotAvailable = true;
+    // }
+    if(this.nextClicked<3){
+      this.nextClicked++;
+    }else{
+      this.router.navigateByUrl('/tabs/main');
     }
+   
   }
 
   ngAfterContentChecked(): void {

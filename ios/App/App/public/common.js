@@ -1,6 +1,40 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
+/***/ 85898:
+/*!***************************************************************!*\
+  !*** ./node_modules/@capacitor/toast/dist/esm/definitions.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ 85188:
+/*!*********************************************************!*\
+  !*** ./node_modules/@capacitor/toast/dist/esm/index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Toast": () => (/* binding */ Toast)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 85898);
+
+const Toast = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Toast', {
+    web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_toast_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 18627)).then(m => new m.ToastWeb()),
+});
+
+
+
+
+/***/ }),
+
 /***/ 71821:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/button-active-767ae7c7.js ***!
@@ -917,6 +951,84 @@ const openURL = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+
+
+/***/ }),
+
+/***/ 11062:
+/*!*********************************************************!*\
+  !*** ./src/app/services/utilities/utilities.service.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UtilitiesService": () => (/* binding */ UtilitiesService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/toast */ 85188);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+
+
+
+
+
+
+let UtilitiesService = class UtilitiesService {
+    constructor(translate, loadingCtrl) {
+        this.translate = translate;
+        this.loadingCtrl = loadingCtrl;
+    }
+    showMessage(message) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__.Toast.show({
+                text: this.translate.instant(message),
+            });
+        });
+    }
+    storeData(key, value) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
+                key: key,
+                value: value,
+            });
+        });
+    }
+    getDataByKey(key) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
+            this.getValue(val);
+        });
+    }
+    getValue(value) {
+        return value;
+    }
+    showLoadingSpinner() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading = yield this.loadingCtrl.create({
+                mode: 'md',
+                spinner: 'dots',
+                cssClass: 'my-loading-class',
+                backdropDismiss: false,
+            });
+            this.loading.present();
+            return this.loading;
+        });
+    }
+};
+UtilitiesService.ctorParameters = () => [
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.LoadingController }
+];
+UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+        providedIn: 'root',
+    })
+], UtilitiesService);
 
 
 

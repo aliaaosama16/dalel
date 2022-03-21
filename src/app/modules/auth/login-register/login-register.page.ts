@@ -17,6 +17,9 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
+  showPass: boolean;
+  iconName: string = 'eye-off-outline';
+  inputType: any;
 
   authType: string = 'register';
   inputFocusPerson: boolean = false;
@@ -54,10 +57,11 @@ export class LoginRegisterPage implements OnInit {
   constructor(
     private langaugeservice: LanguageService,
     private router: Router,
-    private formBuilder: FormBuilder,private menuCtrl:MenuController) {
-      this.menuCtrl.enable(false,'main')
-    
-   }
+    private formBuilder: FormBuilder,
+    private menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false, 'main');
+  }
 
   //  ionViewWillEnter() {
   //   this.menuCtrl.enable(false);
@@ -180,5 +184,11 @@ export class LoginRegisterPage implements OnInit {
   focusConfirmPassword(focusStatus: boolean) {
     console.log('input focus' + focusStatus);
     this.inputFocusConfirmPassword = focusStatus;
+  }
+
+  showPassword() {
+    this.showPass = !this.showPass;
+    this.iconName = this.showPass ? 'eye-off-outline' : 'eye-outline';
+    this.inputType = this.showPass ? 'text' : 'password';
   }
 }

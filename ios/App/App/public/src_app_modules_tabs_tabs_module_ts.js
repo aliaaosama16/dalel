@@ -29,13 +29,13 @@ let IsAuthGuard = class IsAuthGuard {
     }
     canActivate(route, state) {
         console.log('is auth guard :' + this.authService.logined.value);
-        if (this.authService.logined) {
-            return this.authService.logined;
+        if (this.authService.logined.value) {
+            return this.authService.logined.value;
         }
         else {
             this.util.showMessage('please login first');
             this.router.navigateByUrl('/login-register');
-            return this.authService.logined;
+            return this.authService.logined.value;
         }
     }
 };
@@ -309,6 +309,12 @@ let AuthService = class AuthService {
     constructor(httpclient) {
         this.httpclient = httpclient;
         this.logined = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(false);
+    }
+    isLogined() {
+        this.logined.next(true);
+    }
+    isLogout() {
+        this.logined.next(false);
     }
     login() {
         this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});

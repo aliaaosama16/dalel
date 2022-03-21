@@ -12,6 +12,15 @@ export class AuthService {
   constructor(private httpclient:HttpClient) { }
 
 
+  isLogined(){
+    this.logined.next(true);
+  }
+
+  isLogout(){
+    this.logined.next(false);
+  }
+
+
   login(){ 
     this.httpclient.post(environment.BASE_URL,{});
   }
