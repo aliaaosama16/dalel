@@ -266,25 +266,7 @@
   font-family: "Cairo-SemiBold";
 }
 
-:root[dir="rtl"] {
-  .swiper-pagination-bullets {
-    top: 23% !important;
 
-    left: 32px !important;
-
-    height: fit-content;
-  }
-}
-
-:root[dir="ltr"] {
-  .swiper-pagination-bullets {
-    top: 23% !important;
-
-    right: 36px;
-
-    height: fit-content;
-  }
-}
 
 :root[dir="rtl"] {
   .register-btn {

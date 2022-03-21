@@ -4,10 +4,9 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
-import { SearchFilterPage } from '../search-filter/search-filter.page';
-import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
 import { ItemDetails } from 'src/app/models/itemDetails';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-main',
@@ -21,7 +20,10 @@ export class MainPage implements OnInit {
   configSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
-    pagination: true,
+    pagination: {
+      el:'.swiper-pagination',
+      clickable:true
+    },
   };
   configContent: SwiperOptions = {
     slidesPerView: 2.3,
@@ -70,25 +72,7 @@ export class MainPage implements OnInit {
       isFav: true,
       description: '',
       reservationRules: '',
-      image:  './../../../assets/images/1024-500.png',
-      leftTime: '',
-      
-      
-    },
-    {
-      id: 1,
-      catID: 1,
-      name: 'اسم تجريبي',
-      city: 'الرياض',
-      address: 'حي الرمال',
-      rating: '3+',
-      price: 3000,
-      unit: 'currency',
-      perUnit: 'one night',
-      isFav: true,
-      description: '',
-      reservationRules: '',
-      image:  './../../../assets/images/1024-500.png',
+      image: './../../../assets/images/1024-500.png',
       leftTime: '',
     },
     {
@@ -104,7 +88,23 @@ export class MainPage implements OnInit {
       isFav: true,
       description: '',
       reservationRules: '',
-      image:  './../../../assets/images/1024-500.png',
+      image: './../../../assets/images/1024-500.png',
+      leftTime: '',
+    },
+    {
+      id: 1,
+      catID: 1,
+      name: 'اسم تجريبي',
+      city: 'الرياض',
+      address: 'حي الرمال',
+      rating: '3+',
+      price: 3000,
+      unit: 'currency',
+      perUnit: 'one night',
+      isFav: true,
+      description: '',
+      reservationRules: '',
+      image: './../../../assets/images/1024-500.png',
       leftTime: '',
     },
   ];
@@ -115,7 +115,7 @@ export class MainPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private dataService: DataService,
-    private translate: TranslateService
+    private utilities: UtilitiesService
   ) {
     this.menuCtrl.enable(true, 'main');
   }
@@ -139,14 +139,8 @@ export class MainPage implements OnInit {
     if (this.searchText != '') {
       this.router.navigateByUrl('/tabs/main/search-results');
     } else {
-      this.errorMessage();
+      this.utilities.showMessage('please enter search text');
     }
-  }
-
-  async errorMessage() {
-    await Toast.show({
-      text: this.translate.instant('please enter search text'),
-    });
   }
 
   showAllCategories() {
@@ -163,4 +157,17 @@ export class MainPage implements OnInit {
     // Now you can use all slider methods like
     // swiper.slideNext();
   }
+
+  // this.utilities.showLoadingSpinner().then((__) => {
+  //   this.loanCalcService.getSocialStatus(gender).subscribe(
+  //     (data) => {
+  //       // console.log(data);
+  //       this.socialStatus = data;
+  //       this.utilities.dismissLoading();
+  //     },
+  //     (err) => {
+  //       this.utilities.dismissLoading();
+  //     }
+  //   );
+  // });
 }

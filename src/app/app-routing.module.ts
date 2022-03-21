@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
+import { ShowBoardingPageGuard } from './guards/on-boarding/show-boarding-page.guard';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'on-boarding',
+    canActivate:[ShowBoardingPageGuard],
     loadChildren: () =>
       import('./modules/onboarding/on-boarding/on-boarding.module').then(
         (m) => m.OnBoardingPageModule

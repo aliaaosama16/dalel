@@ -1,11 +1,9 @@
 ion-content.bg-left {
-  --background: url(./../../../../assets/images/authBg-left.png) 0 0 /100% 100% no-repeat;
+  --background: url(./../../../../assets/images/authBg-left.png) no-repeat 100% 100%;
 }
 
 ion-content.bg-right {
-  --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
-    no-repeat;
+  --background: url(./../../../../assets/images/authBg-right.png)no-repeat 100% 100%;
 }
 
-//input:focus { border-color: var(--ion-color-primary); }
 

@@ -21,4 +21,18 @@ export class AuthService {
   forgetPassword(){
     this.httpclient.post(environment.BASE_URL,{});
   }
+
+  // authentication(dataModel: NicSsoResponse) {
+  //   return this._http.post<AuthenticationResponse>(
+  //     `${environment.baseUrl}/authentication/mobileAuthenticateByLogId`,
+  //     dataModel
+  //   );
+  // }
+
+  // register(dataModel: RegisterationRequest) {
+  //   return this._http.post<AuthenticationResponse>(
+  //     `${environment.baseUrl}/authentication/registerNewUser`,
+  //     dataModel
+  //   );
+  //}
 }

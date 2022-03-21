@@ -65,7 +65,23 @@
 
 .slider-section {
   position: relative;
+
+  .swiper-pagination-bullets{
+    position: absolute;
+    text-align: center !important;
+    height: 10px;
+    width: 15px;
+    bottom: 0 !important;
+    background-color: var(--ion-color-primary) !important;
+  }
   .swiper-pagination-bullet-active {
+    background-color: rgba(var(--ion-color-primary), 0.5) !important;
+    height: 10px;
+    width: 30px !important;
+    border-radius: 10px;
+    opacity: 0.5;
+  }
+ .swiper-pagination-bullet-active {
     background-color: var(--ion-color-primary) !important;
     height: 10px;
     width: 30px !important;
@@ -89,15 +105,8 @@
     height: 10px;
     width: 15px;
     border-radius: 10px;
-  }
+  } 
 
-  .swiper-pagination-bullet-inactive {
-    background-color: rgba(var(--ion-color-primary), 0.5) !important;
-    height: 10px;
-    width: 15px;
-    border-radius: 10px;
-    opacity: 0.5;
-  }
 
   .swiper-pagination-bullets {
     top: 37% !important;

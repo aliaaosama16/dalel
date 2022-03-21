@@ -1,8 +1,6 @@
-<app-header style="height: 140px;" [title]="'main'" [isMain]="true"></app-header>
+<app-header style="height: 140px" [title]="'main'" [isMain]="true"></app-header>
 
 <ion-content>
-
- 
   <div class="search-section ion-padding-horizontal">
     <div class="search-input">
       <ion-item lines="none" class="search-wrapper">
@@ -45,7 +43,6 @@
       </ng-template>
     </swiper>
   </div>
-
 
   <div class="categories-section ion-padding-horizontal">
     <div class="categories-section-title">
@@ -116,7 +113,10 @@
           </div>
         </ion-card> -->
 
-        <app-custom-card [itemDetails]="item" [forwardRoute]="'/tabs/main/categories/'"></app-custom-card>
+        <app-custom-card
+          [itemDetails]="item"
+          [forwardRoute]="'/tabs/main/categories/'"
+        ></app-custom-card>
       </ng-template>
     </swiper>
   </div>
