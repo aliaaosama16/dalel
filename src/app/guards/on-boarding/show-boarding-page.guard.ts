@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class ShowBoardingPageGuard implements CanActivate {
   opened: boolean = false;
   constructor(private util: UtilitiesService, private router: Router) {
-    this.openBoardingBefore();
+    this.getData();
+  
   }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,17 +27,17 @@ export class ShowBoardingPageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      console.log(this.opened)
     return this.opened;
   }
 
-  openBoardingBefore() {
-    const openBoarding = this.util.getDataByKey('openBoarding');
-    console.log(`guard stored openBoarding :` + JSON.stringify(openBoarding));
-    if (openBoarding) {
+  async getData() {
+    const val = await Storage.get({ key: 'openBoarding' });
+    console.log('openBoarding value :'+val.value);
+    console.log('opened is '+this.opened);
+    if (val.value==null) {
       this.opened = true;
+    } else {
       this.router.navigate(['/tabs/main']);
-    }else{
       this.opened = false;
     }
   }
