@@ -13,3 +13,8 @@ ion-item{
   --highlight-color-valid:var(--ion-color-primary);
   --highlight-color-invalid:var(--ion-color-primary);
 }
+
+ion-segment{
+  display: flex;
+  justify-content: space-between;
+}

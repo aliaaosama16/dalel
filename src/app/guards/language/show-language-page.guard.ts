@@ -15,13 +15,9 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class ShowLanguagePageGuard implements CanActivate {
-  selectedLangauge: boolean = false;
-  constructor(
-    private router: Router,
-    private platform: Platform,
-    private translate: TranslateService
-  ) {
-    this.setInitialAppLanguage();
+  selectLangauge: boolean = false;
+  constructor(private router: Router) {
+    this.getData();
   }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -31,45 +27,32 @@ export class ShowLanguagePageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return !this.selectedLangauge;
+    return this.selectLangauge;
   }
 
-  async setInitialAppLanguage() {
-    const lang = await Storage.get({ key: 'lang' });
-    console.log(`guard stored lang is obj ` + JSON.stringify(lang));
-    if (lang.value != null) {
-      this.selectedLangauge = true;
-      //this.router.navigate(['/on-boarding']);
-      if (lang.value == 'ar') {
-        document.documentElement.dir = 'rtl';
-      } else {
-        document.documentElement.dir = 'ltr';
-      }
-      this.setLanguage(lang.value);
-      console.log(`stored lang is ${lang.value}`);
-
-      this.translate.setDefaultLang(lang.value);
-    } else if (lang.value == null) {
-      this.selectedLangauge = false;
-      console.log(`no language`);
-      document.documentElement.dir = 'rtl';
-      this.setLanguage('ar');
-      this.translate.setDefaultLang('ar');
+  async getData() {
+    const val = await Storage.get({ key: 'lang' });
+    console.log('lang value :' + val.value);
+    console.log('opened is ' + this.selectLangauge);
+    if (val.value == null) {
+      this.selectLangauge = true;
+    } else {
+      this.router.navigate(['/on-boarding']);
+      this.selectLangauge = false;
     }
-    this.router.navigateByUrl('/on-boarding');
   }
 
-  getLanguage() {
-    console.log('current lang is ' + this.platform.isRTL);
-    return this.platform.isRTL ? 'ar' : 'en';
-  }
+  // getLanguage() {
+  //   console.log('current lang is ' + this.platform.isRTL);
+  //   return this.platform.isRTL ? 'ar' : 'en';
+  // }
 
-  async setLanguage(lng: string) {
-    console.log('set this language :' + lng);
-    this.translate.use(lng);
-    await Storage.set({
-      key: 'lang',
-      value: lng,
-    });
-  }
+  // async setLanguage(lng: string) {
+  //   console.log('set this language :' + lng);
+  //   this.translate.use(lng);
+  //   await Storage.set({
+  //     key: 'lang',
+  //     value: lng,
+  //   });
+  // }
 }

@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'on-boarding',
-
+    canActivate:[ShowBoardingPageGuard],
     loadChildren: () =>
       import('./modules/onboarding/on-boarding/on-boarding.module').then(
         (m) => m.OnBoardingPageModule

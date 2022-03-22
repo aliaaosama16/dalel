@@ -69,6 +69,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     if(this.nextClicked<3){
       this.nextClicked++;
     }else{
+      this.util.storeData('openBoarding', true);
       this.router.navigateByUrl('/tabs/main');
     }
    

@@ -16,4 +16,8 @@ export interface ItemDetails {
   isFav?: boolean;
   description?: string;
   reservationRules?: string;
+  roomsNumber?:number;
+  space?:number;
+  bathRoomsNUmber?:number;
+  
 }

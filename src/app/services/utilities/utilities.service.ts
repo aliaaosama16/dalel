@@ -29,7 +29,8 @@ export class UtilitiesService {
 
   async getDataByKey(key) {
     const val = await Storage.get({ key: key });
-    this.getValue(val);
+    console.log('openBoarding stored value :' + JSON.stringify(val));
+    this.getValue(val.value);
   }
 
   getValue(value): string {

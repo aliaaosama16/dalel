@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-   logined = new BehaviorSubject(false);
+   logined = new BehaviorSubject(true);
 
   constructor(private httpclient:HttpClient) { }
 

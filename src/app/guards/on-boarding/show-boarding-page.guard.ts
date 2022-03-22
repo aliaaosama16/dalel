@@ -15,9 +15,8 @@ import { Storage } from '@capacitor/storage';
 })
 export class ShowBoardingPageGuard implements CanActivate {
   opened: boolean = false;
-  constructor(private util: UtilitiesService, private router: Router) {
+  constructor(private router: Router) {
     this.getData();
-  
   }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -32,9 +31,9 @@ export class ShowBoardingPageGuard implements CanActivate {
 
   async getData() {
     const val = await Storage.get({ key: 'openBoarding' });
-    console.log('openBoarding value :'+val.value);
-    console.log('opened is '+this.opened);
-    if (val.value==null) {
+    console.log('openBoarding value :' + val.value);
+    console.log('opened is ' + this.opened);
+    if (val.value == null) {
       this.opened = true;
     } else {
       this.router.navigate(['/tabs/main']);
