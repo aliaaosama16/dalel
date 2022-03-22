@@ -2155,7 +2155,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-calendar\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" (click)=\"completeReservation()\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-calendar\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" (click)=\"completeReservation()\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 

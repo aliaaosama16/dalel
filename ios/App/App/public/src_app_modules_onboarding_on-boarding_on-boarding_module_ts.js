@@ -122,6 +122,7 @@ let OnBoardingPage = class OnBoardingPage {
         this.menuCtrl = menuCtrl;
         this.util = util;
         this.slidingNotAvailable = false;
+        this.nextClicked = 0;
         this.config = {
             slidesPerView: 1,
             spaceBetween: 0,
@@ -143,11 +144,17 @@ let OnBoardingPage = class OnBoardingPage {
     }
     nextSlide(ev) {
         console.log('pointerId : ' + ev.pointerId);
-        if (ev.pointerId <= 5 && ev.pointerId >= 3) {
-            this.swiper.swiperRef.slideNext(500);
+        // if (ev.pointerId <= 5 && ev.pointerId >= 3) {
+        //   this.swiper.swiperRef.slideNext(500);
+        // } else {
+        //   this.slidingNotAvailable = true;
+        // }
+        if (this.nextClicked < 3) {
+            this.nextClicked++;
         }
         else {
-            this.slidingNotAvailable = true;
+            this.util.storeData('openBoarding', true);
+            this.router.navigateByUrl('/tabs/main');
         }
     }
     ngAfterContentChecked() {

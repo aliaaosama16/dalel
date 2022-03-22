@@ -1001,7 +1001,8 @@ let UtilitiesService = class UtilitiesService {
     getDataByKey(key) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
-            this.getValue(val);
+            console.log('openBoarding stored value :' + JSON.stringify(val));
+            this.getValue(val.value);
         });
     }
     getValue(value) {
