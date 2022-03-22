@@ -12,10 +12,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./reservation.page.scss'],
 })
 export class ReservationPage implements OnInit {
-  // date: string;
-  // type: 'string';
-  // constructor() { }
-
+  platform: any;
   dateRange: { from: string; to: string };
   type: 'string';
 
@@ -24,11 +21,14 @@ export class ReservationPage implements OnInit {
     showAdjacentMonthDay: true,
     showMonthPicker: true,
     showToggleButtons: true,
-    // color:'#FFAA76'
   };
-  constructor(private router: Router,
-     private dataService: DataService,
-     private utilities:UtilitiesService) {}
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    private util: UtilitiesService
+  ) {
+    this.platform = this.util.platform;
+  }
   onChange(selectedDates) {
     console.log('selecte dates : ' + JSON.stringify(selectedDates));
 
@@ -38,7 +38,7 @@ export class ReservationPage implements OnInit {
   completeReservation() {
     console.log('selecte dates : ' + JSON.stringify(this.dateRange));
     if (this.dateRange == undefined) {
-    this.utilities.showMessage('please choose from and to dates');
+      this.util.showMessage('please choose from and to dates');
     } else {
       this.dataService.setDates(this.dateRange);
       this.router.navigateByUrl('/tabs/main/reservation-payment');

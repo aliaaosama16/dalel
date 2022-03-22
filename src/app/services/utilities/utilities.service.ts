@@ -10,6 +10,7 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class UtilitiesService {
   public loading: any;
+  platform: any;
   userLocation = { lat: 0, lng: 0 };
   constructor(
     private translate: TranslateService,
@@ -17,6 +18,9 @@ export class UtilitiesService {
     private plt: Platform
   ) {}
 
+  setPlatform(val){
+    this.platform=val;
+  }
   async showMessage(message: string) {
     await Toast.show({
       text: this.translate.instant(message),
@@ -70,13 +74,12 @@ export class UtilitiesService {
 
   getPlatformType() {
     return new Promise((resolve, reject) => {
-      let platform;
       if (this.plt.is('android')) {
-        platform = 'android';
+        this.platform = 'android';
       } else if (this.plt.is('ios')) {
-        platform = 'ios';
+        this.platform = 'ios';
       }
-      resolve(platform);
+      resolve(this.platform);
     });
   }
 }

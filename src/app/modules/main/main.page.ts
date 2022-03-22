@@ -4,7 +4,6 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
-import { TranslateService } from '@ngx-translate/core';
 import { ItemDetails } from 'src/app/models/itemDetails';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
@@ -16,6 +15,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class MainPage implements OnInit {
   searchText: string = '';
   currentlangauge: string;
+  platform:string='';
 
   configSlider: SwiperOptions = {
     slidesPerView: 1,
@@ -115,10 +115,11 @@ export class MainPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private dataService: DataService,
-    private util: UtilitiesService
+    public util: UtilitiesService
   ) {
     this.menuCtrl.enable(true, 'main');
     this.util.getUserLocation();
+    this.platform=this.util.platform;
   }
 
   ngOnInit() {

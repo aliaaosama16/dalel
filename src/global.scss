@@ -48,8 +48,13 @@
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
 }
 
-.header-height {
+
+.md-header-height {
   height: 100px;
+}
+
+.ios-header-height {
+  height: 130px;
 }
 
 :root[dir="rtl"] {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 // import * as moment from 'moment';
 
 @Component({
@@ -10,7 +11,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class NotificationsPage implements OnInit {
   currentlangauge: string;
-
+  platform:any;
   notifications: any[] = [
     {
       id: 1,
@@ -82,8 +83,11 @@ export class NotificationsPage implements OnInit {
 
   constructor(
     private menuCtrl: MenuController,
-    private langaugeservice: LanguageService
-  ) {}
+    private langaugeservice: LanguageService,
+    private util:UtilitiesService
+  ) {
+    this.platform = this.util.platform;
+  }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

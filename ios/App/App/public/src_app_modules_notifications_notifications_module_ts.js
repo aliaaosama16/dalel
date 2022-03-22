@@ -96,12 +96,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NotificationsPage": () => (/* binding */ NotificationsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
 /* harmony import */ var _notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.page.scss */ 87326);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -110,9 +112,10 @@ __webpack_require__.r(__webpack_exports__);
 
 // import * as moment from 'moment';
 let NotificationsPage = class NotificationsPage {
-    constructor(menuCtrl, langaugeservice) {
+    constructor(menuCtrl, langaugeservice, util) {
         this.menuCtrl = menuCtrl;
         this.langaugeservice = langaugeservice;
+        this.util = util;
         this.notifications = [
             {
                 id: 1,
@@ -181,6 +184,7 @@ let NotificationsPage = class NotificationsPage {
                 isRead: true,
             },
         ];
+        this.platform = this.util.platform;
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -191,11 +195,12 @@ let NotificationsPage = class NotificationsPage {
     }
 };
 NotificationsPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.MenuController },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
 ];
-NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-notifications',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -216,7 +221,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\">\n    <ion-item\n      *ngFor=\"let item of notifications\"\n      [ngClass]=\"item.isRead ? 'isRead' : ''\"\n    >\n      <ul>\n        <li>\n          <ion-label>\n            <h5 class=\"fn-14 dalel-Regular\">{{item.text}}</h5>\n            <p\n              item-start\n              class=\"fn-12 dalel-Regular secondary-color\"\n              [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n            >\n              {{item.date}}\n            </p>\n          </ion-label>\n        </li>\n      </ul>\n    </ion-item>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <ion-card class=\"ion-no-margin\">\n    <ion-item\n      *ngFor=\"let item of notifications\"\n      [ngClass]=\"item.isRead ? 'isRead' : ''\"\n    >\n      <ul>\n        <li>\n          <ion-label>\n            <h5 class=\"fn-14 dalel-Regular\">{{item.text}}</h5>\n            <p\n              item-start\n              class=\"fn-12 dalel-Regular secondary-color\"\n              [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n            >\n              {{item.date}}\n            </p>\n          </ion-label>\n        </li>\n      </ul>\n    </ion-item>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 

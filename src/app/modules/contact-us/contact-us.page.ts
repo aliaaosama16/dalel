@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactUsPage implements OnInit {
   public contactForm: FormGroup;
-
+  platform:any;
   isContactSubmitted: boolean = false;
 
   inputFocusPerson: boolean = false;
@@ -27,7 +28,9 @@ export class ContactUsPage implements OnInit {
   inputInFocusMessageIcon: string =
     './../../../../assets/icon/message-inactive.svg';
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,private util:UtilitiesService) {
+    this.platform=this.util.platform;
+  }
 
   ngOnInit() {
     this.buildForm();

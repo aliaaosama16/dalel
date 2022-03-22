@@ -14,6 +14,7 @@ import { SwiperOptions } from 'swiper';
 })
 export class CategoryDetailsPage implements OnInit {
   currentlangauge: string;
+  platform:any;
   configSlider: SwiperOptions = {
     slidesPerView: 3.5,
     spaceBetween: 6,
@@ -59,7 +60,9 @@ export class CategoryDetailsPage implements OnInit {
     private authService: AuthService,
     private util: UtilitiesService,
     private router: Router
-  ) {}
+  ) {
+    this.platform=this.util.platform;
+  }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

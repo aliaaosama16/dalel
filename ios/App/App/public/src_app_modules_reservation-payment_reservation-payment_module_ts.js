@@ -96,14 +96,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ReservationPaymentPage": () => (/* binding */ ReservationPaymentPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_payment_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation-payment.page.html */ 54427);
 /* harmony import */ var _reservation_payment_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation-payment.page.scss */ 35201);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ 29243);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -112,10 +114,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ReservationPaymentPage = class ReservationPaymentPage {
-    constructor(langaugeservice, dataService, language) {
+    constructor(langaugeservice, dataService, language, util) {
         this.langaugeservice = langaugeservice;
         this.dataService = dataService;
         this.language = language;
+        this.util = util;
         this.ItemDetails = {
             name: 'اسم الاستراحه',
             rating: '3+',
@@ -135,9 +138,9 @@ let ReservationPaymentPage = class ReservationPaymentPage {
             reservationRules: '',
             catID: 0,
         };
+        this.platform = this.util.platform;
     }
     ngOnInit() {
-        // format الاربعاء 22/02/2022
         this.currentlangauge = this.langaugeservice.getLanguage();
         this.ItemDetails.arrivalDate =
             this.getDay(this.dataService.getDates().from, this.language.getLanguage()) +
@@ -156,10 +159,11 @@ let ReservationPaymentPage = class ReservationPaymentPage {
 ReservationPaymentPage.ctorParameters = () => [
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
     { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService }
 ];
-ReservationPaymentPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+ReservationPaymentPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-reservation-payment',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_payment_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_reservation_payment_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -180,7 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main/reservation'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <div class=\"container\">\n    <img [src]=\"ItemDetails.image \" />\n  </div>\n\n  <app-custom-details\n    [ItemDetails]=\"ItemDetails\" [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{ItemDetails.arrivalTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"arrival-date\"|translate}} :{{ItemDetails.arrivalDate}}\n        </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{ItemDetails.leftTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"left-date\"|translate}} :{{ItemDetails.leftDate}}\n        </span>\n      </p>\n    </div>\n  </div>\n\n  <div class=\"fees\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">{{ \"fees\"|translate }}</h5>\n\n    <div class=\"fees-details\">\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n         {{ItemDetails.unit |translate}}* {{ItemDetails.price}}\n        </p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n          {{ItemDetails.price}}   {{ItemDetails.perUnit |translate}} \n        </p>\n      </div>\n    </div>\n\n    <hr class=\"separator\" />\n\n    <div class=\"fees-total\">\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">{{\"total\"|translate}}</p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">\n          {{ItemDetails.price}} {{ItemDetails.unit|translate}}\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"payment-method\">\n    <ion-item lines=\"none\">\n      <ion-label class=\"fn-14 black-color dalel-Regular\" [ngClass]=\"currentlangauge == 'ar' ? 'align-right':'align-left'\">\n        {{\"pay on arrival\"|translate}}\n      </ion-label>\n      <ion-checkbox color=\"secondary\" slot=\"start\" value=\"true\"></ion-checkbox>\n    </ion-item>\n  </div>\n\n  <ion-button expand=\"block\" routerLink=\"/tabs/main\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"confirm reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main/reservation'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <div class=\"container\">\n    <img [src]=\"ItemDetails.image \" />\n  </div>\n\n  <app-custom-details\n    [ItemDetails]=\"ItemDetails\" [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{ItemDetails.arrivalTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"arrival-date\"|translate}} :{{ItemDetails.arrivalDate}}\n        </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{ItemDetails.leftTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"left-date\"|translate}} :{{ItemDetails.leftDate}}\n        </span>\n      </p>\n    </div>\n  </div>\n\n  <div class=\"fees\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">{{ \"fees\"|translate }}</h5>\n\n    <div class=\"fees-details\">\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n         {{ItemDetails.unit |translate}}* {{ItemDetails.price}}\n        </p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n          {{ItemDetails.price}}   {{ItemDetails.perUnit |translate}} \n        </p>\n      </div>\n    </div>\n\n    <hr class=\"separator\" />\n\n    <div class=\"fees-total\">\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">{{\"total\"|translate}}</p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">\n          {{ItemDetails.price}} {{ItemDetails.unit|translate}}\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"payment-method\">\n    <ion-item lines=\"none\">\n      <ion-label class=\"fn-14 black-color dalel-Regular\" [ngClass]=\"currentlangauge == 'ar' ? 'align-right':'align-left'\">\n        {{\"pay on arrival\"|translate}}\n      </ion-label>\n      <ion-checkbox color=\"secondary\" slot=\"start\" value=\"true\"></ion-checkbox>\n    </ion-item>\n  </div>\n\n  <ion-button expand=\"block\" routerLink=\"/tabs/main\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"confirm reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 

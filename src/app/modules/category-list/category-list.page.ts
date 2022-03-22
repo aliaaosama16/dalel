@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ItemDetails } from 'src/app/models/itemDetails';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-category-list',
@@ -13,6 +14,7 @@ export class CategoryListPage implements OnInit {
   categoryID: string;
   categoryName: string;
   currentlangauge: string;
+  platform:any;
   categoriesList: ItemDetails[] = [
     {
       id: 1,
@@ -82,8 +84,11 @@ export class CategoryListPage implements OnInit {
   constructor(
     private menuCtrl: MenuController,
     private activatedRoute: ActivatedRoute,
-    private langaugeservice:LanguageService
-  ) {}
+    private langaugeservice:LanguageService,
+    private util:UtilitiesService
+  ) {
+    this.platform=this.util.platform;
+  }
 
   ngOnInit() {
     console.log(`category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`)

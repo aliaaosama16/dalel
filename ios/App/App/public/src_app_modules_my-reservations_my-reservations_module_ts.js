@@ -96,19 +96,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MyReservationsPage": () => (/* binding */ MyReservationsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations.page.html */ 80017);
 /* harmony import */ var _my_reservations_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-reservations.page.scss */ 50938);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
 
 
 let MyReservationsPage = class MyReservationsPage {
-    constructor(langaugeservice) {
+    constructor(langaugeservice, util) {
         this.langaugeservice = langaugeservice;
+        this.util = util;
         this.reservationsType = 'old';
         this.oldReservations = [
             {
@@ -169,6 +172,7 @@ let MyReservationsPage = class MyReservationsPage {
                 rating: 3,
             },
         ];
+        this.platform = this.util.platform;
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -177,10 +181,11 @@ let MyReservationsPage = class MyReservationsPage {
     reservationsTypeChange($event) { }
 };
 MyReservationsPage.ctorParameters = () => [
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
 ];
-MyReservationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+MyReservationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-my-reservations',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_my_reservations_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -201,7 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'my-reservations'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-segment\n    (ionChange)=\"reservationsTypeChange($event)\"\n    value=\"register\"\n    [(ngModel)]=\"reservationsType\"\n  >\n    <ion-segment-button\n      value=\"old\"\n      [ngClass]=\"reservationsType=='old' ?'selected':'old-unselected'\"\n    >\n      <ion-label>{{\"old\"|translate}}</ion-label>\n    </ion-segment-button>\n\n    <ion-segment-button\n      value=\"current\"\n      [ngClass]=\"reservationsType=='current' ?'selected':'current-unselected'\"\n    >\n      <ion-label>{{\"current\"|translate}}</ion-label>\n    </ion-segment-button>\n  </ion-segment>\n\n  <div *ngIf=\"reservationsType=='old'\">\n    <ion-card\n      class=\"ion-no-margin\"\n      *ngFor=\"let item of oldReservations\"\n      routerLink=\"/tabs/my-reservations/my-reservations-details\"\n    >\n      <div class=\"container\">\n        <img src=\"./../../../assets/images/1024-500.png\" />\n\n\n        <div class=\"price\">\n          <p class=\"fn-15 dalel-SemiBold secondary-color\">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>\n        </div>\n\n        <div class=\"title\"  [ngStyle]=\"currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}\">\n          <p class=\"fn-14 dalel-Bold white-color\">{{item.name|translate}}</p>\n        </div>\n\n        <div class=\"location\" [ngStyle]=\"currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}\">\n          <ion-icon\n            src=\"./../../../assets/icon/pin-underline.svg\"\n            color=\"primary\"\n          ></ion-icon>\n        </div>\n\n        <div class=\"location-address\" [ngStyle]=\"currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}\">\n          <p class=\"fn-10 dalel-Regular white-color\">{{item.city}} - {{item.country}}</p>\n        </div>\n\n        <div class=\"rating\" [ngStyle]=\"currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}\">\n          <span class=\"white-color\"> {{item.rating}}</span>\n          <ion-icon name=\"star\" color=\"secondary\"></ion-icon>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n\n  <div *ngIf=\"reservationsType=='current'\">\n    <ion-card\n      class=\"ion-no-margin\"\n      *ngFor=\"let item of currentReservations\"\n      routerLink=\"/tabs/my-reservations/my-reservations-details\"\n    >\n      <div class=\"container\">\n        <img src=\"./../../../assets/images/1024-500.png\" />\n\n        <div class=\"price\">\n          <p class=\"fn-15 dalel-SemiBold secondary-color\">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>\n        </div>\n\n        <div class=\"title\"  [ngStyle]=\"currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}\">\n          <p class=\"fn-14 dalel-Bold white-color\">{{item.name|translate}}</p>\n        </div>\n\n        <div class=\"location\" [ngStyle]=\"currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}\">\n          <ion-icon\n            src=\"./../../../assets/icon/pin-underline.svg\"\n            color=\"primary\"\n          ></ion-icon>\n        </div>\n\n        <div class=\"location-address\" [ngStyle]=\"currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}\">\n          <p class=\"fn-10 dalel-Regular white-color\">{{item.city}} - {{item.country}}</p>\n        </div>\n\n        <div class=\"rating\" [ngStyle]=\"currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}\">\n          <span class=\"white-color\"> {{item.rating}}</span>\n          <ion-icon name=\"star\" color=\"secondary\"></ion-icon>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'my-reservations'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <ion-segment\n    (ionChange)=\"reservationsTypeChange($event)\"\n    value=\"register\"\n    [(ngModel)]=\"reservationsType\"\n  >\n    <ion-segment-button\n      value=\"old\"\n      [ngClass]=\"reservationsType=='old' ?'selected':'old-unselected'\"\n    >\n      <ion-label>{{\"old\"|translate}}</ion-label>\n    </ion-segment-button>\n\n    <ion-segment-button\n      value=\"current\"\n      [ngClass]=\"reservationsType=='current' ?'selected':'current-unselected'\"\n    >\n      <ion-label>{{\"current\"|translate}}</ion-label>\n    </ion-segment-button>\n  </ion-segment>\n\n  <div *ngIf=\"reservationsType=='old'\">\n    <ion-card\n      class=\"ion-no-margin\"\n      *ngFor=\"let item of oldReservations\"\n      routerLink=\"/tabs/my-reservations/my-reservations-details\"\n    >\n      <div class=\"container\">\n        <img src=\"./../../../assets/images/1024-500.png\" />\n\n\n        <div class=\"price\">\n          <p class=\"fn-15 dalel-SemiBold secondary-color\">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>\n        </div>\n\n        <div class=\"title\"  [ngStyle]=\"currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}\">\n          <p class=\"fn-14 dalel-Bold white-color\">{{item.name|translate}}</p>\n        </div>\n\n        <div class=\"location\" [ngStyle]=\"currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}\">\n          <ion-icon\n            src=\"./../../../assets/icon/pin-underline.svg\"\n            color=\"primary\"\n          ></ion-icon>\n        </div>\n\n        <div class=\"location-address\" [ngStyle]=\"currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}\">\n          <p class=\"fn-10 dalel-Regular white-color\">{{item.city}} - {{item.country}}</p>\n        </div>\n\n        <div class=\"rating\" [ngStyle]=\"currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}\">\n          <span class=\"white-color\"> {{item.rating}}</span>\n          <ion-icon name=\"star\" color=\"secondary\"></ion-icon>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n\n  <div *ngIf=\"reservationsType=='current'\">\n    <ion-card\n      class=\"ion-no-margin\"\n      *ngFor=\"let item of currentReservations\"\n      routerLink=\"/tabs/my-reservations/my-reservations-details\"\n    >\n      <div class=\"container\">\n        <img src=\"./../../../assets/images/1024-500.png\" />\n\n        <div class=\"price\">\n          <p class=\"fn-15 dalel-SemiBold secondary-color\">{{item.price}}   {{item.perUnit|translate}}/ {{item.unit|translate}}</p>\n        </div>\n\n        <div class=\"title\"  [ngStyle]=\"currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}\">\n          <p class=\"fn-14 dalel-Bold white-color\">{{item.name|translate}}</p>\n        </div>\n\n        <div class=\"location\" [ngStyle]=\"currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}\">\n          <ion-icon\n            src=\"./../../../assets/icon/pin-underline.svg\"\n            color=\"primary\"\n          ></ion-icon>\n        </div>\n\n        <div class=\"location-address\" [ngStyle]=\"currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}\">\n          <p class=\"fn-10 dalel-Regular white-color\">{{item.city}} - {{item.country}}</p>\n        </div>\n\n        <div class=\"rating\" [ngStyle]=\"currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}\">\n          <span class=\"white-color\"> {{item.rating}}</span>\n          <ion-icon name=\"star\" color=\"secondary\"></ion-icon>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

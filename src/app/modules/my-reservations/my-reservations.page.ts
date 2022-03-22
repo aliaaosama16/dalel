@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-my-reservations',
@@ -9,7 +10,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 export class MyReservationsPage implements OnInit {
   reservationsType: string = 'old';
   currentlangauge: string;
-
+  platform: any;
   oldReservations = [
     {
       id: 1,
@@ -69,7 +70,12 @@ export class MyReservationsPage implements OnInit {
       rating: 3,
     },
   ];
-  constructor(private langaugeservice: LanguageService) {}
+  constructor(
+    private langaugeservice: LanguageService,
+    private util: UtilitiesService
+  ) {
+    this.platform = this.util.platform;
+  }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

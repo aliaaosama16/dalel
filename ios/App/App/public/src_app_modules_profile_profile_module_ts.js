@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile.page.scss */ 37444);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
 
 
 
@@ -109,14 +109,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProfilePage = class ProfilePage {
-    constructor(menuCtrl, langaugeservice) {
+    constructor(menuCtrl, util) {
         this.menuCtrl = menuCtrl;
-        this.langaugeservice = langaugeservice;
+        this.util = util;
         this.userData = {
             name: 'aliaa',
             phone: '01077262662',
             email: 'engaliaa@gmail.com'
         };
+        this.platform = this.util.platform;
     }
     ngOnInit() { }
     openMenu() {
@@ -125,7 +126,7 @@ let ProfilePage = class ProfilePage {
 };
 ProfilePage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.MenuController },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_2__.UtilitiesService }
 ];
 ProfilePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
@@ -149,7 +150,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'profile'\" [backwardRoute]=\"'/tabs/main'\" [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\" [isMain]=\"false\"></app-header>\n\n<ion-content class=\"ion-padding\">\n\n\n  <div class=\"profile-card-wrapper\">\n\n    <ion-card class=\"ion-no-margin ion-padding\">\n\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/person-inactive.svg\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-16 dalel-Bold name\">{{userData.name}}</h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/person-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.name\" type=\"text\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/phone-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.phone\" type=\"nummber\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/email-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.email\" type=\"email\"></ion-input>\n      </ion-item>\n    </ion-card>\n\n\n  </div>\n\n\n\n\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'profile'\" [backwardRoute]=\"'/tabs/main'\" [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\" [isMain]=\"false\"></app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n\n\n  <div class=\"profile-card-wrapper\">\n\n    <ion-card class=\"ion-no-margin ion-padding\">\n\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/person-inactive.svg\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-16 dalel-Bold name\">{{userData.name}}</h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/person-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.name\" type=\"text\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/phone-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.phone\" type=\"nummber\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/email-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userData.email\" type=\"email\"></ion-input>\n      </ion-item>\n    </ion-card>\n\n\n  </div>\n\n\n\n\n</ion-content>");
 
 /***/ }),
 

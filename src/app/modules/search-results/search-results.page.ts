@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-search-results',
@@ -8,6 +9,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class SearchResultsPage implements OnInit {
   currentlangauge:string='';
+  platform:any;
   resultItems = [
     {
     name: "عنوان تجريبي",
@@ -98,7 +100,9 @@ export class SearchResultsPage implements OnInit {
     perUnit: "one night"  ,
    
   }];
-  constructor(private langaugeservice:LanguageService) { }
+  constructor(private langaugeservice:LanguageService,private util:UtilitiesService) {
+    this.platform = this.util.platform;
+   }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();

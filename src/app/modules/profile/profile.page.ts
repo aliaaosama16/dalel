@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+  platform:any;
   userData=
    {
     name:'aliaa',
@@ -18,8 +19,10 @@ export class ProfilePage implements OnInit {
   ;
   constructor(
     private menuCtrl: MenuController,
-    private langaugeservice: LanguageService
-  ) {}
+    private util:UtilitiesService
+  ) {
+    this.platform = this.util.platform;
+  }
 
   ngOnInit() {}
 

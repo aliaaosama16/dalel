@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemDetails } from 'src/app/models/itemDetails';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-favourites',
@@ -7,6 +8,7 @@ import { ItemDetails } from 'src/app/models/itemDetails';
   styleUrls: ['./favourites.page.scss'],
 })
 export class FavouritesPage implements OnInit {
+  platform:any;
   favourites: ItemDetails[] = [
     {
       id: 1,
@@ -108,7 +110,9 @@ export class FavouritesPage implements OnInit {
     
 
   ];
-  constructor() {}
+  constructor(private util:UtilitiesService) {
+    this.platform=this.util.platform;
+  }
 
   ngOnInit() {}
 }

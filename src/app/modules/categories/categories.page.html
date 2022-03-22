@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 
-<ion-content>
+<ion-content [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let cat of categories">

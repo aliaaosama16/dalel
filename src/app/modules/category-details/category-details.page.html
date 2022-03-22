@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding"  [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
   <div class="item-image">
     <img src="./../../../assets/images/1024-500.png" />
     <ion-icon

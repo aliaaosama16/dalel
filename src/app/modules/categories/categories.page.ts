@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-categories',
@@ -9,6 +10,7 @@ import { DataService } from 'src/app/services/data/data.service';
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
+  platform:any;
   categories: any[] = [
     { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
     { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
@@ -24,8 +26,11 @@ export class CategoriesPage implements OnInit {
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
-    private dataService: DataService
-  ) {}
+    private dataService: DataService,
+    private util:UtilitiesService
+  ) {
+    this.platform=this.util.platform;
+  }
 
   ngOnInit() {}
 

@@ -96,19 +96,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SearchResultsPage": () => (/* binding */ SearchResultsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_search_results_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./search-results.page.html */ 47541);
 /* harmony import */ var _search_results_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-results.page.scss */ 24617);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
 
 
 let SearchResultsPage = class SearchResultsPage {
-    constructor(langaugeservice) {
+    constructor(langaugeservice, util) {
         this.langaugeservice = langaugeservice;
+        this.util = util;
         this.currentlangauge = '';
         this.resultItems = [
             {
@@ -193,6 +196,7 @@ let SearchResultsPage = class SearchResultsPage {
                 perUnit: "one night",
             }
         ];
+        this.platform = this.util.platform;
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -200,10 +204,11 @@ let SearchResultsPage = class SearchResultsPage {
     }
 };
 SearchResultsPage.ctorParameters = () => [
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
 ];
-SearchResultsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+SearchResultsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-search-results',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_search_results_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_search_results_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -224,7 +229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'search-results'\" [isEditable]=\"false\" [backwardRoute]=\"'/tabs/main'\" [isMain]=\"false\">\n</app-header>\n\n<ion-content class=\"ion-padding\">\n\n  <div class=\"search-result\" *ngFor=\"let item of resultItems \">\n    <ion-item lines=\"none\"  detail=\"false\" routerLink=\"/tabs/main/categories/1/{{item.id}}\">\n      <ion-thumbnail slot=\"start\" [ngClass]=\"  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  \">\n        <img [src]=\"item.image\">\n      </ion-thumbnail>\n      <ion-label class=\"ion-text-start\">\n\n        <ion-text>\n          <h3 class=\"dark-black-color fn-16 dalel-SemiBold\"> {{item.name}}</h3>\n        </ion-text>\n\n        <div class=\"address-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <ion-icon color=\"secondary\" slot=\"start\" src=\"./../../../assets/icon/pin-white.svg\"></ion-icon>\n          </ion-button>\n\n          <p class=\"primary-color fn-10 dalel-Regular\"> {{item.city}} - {{item.address}}</p>\n        </div>\n\n        <div class=\"price-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <span class=\"white-color fn-10 dalel-Bold\"> {{item.price}} {{item.unit|translate}}\n              /{{item.perUnit|translate}} </span>\n          </ion-button>\n          <ion-button disabled='true' color=\"primary\">\n            <div class=\"rating\">\n              <div class=\"rating-value\">\n                <span class=\"white-color fn-12 dalel-Regular\">{{item.rating}}</span>\n              </div>\n\n              <div class=\"rating-icon\">\n                <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n              </div>\n            </div>\n          </ion-button>\n        </div>\n\n      </ion-label>\n    </ion-item>\n  </div>\n\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'search-results'\" [isEditable]=\"false\" [backwardRoute]=\"'/tabs/main'\" [isMain]=\"false\">\n</app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n\n  <div class=\"search-result\" *ngFor=\"let item of resultItems \">\n    <ion-item lines=\"none\"  detail=\"false\" routerLink=\"/tabs/main/categories/1/{{item.id}}\">\n      <ion-thumbnail slot=\"start\" [ngClass]=\"  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  \">\n        <img [src]=\"item.image\">\n      </ion-thumbnail>\n      <ion-label class=\"ion-text-start\">\n\n        <ion-text>\n          <h3 class=\"dark-black-color fn-16 dalel-SemiBold\"> {{item.name}}</h3>\n        </ion-text>\n\n        <div class=\"address-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <ion-icon color=\"secondary\" slot=\"start\" src=\"./../../../assets/icon/pin-white.svg\"></ion-icon>\n          </ion-button>\n\n          <p class=\"primary-color fn-10 dalel-Regular\"> {{item.city}} - {{item.address}}</p>\n        </div>\n\n        <div class=\"price-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <span class=\"white-color fn-10 dalel-Bold\"> {{item.price}} {{item.unit|translate}}\n              /{{item.perUnit|translate}} </span>\n          </ion-button>\n          <ion-button disabled='true' color=\"primary\">\n            <div class=\"rating\">\n              <div class=\"rating-value\">\n                <span class=\"white-color fn-12 dalel-Regular\">{{item.rating}}</span>\n              </div>\n\n              <div class=\"rating-icon\">\n                <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n              </div>\n            </div>\n          </ion-button>\n        </div>\n\n      </ion-label>\n    </ion-item>\n  </div>\n\n</ion-content>");
 
 /***/ }),
 

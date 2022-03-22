@@ -97,13 +97,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CategoriesPage": () => (/* binding */ CategoriesPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
 /* harmony import */ var _categories_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories.page.scss */ 21205);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -112,10 +114,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CategoriesPage = class CategoriesPage {
-    constructor(router, menuCtrl, dataService) {
+    constructor(router, menuCtrl, dataService, util) {
         this.router = router;
         this.menuCtrl = menuCtrl;
         this.dataService = dataService;
+        this.util = util;
         this.categories = [
             { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
             { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
@@ -128,6 +131,7 @@ let CategoriesPage = class CategoriesPage {
             { id: 9, name: 'rests', image: './../../../assets/images/1024-500.png' },
             { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
         ];
+        this.platform = this.util.platform;
     }
     ngOnInit() { }
     openMenu() {
@@ -140,12 +144,13 @@ let CategoriesPage = class CategoriesPage {
     }
 };
 CategoriesPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController },
-    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController },
+    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
 ];
-CategoriesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+CategoriesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-categories',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_categories_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -166,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of categories\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.name)\">\n          <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label> {{cat.name|translate}} </ion-label>\n          </ion-item>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of categories\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.name)\">\n          <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label> {{cat.name|translate}} </ion-label>\n          </ion-item>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 

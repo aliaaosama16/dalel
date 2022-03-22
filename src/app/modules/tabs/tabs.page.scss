@@ -6,7 +6,7 @@ ion-label {
 
 @keyframes updown {
   0% {
-    transform:  translateY(-100%);
+    transform: translateY(-100%);
   }
 
   25% {
@@ -20,44 +20,38 @@ ion-label {
   100% {
     transform: translateY(0%);
   }
-
- 
 }
 .selected-label {
   color: var(--ion-color-primary);
 }
-// ion-tab-bar {
-//   display: flex;
-//   justify-content: space-between;
-// }
-.selected{
-  ion-icon{
+
+.selected {
+  ion-icon {
     animation: updown 1s cubic-bezier(0.1, 0.7, 0.55, 1.01);
+    animation-direction: alternate;
   }
-  
 }
 ion-tab-button {
   position: relative;
- 
-  // default case
-  // &::before {
-  //   background-color: transparent;
-  //   display: block;
-  //   content: "";
-  //   margin: 0 auto;
-  //   width: 20px;
-  //   height: 2px;
-  // }
-  // // selected case
-  // &.tab-selected::before {
-  //   width: 15%;
-  //   height: 18px;
-  //   content: "";
-  //   border-radius: 50%;
-  //   position: absolute;
-  //   top: -20%;
-  //   right: 42%;
-  //   margin: 0 auto;
-  //   background-color: var(--ion-color-primary);
-  // }
+// default case
+&::before {
+  background-color: transparent;
+  display: block;
+  content: "";
+  margin: 0 auto;
+  width: 20px;
+  height: 2px;
+}
+// selected case
+&.tab-selected::before {
+  width: 15%;
+  height: 18px;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  top: -20%;
+  right: 42%;
+  margin: 0 auto;
+  background-color: var(--ion-color-primary);
+}
 }

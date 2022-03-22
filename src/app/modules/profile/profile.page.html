@@ -1,7 +1,7 @@
 <app-header class="header-height" [title]="'profile'" [backwardRoute]="'/tabs/main'" [forwardRoute]="'/tabs/profile/edit-profile'"
   [isEditable]="true" [isMain]="false"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
 
 
   <div class="profile-card-wrapper">

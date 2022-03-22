@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { LanguageService } from './services/language/language.service';
+import { UtilitiesService } from './services/utilities/utilities.service';
 
 @Component({
   selector: 'app-root',
@@ -47,19 +48,20 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private languageService: LanguageService,
-    private langaugeGuard:ShowLanguagePageGuard
+    private langaugeGuard: ShowLanguagePageGuard,
+    private util: UtilitiesService
   ) {
     this.initializeApp();
-   
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-       this.languageService.setInitialAppLanguage();
-       this.currentLanguage=this.languageService.getLanguage();
+      this.languageService.setInitialAppLanguage();
+      this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
+      this.util.getPlatformType().then((val) => {
+        this.util.setPlatform(val);
+      });
     });
   }
-
-  
 }
