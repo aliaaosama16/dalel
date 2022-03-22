@@ -12,6 +12,9 @@ export class AuthService {
   constructor(private httpclient:HttpClient) { }
 
 
+  
+
+
   isLogined(){
     this.logined.next(true);
   }
