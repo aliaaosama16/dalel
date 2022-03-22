@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilitiesService {
   public loading: any;
+  userLocation = { lat: 0, lng: 0 };
   constructor(
     private translate: TranslateService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private plt: Platform
   ) {}
 
   async showMessage(message: string) {
@@ -46,5 +49,34 @@ export class UtilitiesService {
     });
     this.loading.present();
     return this.loading;
+  }
+
+  getUserLocation() {
+    return new Promise(async (resolve, reject) => {
+      const locationStatus = await Geolocation.requestPermissions().then(
+        async (res) => {
+          if (res['location'] == 'granted') {
+            const coordinates = await Geolocation.getCurrentPosition();
+            console.log(coordinates);
+            this.userLocation.lat = coordinates['coords'].latitude;
+            this.userLocation.lng = coordinates['coords'].longitude;
+          }
+        }
+      );
+      resolve(locationStatus);
+      console.log('coordsss: ', JSON.stringify(this.userLocation));
+    });
+  }
+
+  getPlatformType() {
+    return new Promise((resolve, reject) => {
+      let platform;
+      if (this.plt.is('android')) {
+        platform = 'android';
+      } else if (this.plt.is('ios')) {
+        platform = 'ios';
+      }
+      resolve(platform);
+    });
   }
 }

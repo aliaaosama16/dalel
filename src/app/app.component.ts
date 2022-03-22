@@ -50,6 +50,7 @@ export class AppComponent {
     private langaugeGuard:ShowLanguagePageGuard
   ) {
     this.initializeApp();
+   
   }
 
   initializeApp() {
@@ -59,4 +60,6 @@ export class AppComponent {
       console.log(`language is ${this.currentLanguage}`);
     });
   }
+
+  
 }

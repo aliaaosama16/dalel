@@ -1,6 +1,40 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
+/***/ 32109:
+/*!*********************************************************************!*\
+  !*** ./node_modules/@capacitor/geolocation/dist/esm/definitions.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ 2233:
+/*!***************************************************************!*\
+  !*** ./node_modules/@capacitor/geolocation/dist/esm/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Geolocation": () => (/* binding */ Geolocation)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 32109);
+
+const Geolocation = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Geolocation', {
+    web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_geolocation_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 19545)).then(m => new m.GeolocationWeb()),
+});
+
+
+
+
+/***/ }),
+
 /***/ 85898:
 /*!***************************************************************!*\
   !*** ./node_modules/@capacitor/toast/dist/esm/definitions.js ***!
@@ -966,12 +1000,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UtilitiesService": () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/toast */ 85188);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/geolocation */ 2233);
+
 
 
 
@@ -979,19 +1015,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let UtilitiesService = class UtilitiesService {
-    constructor(translate, loadingCtrl) {
+    constructor(translate, loadingCtrl, plt) {
         this.translate = translate;
         this.loadingCtrl = loadingCtrl;
+        this.plt = plt;
+        this.userLocation = { lat: 0, lng: 0 };
     }
     showMessage(message) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__.Toast.show({
                 text: this.translate.instant(message),
             });
         });
     }
     storeData(key, value) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: key,
                 value: value,
@@ -999,7 +1037,7 @@ let UtilitiesService = class UtilitiesService {
         });
     }
     getDataByKey(key) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
             console.log('openBoarding stored value :' + JSON.stringify(val));
             this.getValue(val.value);
@@ -1009,7 +1047,7 @@ let UtilitiesService = class UtilitiesService {
         return value;
     }
     showLoadingSpinner() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingCtrl.create({
                 mode: 'md',
                 spinner: 'dots',
@@ -1020,13 +1058,40 @@ let UtilitiesService = class UtilitiesService {
             return this.loading;
         });
     }
+    getUserLocation() {
+        return new Promise((resolve, reject) => (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            const locationStatus = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.requestPermissions().then((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+                if (res['location'] == 'granted') {
+                    const coordinates = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.getCurrentPosition();
+                    console.log(coordinates);
+                    this.userLocation.lat = coordinates['coords'].latitude;
+                    this.userLocation.lng = coordinates['coords'].longitude;
+                }
+            }));
+            resolve(locationStatus);
+            console.log('coordsss: ', JSON.stringify(this.userLocation));
+        }));
+    }
+    getPlatformType() {
+        return new Promise((resolve, reject) => {
+            let platform;
+            if (this.plt.is('android')) {
+                platform = 'android';
+            }
+            else if (this.plt.is('ios')) {
+                platform = 'ios';
+            }
+            resolve(platform);
+        });
+    }
 };
 UtilitiesService.ctorParameters = () => [
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.LoadingController }
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.Platform }
 ];
-UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Injectable)({
         providedIn: 'root',
     })
 ], UtilitiesService);

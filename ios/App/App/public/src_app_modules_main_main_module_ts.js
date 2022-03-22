@@ -119,20 +119,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MainPage = class MainPage {
-    constructor(menuCtrl, modalController, langaugeservice, router, dataService, utilities) {
+    constructor(menuCtrl, modalController, langaugeservice, router, dataService, util) {
         this.menuCtrl = menuCtrl;
         this.modalController = modalController;
         this.langaugeservice = langaugeservice;
         this.router = router;
         this.dataService = dataService;
-        this.utilities = utilities;
+        this.util = util;
         this.searchText = '';
         this.configSlider = {
             slidesPerView: 1,
             spaceBetween: 0,
             pagination: {
                 el: '.swiper-pagination',
-                clickable: true
+                clickable: true,
             },
         };
         this.configContent = {
@@ -217,6 +217,7 @@ let MainPage = class MainPage {
             },
         ];
         this.menuCtrl.enable(true, 'main');
+        this.util.getUserLocation();
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -235,7 +236,7 @@ let MainPage = class MainPage {
             this.router.navigateByUrl('/tabs/main/search-results');
         }
         else {
-            this.utilities.showMessage('please enter search text');
+            this.util.showMessage('please enter search text');
         }
     }
     showAllCategories() {

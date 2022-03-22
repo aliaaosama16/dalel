@@ -6,16 +6,22 @@ ion-label {
 
 @keyframes updown {
   0% {
-    transform: translateY(-100%);
+    transform:  translateY(-100%);
+  }
+
+  25% {
+    transform: translateY(-50%);
   }
 
   50% {
-    transform: translateY(50%);
+    transform: translateY(-25%);
   }
 
   100% {
-    transform: translateY(70%);
+    transform: translateY(0%);
   }
+
+ 
 }
 .selected-label {
   color: var(--ion-color-primary);
@@ -26,7 +32,7 @@ ion-label {
 // }
 .selected{
   ion-icon{
-    animation: updown 2s ease-in ;
+    animation: updown 1s cubic-bezier(0.1, 0.7, 0.55, 1.01);
   }
   
 }

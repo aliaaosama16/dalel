@@ -2111,9 +2111,7 @@ button.swiper-pagination-bullet {
   overflow: hidden;
 }
 :root {
-  /* Set the background of the entire app */
   --ion-background-color: var(--ion-color-white);
-  /* Set the font family of the entire app */
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
 }
 .header-height {

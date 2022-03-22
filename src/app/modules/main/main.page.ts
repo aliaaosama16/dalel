@@ -21,8 +21,8 @@ export class MainPage implements OnInit {
     slidesPerView: 1,
     spaceBetween: 0,
     pagination: {
-      el:'.swiper-pagination',
-      clickable:true
+      el: '.swiper-pagination',
+      clickable: true,
     },
   };
   configContent: SwiperOptions = {
@@ -115,9 +115,10 @@ export class MainPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private dataService: DataService,
-    private utilities: UtilitiesService
+    private util: UtilitiesService
   ) {
     this.menuCtrl.enable(true, 'main');
+    this.util.getUserLocation();
   }
 
   ngOnInit() {
@@ -139,7 +140,7 @@ export class MainPage implements OnInit {
     if (this.searchText != '') {
       this.router.navigateByUrl('/tabs/main/search-results');
     } else {
-      this.utilities.showMessage('please enter search text');
+      this.util.showMessage('please enter search text');
     }
   }
 
@@ -158,7 +159,7 @@ export class MainPage implements OnInit {
     // swiper.slideNext();
   }
 
-  // this.utilities.showLoadingSpinner().then((__) => {
+  // this.util.showLoadingSpinner().then((__) => {
   //   this.loanCalcService.getSocialStatus(gender).subscribe(
   //     (data) => {
   //       // console.log(data);
