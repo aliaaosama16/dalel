@@ -16,6 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'language',
+    canActivate:[ShowLanguagePageGuard],
     loadChildren: () =>
       import('./modules/language/language.module').then(
         (m) => m.LanguagePageModule
