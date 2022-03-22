@@ -17,9 +17,18 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
-  showPass: boolean;
-  iconName: string = 'eye-off-outline';
-  inputType: any;
+
+  showLoginPass: boolean;
+  inputLoginType: any='password';
+  iconLoginName: string = 'eye-off-outline';
+
+  showLRegisterPass: boolean;
+  iconRegisterName:string='eye-off-outline';
+  inputRegisterType: any='password';
+
+  showLRegisterConfirmPass: boolean;
+  iconRegisterConfirmName:string='eye-off-outline';
+  inputRegisterConfirmType: any='password';
 
   authType: string = 'register';
   inputFocusPerson: boolean = false;
@@ -186,9 +195,19 @@ export class LoginRegisterPage implements OnInit {
     this.inputFocusConfirmPassword = focusStatus;
   }
 
-  showPassword() {
-    this.showPass = !this.showPass;
-    this.iconName = this.showPass ? 'eye-off-outline' : 'eye-outline';
-    this.inputType = this.showPass ? 'text' : 'password';
+  showLoginPassword() {
+    this.showLoginPass= ! this.showLoginPass;
+    this.iconLoginName=  this.showLoginPass ? 'eye-outline' : 'eye-off-outline';
+    this.inputLoginType =  this.showLoginPass ? 'text' : 'password';
+  }
+  showRegisterPassword(){
+    this.showLRegisterPass = !this.showLRegisterPass;
+    this.iconRegisterName= this.showLRegisterPass ? 'eye-outline' : 'eye-off-outline';
+    this.inputRegisterType= this.showLRegisterPass ? 'text' : 'password';
+  }
+  showRegisterConfirmPassword(){
+    this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
+    this.iconRegisterConfirmName= this.showLRegisterConfirmPass ? 'eye-outline' : 'eye-off-outline';
+    this.inputRegisterConfirmType = this.showLRegisterConfirmPass ? 'text' : 'password';
   }
 }

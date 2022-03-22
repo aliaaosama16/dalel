@@ -120,9 +120,14 @@
             (ionFocus)="focusPassword(true)"
             (ionBlur)="focusPassword(false)"
             placeholder="{{'password'|translate}}"
-            type="password"
+            [type]="inputRegisterType"
             formControlName="password"
           ></ion-input>
+          <ion-icon (click)="showRegisterPassword()"
+          item-end
+          color="primary"
+          [name]="iconRegisterName"
+        ></ion-icon>
         </ion-item>
 
         <div
@@ -142,9 +147,14 @@
             (ionFocus)="focusConfirmPassword(true)"
             (ionBlur)="focusConfirmPassword(false)"
             placeholder="{{'confirm-password'|translate}}"
-            type="password"
+            [type]="inputRegisterConfirmType"
             formControlName="confirmPassword"
           ></ion-input>
+          <ion-icon (click)="showRegisterConfirmPassword()"
+          item-end
+          color="primary"
+          [name]="iconRegisterConfirmName"
+        ></ion-icon>
         </ion-item>
 
         <div
@@ -180,8 +190,7 @@
           ></ion-input>
        
         </ion-item>
-        <!-- <ion-icon name="eye-outline"></ion-icon>
-        <ion-icon name="eye-off-outline"></ion-icon> -->
+       
         <div
           class="error-box"
           *ngIf=" isSignInSubmitted && signinErrorControl.phoneNumber.errors?.required"
@@ -205,13 +214,13 @@
             (ionFocus)="focusPassword(true)"
             (ionBlur)="focusPassword(false)"
             placeholder="{{'password'|translate}}"
-            [type]="inputType"
+            [type]="inputLoginType"
             formControlName="password"
           ></ion-input>
-          <ion-icon (click)="showPassword()"
+          <ion-icon (click)="showLoginPassword()"
           item-end
           color="primary"
-          [name]="iconName"
+          [name]="iconLoginName"
         ></ion-icon>
         </ion-item>
 
