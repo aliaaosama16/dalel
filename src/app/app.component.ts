@@ -22,25 +22,25 @@ export class AppComponent {
     },
     {
       title: 'contact-us',
-      url: '/contact-us',
+      url: '/tabs/main/contact-us',
       iconActive: './../assets/icon/contact-active.svg',
       iconInActive: './../assets/icon/contact-inactive.svg',
     },
     {
       title: 'policy',
-      url: '/policy',
+      url: '/tabs/main/policy',
       iconActive: './../assets/icon/policy-active.svg',
       iconInActive: './../assets/icon/policy-inactive.svg',
     },
     {
       title: 'about',
-      url: '/about',
+      url: '/tabs/main/about',
       iconActive: './../assets/icon/about-active.svg',
       iconInActive: './../assets/icon/about-inactive.svg',
     },
     {
       title: 'favourites',
-      url: '/favourites',
+      url: '/tabs/main/favourites',
       iconActive: './../assets/icon/heart-active.svg',
       iconInActive: './../assets/icon/heart-inactive.svg',
     },
@@ -62,6 +62,12 @@ export class AppComponent {
       this.util.getPlatformType().then((val) => {
         this.util.setPlatform(val);
       });
+
+      this.util.getDeviceID();
+      // .then((val) => {
+      //   console.log('device data'+JSON.stringify(val))
+      //   this.util.setDeviceID(val);
+      // });
     });
   }
 }

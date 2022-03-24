@@ -70,6 +70,30 @@ const routes: Routes = [
                 './../../modules/reservation-payment/reservation-payment.module'
               ).then((m) => m.ReservationPaymentPageModule),
           },
+          {
+            path: 'contact-us',
+            loadChildren: () =>
+              import('./../../modules/contact-us/contact-us.module').then(
+                (m) => m.ContactUsPageModule
+              ),
+          },
+          {
+            path: 'policy',
+            loadChildren: () =>
+              import('./../../modules/policy/policy.module').then((m) => m.PolicyPageModule),
+          },
+          {
+            path: 'about',
+            loadChildren: () =>
+              import('./../../modules/about/about.module').then((m) => m.AboutPageModule),
+          },
+          {
+            path: 'favourites',
+            loadChildren: () =>
+              import('./../../modules/favourites/favourites.module').then(
+                (m) => m.FavouritesPageModule
+              ),
+          },
         ],
       },
       {
@@ -111,7 +135,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'my-reservations-details',
+            path: 'my-reservations-details/:id',
             loadChildren: () =>
               import(
                 './../my-reservations-details/my-reservations-details.module'

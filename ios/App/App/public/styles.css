@@ -2253,7 +2253,7 @@ ion-input {
   text-align: center;
 }
 ion-tab-bar {
-  --background: rgba(var(--ion-color-secondary-rgb), 0.2) !important;
+  --background: #FAD9C5 !important;
   margin: 16px;
   border-radius: 5px;
 }

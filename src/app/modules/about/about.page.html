@@ -1,28 +1,18 @@
 <app-header
-  [title]="'about'"
+  [title]="aboutDataResponse?.data?.title"
   [isEditable]="false"
   [backwardRoute]="'/tabs/main'"
   [isMain]="false"
   class="header-height"
 ></app-header>
 <ion-content class="ion-padding">
-  <ion-card class="ion-no-margin">
+  <ion-card class="ion-no-margin" *ngIf="aboutDataResponse?.data?.desc">
     <div class="logo">
-      <img src="./../../../assets/images/about-image.svg" />
+      <img [src]="aboutDataResponse?.data?.image" />
     </div>
     <div class="ion-padding content">
       <p class="fn-14 dalel-Regular gray-black-color">
-        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي
-        القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة
-        التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ
-        زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
-        الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم
-        استخدام طريقة لوريم إيبسوم هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى
-        المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل
-        توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم
-        إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما
-        سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في
-        الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم
+        {{aboutDataResponse?.data?.desc}}
       </p>
     </div>
   </ion-card>

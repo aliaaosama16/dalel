@@ -99,10 +99,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
 /* harmony import */ var _notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.page.scss */ 87326);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/notifications/notifications.service */ 31670);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
 
 
 
@@ -112,79 +118,20 @@ __webpack_require__.r(__webpack_exports__);
 
 // import * as moment from 'moment';
 let NotificationsPage = class NotificationsPage {
-    constructor(menuCtrl, langaugeservice, util) {
+    constructor(menuCtrl, langaugeservice, util, router, userNotifications, alertController, translate) {
         this.menuCtrl = menuCtrl;
         this.langaugeservice = langaugeservice;
         this.util = util;
-        this.notifications = [
-            {
-                id: 1,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-            {
-                id: 2,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: false,
-            },
-            {
-                id: 3,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-            {
-                id: 4,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: false,
-            },
-            {
-                id: 5,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-            {
-                id: 6,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: false,
-            },
-            {
-                id: 7,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-            {
-                id: 8,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: false,
-            },
-            {
-                id: 9,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-            {
-                id: 10,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: false,
-            },
-            {
-                id: 11,
-                text: 'تم الموافقة على طلبك',
-                date: 'منذ 10 دقائق',
-                isRead: true,
-            },
-        ];
+        this.router = router;
+        this.userNotifications = userNotifications;
+        this.alertController = alertController;
+        this.translate = translate;
         this.platform = this.util.platform;
+        this.notificationsData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: 37,
+        };
+        this.showNotification(this.notificationsData);
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -193,19 +140,117 @@ let NotificationsPage = class NotificationsPage {
     openMenu() {
         this.menuCtrl.open();
     }
+    showNotification(data) {
+        this.util.showLoadingSpinner().then((__) => {
+            this.userNotifications.showNotification(data).subscribe((data) => {
+                this.notifications = data.data;
+                console.log('notifications' + JSON.stringify(this.notifications));
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
+    }
+    openOrederDetails(orderID) {
+        this.router.navigateByUrl(`/tabs/my-reservations/my-reservations-details/` + orderID);
+    }
+    deleteItem(notification_id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            const data = {
+                lang: this.langaugeservice.getLanguage(),
+                notification_id: notification_id,
+            };
+            const alert = yield this.alertController.create({
+                cssClass: 'my-custom-class',
+                message: this.translate.instant('confirm delete this notification'),
+                buttons: [
+                    {
+                        text: this.translate.instant('cancel'),
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: () => {
+                            console.log('Confirm Cancel');
+                        },
+                    },
+                    {
+                        text: this.translate.instant('ok'),
+                        handler: () => {
+                            this.util.showLoadingSpinner().then((__) => {
+                                this.userNotifications.deleteNotification(data).subscribe((data) => {
+                                    console.log('delete item ' + JSON.stringify(this.notifications));
+                                    this.util.showMessage(data.msg);
+                                    this.util.dismissLoading();
+                                    this.showNotification(this.notificationsData);
+                                }, (err) => {
+                                    this.util.dismissLoading();
+                                });
+                            });
+                        },
+                    },
+                ],
+            });
+            yield alert.present();
+        });
+    }
 };
 NotificationsPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
+    { type: src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__.NotificationsService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateService }
 ];
 NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-notifications',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], NotificationsPage);
+
+
+
+/***/ }),
+
+/***/ 31670:
+/*!*****************************************************************!*\
+  !*** ./src/app/services/notifications/notifications.service.ts ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NotificationsService": () => (/* binding */ NotificationsService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
+
+
+let NotificationsService = class NotificationsService {
+    constructor(httpclient) {
+        this.httpclient = httpclient;
+    }
+    showNotification(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-notification`, data);
+    }
+    deleteNotification(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}delete-notification`, data);
+    }
+};
+NotificationsService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+NotificationsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root',
+    })
+], NotificationsService);
 
 
 
@@ -221,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <ion-card class=\"ion-no-margin\">\n    <ion-item\n      *ngFor=\"let item of notifications\"\n      [ngClass]=\"item.isRead ? 'isRead' : ''\"\n    >\n      <ul>\n        <li>\n          <ion-label>\n            <h5 class=\"fn-14 dalel-Regular\">{{item.text}}</h5>\n            <p\n              item-start\n              class=\"fn-12 dalel-Regular secondary-color\"\n              [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n            >\n              {{item.date}}\n            </p>\n          </ion-label>\n        </li>\n      </ul>\n    </ion-item>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" -->\n<ion-content\n  class=\"ion-padding\"\n  [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\"\n>\n  <ion-card class=\"ion-no-margin\">\n    <ion-item-sliding  *ngFor=\"let item of notifications\" >\n    <ion-item (click)=\"openOrederDetails(item.order_id)\">\n      <ul>\n        <li>\n          <ion-label>\n            <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n            <p\n              item-start\n              class=\"fn-12 dalel-Regular secondary-color\"\n              [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n            >\n              {{item.duration}}\n            </p>\n          </ion-label>\n        </li>\n      </ul>\n    </ion-item>\n    <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n      <ion-item-option color=\"danger\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-item-option>\n     \n    </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 
@@ -231,7 +276,7 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************************************/
 /***/ ((module) => {
 
-module.exports = "ul {\n  list-style-image: url('dot-icon.svg');\n}\n\nion-item {\n  --border-color: var(--ion-color-white) !important;\n}\n\nion-item::part(native) {\n  text-align: center;\n  padding-inline-end: 0px !important;\n  padding-inline-start: 0px !important;\n}\n\nion-item::part(native) .item-inner {\n  --inner-border-width: 0px;\n}\n\n.isRead {\n  --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUNBQUE7QUFDRjs7QUFDQTtFQUNFLGlEQUFBO0FBRUY7O0FBQUE7RUFDRSxrQkFBQTtFQUNBLGtDQUFBO0VBQ0Esb0NBQUE7QUFHRjs7QUFERTtFQUNFLHlCQUFBO0FBR0o7O0FBQ0E7RUFDRSxpRUFBQTtBQUVGIiwiZmlsZSI6Im5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsidWwge1xuICBsaXN0LXN0eWxlLWltYWdlOiB1cmwoXCIuLy4uLy4uLy4uL2Fzc2V0cy9pY29uL2RvdC1pY29uLnN2Z1wiKTtcbn1cbmlvbi1pdGVtIHtcbiAgLS1ib3JkZXItY29sb3I6IHZhcigtLWlvbi1jb2xvci13aGl0ZSkgIWltcG9ydGFudDtcbn1cbmlvbi1pdGVtOjpwYXJ0KG5hdGl2ZSkge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmctaW5saW5lLWVuZDogMHB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmctaW5saW5lLXN0YXJ0OiAwcHggIWltcG9ydGFudDtcblxuICAuaXRlbS1pbm5lciB7XG4gICAgLS1pbm5lci1ib3JkZXItd2lkdGg6IDBweDtcbiAgfVxufVxuXG4uaXNSZWFkIHtcbiAgLS1iYWNrZ3JvdW5kOiByZ2JhKHZhcigtLWlvbi1jb2xvci1wcmltYXJ5LXJnYiksIDAuMTUpICFpbXBvcnRhbnQ7XG59XG4iXX0= */";
+module.exports = "ul {\n  list-style-image: url('dot-icon.svg');\n}\n\nion-item::part(native) {\n  text-align: center;\n  padding-inline-end: 0px !important;\n  padding-inline-start: 0px !important;\n}\n\nion-item::part(native) .item-inner {\n  --inner-border-width: 0px;\n}\n\n.isRead {\n  --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUNBQUE7QUFDRjs7QUFJQTtFQUNFLGtCQUFBO0VBQ0Esa0NBQUE7RUFDQSxvQ0FBQTtBQURGOztBQUdFO0VBQ0UseUJBQUE7QUFESjs7QUFLQTtFQUNFLGlFQUFBO0FBRkYiLCJmaWxlIjoibm90aWZpY2F0aW9ucy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ1bCB7XG4gIGxpc3Qtc3R5bGUtaW1hZ2U6IHVybChcIi4vLi4vLi4vLi4vYXNzZXRzL2ljb24vZG90LWljb24uc3ZnXCIpO1xufVxuLy8gaW9uLWl0ZW0ge1xuLy8gICAtLWJvcmRlci1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXdoaXRlKSAhaW1wb3J0YW50O1xuLy8gfVxuaW9uLWl0ZW06OnBhcnQobmF0aXZlKSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgcGFkZGluZy1pbmxpbmUtZW5kOiAwcHggIWltcG9ydGFudDtcbiAgcGFkZGluZy1pbmxpbmUtc3RhcnQ6IDBweCAhaW1wb3J0YW50O1xuXG4gIC5pdGVtLWlubmVyIHtcbiAgICAtLWlubmVyLWJvcmRlci13aWR0aDogMHB4O1xuICB9XG59XG5cbi5pc1JlYWQge1xuICAtLWJhY2tncm91bmQ6IHJnYmEodmFyKC0taW9uLWNvbG9yLXByaW1hcnktcmdiKSwgMC4xNSkgIWltcG9ydGFudDtcbn1cbiJdfQ== */";
 
 /***/ })
 

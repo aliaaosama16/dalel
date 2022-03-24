@@ -96,15 +96,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "OnBoardingPage": () => (/* binding */ OnBoardingPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_on_boarding_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./on-boarding.page.html */ 12190);
 /* harmony import */ var _on_boarding_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./on-boarding.page.scss */ 22415);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper */ 44269);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/general/general.service */ 55731);
+
+
 
 
 
@@ -116,46 +120,62 @@ __webpack_require__.r(__webpack_exports__);
 
 swiper__WEBPACK_IMPORTED_MODULE_3__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_3__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_3__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_3__.EffectCards, swiper__WEBPACK_IMPORTED_MODULE_3__.EffectFade]);
 let OnBoardingPage = class OnBoardingPage {
-    constructor(langaugeservice, router, menuCtrl, util) {
+    constructor(langaugeservice, router, menuCtrl, util, general) {
         this.langaugeservice = langaugeservice;
         this.router = router;
         this.menuCtrl = menuCtrl;
         this.util = util;
+        this.general = general;
         this.slidingNotAvailable = false;
         this.nextClicked = 0;
         this.config = {
             slidesPerView: 1,
             spaceBetween: 0,
             pagination: true,
-            allowTouchMove: false,
+            //allowTouchMove: false,
         };
         this.menuCtrl.enable(false, 'main');
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
+        this.getIntroData();
     }
     skipBoarding() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             console.log('skip boarding pages');
-            this.util.storeData('openBoarding', true);
+            this.setBoarding();
             this.router.navigateByUrl('/tabs/main');
+        });
+    }
+    getIntroData() {
+        this.util.showLoadingSpinner().then((__) => {
+            this.general.intro().subscribe((data) => {
+                this.introData = data;
+                console.log('INTRO ' + JSON.stringify(this.introData));
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
         });
     }
     nextSlide(ev) {
         console.log('pointerId : ' + ev.pointerId);
-        // if (ev.pointerId <= 5 && ev.pointerId >= 3) {
-        //   this.swiper.swiperRef.slideNext(500);
-        // } else {
-        //   this.slidingNotAvailable = true;
-        // }
         if (this.nextClicked < 3) {
             this.nextClicked++;
         }
         else {
-            this.util.storeData('openBoarding', true);
+            this.setBoarding();
             this.router.navigateByUrl('/tabs/main');
         }
+    }
+    setBoarding() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_4__.Storage.set({
+                key: 'openBoarding',
+                value: 'true',
+            });
+        });
     }
     ngAfterContentChecked() {
         if (this.swiper) {
@@ -168,18 +188,19 @@ let OnBoardingPage = class OnBoardingPage {
 };
 OnBoardingPage.ctorParameters = () => [
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.MenuController },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
+    { type: src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_6__.GeneralService }
 ];
 OnBoardingPage.propDecorators = {
-    swiper: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: ['swiper',] }]
+    swiper: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild, args: ['swiper',] }]
 };
-OnBoardingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+OnBoardingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-on-boarding',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_on_boarding_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
-        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewEncapsulation.None,
+        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewEncapsulation.None,
         styles: [_on_boarding_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], OnBoardingPage);

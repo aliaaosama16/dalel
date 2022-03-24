@@ -30,5 +30,6 @@ export class LanguagePage implements OnInit {
     } else {
       document.documentElement.dir = 'ltr';
     }
+   // window.location.reload();
   }
 }

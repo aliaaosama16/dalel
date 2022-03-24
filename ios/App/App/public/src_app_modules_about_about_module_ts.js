@@ -96,22 +96,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AboutPage": () => (/* binding */ AboutPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./about.page.html */ 1844);
 /* harmony import */ var _about_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./about.page.scss */ 61601);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/general/general.service */ 55731);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
 
 
 
 
 let AboutPage = class AboutPage {
-    constructor() { }
-    ngOnInit() {
+    constructor(util, general, language) {
+        this.util = util;
+        this.general = general;
+        this.language = language;
+        this.aboutData = {
+            lang: this.language.getLanguage(),
+            user_id: 1,
+            title: 'about',
+        };
+        this.getIntroData(this.aboutData);
+    }
+    ngOnInit() { }
+    getIntroData(data) {
+        this.util.showLoadingSpinner().then((__) => {
+            this.general.staticPages(data).subscribe((data) => {
+                this.aboutDataResponse = data;
+                console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
 };
-AboutPage.ctorParameters = () => [];
-AboutPage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+AboutPage.ctorParameters = () => [
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_2__.GeneralService },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
+];
+AboutPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-about',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_about_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -132,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'about'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\">\n    <div class=\"logo\">\n      <img src=\"./../../../assets/images/about-image.svg\" />\n    </div>\n    <div class=\"ion-padding content\">\n      <p class=\"fn-14 dalel-Regular gray-black-color\">\n        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي\n        القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة\n        التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ\n        زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على\n        الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم\n        استخدام طريقة لوريم إيبسوم هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى\n        المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل\n        توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم\n        إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما\n        سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في\n        الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم\n      </p>\n    </div>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"aboutDataResponse?.data?.title\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\" *ngIf=\"aboutDataResponse?.data?.desc\">\n    <div class=\"logo\">\n      <img [src]=\"aboutDataResponse?.data?.image\" />\n    </div>\n    <div class=\"ion-padding content\">\n      <p class=\"fn-14 dalel-Regular gray-black-color\">\n        {{aboutDataResponse?.data?.desc}}\n      </p>\n    </div>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 
@@ -142,7 +172,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = ".logo {\n  text-align: center;\n  margin: 24px 0 20px 0;\n}\n\n.content p {\n  margin: 0px !important;\n  text-align: center !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFib3V0LnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EscUJBQUE7QUFDSjs7QUFJSTtFQUNJLHNCQUFBO0VBQ0EsNkJBQUE7QUFEUiIsImZpbGUiOiJhYm91dC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9nb3tcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luOiAyNHB4IDAgMjBweCAwO1xuICBcbn1cblxuLmNvbnRlbnR7XG4gICAgcHtcbiAgICAgICAgbWFyZ2luOiAwcHggIWltcG9ydGFudDtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgfVxufSJdfQ== */";
+module.exports = ".logo {\n  text-align: center;\n  margin: 24px 0 20px 0;\n}\n.logo img {\n  width: 50%;\n  margin: auto;\n}\n.content p {\n  margin: 0px !important;\n  text-align: center !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFib3V0LnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EscUJBQUE7QUFDSjtBQUFFO0VBQ0UsVUFBQTtFQUNBLFlBQUE7QUFFSjtBQUdJO0VBQ0ksc0JBQUE7RUFDQSw2QkFBQTtBQUFSIiwiZmlsZSI6ImFib3V0LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2dve1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtYXJnaW46IDI0cHggMCAyMHB4IDA7XG4gIGltZ3tcbiAgICB3aWR0aDogNTAlO1xuICAgIG1hcmdpbjogYXV0bztcbiAgfVxufVxuXG4uY29udGVudHtcbiAgICBwe1xuICAgICAgICBtYXJnaW46IDBweCAhaW1wb3J0YW50O1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbiAgICB9XG59Il19 */";
 
 /***/ })
 

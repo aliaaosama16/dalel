@@ -539,6 +539,40 @@ const WebView = /*#__PURE__*/registerPlugin('WebView');
 
 /***/ }),
 
+/***/ 74078:
+/*!****************************************************************!*\
+  !*** ./node_modules/@capacitor/device/dist/esm/definitions.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ 94219:
+/*!**********************************************************!*\
+  !*** ./node_modules/@capacitor/device/dist/esm/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Device": () => (/* binding */ Device)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 74078);
+
+const Device = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Device', {
+    web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_device_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 39099)).then(m => new m.DeviceWeb()),
+});
+
+
+
+
+/***/ }),
+
 /***/ 32109:
 /*!*********************************************************************!*\
   !*** ./node_modules/@capacitor/geolocation/dist/esm/definitions.js ***!

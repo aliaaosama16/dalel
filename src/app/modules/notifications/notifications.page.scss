@@ -1,9 +1,9 @@
 ul {
   list-style-image: url("./../../../assets/icon/dot-icon.svg");
 }
-ion-item {
-  --border-color: var(--ion-color-white) !important;
-}
+// ion-item {
+//   --border-color: var(--ion-color-white) !important;
+// }
 ion-item::part(native) {
   text-align: center;
   padding-inline-end: 0px !important;

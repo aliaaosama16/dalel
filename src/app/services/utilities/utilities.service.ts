@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
-import { LoadingController, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
+import { Device } from '@capacitor/device';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { Geolocation } from '@capacitor/geolocation';
 export class UtilitiesService {
   public loading: any;
   platform: any;
+  deviceID: string;
   userLocation = { lat: 0, lng: 0 };
   constructor(
     private translate: TranslateService,
@@ -18,9 +20,16 @@ export class UtilitiesService {
     private plt: Platform
   ) {}
 
-  setPlatform(val){
-    this.platform=val;
+  setPlatform(val) {
+    console.log('current platform is ' + val);
+    this.platform = val;
   }
+
+  setDeviceID(val) {
+    console.log('deviceID is ' + val);
+    this.deviceID = val;
+  }
+
   async showMessage(message: string) {
     await Toast.show({
       text: this.translate.instant(message),
@@ -68,7 +77,6 @@ export class UtilitiesService {
         }
       );
       resolve(locationStatus);
-      console.log('coordsss: ', JSON.stringify(this.userLocation));
     });
   }
 
@@ -81,5 +89,14 @@ export class UtilitiesService {
       }
       resolve(this.platform);
     });
+  }
+
+  async getDeviceID() {
+    const device = await (await Device.getId()).uuid;
+    this.setDeviceID(device);
+  }
+
+  public dismissLoading() {
+    this.loadingCtrl.dismiss();
   }
 }

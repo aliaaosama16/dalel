@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  BASE_URL:'https:/'
+  BASE_URL:'https://dalell.online/api/',
+  Google_API_KEY:''
 };
 
 /*

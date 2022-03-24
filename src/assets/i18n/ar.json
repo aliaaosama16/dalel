@@ -80,7 +80,7 @@
   "people number":"عدد الاشخاص",
   "determine space":"تحديد المساحة (م2)",
   "determine price":"تحديد السعر",
-  "ok":"اختيار",
+  "ok":"تأكيد",
   "cancel":"الغاء",
   "least space":"أقل مساحة",
   "highest space":"أعلي مساحة",
@@ -106,5 +106,6 @@
   "one night":"ليلة واحدة",
   "currency":"ر.س",
   "please choose from and to dates":"من فضلك اختر تواريخ الوصول والمغادرة",
-  "please login first":"من فضلك سجل اولا"
+  "please login first":"من فضلك سجل اولا",
+  "confirm delete this notification":"تأكيد حذف هذا الاشعار؟"
 }

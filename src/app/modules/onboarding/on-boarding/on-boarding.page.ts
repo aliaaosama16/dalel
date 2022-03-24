@@ -18,6 +18,9 @@ import Swiper, {
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Intro } from 'src/app/models/intro';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
 
@@ -30,20 +33,22 @@ Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
 export class OnBoardingPage implements OnInit, AfterContentChecked {
   @ViewChild('swiper') swiper: SwiperComponent;
   slidingNotAvailable: boolean = false;
-  nextClicked:number=0;
+  nextClicked: number = 0;
   currentlangauge: string;
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
     pagination: true,
-    allowTouchMove: false,
+    //allowTouchMove: false,
   };
+  introData: Intro;
 
   constructor(
     private langaugeservice: LanguageService,
     private router: Router,
     private menuCtrl: MenuController,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private general:GeneralService
   ) {
     this.menuCtrl.enable(false, 'main');
   }
@@ -51,28 +56,47 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
+    this.getIntroData();
   }
 
   async skipBoarding() {
     console.log('skip boarding pages');
-    this.util.storeData('openBoarding', true);
+    this.setBoarding();
     this.router.navigateByUrl('/tabs/main');
+  }
+
+  getIntroData() {
+    this.util.showLoadingSpinner().then((__) => {
+      this.general.intro().subscribe(
+        (data: Intro) => {
+          this.introData = data;
+          console.log('INTRO ' + JSON.stringify(this.introData));
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
   nextSlide(ev) {
     console.log('pointerId : ' + ev.pointerId);
-    // if (ev.pointerId <= 5 && ev.pointerId >= 3) {
-    //   this.swiper.swiperRef.slideNext(500);
-    // } else {
-    //   this.slidingNotAvailable = true;
-    // }
-    if(this.nextClicked<3){
+    if (this.nextClicked < 3) {
       this.nextClicked++;
-    }else{
-      this.util.storeData('openBoarding', true);
+    } else {
+      this.setBoarding();
+  
       this.router.navigateByUrl('/tabs/main');
     }
+  }
+
+  async setBoarding() {
    
+    await Storage.set({
+      key: 'openBoarding',
+      value: 'true',
+    });
   }
 
   ngAfterContentChecked(): void {

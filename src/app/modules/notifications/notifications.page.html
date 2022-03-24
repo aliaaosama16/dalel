@@ -5,27 +5,35 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-
-<ion-content class="ion-padding" [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
+<!-- [ngClass]="item.isRead ? 'isRead' : ''" -->
+<ion-content
+  class="ion-padding"
+  [ngClass]="platform=='android'?'md-header-height':'ios-header-height'"
+>
   <ion-card class="ion-no-margin">
-    <ion-item
-      *ngFor="let item of notifications"
-      [ngClass]="item.isRead ? 'isRead' : ''"
-    >
+    <ion-item-sliding  *ngFor="let item of notifications" >
+    <ion-item (click)="openOrederDetails(item.order_id)">
       <ul>
         <li>
           <ion-label>
-            <h5 class="fn-14 dalel-Regular">{{item.text}}</h5>
+            <h5 class="fn-14 dalel-Regular">{{item.message}}</h5>
             <p
               item-start
               class="fn-12 dalel-Regular secondary-color"
               [ngClass]="currentlangauge == 'ar' ? 'float-right' : 'float-left'"
             >
-              {{item.date}}
+              {{item.duration}}
             </p>
           </ion-label>
         </li>
       </ul>
     </ion-item>
+    <ion-item-options side="end" (click)="deleteItem(item.id)">
+      <ion-item-option color="danger">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+     
+    </ion-item-options>
+    </ion-item-sliding>
   </ion-card>
 </ion-content>

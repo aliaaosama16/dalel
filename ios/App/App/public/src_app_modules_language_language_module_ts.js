@@ -126,6 +126,7 @@ let LanguagePage = class LanguagePage {
         else {
             document.documentElement.dir = 'ltr';
         }
+        // window.location.reload();
     }
 };
 LanguagePage.ctorParameters = () => [

@@ -39,7 +39,7 @@ const routes = [
     {
         path: 'on-boarding',
         canActivate: [_guards_on_boarding_show_boarding_page_guard__WEBPACK_IMPORTED_MODULE_1__.ShowBoardingPageGuard],
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("src_app_modules_onboarding_on-boarding_on-boarding_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/onboarding/on-boarding/on-boarding.module */ 30643)).then((m) => m.OnBoardingPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_onboarding_on-boarding_on-boarding_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/onboarding/on-boarding/on-boarding.module */ 30643)).then((m) => m.OnBoardingPageModule),
     },
     {
         path: 'login-register',
@@ -67,11 +67,11 @@ const routes = [
     },
     {
         path: 'policy',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_policy_policy_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/policy/policy.module */ 93589)).then((m) => m.PolicyPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_policy_policy_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/policy/policy.module */ 93589)).then((m) => m.PolicyPageModule),
     },
     {
         path: 'about',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_about_about_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/about/about.module */ 89423)).then((m) => m.AboutPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_about_about_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/about/about.module */ 89423)).then((m) => m.AboutPageModule),
     },
     {
         path: 'favourites',
@@ -137,25 +137,25 @@ let AppComponent = class AppComponent {
             },
             {
                 title: 'contact-us',
-                url: '/contact-us',
+                url: '/tabs/main/contact-us',
                 iconActive: './../assets/icon/contact-active.svg',
                 iconInActive: './../assets/icon/contact-inactive.svg',
             },
             {
                 title: 'policy',
-                url: '/policy',
+                url: '/tabs/main/policy',
                 iconActive: './../assets/icon/policy-active.svg',
                 iconInActive: './../assets/icon/policy-inactive.svg',
             },
             {
                 title: 'about',
-                url: '/about',
+                url: '/tabs/main/about',
                 iconActive: './../assets/icon/about-active.svg',
                 iconInActive: './../assets/icon/about-inactive.svg',
             },
             {
                 title: 'favourites',
-                url: '/favourites',
+                url: '/tabs/main/favourites',
                 iconActive: './../assets/icon/heart-active.svg',
                 iconInActive: './../assets/icon/heart-inactive.svg',
             },
@@ -168,8 +168,13 @@ let AppComponent = class AppComponent {
             this.currentLanguage = this.languageService.getLanguage();
             console.log(`language is ${this.currentLanguage}`);
             this.util.getPlatformType().then((val) => {
-                console.log('platform :' + val);
+                this.util.setPlatform(val);
             });
+            this.util.getDeviceID();
+            // .then((val) => {
+            //   console.log('device data'+JSON.stringify(val))
+            //   this.util.setDeviceID(val);
+            // });
         });
     }
 };
@@ -464,13 +469,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UtilitiesService": () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/toast */ 85188);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/geolocation */ 2233);
+/* harmony import */ var _capacitor_device__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/device */ 94219);
+
 
 
 
@@ -485,15 +492,23 @@ let UtilitiesService = class UtilitiesService {
         this.plt = plt;
         this.userLocation = { lat: 0, lng: 0 };
     }
+    setPlatform(val) {
+        console.log('current platform is ' + val);
+        this.platform = val;
+    }
+    setDeviceID(val) {
+        console.log('deviceID is ' + val);
+        this.deviceID = val;
+    }
     showMessage(message) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__.Toast.show({
                 text: this.translate.instant(message),
             });
         });
     }
     storeData(key, value) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: key,
                 value: value,
@@ -501,7 +516,7 @@ let UtilitiesService = class UtilitiesService {
         });
     }
     getDataByKey(key) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
             console.log('openBoarding stored value :' + JSON.stringify(val));
             this.getValue(val.value);
@@ -511,7 +526,7 @@ let UtilitiesService = class UtilitiesService {
         return value;
     }
     showLoadingSpinner() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingCtrl.create({
                 mode: 'md',
                 spinner: 'dots',
@@ -523,8 +538,8 @@ let UtilitiesService = class UtilitiesService {
         });
     }
     getUserLocation() {
-        return new Promise((resolve, reject) => (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
-            const locationStatus = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.requestPermissions().then((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const locationStatus = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.requestPermissions().then((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
                 if (res['location'] == 'granted') {
                     const coordinates = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.getCurrentPosition();
                     console.log(coordinates);
@@ -547,14 +562,23 @@ let UtilitiesService = class UtilitiesService {
             resolve(this.platform);
         });
     }
+    getDeviceID() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const device = yield (yield _capacitor_device__WEBPACK_IMPORTED_MODULE_3__.Device.getId()).uuid;
+            this.setDeviceID(device);
+        });
+    }
+    dismissLoading() {
+        this.loadingCtrl.dismiss();
+    }
 };
 UtilitiesService.ctorParameters = () => [
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__.TranslateService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.Platform }
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform }
 ];
-UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Injectable)({
+UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)({
         providedIn: 'root',
     })
 ], UtilitiesService);
@@ -579,7 +603,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    BASE_URL: 'https:/'
+    BASE_URL: 'https://dalell.online/api/',
+    Google_API_KEY: ''
 };
 /*
  * For easier debugging in development mode, you can import the following file

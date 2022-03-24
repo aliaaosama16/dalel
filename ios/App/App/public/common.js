@@ -920,6 +920,51 @@ const openURL = /*#__PURE__*/function () {
 
 
 
+/***/ }),
+
+/***/ 55731:
+/*!*****************************************************!*\
+  !*** ./src/app/services/general/general.service.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GeneralService": () => (/* binding */ GeneralService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
+
+
+let GeneralService = class GeneralService {
+    constructor(httpclient) {
+        this.httpclient = httpclient;
+    }
+    intro() {
+        return this.httpclient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}intro`);
+    }
+    staticPages(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}page`, data);
+    }
+    contactUs(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}contact-us`, data);
+    }
+};
+GeneralService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+GeneralService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root',
+    })
+], GeneralService);
+
+
+
 /***/ })
 
 }]);
