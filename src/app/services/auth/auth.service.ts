@@ -5,12 +5,14 @@ import { LoginData, LoginResponse } from 'src/app/models/loginData';
 import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
 import { UserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   logined = new BehaviorSubject(true);
+  userToken: string = '';
 
   constructor(private httpclient: HttpClient) {}
 
@@ -20,6 +22,18 @@ export class AuthService {
 
   isLogout() {
     this.logined.next(false);
+  }
+
+  async storeToken(token: string) {
+    await Storage.set({
+      key: 'USER-TOKEN',
+      value: token,
+    });
+  }
+
+  async getUserToken() {
+    const val = await Storage.get({ key: 'USER-TOKEN' });
+    this.userToken = val.value;
   }
 
   userData(data: UserData): Observable<UserResponse> {

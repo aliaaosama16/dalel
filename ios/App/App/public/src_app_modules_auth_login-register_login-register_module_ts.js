@@ -94,14 +94,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LoginRegisterPage": () => (/* binding */ LoginRegisterPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./login-register.page.html */ 48231);
 /* harmony import */ var _login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login-register.page.scss */ 18066);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 18346);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 18346);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+
+
 
 
 
@@ -111,11 +115,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginRegisterPage = class LoginRegisterPage {
-    constructor(langaugeservice, router, formBuilder, menuCtrl) {
+    constructor(langaugeservice, router, formBuilder, menuCtrl, util, auth) {
         this.langaugeservice = langaugeservice;
         this.router = router;
         this.formBuilder = formBuilder;
         this.menuCtrl = menuCtrl;
+        this.util = util;
+        this.auth = auth;
         this.inputLoginType = 'password';
         this.iconLoginName = 'eye-off-outline';
         this.iconRegisterName = 'eye-off-outline';
@@ -142,49 +148,46 @@ let LoginRegisterPage = class LoginRegisterPage {
         this.isSignInSubmitted = false;
         this.menuCtrl.enable(false, 'main');
     }
-    //  ionViewWillEnter() {
-    //   this.menuCtrl.enable(false);
-    // }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         this.buildForm();
     }
     buildForm() {
         this.registerForm = this.formBuilder.group({
-            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(2)]],
+            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(2)]],
             phoneNumber: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.pattern(/^05/),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(10),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.maxLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.maxLength(10),
                     //10
                 ],
             ],
             email: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.email,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.email,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
                 ],
             ],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(6)]],
-            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(6)]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(6)]],
+            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(6)]],
         });
         this.signinForm = this.formBuilder.group({
             phoneNumber: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.pattern(/^05/),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(10),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.maxLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.maxLength(10),
                     //10
                 ],
             ],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(6)]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(6)]],
         });
     }
     authTypeChange(ev) {
@@ -209,16 +212,37 @@ let LoginRegisterPage = class LoginRegisterPage {
         this.router.navigateByUrl('/phone-number');
     }
     signIn() {
-        // api call for login current user
         this.isSignInSubmitted = true;
-        // console.log('signinForm : '+this.signinForm.value);
-        // if (!this.signinForm.valid) {
-        //   console.log('Please provide all the required values!');
-        //   return false;
-        // } else {
-        //   console.log(this.signinForm.value);
-        // }
-        this.router.navigateByUrl('/tabs/main');
+        console.log('signinForm : ' + JSON.stringify(this.signinForm.value));
+        if (this.signinForm.valid) {
+            this.loginData = {
+                lang: this.langaugeservice.getLanguage(),
+                phone: this.signinForm.value.phoneNumber,
+                password: this.signinForm.value.password,
+                device_id: this.util.deviceID,
+            };
+            this.util.showLoadingSpinner().then((__) => {
+                this.auth.login(this.loginData).subscribe((data) => {
+                    var _a;
+                    if (data.key == 1) {
+                        console.log('login res :' + JSON.stringify(data));
+                        this.router.navigateByUrl('/tabs/main');
+                        this.auth.storeToken((_a = data.data) === null || _a === void 0 ? void 0 : _a.api_token);
+                    }
+                    else {
+                        this.util.showMessage(data.msg);
+                    }
+                    this.util.dismissLoading();
+                }, (err) => {
+                    this.util.dismissLoading();
+                });
+            });
+            // return false;
+        }
+        else {
+            return false;
+            console.log(this.signinForm.value);
+        }
     }
     forgetPassword() {
         this.router.navigateByUrl('/password');
@@ -254,23 +278,31 @@ let LoginRegisterPage = class LoginRegisterPage {
     }
     showRegisterPassword() {
         this.showLRegisterPass = !this.showLRegisterPass;
-        this.iconRegisterName = this.showLRegisterPass ? 'eye-outline' : 'eye-off-outline';
+        this.iconRegisterName = this.showLRegisterPass
+            ? 'eye-outline'
+            : 'eye-off-outline';
         this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
     }
     showRegisterConfirmPassword() {
         this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
-        this.iconRegisterConfirmName = this.showLRegisterConfirmPass ? 'eye-outline' : 'eye-off-outline';
-        this.inputRegisterConfirmType = this.showLRegisterConfirmPass ? 'text' : 'password';
+        this.iconRegisterConfirmName = this.showLRegisterConfirmPass
+            ? 'eye-outline'
+            : 'eye-off-outline';
+        this.inputRegisterConfirmType = this.showLRegisterConfirmPass
+            ? 'text'
+            : 'password';
     }
 };
 LoginRegisterPage.ctorParameters = () => [
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormBuilder },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_4__.AuthService }
 ];
-LoginRegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+LoginRegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-login-register',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__]

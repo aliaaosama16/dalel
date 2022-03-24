@@ -59,15 +59,9 @@ export class AppComponent {
       this.languageService.setInitialAppLanguage();
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
-      this.util.getPlatformType().then((val) => {
-        this.util.setPlatform(val);
-      });
+      this.util.getPlatformType();
 
       this.util.getDeviceID();
-      // .then((val) => {
-      //   console.log('device data'+JSON.stringify(val))
-      //   this.util.setDeviceID(val);
-      // });
     });
   }
 }

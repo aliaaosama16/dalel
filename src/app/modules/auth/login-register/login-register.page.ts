@@ -10,6 +10,9 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { LoginData, LoginResponse } from 'src/app/models/loginData';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.page.html',
@@ -17,18 +20,19 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
+  loginData: LoginData;
 
   showLoginPass: boolean;
-  inputLoginType: any='password';
+  inputLoginType: any = 'password';
   iconLoginName: string = 'eye-off-outline';
 
   showLRegisterPass: boolean;
-  iconRegisterName:string='eye-off-outline';
-  inputRegisterType: any='password';
+  iconRegisterName: string = 'eye-off-outline';
+  inputRegisterType: any = 'password';
 
   showLRegisterConfirmPass: boolean;
-  iconRegisterConfirmName:string='eye-off-outline';
-  inputRegisterConfirmType: any='password';
+  iconRegisterConfirmName: string = 'eye-off-outline';
+  inputRegisterConfirmType: any = 'password';
 
   authType: string = 'register';
   inputFocusPerson: boolean = false;
@@ -67,14 +71,12 @@ export class LoginRegisterPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private util: UtilitiesService,
+    private auth: AuthService
   ) {
     this.menuCtrl.enable(false, 'main');
   }
-
-  //  ionViewWillEnter() {
-  //   this.menuCtrl.enable(false);
-  // }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
@@ -148,17 +150,38 @@ export class LoginRegisterPage implements OnInit {
   }
 
   signIn() {
-    // api call for login current user
     this.isSignInSubmitted = true;
-    // console.log('signinForm : '+this.signinForm.value);
-    // if (!this.signinForm.valid) {
-    //   console.log('Please provide all the required values!');
-    //   return false;
-    // } else {
-    //   console.log(this.signinForm.value);
-    // }
 
-    this.router.navigateByUrl('/tabs/main');
+    console.log('signinForm : ' + JSON.stringify(this.signinForm.value));
+    if (this.signinForm.valid) {
+      this.loginData = {
+        lang: this.langaugeservice.getLanguage(),
+        phone: this.signinForm.value.phoneNumber,
+        password: this.signinForm.value.password,
+        device_id: this.util.deviceID,
+      };
+      this.util.showLoadingSpinner().then((__) => {
+        this.auth.login(this.loginData).subscribe(
+          (data: LoginResponse) => {
+            if (data.key == 1) {
+              console.log('login res :' + JSON.stringify(data));
+              this.router.navigateByUrl('/tabs/main');
+              this.auth.storeToken(data.data?.api_token);
+            } else {
+              this.util.showMessage(data.msg);
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
+        );
+      });
+      // return false;
+    } else {
+      return false;
+      console.log(this.signinForm.value);
+    }
   }
 
   forgetPassword() {
@@ -196,18 +219,24 @@ export class LoginRegisterPage implements OnInit {
   }
 
   showLoginPassword() {
-    this.showLoginPass= ! this.showLoginPass;
-    this.iconLoginName=  this.showLoginPass ? 'eye-outline' : 'eye-off-outline';
-    this.inputLoginType =  this.showLoginPass ? 'text' : 'password';
+    this.showLoginPass = !this.showLoginPass;
+    this.iconLoginName = this.showLoginPass ? 'eye-outline' : 'eye-off-outline';
+    this.inputLoginType = this.showLoginPass ? 'text' : 'password';
   }
-  showRegisterPassword(){
+  showRegisterPassword() {
     this.showLRegisterPass = !this.showLRegisterPass;
-    this.iconRegisterName= this.showLRegisterPass ? 'eye-outline' : 'eye-off-outline';
-    this.inputRegisterType= this.showLRegisterPass ? 'text' : 'password';
+    this.iconRegisterName = this.showLRegisterPass
+      ? 'eye-outline'
+      : 'eye-off-outline';
+    this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
   }
-  showRegisterConfirmPassword(){
+  showRegisterConfirmPassword() {
     this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
-    this.iconRegisterConfirmName= this.showLRegisterConfirmPass ? 'eye-outline' : 'eye-off-outline';
-    this.inputRegisterConfirmType = this.showLRegisterConfirmPass ? 'text' : 'password';
+    this.iconRegisterConfirmName = this.showLRegisterConfirmPass
+      ? 'eye-outline'
+      : 'eye-off-outline';
+    this.inputRegisterConfirmType = this.showLRegisterConfirmPass
+      ? 'text'
+      : 'password';
   }
 }

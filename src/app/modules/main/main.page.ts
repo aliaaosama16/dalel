@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
 import { ItemDetails } from 'src/app/models/itemDetails';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +16,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class MainPage implements OnInit {
   searchText: string = '';
   currentlangauge: string;
-  platform:string='';
+  platform: string = '';
 
   configSlider: SwiperOptions = {
     slidesPerView: 1,
@@ -115,16 +116,20 @@ export class MainPage implements OnInit {
     private langaugeservice: LanguageService,
     private router: Router,
     private dataService: DataService,
-    public util: UtilitiesService
+    public util: UtilitiesService,
+    private auth: AuthService
   ) {
     this.menuCtrl.enable(true, 'main');
     this.util.getUserLocation();
-    this.platform=this.util.platform;
+    this.platform = this.util.platform;
+    console.log('curret plt is ' + this.platform);
   }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
+    this.auth.getUserToken();
+    console.log(this.auth.userToken);
   }
 
   openMenu() {

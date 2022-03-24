@@ -301,66 +301,6 @@ TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
-/***/ 9171:
-/*!***********************************************!*\
-  !*** ./src/app/services/auth/auth.service.ts ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AuthService": () => (/* binding */ AuthService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 41119);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
-
-
-
-
-
-let AuthService = class AuthService {
-    constructor(httpclient) {
-        this.httpclient = httpclient;
-        this.logined = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(true);
-    }
-    isLogined() {
-        this.logined.next(true);
-    }
-    isLogout() {
-        this.logined.next(false);
-    }
-    userData(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-user`, data);
-    }
-    login(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}login`, data);
-    }
-    register(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}register`, data);
-    }
-    logout(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}logout`, data);
-    }
-    forgetPassword() {
-        this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});
-    }
-};
-AuthService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient }
-];
-AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
-        providedIn: 'root',
-    })
-], AuthService);
-
-
-
-/***/ }),
-
 /***/ 34257:
 /*!***********************************************!*\
   !*** ./src/app/services/data/data.service.ts ***!

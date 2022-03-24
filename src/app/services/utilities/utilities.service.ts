@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
-import { AlertController, LoadingController, Platform } from '@ionic/angular';
+import {  LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Device } from '@capacitor/device';
 
@@ -83,9 +83,9 @@ export class UtilitiesService {
   getPlatformType() {
     return new Promise((resolve, reject) => {
       if (this.plt.is('android')) {
-        this.platform = 'android';
+        this.setPlatform('android');
       } else if (this.plt.is('ios')) {
-        this.platform = 'ios';
+        this.setPlatform('ios');
       }
       resolve(this.platform);
     });

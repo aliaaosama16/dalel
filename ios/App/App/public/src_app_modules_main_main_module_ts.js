@@ -100,15 +100,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MainPage": () => (/* binding */ MainPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_main_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./main.page.html */ 24736);
 /* harmony import */ var _main_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.page.scss */ 96734);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+
 
 
 
@@ -119,13 +121,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MainPage = class MainPage {
-    constructor(menuCtrl, modalController, langaugeservice, router, dataService, util) {
+    constructor(menuCtrl, modalController, langaugeservice, router, dataService, util, auth) {
         this.menuCtrl = menuCtrl;
         this.modalController = modalController;
         this.langaugeservice = langaugeservice;
         this.router = router;
         this.dataService = dataService;
         this.util = util;
+        this.auth = auth;
         this.searchText = '';
         this.platform = '';
         this.configSlider = {
@@ -220,10 +223,13 @@ let MainPage = class MainPage {
         this.menuCtrl.enable(true, 'main');
         this.util.getUserLocation();
         this.platform = this.util.platform;
+        console.log('curret plt is ' + this.platform);
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
+        this.auth.getUserToken();
+        console.log(this.auth.userToken);
     }
     openMenu() {
         this.menuCtrl.open();
@@ -255,15 +261,16 @@ let MainPage = class MainPage {
     }
 };
 MainPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
     { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService }
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService }
 ];
-MainPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+MainPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-main',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_main_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_main_page_scss__WEBPACK_IMPORTED_MODULE_1__]

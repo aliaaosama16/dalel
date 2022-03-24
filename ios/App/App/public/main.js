@@ -29,7 +29,7 @@ const routes = [
     },
     {
         path: 'tabs',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_modules_tabs_tabs_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/tabs/tabs.module */ 44838)).then((m) => m.TabsPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_modules_tabs_tabs_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/tabs/tabs.module */ 44838)).then((m) => m.TabsPageModule),
     },
     {
         path: 'language',
@@ -43,7 +43,7 @@ const routes = [
     },
     {
         path: 'login-register',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_modules_auth_login-register_login-register_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/auth/login-register/login-register.module */ 64418)).then((m) => m.LoginRegisterPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_modules_auth_login-register_login-register_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/auth/login-register/login-register.module */ 64418)).then((m) => m.LoginRegisterPageModule),
     },
     {
         path: 'phone-number',
@@ -167,14 +167,8 @@ let AppComponent = class AppComponent {
             this.languageService.setInitialAppLanguage();
             this.currentLanguage = this.languageService.getLanguage();
             console.log(`language is ${this.currentLanguage}`);
-            this.util.getPlatformType().then((val) => {
-                this.util.setPlatform(val);
-            });
+            this.util.getPlatformType();
             this.util.getDeviceID();
-            // .then((val) => {
-            //   console.log('device data'+JSON.stringify(val))
-            //   this.util.setDeviceID(val);
-            // });
         });
     }
 };
@@ -548,16 +542,15 @@ let UtilitiesService = class UtilitiesService {
                 }
             }));
             resolve(locationStatus);
-            console.log('coordsss: ', JSON.stringify(this.userLocation));
         }));
     }
     getPlatformType() {
         return new Promise((resolve, reject) => {
             if (this.plt.is('android')) {
-                this.platform = 'android';
+                this.setPlatform('android');
             }
             else if (this.plt.is('ios')) {
-                this.platform = 'ios';
+                this.setPlatform('ios');
             }
             resolve(this.platform);
         });
