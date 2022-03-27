@@ -31,8 +31,13 @@ export class ProfilePage implements OnInit {
     this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {
-          this.userResponse=data;
-          console.log('user all data :'+JSON.stringify(this.userResponse))
+          if(data.key==1){
+            this.userResponse=data;
+            console.log('user all data :'+JSON.stringify(this.userResponse))
+          }else{
+            this.util.showMessage(data.msg);
+          }
+          
           this.util.dismissLoading();
         },
         (err) => {

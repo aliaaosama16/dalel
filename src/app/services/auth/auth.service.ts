@@ -6,6 +6,7 @@ import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
 import { UserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
+import { ActivationData, ActivationResponse } from 'src/app/models/activationData';
 
 @Injectable({
   providedIn: 'root',
@@ -59,6 +60,21 @@ export class AuthService {
     });
   }
 
+
+  async storeActivationStatus(status:boolean) {
+    await Storage.set({
+      key: 'activation-status',
+      value: status.toString(),
+    });
+  }
+
+  async store(key:any,value:any) {
+    await Storage.set({
+      key: key,
+      value: value,
+    });
+  }
+
   async getUserToken() {
     const val = await Storage.get({ key: 'USER-TOKEN' });
     this.userToken = val.value;
@@ -81,6 +97,13 @@ export class AuthService {
   register(data: RegisterData): Observable<RegisterResponse> {
     return this.httpclient.post<RegisterResponse>(
       `${environment.BASE_URL}register`,
+      data
+    );
+  }
+
+  activeAccount(data: ActivationData): Observable<ActivationResponse>{
+    return this.httpclient.post<ActivationResponse>(
+      `${environment.BASE_URL}active-account`,
       data
     );
   }

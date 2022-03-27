@@ -13,6 +13,7 @@ import { MenuController } from '@ionic/angular';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { RegisterData } from 'src/app/models/registerData';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.page.html',
@@ -21,7 +22,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
   loginData: AuthData;
-
+  registerData: RegisterData;
   showLoginPass: boolean;
   inputLoginType: any = 'password';
   iconLoginName: string = 'eye-off-outline';
@@ -138,8 +139,37 @@ export class LoginRegisterPage implements OnInit {
   signUp() {
     this.isRegisterSubmitted = true;
     console.log(this.registerForm.value);
-
-    this.router.navigateByUrl('/phone-number');
+    if (this.registerForm.valid) {
+      this.registerData = {
+        lang: this.langaugeservice.getLanguage(),
+        first_name: this.registerForm.value.userName,
+        email: this.registerForm.value.email,
+        phone: this.registerForm.value.phoneNumber,
+        password: this.registerForm.value.password,
+      };
+      this.util.showLoadingSpinner().then((__) => {
+        this.auth.register(this.registerData).subscribe(
+          (data: AuthResponse) => {
+            if (data.key == 1) {
+              console.log('register res :' + JSON.stringify(data));
+              this.util.showMessage(data.msg);
+              this.auth.storeToken(data.data?.api_token);
+              this.router.navigateByUrl('/phone-number');
+             
+            } else {
+              this.util.showMessage(data.msg);
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
+        );
+      });
+    } else {
+      console.log(this.signinForm.value);
+      return false;
+    }
   }
 
   signIn() {
@@ -160,6 +190,8 @@ export class LoginRegisterPage implements OnInit {
               console.log('login res :' + JSON.stringify(data));
               this.router.navigateByUrl('/tabs/main');
               this.auth.storeToken(data.data?.api_token);
+              this.auth.store('activation-status',data.data.is_active);
+              this.auth.store('confirmation-status',data.data.is_confirmed);
               this.auth.isLogined();
             } else {
               this.util.showMessage(data.msg);

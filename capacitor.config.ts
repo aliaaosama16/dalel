@@ -9,9 +9,9 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 5000,
       launchAutoHide: true,
-      androidScaleType: "CENTER_CROP",
+      // androidScaleType: "CENTER_CROP",
       androidSplashResourceName: "splash",
-      splashFullScreen: false,
+      splashFullScreen: true,
       splashImmersive: false
     }
   },
