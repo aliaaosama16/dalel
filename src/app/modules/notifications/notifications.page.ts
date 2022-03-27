@@ -82,14 +82,6 @@ export class NotificationsPage implements OnInit {
       message: this.translate.instant('confirm delete this notification'),
       buttons: [
         {
-          text: this.translate.instant('cancel'),
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          },
-        },
-        {
           text: this.translate.instant('ok'),
           handler: () => {
             this.util.showLoadingSpinner().then((__) => {
@@ -107,6 +99,14 @@ export class NotificationsPage implements OnInit {
                 }
               );
             });
+          },
+        },
+        {
+          text: this.translate.instant('cancel'),
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
           },
         },
       ],
