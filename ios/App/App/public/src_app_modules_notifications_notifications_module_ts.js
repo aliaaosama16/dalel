@@ -165,14 +165,6 @@ let NotificationsPage = class NotificationsPage {
                 message: this.translate.instant('confirm delete this notification'),
                 buttons: [
                     {
-                        text: this.translate.instant('cancel'),
-                        role: 'cancel',
-                        cssClass: 'secondary',
-                        handler: () => {
-                            console.log('Confirm Cancel');
-                        },
-                    },
-                    {
                         text: this.translate.instant('ok'),
                         handler: () => {
                             this.util.showLoadingSpinner().then((__) => {
@@ -185,6 +177,14 @@ let NotificationsPage = class NotificationsPage {
                                     this.util.dismissLoading();
                                 });
                             });
+                        },
+                    },
+                    {
+                        text: this.translate.instant('cancel'),
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: () => {
+                            console.log('Confirm Cancel');
                         },
                     },
                 ],

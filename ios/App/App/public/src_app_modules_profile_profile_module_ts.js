@@ -127,8 +127,13 @@ let ProfilePage = class ProfilePage {
         this.platform = this.util.platform;
         this.util.showLoadingSpinner().then((__) => {
             this.auth.userData(this.userData).subscribe((data) => {
-                this.userResponse = data;
-                console.log('user all data :' + JSON.stringify(this.userResponse));
+                if (data.key == 1) {
+                    this.userResponse = data;
+                    console.log('user all data :' + JSON.stringify(this.userResponse));
+                }
+                else {
+                    this.util.showMessage(data.msg);
+                }
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();

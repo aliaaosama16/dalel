@@ -159,7 +159,7 @@
 
         <div
           class="error-box"
-          *ngIf="isRegisterSubmitted &&  (registerErrorControl .confirmPassword.value!=registerErrorControl .password.value)"
+          *ngIf="isRegisterSubmitted &&  (registerErrorControl.confirmPassword.value!=registerErrorControl .password.value)"
         >
           {{'both password and confirm password should be equal' | translate}}
         </div>

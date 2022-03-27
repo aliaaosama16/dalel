@@ -121,7 +121,7 @@ const routes = [
                     },
                     {
                         path: 'contact-us',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_contact-us_contact-us_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/contact-us/contact-us.module */ 46965)).then((m) => m.ContactUsPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_contact-us_contact-us_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/contact-us/contact-us.module */ 46965)).then((m) => m.ContactUsPageModule),
                     },
                     {
                         path: 'policy',

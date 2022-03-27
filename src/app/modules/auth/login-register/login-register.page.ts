@@ -14,6 +14,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { RegisterData } from 'src/app/models/registerData';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.page.html',
@@ -74,7 +75,8 @@ export class LoginRegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     private util: UtilitiesService,
-    private auth: AuthService
+    private auth: AuthService,
+    private translate: TranslateService
   ) {
     this.menuCtrl.enable(false, 'main');
   }
@@ -140,32 +142,42 @@ export class LoginRegisterPage implements OnInit {
     this.isRegisterSubmitted = true;
     console.log(this.registerForm.value);
     if (this.registerForm.valid) {
-      this.registerData = {
-        lang: this.langaugeservice.getLanguage(),
-        first_name: this.registerForm.value.userName,
-        email: this.registerForm.value.email,
-        phone: this.registerForm.value.phoneNumber,
-        password: this.registerForm.value.password,
-      };
-      this.util.showLoadingSpinner().then((__) => {
-        this.auth.register(this.registerData).subscribe(
-          (data: AuthResponse) => {
-            if (data.key == 1) {
-              console.log('register res :' + JSON.stringify(data));
-              this.util.showMessage(data.msg);
-              this.auth.storeToken(data.data?.api_token);
-              this.router.navigateByUrl('/phone-number');
-             
-            } else {
-              this.util.showMessage(data.msg);
+      if (
+        this.registerForm.value.password ==
+        this.registerForm.value.confirmPassword
+      ) {
+        this.registerData = {
+          lang: this.langaugeservice.getLanguage(),
+          first_name: this.registerForm.value.userName,
+          email: this.registerForm.value.email,
+          phone: this.registerForm.value.phoneNumber,
+          password: this.registerForm.value.password,
+        };
+        this.util.showLoadingSpinner().then((__) => {
+          this.auth.register(this.registerData).subscribe(
+            (data: AuthResponse) => {
+              if (data.key == 1) {
+                console.log('register res :' + JSON.stringify(data));
+                this.util.showMessage(data.msg);
+                this.auth.storeToken(data.data?.api_token);
+                this.auth.store('activation-status', data.data.is_active);
+                this.auth.store('confirmation-status', data.data.is_confirmed);
+                this.router.navigateByUrl('/code');
+              } else {
+                this.util.showMessage(data.msg);
+              }
+              this.util.dismissLoading();
+            },
+            (err) => {
+              this.util.dismissLoading();
             }
-            this.util.dismissLoading();
-          },
-          (err) => {
-            this.util.dismissLoading();
-          }
+          );
+        });
+      } else {
+        this.translate.instant(
+          'both password and confirm password should be equal'
         );
-      });
+      }
     } else {
       console.log(this.signinForm.value);
       return false;
@@ -190,8 +202,8 @@ export class LoginRegisterPage implements OnInit {
               console.log('login res :' + JSON.stringify(data));
               this.router.navigateByUrl('/tabs/main');
               this.auth.storeToken(data.data?.api_token);
-              this.auth.store('activation-status',data.data.is_active);
-              this.auth.store('confirmation-status',data.data.is_confirmed);
+              this.auth.store('activation-status', data.data.is_active);
+              this.auth.store('confirmation-status', data.data.is_confirmed);
               this.auth.isLogined();
             } else {
               this.util.showMessage(data.msg);

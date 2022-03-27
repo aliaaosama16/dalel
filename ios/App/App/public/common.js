@@ -987,6 +987,22 @@ let AuthService = class AuthService {
             });
         });
     }
+    storeActivationStatus(status) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
+                key: 'activation-status',
+                value: status.toString(),
+            });
+        });
+    }
+    store(key, value) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
+                key: key,
+                value: value,
+            });
+        });
+    }
     getUserToken() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: 'USER-TOKEN' });
@@ -996,17 +1012,23 @@ let AuthService = class AuthService {
     userData(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-user`, data);
     }
+    updateUserData(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}update-user`, data);
+    }
     login(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}login`, data);
     }
     register(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}register`, data);
     }
+    activeAccount(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}active-account`, data);
+    }
     logout(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}logout`, data);
     }
-    forgetPassword() {
-        this.httpclient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL, {});
+    forgetPassword(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}forget-password`, data);
     }
 };
 AuthService.ctorParameters = () => [

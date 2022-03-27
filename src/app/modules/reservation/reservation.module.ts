@@ -23,7 +23,7 @@ import { CalendarModule } from 'ion2-calendar';
    CalendarModule
   ],
   declarations: [ReservationPage],
-  providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
+  // providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
 })
 export class ReservationPageModule {}
 

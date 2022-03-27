@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { ActivationData } from 'src/app/models/activationData';
+import { AuthResponse } from 'src/app/models/loginData';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-code',
@@ -14,8 +19,15 @@ export class CodePage implements OnInit {
   inputFocusNumber4: boolean = false;
   codeValues: string;
   code: number;
-  constructor(private router: Router,private menuCtrl:MenuController) {
-    this.menuCtrl.enable(false,'main')
+  activationData: ActivationData;
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private menuCtrl: MenuController,
+    private util: UtilitiesService,
+    private language: LanguageService
+  ) {
+    this.menuCtrl.enable(false, 'main');
   }
 
   // ionViewWillEnter() {
@@ -28,6 +40,32 @@ export class CodePage implements OnInit {
     this.code = parseInt(this.codeValues);
     console.log('code is :' + this.codeValues.substring(9));
 
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.activationData = {
+        lang: this.language.getLanguage(),
+        user_id: val,
+        code: this.codeValues,
+        device_id: this.util.deviceID,
+      };
+    });
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.activeAccount(this.activationData).subscribe(
+        (data: AuthResponse) => {
+          if (data.key == 1) {
+            console.log('activeAccount  res :' + JSON.stringify(data));
+            this.util.showMessage(data.msg);
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+
+    this.auth.store('activation-status', true);
     this.router.navigateByUrl('/tabs');
   }
 
@@ -36,18 +74,15 @@ export class CodePage implements OnInit {
     this.inputFocusNumber1 = focusStatus;
   }
 
-
   focusNumber2(focusStatus: boolean) {
     console.log('input focus' + focusStatus);
     this.inputFocusNumber2 = focusStatus;
   }
 
-
   focusNumber3(focusStatus: boolean) {
     console.log('input focus' + focusStatus);
     this.inputFocusNumber3 = focusStatus;
   }
-
 
   focusNumber4(focusStatus: boolean) {
     console.log('input focus' + focusStatus);

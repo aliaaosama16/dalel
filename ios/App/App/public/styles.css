@@ -2247,7 +2247,7 @@ ion-input {
   text-align: center;
 }
 ion-tab-bar {
-  --background: #FAD9C5 !important;
+  --background: #fad9c5 !important;
   margin: 16px;
   border-radius: 5px;
 }

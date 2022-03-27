@@ -26,14 +26,6 @@ ion-content.background {
   height: 100%;
 }
 
-// .swiper-pagination {
-//   position: fixed;
-//   top: 0px;
-//   padding-bottom: 3px;
-//   text-align: start;
-//   height: 20 !important;
-// }
-
 .swiper-slide {
   display: flex;
   flex-direction: column;
@@ -62,7 +54,7 @@ ion-content.background {
   .boardng-subtitle {
     font-size: 14px;
     font-family: "Cairo-Regular";
-    margin: 0 0 64px 0;
+    margin: 0 0 100px 0;
   }
 
   .btn-custom {
@@ -82,9 +74,7 @@ ion-content.background {
   border-radius: 10px;
   height: 20 !important;
 }
-// .swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal {
-//   height: 20 !important;
-// }
+
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
 .swiper-pagination-horizontal.swiper-pagination-bullets
   .swiper-pagination-bullet {
@@ -102,14 +92,3 @@ ion-content.background {
   opacity: 0.5;
 }
 
-// .swiper-pagination-bullets {
-//   top: 23% !important;
-//   right: 36px;
-//   left: 32px !important;
-//   height: fit-content;
-// }
-
-// .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
-//   height: 21 !important;
-//   display: block;
-// }

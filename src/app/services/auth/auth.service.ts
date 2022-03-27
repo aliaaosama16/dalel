@@ -6,7 +6,11 @@ import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
 import { UserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
-import { ActivationData, ActivationResponse } from 'src/app/models/activationData';
+import {
+  ActivationData,
+  ActivationResponse,
+} from 'src/app/models/activationData';
+import { ForgetPasswordData } from 'src/app/models/forgetPassword';
 
 @Injectable({
   providedIn: 'root',
@@ -26,17 +30,15 @@ export class AuthService {
     this.logined.next(false);
   }
 
-  setUserID(userID:number){
+  setUserID(userID: number) {
     this.userID.next(userID);
   }
 
-
-  removeUserID(){
+  removeUserID() {
     this.userID.next(0);
   }
 
-  
-  getUserIDObservable(): Observable<number>{
+  getUserIDObservable(): Observable<number> {
     return this.userID.asObservable();
   }
 
@@ -60,15 +62,14 @@ export class AuthService {
     });
   }
 
-
-  async storeActivationStatus(status:boolean) {
+  async storeActivationStatus(status: boolean) {
     await Storage.set({
       key: 'activation-status',
       value: status.toString(),
     });
   }
 
-  async store(key:any,value:any) {
+  async store(key: any, value: any) {
     await Storage.set({
       key: key,
       value: value,
@@ -87,6 +88,13 @@ export class AuthService {
     );
   }
 
+  updateUserData(data: UserData): Observable<UserResponse> {
+    return this.httpclient.post<UserResponse>(
+      `${environment.BASE_URL}update-user`,
+      data
+    );
+  }
+
   login(data: AuthData): Observable<AuthResponse> {
     return this.httpclient.post<AuthResponse>(
       `${environment.BASE_URL}login`,
@@ -101,7 +109,7 @@ export class AuthService {
     );
   }
 
-  activeAccount(data: ActivationData): Observable<ActivationResponse>{
+  activeAccount(data: ActivationData): Observable<ActivationResponse> {
     return this.httpclient.post<ActivationResponse>(
       `${environment.BASE_URL}active-account`,
       data
@@ -115,7 +123,10 @@ export class AuthService {
     );
   }
 
-  forgetPassword() {
-    this.httpclient.post(environment.BASE_URL, {});
+  forgetPassword(data: ForgetPasswordData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}forget-password`,
+      data
+    );
   }
 }

@@ -2063,7 +2063,7 @@ ReservationPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
             ion2_calendar__WEBPACK_IMPORTED_MODULE_3__.CalendarModule
         ],
         declarations: [_reservation_page__WEBPACK_IMPORTED_MODULE_1__.ReservationPage],
-        providers: [{ provide: _angular_core__WEBPACK_IMPORTED_MODULE_5__.LOCALE_ID, useValue: 'ar-SA' }]
+        // providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
     })
 ], ReservationPageModule);
 

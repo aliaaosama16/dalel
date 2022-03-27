@@ -97,12 +97,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ContactUsPage": () => (/* binding */ ContactUsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contact_us_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./contact-us.page.html */ 88736);
 /* harmony import */ var _contact_us_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contact-us.page.scss */ 8837);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 18346);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 18346);
+/* harmony import */ var src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/general/general.service */ 55731);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
 
 
 
@@ -110,9 +114,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ContactUsPage = class ContactUsPage {
-    constructor(formBuilder, util) {
+    constructor(formBuilder, util, general, language) {
         this.formBuilder = formBuilder;
         this.util = util;
+        this.general = general;
+        this.language = language;
         this.isContactSubmitted = false;
         this.inputFocusPerson = false;
         this.inputFocusPersonIcon = './../../../../assets/icon/person-active.svg';
@@ -130,41 +136,73 @@ let ContactUsPage = class ContactUsPage {
     }
     buildForm() {
         this.contactForm = this.formBuilder.group({
-            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(2)]],
+            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(2)]],
             phoneNumber: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.pattern(/^05/),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.minLength(10),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.maxLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.maxLength(10),
                     //10
                 ],
             ],
             message: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.email,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.email,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
                 ],
             ],
         });
     }
-    focusPerson(status) { }
-    focusPhone(status) { }
-    focusMessage(status) { }
+    focusPerson(focusStatus) {
+        console.log('input focus' + focusStatus);
+        this.inputFocusPerson = focusStatus;
+    }
+    focusPhone(focusStatus) {
+        console.log('input focus' + focusStatus);
+        this.inputFocusPhone = focusStatus;
+    }
+    focusMessage(focusStatus) {
+        console.log('input focus' + focusStatus);
+        this.inputFocusMessage = focusStatus;
+    }
     get contactErrorControl() {
         return this.contactForm.controls;
     }
-    sendMessage() { }
+    sendMessage() {
+        this.contactData = {
+            lang: this.language.getLanguage(),
+            name: this.contactForm.value.userName,
+            phone: this.contactForm.value.phoneNumber,
+            message: this.contactForm.value.message,
+        };
+        this.util.showLoadingSpinner().then((__) => {
+            this.general.contactUs(this.contactData).subscribe((data) => {
+                if (data.key == 1) {
+                    console.log('contact us  res :' + JSON.stringify(data));
+                    this.util.showMessage(data.msg);
+                }
+                else {
+                    this.util.showMessage(data.msg);
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
+    }
 };
 ContactUsPage.ctorParameters = () => [
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormBuilder },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_2__.UtilitiesService }
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_2__.GeneralService },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
 ];
-ContactUsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+ContactUsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-contact-us',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contact_us_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_contact_us_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -195,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************************************/
 /***/ ((module) => {
 
-module.exports = ".logo {\n  text-align: center;\n  margin: 24px 0 20px 0;\n}\n\n.message ion-textarea {\n  --placeholder-color: var(--ion-color-secondary);\n  --color: var(--ion-color-primary);\n  margin: 0px 10px !important;\n}\n\n.message ion-icon {\n  margin-top: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbnRhY3QtdXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQUE7RUFDQSxxQkFBQTtBQUNGOztBQUdFO0VBQ0UsK0NBQUE7RUFDQSxpQ0FBQTtFQUNBLDJCQUFBO0FBQUo7O0FBR0U7RUFDRSxnQkFBQTtBQURKIiwiZmlsZSI6ImNvbnRhY3QtdXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxvZ28ge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIG1hcmdpbjogMjRweCAwIDIwcHggMDtcbn1cblxuLm1lc3NhZ2Uge1xuICBpb24tdGV4dGFyZWEge1xuICAgIC0tcGxhY2Vob2xkZXItY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xuICAgIC0tY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgICBtYXJnaW46IDBweCAxMHB4ICFpbXBvcnRhbnQ7XG4gIH1cblxuICBpb24taWNvbiB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbiAgfVxufVxuIl19 */";
+module.exports = ".logo {\n  text-align: center;\n  margin: 24px 0 20px 0;\n}\n\n.message ion-textarea {\n  --placeholder-color: var(--ion-color-secondary);\n  --color: var(--ion-color-primary);\n  margin: 0px 10px !important;\n}\n\n.message ion-icon {\n  margin-top: 10px;\n}\n\nion-item {\n  --highlight-color-focused:var(--ion-color-primary);\n  --highlight-color-valid:var(--ion-color-primary);\n  --highlight-color-invalid:var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbnRhY3QtdXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQUE7RUFDQSxxQkFBQTtBQUNGOztBQUdFO0VBQ0UsK0NBQUE7RUFDQSxpQ0FBQTtFQUNBLDJCQUFBO0FBQUo7O0FBR0U7RUFDRSxnQkFBQTtBQURKOztBQUtBO0VBQ0Usa0RBQUE7RUFDQSxnREFBQTtFQUNBLGtEQUFBO0FBRkYiLCJmaWxlIjoiY29udGFjdC11cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9nbyB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luOiAyNHB4IDAgMjBweCAwO1xufVxuXG4ubWVzc2FnZSB7XG4gIGlvbi10ZXh0YXJlYSB7XG4gICAgLS1wbGFjZWhvbGRlci1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXNlY29uZGFyeSk7XG4gICAgLS1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAgIG1hcmdpbjogMHB4IDEwcHggIWltcG9ydGFudDtcbiAgfVxuXG4gIGlvbi1pY29uIHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICB9XG59XG5cbmlvbi1pdGVte1xuICAtLWhpZ2hsaWdodC1jb2xvci1mb2N1c2VkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1oaWdobGlnaHQtY29sb3ItdmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAtLWhpZ2hsaWdodC1jb2xvci1pbnZhbGlkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbn0iXX0= */";
 
 /***/ })
 
