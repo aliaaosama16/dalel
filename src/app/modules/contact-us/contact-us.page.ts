@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactUsData, ContactUsResponse } from 'src/app/models/contactUs';
+import { GeneralService } from 'src/app/services/general/general.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
@@ -9,7 +12,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class ContactUsPage implements OnInit {
   public contactForm: FormGroup;
-  platform:any;
+  contactData: ContactUsData;
+  platform: any;
   isContactSubmitted: boolean = false;
 
   inputFocusPerson: boolean = false;
@@ -28,8 +32,13 @@ export class ContactUsPage implements OnInit {
   inputInFocusMessageIcon: string =
     './../../../../assets/icon/message-inactive.svg';
 
-  constructor(private formBuilder: FormBuilder,private util:UtilitiesService) {
-    this.platform=this.util.platform;
+  constructor(
+    private formBuilder: FormBuilder,
+    private util: UtilitiesService,
+    private general: GeneralService,
+    private language: LanguageService
+  ) {
+    this.platform = this.util.platform;
   }
 
   ngOnInit() {
@@ -60,15 +69,47 @@ export class ContactUsPage implements OnInit {
     });
   }
 
-  focusPerson(status: boolean) {}
+  focusPerson(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusPerson = focusStatus;
+  }
 
-  focusPhone(status: boolean) {}
+  focusPhone(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusPhone = focusStatus;
+  }
 
-  focusMessage(status: boolean) {}
+  focusMessage(focusStatus: boolean) {
+    console.log('input focus' + focusStatus);
+    this.inputFocusMessage = focusStatus;
+  }
 
   get contactErrorControl() {
     return this.contactForm.controls;
   }
 
-  sendMessage() {}
+  sendMessage() {
+    this.contactData = {
+      lang: this.language.getLanguage(),
+      name: this.contactForm.value.userName,
+      phone: this.contactForm.value.phoneNumber,
+      message: this.contactForm.value.message,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.general.contactUs(this.contactData).subscribe(
+        (data: ContactUsResponse) => {
+          if (data.key == 1) {
+            console.log('contact us  res :' + JSON.stringify(data));
+            this.util.showMessage(data.msg);
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
 }

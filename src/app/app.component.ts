@@ -11,7 +11,7 @@ import { UtilitiesService } from './services/utilities/utilities.service';
 })
 export class AppComponent {
   currentLanguage: string = '';
-  selectedIndex: number = 0;
+  selectedIndex: number ;
 
   pages = [
     {
