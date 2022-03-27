@@ -17,3 +17,11 @@ ion-item::part(native) {
 .isRead {
   --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;
 }
+
+.alert-button-group.sc-ion-alert-md{
+  justify-content: space-around !important;
+}
+.alert-button-group.sc-ion-alert-ios{
+  justify-content: space-around !important;
+}
+

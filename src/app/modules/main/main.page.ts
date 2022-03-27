@@ -26,7 +26,27 @@ export class MainPage implements OnInit {
       clickable: true,
     },
   };
-  configContent: SwiperOptions = {
+  configCategories: SwiperOptions = {
+    slidesPerView: 2.5,
+    spaceBetween: 10,
+    pagination: false,
+    breakpoints: {
+      '@0.75': {
+        slidesPerView: 3.5,
+        spaceBetween: 10,
+      },
+      '@1.00': {
+        slidesPerView: 4.6,
+        spaceBetween: 10,
+      },
+      '@1.50': {
+        slidesPerView: 5.7,
+        spaceBetween: 10,
+      },
+    },
+  };
+
+  configNearBy: SwiperOptions = {
     slidesPerView: 2.3,
     spaceBetween: 10,
     pagination: false,
@@ -45,7 +65,6 @@ export class MainPage implements OnInit {
       },
     },
   };
-
   categories: any[] = [
     { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
     { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },

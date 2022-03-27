@@ -141,6 +141,9 @@
   }
   ion-thumbnail {
     margin: 0px;
+    img{
+      border-radius: 5px;
+    }
   }
   .categories-title {
     font-size: 18px;

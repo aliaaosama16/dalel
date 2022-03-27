@@ -1,6 +1,6 @@
 <ion-card class="margin-bottom" (click)="navigate(forwardRoute)">
   <div class="container">
-    <img [src]="itemDetails.image" />
+    <img [src]="itemDetails.image" [style.opacity]="cardOpacity"/>
     <div
       class="title"
       [ngStyle]="currentlangauge == 'ar' ? { right: '13px' } : { left: '13px' }"

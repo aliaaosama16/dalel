@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class CustomCardComponent implements OnInit {
   currentlangauge: string;
+  @Input() cardOpacity:number;
   @Input() itemDetails: ItemDetails;
   @Input() forwardRoute: string;
   @Output() navigateTo = new EventEmitter<string>();

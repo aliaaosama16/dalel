@@ -8,6 +8,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+ 
   @Input() title: string;
   @Input() isEditable: boolean;
   @Input() isMain: boolean;

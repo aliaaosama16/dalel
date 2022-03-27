@@ -56,7 +56,7 @@
 
     <swiper
       #swiper
-      [config]="configContent"
+      [config]="configCategories"
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
@@ -84,7 +84,7 @@
 
     <swiper
       #swiper
-      [config]="configContent"
+      [config]="configNearBy"
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
@@ -92,6 +92,7 @@
         <app-custom-card
           [itemDetails]="item"
           [forwardRoute]="'/tabs/main/categories/'"
+          [cardOpacity]="0.6"
         ></app-custom-card>
       </ng-template>
     </swiper>
