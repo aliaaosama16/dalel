@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { LoginData, LoginResponse } from 'src/app/models/loginData';
+import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-login-register',
@@ -20,7 +20,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginRegisterPage implements OnInit {
   currentlangauge: string;
-  loginData: LoginData;
+  loginData: AuthData;
 
   showLoginPass: boolean;
   inputLoginType: any = 'password';
@@ -136,15 +136,8 @@ export class LoginRegisterPage implements OnInit {
   }
 
   signUp() {
-    // api call for register new account
     this.isRegisterSubmitted = true;
     console.log(this.registerForm.value);
-    // if (!this.registerForm.valid) {
-    //   console.log('Please provide all the required values!');
-    //   return false;
-    // } else {
-    //   console.log(this.registerForm.value);
-    // }
 
     this.router.navigateByUrl('/phone-number');
   }
@@ -162,11 +155,12 @@ export class LoginRegisterPage implements OnInit {
       };
       this.util.showLoadingSpinner().then((__) => {
         this.auth.login(this.loginData).subscribe(
-          (data: LoginResponse) => {
+          (data: AuthResponse) => {
             if (data.key == 1) {
               console.log('login res :' + JSON.stringify(data));
               this.router.navigateByUrl('/tabs/main');
               this.auth.storeToken(data.data?.api_token);
+              this.auth.isLogined();
             } else {
               this.util.showMessage(data.msg);
             }

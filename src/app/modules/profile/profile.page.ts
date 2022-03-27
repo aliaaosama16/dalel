@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { AuthResponse } from 'src/app/models/loginData';
+import { UserData, UserResponse } from 'src/app/models/userData';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
@@ -9,19 +12,34 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  platform:any;
-  userData=
-   {
-    name:'aliaa',
-    phone:'01077262662',
-    email:'engaliaa@gmail.com'
-   }
-  ;
+  platform: any;
+  userData: UserData;
+  userResponse:UserResponse;
   constructor(
     private menuCtrl: MenuController,
-    private util:UtilitiesService
+    private util: UtilitiesService,
+    private auth: AuthService,
+    private language: LanguageService
   ) {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.userData = {
+        lang: this.language.getLanguage(),
+        user_id: val,
+      };
+    });
     this.platform = this.util.platform;
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.userData(this.userData).subscribe(
+        (data: UserResponse) => {
+          this.userResponse=data;
+          console.log('user all data :'+JSON.stringify(this.userResponse))
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
   ngOnInit() {}

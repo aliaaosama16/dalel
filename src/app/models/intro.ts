@@ -1,12 +1,18 @@
-export interface Intro{
-    key: number,
-    msg: string,
-    show_image:boolean,
-    data:IntroData
+export interface Intro {
+  key: number;
+  msg: string;
+  show_image: boolean;
+  data: IntroData;
 }
 
-export interface IntroData{
-    title:string,
-    desc:string,
-    image:string
+export interface IntroData {
+  first_title: string;
+  first_desc: string;
+  first_image: string;
+  second_title: string,
+  second_desc: string,
+  second_image: string,
+  third_title: string,
+  third_desc:string,
+  third_image: string,
 }

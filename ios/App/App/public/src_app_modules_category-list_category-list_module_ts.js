@@ -229,7 +229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" [ngClass]=\"platform=='android'?'md-header-height':'ios-header-height'\">\n  <app-custom-card\n    [itemDetails]=\"cat\"\n    [forwardRoute]=\"'/tabs/main/categories/'\"\n    *ngFor=\"let cat of categoriesList\"\n  ></app-custom-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <app-custom-card\n    [itemDetails]=\"cat\"\n    [forwardRoute]=\"'/tabs/main/categories/'\"\n    *ngFor=\"let cat of categoriesList\"\n  ></app-custom-card>\n</ion-content>\n");
 
 /***/ }),
 

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { UserData, UserResponse } from 'src/app/models/userData';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,11 +13,8 @@ import { LanguageService } from 'src/app/services/language/language.service';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  userData = {
-    name: 'aliaa osama',
-    phone: '0509999999',
-    email: 'engaliaaosama@gmail.com',
-  };
+  userData: UserData;
+  userResponse:UserResponse;
   isProfileSubmitted: boolean = false;
   public profileForm: FormGroup;
 
@@ -35,10 +35,33 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private menuCtrl: MenuController,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private util:UtilitiesService,
+    private auth:AuthService,
+    private language:LanguageService
+  ) {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.userData = {
+        lang: this.language.getLanguage(),
+        user_id: val,
+      };
+    });
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.userData(this.userData).subscribe(
+        (data: UserResponse) => {
+          this.userResponse=data;
+          console.log('user all data :'+JSON.stringify(this.userResponse));
+          this.buildForm();
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
   ngOnInit() {
-    this.buildForm();
+   
   }
 
   openMenu() {
@@ -52,11 +75,11 @@ export class EditProfilePage implements OnInit {
   buildForm() {
     this.profileForm = this.formBuilder.group({
       userName: [
-        this.userData.name,
+        this.userResponse.data.first_name,
         [Validators.required, Validators.minLength(2)],
       ],
       phoneNumber: [
-        this.userData.phone,
+        this.userResponse.data.phone,
         [
           Validators.required,
           Validators.pattern(/^05/),
@@ -66,7 +89,7 @@ export class EditProfilePage implements OnInit {
         ],
       ],
       email: [
-        this.userData.email,
+        this.userResponse.data.email,
         [
           Validators.required,
           Validators.email,

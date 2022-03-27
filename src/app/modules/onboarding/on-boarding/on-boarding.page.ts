@@ -18,8 +18,7 @@ import Swiper, {
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { Intro } from 'src/app/models/intro';
+import {  Intro, IntroData } from 'src/app/models/intro';
 import { GeneralService } from 'src/app/services/general/general.service';
 
 Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
@@ -48,7 +47,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     private router: Router,
     private menuCtrl: MenuController,
     private util: UtilitiesService,
-    private general:GeneralService
+    private general: GeneralService
   ) {
     this.menuCtrl.enable(false, 'main');
   }
@@ -86,13 +85,12 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
       this.nextClicked++;
     } else {
       this.setBoarding();
-  
+
       this.router.navigateByUrl('/tabs/main');
     }
   }
 
   async setBoarding() {
-   
     await Storage.set({
       key: 'openBoarding',
       value: 'true',

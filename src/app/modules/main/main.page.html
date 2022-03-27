@@ -1,6 +1,6 @@
 <app-header [title]="'main'" [isMain]="true" class="header-height"></app-header>
 
-<ion-content [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
+<ion-content >
   <div class="search-section ion-padding-horizontal">
     <div class="search-input">
       <ion-item lines="none" class="search-wrapper">
@@ -92,7 +92,7 @@
         <app-custom-card
           [itemDetails]="item"
           [forwardRoute]="'/tabs/main/categories/'"
-          [cardOpacity]="0.6"
+         
         ></app-custom-card>
       </ng-template>
     </swiper>

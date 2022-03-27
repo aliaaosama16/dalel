@@ -948,6 +948,7 @@ let AuthService = class AuthService {
     constructor(httpclient) {
         this.httpclient = httpclient;
         this.logined = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(true);
+        this.userID = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(0);
         this.userToken = '';
     }
     isLogined() {
@@ -956,11 +957,33 @@ let AuthService = class AuthService {
     isLogout() {
         this.logined.next(false);
     }
+    setUserID(userID) {
+        this.userID.next(userID);
+    }
+    removeUserID() {
+        this.userID.next(0);
+    }
+    getUserIDObservable() {
+        return this.userID.asObservable();
+    }
+    // async storeLoginStatus(status: boolean) {
+    //   await Storage.set({
+    //     key: 'logined',
+    //     value: status.toString(),
+    //   });
+    // }
     storeToken(token) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: 'USER-TOKEN',
                 value: token,
+            });
+        });
+    }
+    removeToken() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
+                key: 'USER-TOKEN',
             });
         });
     }

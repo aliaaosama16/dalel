@@ -1,7 +1,7 @@
 <app-header class="header-height" [title]="'profile'" [backwardRoute]="'/tabs/main'" [forwardRoute]="'/tabs/profile/edit-profile'"
   [isEditable]="true" [isMain]="false"></app-header>
 
-<ion-content class="ion-padding" [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
+<ion-content class="ion-padding" >
 
 
   <div class="profile-card-wrapper">
@@ -12,21 +12,21 @@
         <img src="./../../../assets/icon/person-inactive.svg" />
       </div>
       <div class="ion-text-center">
-        <h4 class="dark-black-color fn-16 dalel-Bold name">{{userData.name}}</h4>
+        <h4 class="dark-black-color fn-16 dalel-Bold name">{{userResponse.data.first_name}}</h4>
       </div>
       <ion-item lines="none">
         <ion-icon item-start color="primary" src="'./../../../../assets/icon/person-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userData.name" type="text"></ion-input>
+        <ion-input readonly="true" [value]="userResponse.data.first_name" type="text"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-icon item-start color="primary" src="'./../../../../assets/icon/phone-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userData.phone" type="nummber"></ion-input>
+        <ion-input readonly="true" [value]="userResponse.data.phone" type="nummber"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-icon item-start color="primary" src="'./../../../../assets/icon/email-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userData.email" type="email"></ion-input>
+        <ion-input readonly="true" [value]="userResponse.data.email" type="email"></ion-input>
       </ion-item>
     </ion-card>
 

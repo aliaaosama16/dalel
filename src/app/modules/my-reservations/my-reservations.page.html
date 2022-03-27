@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 
-<ion-content class="ion-padding" [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
+<ion-content class="ion-padding" >
   <ion-segment
     (ionChange)="reservationsTypeChange($event)"
     value="register"
@@ -31,7 +31,7 @@
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of oldReservations"
-      routerLink="/tabs/my-reservations/my-reservations-details"
+      routerLink="/tabs/my-reservations/my-reservations-details/{{item.id}}"
     >
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />
@@ -68,7 +68,7 @@
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of currentReservations"
-      routerLink="/tabs/my-reservations/my-reservations-details"
+      routerLink="/tabs/my-reservations/my-reservations-details/{{item.id}}"
     >
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />

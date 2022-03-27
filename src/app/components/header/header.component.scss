@@ -3,6 +3,7 @@ ion-header{
   background: #ffeee3;
 
   min-height: 60px;
+  margin-bottom: 50px;
   position: relative;
     &::before {
       content: "";
@@ -23,7 +24,7 @@ ion-toolbar {
   }
   .custom-title {
     padding: 0 20px !important;
-    margin-top: 15px !important;
+    margin-top: 18px !important;
   }
 
   .menu-icon {

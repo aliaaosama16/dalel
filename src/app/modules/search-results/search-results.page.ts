@@ -9,7 +9,6 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class SearchResultsPage implements OnInit {
   currentlangauge:string='';
-  platform:any;
   resultItems = [
     {
     name: "عنوان تجريبي",
@@ -101,7 +100,6 @@ export class SearchResultsPage implements OnInit {
    
   }];
   constructor(private langaugeservice:LanguageService,private util:UtilitiesService) {
-    this.platform = this.util.platform;
    }
 
   ngOnInit() {

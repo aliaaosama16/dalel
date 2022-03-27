@@ -200,15 +200,8 @@ let LoginRegisterPage = class LoginRegisterPage {
         return this.signinForm.controls;
     }
     signUp() {
-        // api call for register new account
         this.isRegisterSubmitted = true;
         console.log(this.registerForm.value);
-        // if (!this.registerForm.valid) {
-        //   console.log('Please provide all the required values!');
-        //   return false;
-        // } else {
-        //   console.log(this.registerForm.value);
-        // }
         this.router.navigateByUrl('/phone-number');
     }
     signIn() {
@@ -228,6 +221,7 @@ let LoginRegisterPage = class LoginRegisterPage {
                         console.log('login res :' + JSON.stringify(data));
                         this.router.navigateByUrl('/tabs/main');
                         this.auth.storeToken((_a = data.data) === null || _a === void 0 ? void 0 : _a.api_token);
+                        this.auth.isLogined();
                     }
                     else {
                         this.util.showMessage(data.msg);

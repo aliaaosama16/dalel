@@ -8,7 +8,7 @@ export interface UserResponse {
   msg: string;
   show_image: boolean;
   status: string;
-  data: UserResponse;
+  data: UserDataResponse;
 }
 
 export interface UserDataResponse {

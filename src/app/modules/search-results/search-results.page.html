@@ -1,7 +1,7 @@
 <app-header class="header-height" [title]="'search-results'" [isEditable]="false" [backwardRoute]="'/tabs/main'" [isMain]="false">
 </app-header>
 
-<ion-content class="ion-padding" [ngClass]="platform=='android'?'md-header-height':'ios-header-height'">
+<ion-content class="ion-padding" >
 
   <div class="search-result" *ngFor="let item of resultItems ">
     <ion-item lines="none"  detail="false" routerLink="/tabs/main/categories/1/{{item.id}}">

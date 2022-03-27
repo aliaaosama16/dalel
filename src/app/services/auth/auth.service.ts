@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LoginData, LoginResponse } from 'src/app/models/loginData';
+import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
 import { UserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
@@ -12,6 +12,7 @@ import { Storage } from '@capacitor/storage';
 })
 export class AuthService {
   logined = new BehaviorSubject(true);
+  userID = new BehaviorSubject(0);
   userToken: string = '';
 
   constructor(private httpclient: HttpClient) {}
@@ -24,10 +25,37 @@ export class AuthService {
     this.logined.next(false);
   }
 
+  setUserID(userID:number){
+    this.userID.next(userID);
+  }
+
+
+  removeUserID(){
+    this.userID.next(0);
+  }
+
+  
+  getUserIDObservable(): Observable<number>{
+    return this.userID.asObservable();
+  }
+
+  // async storeLoginStatus(status: boolean) {
+  //   await Storage.set({
+  //     key: 'logined',
+  //     value: status.toString(),
+  //   });
+  // }
+
   async storeToken(token: string) {
     await Storage.set({
       key: 'USER-TOKEN',
       value: token,
+    });
+  }
+
+  async removeToken() {
+    await Storage.remove({
+      key: 'USER-TOKEN',
     });
   }
 
@@ -43,8 +71,8 @@ export class AuthService {
     );
   }
 
-  login(data: LoginData): Observable<LoginResponse> {
-    return this.httpclient.post<LoginResponse>(
+  login(data: AuthData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
       `${environment.BASE_URL}login`,
       data
     );
@@ -57,8 +85,8 @@ export class AuthService {
     );
   }
 
-  logout(data: LoginData): Observable<LoginResponse> {
-    return this.httpclient.post<LoginResponse>(
+  logout(data: AuthData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
       `${environment.BASE_URL}logout`,
       data
     );
@@ -67,18 +95,4 @@ export class AuthService {
   forgetPassword() {
     this.httpclient.post(environment.BASE_URL, {});
   }
-
-  // authentication(dataModel: NicSsoResponse) {
-  //   return this._http.post<AuthenticationResponse>(
-  //     `${environment.baseUrl}/authentication/mobileAuthenticateByLogId`,
-  //     dataModel
-  //   );
-  // }
-
-  // register(dataModel: RegisterationRequest) {
-  //   return this._http.post<AuthenticationResponse>(
-  //     `${environment.baseUrl}/authentication/registerNewUser`,
-  //     dataModel
-  //   );
-  //}
 }
