@@ -53,6 +53,7 @@ export class AuthService {
   }
 
   setUserID(userID: number) {
+    console.log('set id to behavour sybject '+userID);
     this.userID.next(userID);
   }
 

@@ -8,6 +8,7 @@ import {
   NotificationsInfo,
   NotificationsResponse,
 } from 'src/app/models/notifications';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -31,13 +32,16 @@ export class NotificationsPage implements OnInit {
     private router: Router,
     private userNotifications: NotificationsService,
     private alertController: AlertController,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private auth:AuthService
   ) {
     this.platform = this.util.platform;
+    this.auth.getUserIDObservable().subscribe((val) => {
     this.notificationsData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: 37,
+      user_id:val,
     };
+  })
     this.showNotification(this.notificationsData);
   }
 

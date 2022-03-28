@@ -118,11 +118,15 @@ let ProfilePage = class ProfilePage {
         this.util = util;
         this.auth = auth;
         this.language = language;
+        this.auth.getStoredUserID();
         this.auth.getUserIDObservable().subscribe((val) => {
-            this.userData = {
-                lang: this.language.getLanguage(),
-                user_id: val,
-            };
+            console.log('get id from behavour subject if just logined' + val);
+            if (val != 0) {
+                this.userData = {
+                    lang: this.language.getLanguage(),
+                    user_id: val,
+                };
+            }
         });
         this.platform = this.util.platform;
         this.util.showLoadingSpinner().then((__) => {

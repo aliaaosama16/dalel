@@ -96,16 +96,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NotificationsPage": () => (/* binding */ NotificationsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
 /* harmony import */ var _notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.page.scss */ 87326);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/notifications/notifications.service */ 31670);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/notifications/notifications.service */ 31670);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -118,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // import * as moment from 'moment';
 let NotificationsPage = class NotificationsPage {
-    constructor(menuCtrl, langaugeservice, util, router, userNotifications, alertController, translate) {
+    constructor(menuCtrl, langaugeservice, util, router, userNotifications, alertController, translate, auth) {
         this.menuCtrl = menuCtrl;
         this.langaugeservice = langaugeservice;
         this.util = util;
@@ -126,11 +128,14 @@ let NotificationsPage = class NotificationsPage {
         this.userNotifications = userNotifications;
         this.alertController = alertController;
         this.translate = translate;
+        this.auth = auth;
         this.platform = this.util.platform;
-        this.notificationsData = {
-            lang: this.langaugeservice.getLanguage(),
-            user_id: 37,
-        };
+        this.auth.getUserIDObservable().subscribe((val) => {
+            this.notificationsData = {
+                lang: this.langaugeservice.getLanguage(),
+                user_id: val,
+            };
+        });
         this.showNotification(this.notificationsData);
     }
     ngOnInit() {
@@ -155,7 +160,7 @@ let NotificationsPage = class NotificationsPage {
         this.router.navigateByUrl(`/tabs/my-reservations/my-reservations-details/` + orderID);
     }
     deleteItem(notification_id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             const data = {
                 lang: this.langaugeservice.getLanguage(),
                 notification_id: notification_id,
@@ -194,16 +199,17 @@ let NotificationsPage = class NotificationsPage {
     }
 };
 NotificationsPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
-    { type: src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__.NotificationsService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
+    { type: src_app_services_notifications_notifications_service__WEBPACK_IMPORTED_MODULE_4__.NotificationsService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService }
 ];
-NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-notifications',
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__]

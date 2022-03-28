@@ -15,17 +15,22 @@ export class ProfilePage implements OnInit {
   platform: any;
   userData: UserData;
   userResponse: UserResponse;
+  getData:boolean=false;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
     private auth: AuthService,
     private language: LanguageService
   ) {
+    this.auth.getStoredUserID();
     this.auth.getUserIDObservable().subscribe((val) => {
-      this.userData = {
-        lang: this.language.getLanguage(),
-        user_id: val,
-      };
+      console.log('get id from behavour subject if just logined'+val);
+      if(val!=0){
+        this.userData = {
+          lang: this.language.getLanguage(),
+          user_id: val,
+        };
+      }
     });
     this.platform = this.util.platform;
     this.util.showLoadingSpinner().then((__) => {
@@ -35,6 +40,7 @@ export class ProfilePage implements OnInit {
             this.userResponse = data;
             console.log('user all data :' + JSON.stringify(this.userResponse));
             this.auth.getStoredUserID();
+            this.getData=true;
           } else {
             this.util.showMessage(data.msg);
           }
@@ -42,6 +48,7 @@ export class ProfilePage implements OnInit {
         },
         (err) => {
           this.util.dismissLoading();
+          this.getData=false;
         }
       );
     });

@@ -315,46 +315,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ShowLanguagePageGuard": () => (/* binding */ ShowLanguagePageGuard)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
-
 
 
 
 
 let ShowLanguagePageGuard = class ShowLanguagePageGuard {
-    constructor(router, translate) {
+    constructor(router) {
         this.router = router;
-        this.translate = translate;
-        this.selectLangauge = false;
-        this.getData();
+        this.savedLangauge = false;
     }
     canActivate(route, state) {
-        return !this.selectLangauge;
-    }
-    getData() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.get({ key: 'lang' });
             console.log('lang value :' + val.value);
-            console.log('opened is ' + this.selectLangauge);
+            console.log('opened is ' + this.savedLangauge);
             if (val.value == null) {
-                this.selectLangauge = true;
+                this.savedLangauge = true;
             }
             else {
                 this.router.navigate(['/on-boarding']);
-                this.selectLangauge = false;
+                this.savedLangauge = false;
             }
+            return this.savedLangauge;
         });
     }
 };
 ShowLanguagePageGuard.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router }
 ];
 ShowLanguagePageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
         providedIn: 'root',
     })
 ], ShowLanguagePageGuard);
@@ -477,6 +470,7 @@ let AuthService = class AuthService {
         this.logined.next(false);
     }
     setUserID(userID) {
+        console.log('set id to behavour sybject ' + userID);
         this.userID.next(userID);
     }
     removeUserID() {
@@ -613,7 +607,7 @@ let LanguageService = class LanguageService {
             else if (lang.value == null) {
                 console.log(`no language`);
                 document.documentElement.dir = 'rtl';
-                this.setLanguage('ar');
+                //this.setLanguage('ar');
                 this.selected = 'ar';
                 this.translate.setDefaultLang('ar');
             }
