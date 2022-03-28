@@ -38,7 +38,7 @@
       </ion-content>
 
       <ion-footer class="ion-padding logout-section ion-no-border">
-        <ion-item lines="none" detail="false" routerLink="/login-register">
+        <ion-item lines="none" detail="false" (click)="logout()">
           <ion-icon slot="start" src="./../assets/icon/logout.svg"></ion-icon>
           <ion-label>{{ "logout" | translate }}</ion-label>
         </ion-item>

@@ -37,6 +37,12 @@ export class AuthService {
     this.isLogined();
   }
 
+  async removeRegistrationData() {
+    this.removeToken();
+    this.removeUserID();
+    await Storage.remove({ key: 'activation-status'});
+    await Storage.remove({ key: 'confirmation-status'});
+  }
 
   isLogined() {
     this.logined.next(true);

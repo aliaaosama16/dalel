@@ -1,9 +1,9 @@
 export interface AuthData {
   lang: string;
-  phone: number;
+  phone?: number;
   password?: string;
   device_id: string;
-  user_id?:string;
+  user_id?:number;
 }
 
 export interface AuthResponse {

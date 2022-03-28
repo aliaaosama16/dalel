@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
+import { AuthData, AuthResponse } from './models/loginData';
+import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 
@@ -11,7 +14,8 @@ import { UtilitiesService } from './services/utilities/utilities.service';
 })
 export class AppComponent {
   currentLanguage: string = '';
-  selectedIndex: number ;
+  selectedIndex: number;
+  logoutData: AuthData;
 
   pages = [
     {
@@ -48,8 +52,9 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private languageService: LanguageService,
-    private langaugeGuard: ShowLanguagePageGuard,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private router: Router,
+    private auth: AuthService
   ) {
     this.initializeApp();
   }
@@ -63,5 +68,37 @@ export class AppComponent {
 
       this.util.getDeviceID();
     });
+  }
+
+  logout() {
+
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.logoutData = {
+        lang: this.languageService.getLanguage(),
+        user_id: val,
+        device_id: this.util.deviceID,
+      };
+    });
+   
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.logout(this.logoutData).subscribe(
+        (data: AuthResponse) => {
+          if (data.key == 1) {
+            console.log('login res :' + JSON.stringify(data));
+            this.router.navigateByUrl('/login-register');
+            this.auth.removeToken();
+            this.auth.removeUserID();
+            this.auth.removeRegistrationData();
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+    this.router.navigateByUrl('/login-register');
   }
 }
