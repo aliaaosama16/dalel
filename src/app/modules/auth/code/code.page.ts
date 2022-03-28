@@ -54,6 +54,7 @@ export class CodePage implements OnInit {
           if (data.key == 1) {
             console.log('activeAccount  res :' + JSON.stringify(data));
             this.util.showMessage(data.msg);
+            this.router.navigateByUrl('/tabs/main');
           } else {
             this.util.showMessage(data.msg);
           }
