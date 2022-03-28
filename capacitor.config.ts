@@ -9,15 +9,15 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 9000,
       launchAutoHide: true,
-      // androidScaleType: "CENTER_CROP",
-      androidSplashResourceName: "splash",
+      androidScaleType: 'CENTER_CROP',
+      androidSplashResourceName: 'splash',
       splashFullScreen: true,
-      splashImmersive: false
-    }
+      splashImmersive: false,
+    },
   },
-  "android": {
-    "allowMixedContent": true
-  }
+  android: {
+    allowMixedContent: true,
+  },
 };
 
 export default config;

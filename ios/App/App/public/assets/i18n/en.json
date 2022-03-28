@@ -108,5 +108,6 @@
   "please choose from and to dates":"please choose from and to dates",
   "please login first":"please login first",
   "confirm delete this notification":"confirm delete this notification ?",
-  "login now":"login now"
+  "login now":"login now" ,
+  "no-notifications":"no-notifications"
 }

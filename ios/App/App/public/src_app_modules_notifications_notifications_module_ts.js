@@ -129,14 +129,20 @@ let NotificationsPage = class NotificationsPage {
         this.alertController = alertController;
         this.translate = translate;
         this.auth = auth;
+        this.getNotifications = false;
+        this.noNotifications = false;
         this.platform = this.util.platform;
+        this.auth.getStoredUserID();
         this.auth.getUserIDObservable().subscribe((val) => {
-            this.notificationsData = {
-                lang: this.langaugeservice.getLanguage(),
-                user_id: val,
-            };
+            console.log('user id :' + val);
+            if (val != 0) {
+                this.notificationsData = {
+                    lang: this.langaugeservice.getLanguage(),
+                    user_id: val,
+                };
+                this.showNotification(this.notificationsData);
+            }
         });
-        this.showNotification(this.notificationsData);
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
@@ -148,11 +154,18 @@ let NotificationsPage = class NotificationsPage {
     showNotification(data) {
         this.util.showLoadingSpinner().then((__) => {
             this.userNotifications.showNotification(data).subscribe((data) => {
-                this.notifications = data.data;
+                if (data.key == 0) {
+                    this.noNotifications = true;
+                }
+                else {
+                    this.notifications = data.data;
+                    this.getNotifications = true;
+                }
                 console.log('notifications' + JSON.stringify(this.notifications));
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
+                this.getNotifications = false;
             });
         });
     }
@@ -272,7 +285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" -->\n<ion-content\n  class=\"ion-padding\"\n  \n>\n  <ion-card class=\"ion-no-margin\">\n    <ion-item-sliding  *ngFor=\"let item of notifications\" >\n    <ion-item (click)=\"openOrederDetails(item.order_id)\">\n      <ul>\n        <li>\n          <ion-label>\n            <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n            <p\n              item-start\n              class=\"fn-12 dalel-Regular secondary-color\"\n              [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n            >\n              {{item.duration}}\n            </p>\n          </ion-label>\n        </li>\n      </ul>\n    </ion-item>\n    <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n      <ion-item-option color=\"danger\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-item-option>\n     \n    </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" -->\n<ion-content class=\"ion-padding\">\n  <ion-card\n    class=\"ion-no-margin\"\n    *ngIf=\"getNotifications && notifications.length!=0\"\n  >\n    <ion-item-sliding *ngFor=\"let item of notifications\">\n      <ion-item (click)=\"openOrederDetails(item.order_id)\">\n        <ul>\n          <li>\n            <ion-label>\n              <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n              <p\n                item-start\n                class=\"fn-12 dalel-Regular secondary-color\"\n                [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n              >\n                {{item.duration}}\n              </p>\n            </ion-label>\n          </li>\n        </ul>\n      </ion-item>\n      <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n        <ion-item-option color=\"danger\">\n          <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n\n  <div class=\"no-notifications\" *ngIf=\"noNotifications\">\n    <h5>{{'no-notifications'|translate}}</h5>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -282,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************************************/
 /***/ ((module) => {
 
-module.exports = "ul {\n  list-style-image: url('dot-icon.svg');\n}\n\nion-item::part(native) {\n  text-align: center;\n  padding-inline-end: 0px !important;\n  padding-inline-start: 0px !important;\n}\n\nion-item::part(native) .item-inner {\n  --inner-border-width: 0px;\n}\n\n.isRead {\n  --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;\n}\n\n.alert-button-group.sc-ion-alert-md {\n  justify-content: space-around !important;\n}\n\n.alert-button-group.sc-ion-alert-ios {\n  justify-content: space-around !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUNBQUE7QUFDRjs7QUFJQTtFQUNFLGtCQUFBO0VBQ0Esa0NBQUE7RUFDQSxvQ0FBQTtBQURGOztBQUdFO0VBQ0UseUJBQUE7QUFESjs7QUFLQTtFQUNFLGlFQUFBO0FBRkY7O0FBS0E7RUFDRSx3Q0FBQTtBQUZGOztBQUlBO0VBQ0Usd0NBQUE7QUFERiIsImZpbGUiOiJub3RpZmljYXRpb25zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInVsIHtcbiAgbGlzdC1zdHlsZS1pbWFnZTogdXJsKFwiLi8uLi8uLi8uLi9hc3NldHMvaWNvbi9kb3QtaWNvbi5zdmdcIik7XG59XG4vLyBpb24taXRlbSB7XG4vLyAgIC0tYm9yZGVyLWNvbG9yOiB2YXIoLS1pb24tY29sb3Itd2hpdGUpICFpbXBvcnRhbnQ7XG4vLyB9XG5pb24taXRlbTo6cGFydChuYXRpdmUpIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwYWRkaW5nLWlubGluZS1lbmQ6IDBweCAhaW1wb3J0YW50O1xuICBwYWRkaW5nLWlubGluZS1zdGFydDogMHB4ICFpbXBvcnRhbnQ7XG5cbiAgLml0ZW0taW5uZXIge1xuICAgIC0taW5uZXItYm9yZGVyLXdpZHRoOiAwcHg7XG4gIH1cbn1cblxuLmlzUmVhZCB7XG4gIC0tYmFja2dyb3VuZDogcmdiYSh2YXIoLS1pb24tY29sb3ItcHJpbWFyeS1yZ2IpLCAwLjE1KSAhaW1wb3J0YW50O1xufVxuXG4uYWxlcnQtYnV0dG9uLWdyb3VwLnNjLWlvbi1hbGVydC1tZHtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQgIWltcG9ydGFudDtcbn1cbi5hbGVydC1idXR0b24tZ3JvdXAuc2MtaW9uLWFsZXJ0LWlvc3tcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQgIWltcG9ydGFudDtcbn1cblxuIl19 */";
+module.exports = "ul {\n  list-style-image: url('dot-icon.svg');\n}\n\nion-item::part(native) {\n  text-align: center;\n  padding-inline-end: 0px !important;\n  padding-inline-start: 0px !important;\n}\n\nion-item::part(native) .item-inner {\n  --inner-border-width: 0px;\n}\n\n.isRead {\n  --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;\n}\n\n.alert-button-group.sc-ion-alert-md {\n  justify-content: space-around !important;\n}\n\n.alert-button-group.sc-ion-alert-ios {\n  justify-content: space-around !important;\n}\n\n.no-notifications {\n  margin-top: 40%;\n  text-align: center;\n  color: var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUNBQUE7QUFDRjs7QUFJQTtFQUNFLGtCQUFBO0VBQ0Esa0NBQUE7RUFDQSxvQ0FBQTtBQURGOztBQUdFO0VBQ0UseUJBQUE7QUFESjs7QUFLQTtFQUNFLGlFQUFBO0FBRkY7O0FBS0E7RUFDRSx3Q0FBQTtBQUZGOztBQUlBO0VBQ0Usd0NBQUE7QUFERjs7QUFJQTtFQUNFLGVBQUE7RUFDQSxrQkFBQTtFQUNBLCtCQUFBO0FBREYiLCJmaWxlIjoibm90aWZpY2F0aW9ucy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ1bCB7XG4gIGxpc3Qtc3R5bGUtaW1hZ2U6IHVybChcIi4vLi4vLi4vLi4vYXNzZXRzL2ljb24vZG90LWljb24uc3ZnXCIpO1xufVxuLy8gaW9uLWl0ZW0ge1xuLy8gICAtLWJvcmRlci1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXdoaXRlKSAhaW1wb3J0YW50O1xuLy8gfVxuaW9uLWl0ZW06OnBhcnQobmF0aXZlKSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgcGFkZGluZy1pbmxpbmUtZW5kOiAwcHggIWltcG9ydGFudDtcbiAgcGFkZGluZy1pbmxpbmUtc3RhcnQ6IDBweCAhaW1wb3J0YW50O1xuXG4gIC5pdGVtLWlubmVyIHtcbiAgICAtLWlubmVyLWJvcmRlci13aWR0aDogMHB4O1xuICB9XG59XG5cbi5pc1JlYWQge1xuICAtLWJhY2tncm91bmQ6IHJnYmEodmFyKC0taW9uLWNvbG9yLXByaW1hcnktcmdiKSwgMC4xNSkgIWltcG9ydGFudDtcbn1cblxuLmFsZXJ0LWJ1dHRvbi1ncm91cC5zYy1pb24tYWxlcnQtbWR7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kICFpbXBvcnRhbnQ7XG59XG4uYWxlcnQtYnV0dG9uLWdyb3VwLnNjLWlvbi1hbGVydC1pb3N7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kICFpbXBvcnRhbnQ7XG59XG5cbi5uby1ub3RpZmljYXRpb25ze1xuICBtYXJnaW4tdG9wOiA0MCU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbn1cblxuIl19 */";
 
 /***/ })
 

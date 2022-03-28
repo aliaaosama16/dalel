@@ -787,7 +787,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     BASE_URL: 'https://dalell.online/api/',
-    Google_API_KEY: ''
+    Google_API_KEY: 'AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ',
 };
 /*
  * For easier debugging in development mode, you can import the following file

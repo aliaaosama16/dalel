@@ -118,6 +118,7 @@ let ProfilePage = class ProfilePage {
         this.util = util;
         this.auth = auth;
         this.language = language;
+        this.getData = false;
         this.auth.getStoredUserID();
         this.auth.getUserIDObservable().subscribe((val) => {
             console.log('get id from behavour subject if just logined' + val);
@@ -135,6 +136,7 @@ let ProfilePage = class ProfilePage {
                     this.userResponse = data;
                     console.log('user all data :' + JSON.stringify(this.userResponse));
                     this.auth.getStoredUserID();
+                    this.getData = true;
                 }
                 else {
                     this.util.showMessage(data.msg);
@@ -142,6 +144,7 @@ let ProfilePage = class ProfilePage {
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
+                this.getData = false;
             });
         });
     }
@@ -178,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'profile'\" [backwardRoute]=\"'/tabs/main'\" [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\" [isMain]=\"false\"></app-header>\n\n<ion-content class=\"ion-padding\" >\n\n\n  <div class=\"profile-card-wrapper\">\n\n    <ion-card class=\"ion-no-margin ion-padding\">\n\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/person-inactive.svg\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-16 dalel-Bold name\">{{userResponse.data.first_name}}</h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/person-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.first_name\" type=\"text\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/phone-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.phone\" type=\"nummber\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/email-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.email\" type=\"email\"></ion-input>\n      </ion-item>\n    </ion-card>\n\n\n  </div>\n\n\n\n\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'profile'\" [backwardRoute]=\"'/tabs/main'\" [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\" [isMain]=\"false\"></app-header>\n\n<ion-content class=\"ion-padding\" >\n\n\n  <div class=\"profile-card-wrapper\" *ngIf=\"getData\">\n\n    <ion-card class=\"ion-no-margin ion-padding\">\n\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/person-inactive.svg\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-16 dalel-Bold name\">{{userResponse.data.first_name}}</h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/person-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.first_name\" type=\"text\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/phone-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.phone\" type=\"nummber\"></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon item-start color=\"primary\" src=\"'./../../../../assets/icon/email-inactive.svg\"></ion-icon>\n        <ion-input readonly=\"true\" [value]=\"userResponse.data.email\" type=\"email\"></ion-input>\n      </ion-item>\n    </ion-card>\n\n\n  </div>\n\n\n\n\n</ion-content>");
 
 /***/ }),
 

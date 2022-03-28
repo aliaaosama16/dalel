@@ -143,6 +143,7 @@ const routes = [
             },
             {
                 path: 'notifications',
+                canActivate: [src_app_guards_isAuth_is_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsAuthGuard],
                 loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_notifications_notifications_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../notifications/notifications.module */ 74193)).then((m) => m.NotificationsPageModule),
             },
             {
