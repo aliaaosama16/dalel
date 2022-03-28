@@ -16,7 +16,7 @@ import { ForgetPasswordData } from 'src/app/models/forgetPassword';
   providedIn: 'root',
 })
 export class AuthService {
-  logined = new BehaviorSubject(true);
+  logined = new BehaviorSubject(false);
   userID = new BehaviorSubject(0);
   userToken: string = '';
 
@@ -28,6 +28,15 @@ export class AuthService {
     this.store('confirmation-status', data.data.is_confirmed);
     this.setUserID(data.data.id);
   }
+
+  storeStatusAfterLogin(data: AuthResponse) {
+    this.storeToken(data.data?.api_token);
+    this.store('activation-status', data.data.is_active);
+    this.store('confirmation-status', data.data.is_confirmed);
+    this.setUserID(data.data.id);
+    this.isLogined();
+  }
+
 
   isLogined() {
     this.logined.next(true);
@@ -49,12 +58,9 @@ export class AuthService {
     return this.userID.asObservable();
   }
 
-  // async storeLoginStatus(status: boolean) {
-  //   await Storage.set({
-  //     key: 'logined',
-  //     value: status.toString(),
-  //   });
-  // }
+  getLoginedObservable(): Observable<boolean> {
+    return this.logined.asObservable();
+  }
 
   async storeToken(token: string) {
     await Storage.set({

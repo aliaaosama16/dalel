@@ -199,10 +199,7 @@ export class LoginRegisterPage implements OnInit {
             if (data.key == 1) {
               console.log('login res :' + JSON.stringify(data));
               this.router.navigateByUrl('/tabs/main');
-              this.auth.storeToken(data.data?.api_token);
-              this.auth.store('activation-status', data.data.is_active);
-              this.auth.store('confirmation-status', data.data.is_confirmed);
-              this.auth.isLogined();
+              this.auth.storeStatusAfterLogin(data);
             } else {
               this.util.showMessage(data.msg);
             }

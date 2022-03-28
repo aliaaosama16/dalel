@@ -44,7 +44,7 @@ export class CodePage implements OnInit {
       this.activationData = {
         lang: this.language.getLanguage(),
         user_id: val,
-        code: this.codeValues,
+        code: this.codeValues.substring(9),
         device_id: this.util.deviceID,
       };
     });
@@ -54,7 +54,8 @@ export class CodePage implements OnInit {
           if (data.key == 1) {
             console.log('activeAccount  res :' + JSON.stringify(data));
             this.util.showMessage(data.msg);
-            this.router.navigateByUrl('/tabs/main');
+            this.util.showMessage('login now');
+            this.router.navigateByUrl('/login-register');
           } else {
             this.util.showMessage(data.msg);
           }
@@ -65,9 +66,6 @@ export class CodePage implements OnInit {
         }
       );
     });
-
-    this.auth.store('activation-status', true);
-    this.router.navigateByUrl('/tabs');
   }
 
   focusNumber1(focusStatus: boolean) {
