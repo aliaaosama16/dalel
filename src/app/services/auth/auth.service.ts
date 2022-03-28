@@ -22,6 +22,13 @@ export class AuthService {
 
   constructor(private httpclient: HttpClient) {}
 
+  storeStatusAfterRegisteration(data: AuthResponse) {
+    this.storeToken(data.data?.api_token);
+    this.store('activation-status', data.data.is_active);
+    this.store('confirmation-status', data.data.is_confirmed);
+    this.setUserID(data.data.id);
+  }
+
   isLogined() {
     this.logined.next(true);
   }
