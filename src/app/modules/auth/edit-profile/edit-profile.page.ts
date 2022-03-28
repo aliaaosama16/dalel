@@ -15,6 +15,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class EditProfilePage implements OnInit {
   userData: UserData;
   updateUserData:UpdateUserData;
+  getData:boolean=false;
   userResponse: UserResponse;
   isProfileSubmitted: boolean = false;
   public profileForm: FormGroup;
@@ -54,9 +55,11 @@ export class EditProfilePage implements OnInit {
           console.log('user all data :' + JSON.stringify(this.userResponse));
           this.buildForm();
           this.util.dismissLoading();
+          this.getData=true;
         },
         (err) => {
           this.util.dismissLoading();
+          this.getData=false;
         }
       );
     });

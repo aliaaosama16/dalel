@@ -24,7 +24,8 @@ export class NotificationsPage implements OnInit {
   platform: any;
   notificationsData: NotificationsData;
   notifications: NotificationsDataResponse[];
-
+  getNotifications: boolean = false;
+  noNotifications: boolean = false;
   constructor(
     private menuCtrl: MenuController,
     private langaugeservice: LanguageService,
@@ -33,16 +34,20 @@ export class NotificationsPage implements OnInit {
     private userNotifications: NotificationsService,
     private alertController: AlertController,
     private translate: TranslateService,
-    private auth:AuthService
+    private auth: AuthService
   ) {
     this.platform = this.util.platform;
+    this.auth.getStoredUserID();
     this.auth.getUserIDObservable().subscribe((val) => {
-    this.notificationsData = {
-      lang: this.langaugeservice.getLanguage(),
-      user_id:val,
-    };
-  })
-    this.showNotification(this.notificationsData);
+      console.log('user id :' + val);
+      if (val != 0) {
+        this.notificationsData = {
+          lang: this.langaugeservice.getLanguage(),
+          user_id: val,
+        };
+        this.showNotification(this.notificationsData);
+      }
+    });
   }
 
   ngOnInit() {
@@ -58,12 +63,20 @@ export class NotificationsPage implements OnInit {
     this.util.showLoadingSpinner().then((__) => {
       this.userNotifications.showNotification(data).subscribe(
         (data: NotificationsResponse) => {
-          this.notifications = data.data;
+          if (data.key == 0) {
+            this.noNotifications = true;
+          } else {
+            this.notifications = data.data;
+            this.getNotifications = true;
+          }
+
+        
           console.log('notifications' + JSON.stringify(this.notifications));
           this.util.dismissLoading();
         },
         (err) => {
           this.util.dismissLoading();
+          this.getNotifications = false;
         }
       );
     });

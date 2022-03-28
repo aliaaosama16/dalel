@@ -98,6 +98,7 @@ const routes: Routes = [
       },
       {
         path: 'notifications',
+        canActivate: [IsAuthGuard],
         loadChildren: () =>
           import('./../notifications/notifications.module').then(
             (m) => m.NotificationsPageModule
