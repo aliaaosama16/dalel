@@ -3,6 +3,14 @@ export interface UserData {
   user_id: number;
 }
 
+export interface UpdateUserData {
+  lang: string;
+  user_id: number;
+  first_name:string;
+  email:string;
+  phone:string;
+}
+
 export interface UserResponse {
   key: number;
   msg: string;

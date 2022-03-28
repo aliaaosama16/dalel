@@ -41,6 +41,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     //allowTouchMove: false,
   };
   introData: Intro;
+  getIntro:boolean=false;
 
   constructor(
     private langaugeservice: LanguageService,
@@ -60,7 +61,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
 
   async skipBoarding() {
     console.log('skip boarding pages');
-    this.setBoarding();
+    //this.setBoarding();
     this.router.navigateByUrl('/tabs/main');
   }
 
@@ -71,9 +72,11 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
           this.introData = data;
           console.log('INTRO ' + JSON.stringify(this.introData));
           this.util.dismissLoading();
+          this.getIntro=true;
         },
         (err) => {
           this.util.dismissLoading();
+          this.getIntro=false;
         }
       );
     });
@@ -84,10 +87,16 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     if (this.nextClicked < 3) {
       this.nextClicked++;
     } else {
-      this.setBoarding();
+      // this.setBoarding();
+
+      // this.router.navigateByUrl('/tabs/main');
+    }
+  }
+
+  start(){
+    this.setBoarding();
 
       this.router.navigateByUrl('/tabs/main');
-    }
   }
 
   async setBoarding() {

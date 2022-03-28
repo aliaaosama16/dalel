@@ -217,13 +217,10 @@ let LoginRegisterPage = class LoginRegisterPage {
                 };
                 this.util.showLoadingSpinner().then((__) => {
                     this.auth.register(this.registerData).subscribe((data) => {
-                        var _a;
                         if (data.key == 1) {
                             console.log('register res :' + JSON.stringify(data));
                             this.util.showMessage(data.msg);
-                            this.auth.storeToken((_a = data.data) === null || _a === void 0 ? void 0 : _a.api_token);
-                            this.auth.store('activation-status', data.data.is_active);
-                            this.auth.store('confirmation-status', data.data.is_confirmed);
+                            this.auth.storeStatusAfterRegisteration(data);
                             this.router.navigateByUrl('/code');
                         }
                         else {
@@ -256,14 +253,10 @@ let LoginRegisterPage = class LoginRegisterPage {
             };
             this.util.showLoadingSpinner().then((__) => {
                 this.auth.login(this.loginData).subscribe((data) => {
-                    var _a;
                     if (data.key == 1) {
                         console.log('login res :' + JSON.stringify(data));
                         this.router.navigateByUrl('/tabs/main');
-                        this.auth.storeToken((_a = data.data) === null || _a === void 0 ? void 0 : _a.api_token);
-                        this.auth.store('activation-status', data.data.is_active);
-                        this.auth.store('confirmation-status', data.data.is_confirmed);
-                        this.auth.isLogined();
+                        this.auth.storeStatusAfterLogin(data);
                     }
                     else {
                         this.util.showMessage(data.msg);

@@ -135,7 +135,7 @@ let CodePage = class CodePage {
             this.activationData = {
                 lang: this.language.getLanguage(),
                 user_id: val,
-                code: this.codeValues,
+                code: this.codeValues.substring(9),
                 device_id: this.util.deviceID,
             };
         });
@@ -144,6 +144,8 @@ let CodePage = class CodePage {
                 if (data.key == 1) {
                     console.log('activeAccount  res :' + JSON.stringify(data));
                     this.util.showMessage(data.msg);
+                    this.util.showMessage('login now');
+                    this.router.navigateByUrl('/login-register');
                 }
                 else {
                     this.util.showMessage(data.msg);
@@ -153,8 +155,6 @@ let CodePage = class CodePage {
                 this.util.dismissLoading();
             });
         });
-        this.auth.store('activation-status', true);
-        this.router.navigateByUrl('/tabs');
     }
     focusNumber1(focusStatus) {
         console.log('input focus' + focusStatus);
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.background {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n\n.auth-form ion-item {\n  margin-bottom: 0px !important;\n}\n\nion-row {\n  margin-bottom: 24px;\n}\n\nion-item {\n  --inner-padding-end: 0px !important;\n}\n\nion-button {\n  margin-bottom: 32px;\n}\n\nion-input {\n  text-align: center;\n  --padding-end: 0px !important;\n}\n\nion-input .native-input {\n  font-size: 24px !important;\n  padding: 0px;\n  margin: 0px;\n  font-family: \"Cairo-SemiBold\";\n  padding-top: 0px !important;\n  padding-bottom: 0px !important;\n}\n\n.focused ion-item::part(native) {\n  --background: var(--ion-color-primary) !important;\n}\n\n.focused ion-input {\n  --color: var(--ion-color-white) !important;\n}\n\nion-item::part(native) {\n  padding: 6px 0px !important;\n  text-align: center;\n}\n\nion-item::part(native) .item-inner {\n  padding-inline-end: 0px !important;\n}\n\n.code-verification-container {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvZGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7YUFBQTtBQUVGOztBQUNBO0VBQ0UsNkJBQUE7QUFFRjs7QUFBQTtFQUNFLG1CQUFBO0FBR0Y7O0FBREE7RUFDRSxtQ0FBQTtBQUlGOztBQUZBO0VBQ0UsbUJBQUE7QUFLRjs7QUFIQTtFQUNFLGtCQUFBO0VBQ0EsNkJBQUE7QUFNRjs7QUFMRTtFQUNFLDBCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSw2QkFBQTtFQUNBLDJCQUFBO0VBQ0EsOEJBQUE7QUFPSjs7QUFIRTtFQUNFLGlEQUFBO0FBTUo7O0FBSkU7RUFDRSwwQ0FBQTtBQU1KOztBQURBO0VBQ0UsMkJBQUE7RUFDQSxrQkFBQTtBQUlGOztBQUhFO0VBQ0Usa0NBQUE7QUFLSjs7QUFEQTtFQUNFLGFBQUE7RUFDQSw4QkFBQTtBQUlGIiwiZmlsZSI6ImNvZGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQuYmFja2dyb3VuZCB7XG4gIC0tYmFja2dyb3VuZDogdXJsKC4vLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9hdXRoQmctcmlnaHQucG5nKSAwIDAgLzEwMCUgMTAwJVxuICAgIG5vLXJlcGVhdDtcbn1cbi5hdXRoLWZvcm0gaW9uLWl0ZW0ge1xuICBtYXJnaW4tYm90dG9tOiAwcHggIWltcG9ydGFudDtcbn1cbmlvbi1yb3cge1xuICBtYXJnaW4tYm90dG9tOiAyNHB4O1xufVxuaW9uLWl0ZW0ge1xuICAtLWlubmVyLXBhZGRpbmctZW5kOiAwcHggIWltcG9ydGFudDtcbn1cbmlvbi1idXR0b24ge1xuICBtYXJnaW4tYm90dG9tOiAzMnB4O1xufVxuaW9uLWlucHV0IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAtLXBhZGRpbmctZW5kOiAwcHggIWltcG9ydGFudDtcbiAgLm5hdGl2ZS1pbnB1dCB7XG4gICAgZm9udC1zaXplOiAyNHB4ICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZzogMHB4O1xuICAgIG1hcmdpbjogMHB4O1xuICAgIGZvbnQtZmFtaWx5OiBcIkNhaXJvLVNlbWlCb2xkXCI7XG4gICAgcGFkZGluZy10b3A6IDBweCAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmctYm90dG9tOiAwcHggIWltcG9ydGFudDtcbiAgfVxufVxuLmZvY3VzZWQge1xuICBpb24taXRlbTo6cGFydChuYXRpdmUpIHtcbiAgICAtLWJhY2tncm91bmQ6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KSAhaW1wb3J0YW50O1xuICB9XG4gIGlvbi1pbnB1dHtcbiAgICAtLWNvbG9yOiB2YXIoLS1pb24tY29sb3Itd2hpdGUpICFpbXBvcnRhbnQ7XG4gIH1cbn1cblxuXG5pb24taXRlbTo6cGFydChuYXRpdmUpIHtcbiAgcGFkZGluZzogNnB4IDBweCAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIC5pdGVtLWlubmVyIHtcbiAgICBwYWRkaW5nLWlubGluZS1lbmQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG59XG5cbi5jb2RlLXZlcmlmaWNhdGlvbi1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG4iXX0= */";
+module.exports = "ion-content.background {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n\n.auth-form ion-item {\n  margin-bottom: 0px !important;\n}\n\nion-row {\n  margin-bottom: 24px;\n}\n\nion-item {\n  --inner-padding-end: 0px !important;\n}\n\nion-button {\n  margin-bottom: 32px;\n}\n\nion-input {\n  text-align: center;\n  --padding-end: 0px !important;\n}\n\nion-input .native-input {\n  font-size: 24px !important;\n  padding: 0px;\n  margin: 0px;\n  font-family: \"Cairo-SemiBold\";\n  padding-top: 0px !important;\n  padding-bottom: 0px !important;\n}\n\nion-item::part(native) {\n  padding: 6px 0px !important;\n  text-align: center;\n}\n\nion-item::part(native) .item-inner {\n  padding-inline-end: 0px !important;\n}\n\n.code-verification-container {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvZGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7YUFBQTtBQUVGOztBQUNBO0VBQ0UsNkJBQUE7QUFFRjs7QUFBQTtFQUNFLG1CQUFBO0FBR0Y7O0FBREE7RUFDRSxtQ0FBQTtBQUlGOztBQUZBO0VBQ0UsbUJBQUE7QUFLRjs7QUFIQTtFQUNFLGtCQUFBO0VBQ0EsNkJBQUE7QUFNRjs7QUFMRTtFQUNFLDBCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSw2QkFBQTtFQUNBLDJCQUFBO0VBQ0EsOEJBQUE7QUFPSjs7QUFNQTtFQUNFLDJCQUFBO0VBQ0Esa0JBQUE7QUFIRjs7QUFJRTtFQUNFLGtDQUFBO0FBRko7O0FBTUE7RUFDRSxhQUFBO0VBQ0EsOEJBQUE7QUFIRiIsImZpbGUiOiJjb2RlLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJhY2tncm91bmQge1xuICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLXJpZ2h0LnBuZykgMCAwIC8xMDAlIDEwMCVcbiAgICBuby1yZXBlYXQ7XG59XG4uYXV0aC1mb3JtIGlvbi1pdGVtIHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4ICFpbXBvcnRhbnQ7XG59XG5pb24tcm93IHtcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcbn1cbmlvbi1pdGVtIHtcbiAgLS1pbm5lci1wYWRkaW5nLWVuZDogMHB4ICFpbXBvcnRhbnQ7XG59XG5pb24tYnV0dG9uIHtcbiAgbWFyZ2luLWJvdHRvbTogMzJweDtcbn1cbmlvbi1pbnB1dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgLS1wYWRkaW5nLWVuZDogMHB4ICFpbXBvcnRhbnQ7XG4gIC5uYXRpdmUtaW5wdXQge1xuICAgIGZvbnQtc2l6ZTogMjRweCAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmc6IDBweDtcbiAgICBtYXJnaW46IDBweDtcbiAgICBmb250LWZhbWlseTogXCJDYWlyby1TZW1pQm9sZFwiO1xuICAgIHBhZGRpbmctdG9wOiAwcHggIWltcG9ydGFudDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMHB4ICFpbXBvcnRhbnQ7XG4gIH1cbn1cbi8vIC5mb2N1c2VkIHtcbi8vICAgaW9uLWl0ZW06OnBhcnQobmF0aXZlKSB7XG4vLyAgICAgLS1iYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSkgIWltcG9ydGFudDtcbi8vICAgfVxuLy8gICBpb24taW5wdXR7XG4vLyAgICAgLS1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXdoaXRlKSAhaW1wb3J0YW50O1xuLy8gICB9XG4vLyB9XG5cblxuaW9uLWl0ZW06OnBhcnQobmF0aXZlKSB7XG4gIHBhZGRpbmc6IDZweCAwcHggIWltcG9ydGFudDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAuaXRlbS1pbm5lciB7XG4gICAgcGFkZGluZy1pbmxpbmUtZW5kOiAwcHggIWltcG9ydGFudDtcbiAgfVxufVxuXG4uY29kZS12ZXJpZmljYXRpb24tY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufVxuIl19 */";
 
 /***/ })
 

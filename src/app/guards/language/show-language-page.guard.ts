@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ShowLanguagePageGuard implements CanActivate {
   selectLangauge: boolean = false;
-  constructor(private router: Router) {
+  constructor(private router: Router, private translate: TranslateService) {
     this.getData();
   }
   canActivate(
@@ -27,7 +27,7 @@ export class ShowLanguagePageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.selectLangauge;
+    return !this.selectLangauge;
   }
 
   async getData() {
@@ -41,18 +41,4 @@ export class ShowLanguagePageGuard implements CanActivate {
       this.selectLangauge = false;
     }
   }
-
-  // getLanguage() {
-  //   console.log('current lang is ' + this.platform.isRTL);
-  //   return this.platform.isRTL ? 'ar' : 'en';
-  // }
-
-  // async setLanguage(lng: string) {
-  //   console.log('set this language :' + lng);
-  //   this.translate.use(lng);
-  //   await Storage.set({
-  //     key: 'lang',
-  //     value: lng,
-  //   });
-  // }
 }

@@ -14,7 +14,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   providedIn: 'root',
 })
 export class IsAuthGuard implements CanActivate {
-  isLogined:boolean;
+  isLogined: boolean;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -28,24 +28,17 @@ export class IsAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      console.log('is auth guard :'+this.authService.logined.value);
-
-      if (this.isLogined) {
-        return this.authService.logined.value;
-      } else {
-        this.util.showMessage('please login first');
-        this.router.navigateByUrl('/login-register');
-        return this.authService.logined.value;
-      }
-    
+    console.log('is auth guard :' + this.authService.logined.value);
+    this.authService.getLoginedObservable().subscribe((val) => {
+      this.isLogined = val;
+    });
+    this.authService.getStoredUserID();
+    if (this.isLogined) {
+      return true;
+    } else {
+      this.util.showMessage('please login first');
+      this.router.navigateByUrl('/login-register');
+      return false;
+    }
   }
-
-
-getLoginedStatus(){
-  this.authService.getLoginedObservable().subscribe((val)=>{
-    this.isLogined=val;
-  });
-}
-
-
 }

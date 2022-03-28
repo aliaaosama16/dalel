@@ -29,7 +29,7 @@ let IsAuthGuard = class IsAuthGuard {
     }
     canActivate(route, state) {
         console.log('is auth guard :' + this.authService.logined.value);
-        if (this.authService.logined.value) {
+        if (this.isLogined) {
             return this.authService.logined.value;
         }
         else {
@@ -37,6 +37,11 @@ let IsAuthGuard = class IsAuthGuard {
             this.router.navigateByUrl('/login-register');
             return this.authService.logined.value;
         }
+    }
+    getLoginedStatus() {
+        this.authService.getLoginedObservable().subscribe((val) => {
+            this.isLogined = val;
+        });
     }
 };
 IsAuthGuard.ctorParameters = () => [

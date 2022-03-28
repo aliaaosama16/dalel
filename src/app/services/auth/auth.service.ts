@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
-import { UserData, UserResponse } from 'src/app/models/userData';
+import { UpdateUserData, UserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
 import {
@@ -31,8 +31,8 @@ export class AuthService {
 
   storeStatusAfterLogin(data: AuthResponse) {
     this.storeToken(data.data?.api_token);
-    this.store('activation-status', data.data.is_active);
-    this.store('confirmation-status', data.data.is_confirmed);
+    this.store('status', data.status);
+    this.store('userID', data.data.id);
     this.setUserID(data.data.id);
     this.isLogined();
   }
@@ -40,8 +40,8 @@ export class AuthService {
   async removeRegistrationData() {
     this.removeToken();
     this.removeUserID();
-    await Storage.remove({ key: 'activation-status'});
-    await Storage.remove({ key: 'confirmation-status'});
+    await Storage.remove({ key: 'activation-status' });
+    await Storage.remove({ key: 'confirmation-status' });
   }
 
   isLogined() {
@@ -58,6 +58,11 @@ export class AuthService {
 
   removeUserID() {
     this.userID.next(0);
+  }
+
+  async getStoredUserID() {
+    const val = await Storage.get({ key: 'userID' });
+    this.setUserID(parseInt(val.value));
   }
 
   getUserIDObservable(): Observable<number> {
@@ -107,7 +112,7 @@ export class AuthService {
     );
   }
 
-  updateUserData(data: UserData): Observable<UserResponse> {
+  updateUserData(data: UpdateUserData): Observable<UserResponse> {
     return this.httpclient.post<UserResponse>(
       `${environment.BASE_URL}update-user`,
       data

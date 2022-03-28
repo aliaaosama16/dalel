@@ -16,7 +16,7 @@
           src="./../../../assets/icon/edit.svg"
         ></ion-icon>
       </ion-button>
-      <ion-button *ngIf="!isMain" (click)="navigate(backwardRoute)">
+      <ion-button class="arrow-btn" *ngIf="!isMain" (click)="navigate(backwardRoute)">
         <ion-icon
           slot="icon-only"
           name="arrow-forward-outline"

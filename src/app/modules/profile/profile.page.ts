@@ -14,7 +14,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class ProfilePage implements OnInit {
   platform: any;
   userData: UserData;
-  userResponse:UserResponse;
+  userResponse: UserResponse;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -31,13 +31,13 @@ export class ProfilePage implements OnInit {
     this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {
-          if(data.key==1){
-            this.userResponse=data;
-            console.log('user all data :'+JSON.stringify(this.userResponse))
-          }else{
+          if (data.key == 1) {
+            this.userResponse = data;
+            console.log('user all data :' + JSON.stringify(this.userResponse));
+            this.auth.getStoredUserID();
+          } else {
             this.util.showMessage(data.msg);
           }
-          
           this.util.dismissLoading();
         },
         (err) => {

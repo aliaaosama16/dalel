@@ -25,6 +25,7 @@
             placeholder="{{'user-name'|translate}}"
             type="text"
             formControlName="userName"
+            [value]="userResponse.data.first_name"
           ></ion-input>
         </ion-item>
 
@@ -54,6 +55,7 @@
             placeholder="{{'phone-number'|translate}}"
             type="tel"
             formControlName="phoneNumber"
+            [value]="userResponse.data.phone"
           ></ion-input>
         </ion-item>
 
@@ -83,6 +85,7 @@
             placeholder="{{'email-address'|translate}}"
             type="email"
             formControlName="email"
+            [value]="userResponse.data.email"
           ></ion-input>
         </ion-item>
 

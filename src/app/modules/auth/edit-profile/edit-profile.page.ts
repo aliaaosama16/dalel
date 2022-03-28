@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { UserData, UserResponse } from 'src/app/models/userData';
+import { UpdateUserData, UserData, UserResponse } from 'src/app/models/userData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -14,7 +14,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class EditProfilePage implements OnInit {
   userData: UserData;
-  userResponse:UserResponse;
+  updateUserData:UpdateUserData;
+  userResponse: UserResponse;
   isProfileSubmitted: boolean = false;
   public profileForm: FormGroup;
 
@@ -36,9 +37,9 @@ export class EditProfilePage implements OnInit {
   constructor(
     private menuCtrl: MenuController,
     private formBuilder: FormBuilder,
-    private util:UtilitiesService,
-    private auth:AuthService,
-    private language:LanguageService
+    private util: UtilitiesService,
+    private auth: AuthService,
+    private language: LanguageService
   ) {
     this.auth.getUserIDObservable().subscribe((val) => {
       this.userData = {
@@ -49,8 +50,8 @@ export class EditProfilePage implements OnInit {
     this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {
-          this.userResponse=data;
-          console.log('user all data :'+JSON.stringify(this.userResponse));
+          this.userResponse = data;
+          console.log('user all data :' + JSON.stringify(this.userResponse));
           this.buildForm();
           this.util.dismissLoading();
         },
@@ -60,9 +61,7 @@ export class EditProfilePage implements OnInit {
       );
     });
   }
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 
   openMenu() {
     this.menuCtrl.open();
@@ -116,6 +115,30 @@ export class EditProfilePage implements OnInit {
   }
 
   editProfile() {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.updateUserData = {
+        lang: this.language.getLanguage(),
+        user_id: val,
+        first_name:this.profileForm.value.userName,
+        email:this.profileForm.value.email,
+        phone:this.profileForm.value.phoneNumber
+      };
+    });
     console.log('edited data is ' + JSON.stringify(this.profileForm.value));
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.updateUserData(this.updateUserData).subscribe(
+        (data: UserResponse) => {
+          this.userResponse = data;
+          console.log('user all data :' + JSON.stringify(this.userResponse));
+          if(data.key==1){
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 }

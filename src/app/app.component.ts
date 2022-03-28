@@ -6,6 +6,7 @@ import { AuthData, AuthResponse } from './models/loginData';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent {
   currentLanguage: string = '';
   selectedIndex: number;
   logoutData: AuthData;
+  logined: boolean;
 
   pages = [
     {
@@ -67,11 +69,22 @@ export class AppComponent {
       this.util.getPlatformType();
 
       this.util.getDeviceID();
+      this.getLoginStatus();
     });
+  }
+  //this.store('status', data.status);
+  async getLoginStatus() {
+    // this.auth.getLoginedObservable().subscribe((val) => {
+    //   this.logined = val;
+    // });
+
+    const loginStatus = await Storage.get({ key: 'status' });
+    if (loginStatus.value != null) {
+      this.auth.isLogined();
+    }
   }
 
   logout() {
-
     this.auth.getUserIDObservable().subscribe((val) => {
       this.logoutData = {
         lang: this.languageService.getLanguage(),
@@ -79,7 +92,7 @@ export class AppComponent {
         device_id: this.util.deviceID,
       };
     });
-   
+
     this.util.showLoadingSpinner().then((__) => {
       this.auth.logout(this.logoutData).subscribe(
         (data: AuthResponse) => {

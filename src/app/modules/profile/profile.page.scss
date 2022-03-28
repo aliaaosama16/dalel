@@ -29,6 +29,11 @@
     --border-radius: 10px;
     --border-width: 1px;
     margin-bottom: 16px;
+
+    --highlight-color-focused:var(--ion-color-primary);
+    --highlight-color-valid:var(--ion-color-primary);
+    --highlight-color-invalid:var(--ion-color-primary);
+  
     ion-icon {
       width: 20px !important;
       height: 20px !important;
