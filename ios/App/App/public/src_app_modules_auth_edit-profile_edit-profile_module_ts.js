@@ -149,8 +149,7 @@ let EditProfilePage = class EditProfilePage {
             });
         });
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     openMenu() {
         this.menuCtrl.open();
     }
@@ -197,7 +196,28 @@ let EditProfilePage = class EditProfilePage {
         this.inputFocusPhone = focusStatus;
     }
     editProfile() {
+        this.auth.getUserIDObservable().subscribe((val) => {
+            this.updateUserData = {
+                lang: this.language.getLanguage(),
+                user_id: val,
+                first_name: this.profileForm.value.userName,
+                email: this.profileForm.value.email,
+                phone: this.profileForm.value.phoneNumber
+            };
+        });
         console.log('edited data is ' + JSON.stringify(this.profileForm.value));
+        this.util.showLoadingSpinner().then((__) => {
+            this.auth.updateUserData(this.updateUserData).subscribe((data) => {
+                this.userResponse = data;
+                console.log('user all data :' + JSON.stringify(this.userResponse));
+                if (data.key == 1) {
+                    this.util.showMessage(data.msg);
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
 };
 EditProfilePage.ctorParameters = () => [
@@ -229,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'edit profile'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  [backwardRoute]=\"'/tabs/profile'\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <div class=\"auth-login-register\">\n    <ion-card class=\"auth-container\">\n      <form\n        class=\"auth-form\"\n        (ngSubmit)=\"editProfile()\"\n        [formGroup]=\"profileForm\"\n      >\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusPerson ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPerson?inputFocusPersonIcon:inputInFocusPersonIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusPerson(true)\"\n            (ionBlur)=\"focusPerson(false)\"\n            placeholder=\"{{'user-name'|translate}}\"\n            type=\"text\"\n            formControlName=\"userName\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.userName.errors?.required\"\n        >\n          {{'please enter user name' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.userName.errors?.minlength\"\n        >\n          {{'user name should be min 2 chars long' | translate}}\n        </div>\n\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusPhone ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusPhone(true)\"\n            (ionBlur)=\"focusPhone(false)\"\n            placeholder=\"{{'phone-number'|translate}}\"\n            type=\"tel\"\n            formControlName=\"phoneNumber\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl .phoneNumber.errors?.required\"\n        >\n          {{'please enter phone number' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.phoneNumber.errors?.minlength\"\n        >\n          {{'phone number should be 10 numbers' | translate}}\n        </div>\n\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusEmail ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusEmail?inputFocusEmailIcon:inputInFocusEmailIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusEmail(true)\"\n            (ionBlur)=\"focusEmail(false)\"\n            placeholder=\"{{'email-address'|translate}}\"\n            type=\"email\"\n            formControlName=\"email\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.email.errors?.required \"\n        >\n          {{'please enter email' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.email.errors?.pattern \"\n        >\n          {{'please enter valid email' | translate}}\n        </div>\n\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{ \"save\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'edit profile'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  [backwardRoute]=\"'/tabs/profile'\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <div class=\"auth-login-register\">\n    <ion-card class=\"auth-container\">\n      <form\n        class=\"auth-form\"\n        (ngSubmit)=\"editProfile()\"\n        [formGroup]=\"profileForm\"\n      >\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusPerson ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPerson?inputFocusPersonIcon:inputInFocusPersonIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusPerson(true)\"\n            (ionBlur)=\"focusPerson(false)\"\n            placeholder=\"{{'user-name'|translate}}\"\n            type=\"text\"\n            formControlName=\"userName\"\n            [value]=\"userResponse.data.first_name\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.userName.errors?.required\"\n        >\n          {{'please enter user name' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.userName.errors?.minlength\"\n        >\n          {{'user name should be min 2 chars long' | translate}}\n        </div>\n\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusPhone ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusPhone(true)\"\n            (ionBlur)=\"focusPhone(false)\"\n            placeholder=\"{{'phone-number'|translate}}\"\n            type=\"tel\"\n            formControlName=\"phoneNumber\"\n            [value]=\"userResponse.data.phone\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl .phoneNumber.errors?.required\"\n        >\n          {{'please enter phone number' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.phoneNumber.errors?.minlength\"\n        >\n          {{'phone number should be 10 numbers' | translate}}\n        </div>\n\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusEmail ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusEmail?inputFocusEmailIcon:inputInFocusEmailIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusEmail(true)\"\n            (ionBlur)=\"focusEmail(false)\"\n            placeholder=\"{{'email-address'|translate}}\"\n            type=\"email\"\n            formControlName=\"email\"\n            [value]=\"userResponse.data.email\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.email.errors?.required \"\n        >\n          {{'please enter email' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isProfileSubmitted && profileErrorControl.email.errors?.pattern \"\n        >\n          {{'please enter valid email' | translate}}\n        </div>\n\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{ \"save\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -239,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************************************/
 /***/ ((module) => {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJlZGl0LXByb2ZpbGUucGFnZS5zY3NzIn0= */";
+module.exports = "ion-item {\n  --border-color: var(--ion-color-secondary);\n  --border-radius: 10px;\n  --border-width: 1px;\n  margin-bottom: 16px;\n  --highlight-color-focused:var(--ion-color-primary);\n  --highlight-color-valid:var(--ion-color-primary);\n  --highlight-color-invalid:var(--ion-color-primary);\n}\nion-item ion-icon {\n  width: 20px !important;\n  height: 20px !important;\n}\nion-item ion-input {\n  --color: var(--ion-color-secondary);\n  font-size: 14px;\n  margin: 0 5px;\n  --ion-font-family: \"Cairo-Regular\";\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVkaXQtcHJvZmlsZS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSwwQ0FBQTtFQUNBLHFCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtFQUlBLGtEQUFBO0VBQ0EsZ0RBQUE7RUFDQSxrREFBQTtBQUZKO0FBS0k7RUFDRSxzQkFBQTtFQUNBLHVCQUFBO0FBSE47QUFLSTtFQUNFLG1DQUFBO0VBQ0EsZUFBQTtFQUNBLGFBQUE7RUFDQSxrQ0FBQTtBQUhOIiwiZmlsZSI6ImVkaXQtcHJvZmlsZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taXRlbSB7XG4gICAgLS1ib3JkZXItY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xuICAgIC0tYm9yZGVyLXJhZGl1czogMTBweDtcbiAgICAtLWJvcmRlci13aWR0aDogMXB4O1xuICAgIG1hcmdpbi1ib3R0b206IDE2cHg7XG5cblxuXG4gICAgLS1oaWdobGlnaHQtY29sb3ItZm9jdXNlZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4gICAgLS1oaWdobGlnaHQtY29sb3ItdmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAgIC0taGlnaGxpZ2h0LWNvbG9yLWludmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBcblxuICAgIGlvbi1pY29uIHtcbiAgICAgIHdpZHRoOiAyMHB4ICFpbXBvcnRhbnQ7XG4gICAgICBoZWlnaHQ6IDIwcHggIWltcG9ydGFudDtcbiAgICB9XG4gICAgaW9uLWlucHV0IHtcbiAgICAgIC0tY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xuICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgbWFyZ2luOiAwIDVweDtcbiAgICAgIC0taW9uLWZvbnQtZmFtaWx5OiBcIkNhaXJvLVJlZ3VsYXJcIjtcbiAgICB9XG4gIH1cbiJdfQ== */";
 
 /***/ })
 

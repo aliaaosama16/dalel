@@ -29,19 +29,18 @@ let IsAuthGuard = class IsAuthGuard {
     }
     canActivate(route, state) {
         console.log('is auth guard :' + this.authService.logined.value);
+        this.authService.getLoginedObservable().subscribe((val) => {
+            this.isLogined = val;
+        });
+        this.authService.getStoredUserID();
         if (this.isLogined) {
-            return this.authService.logined.value;
+            return true;
         }
         else {
             this.util.showMessage('please login first');
             this.router.navigateByUrl('/login-register');
-            return this.authService.logined.value;
+            return false;
         }
-    }
-    getLoginedStatus() {
-        this.authService.getLoginedObservable().subscribe((val) => {
-            this.isLogined = val;
-        });
     }
 };
 IsAuthGuard.ctorParameters = () => [

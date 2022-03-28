@@ -15,30 +15,21 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class ShowLanguagePageGuard implements CanActivate {
-  selectLangauge: boolean = false;
-  constructor(private router: Router, private translate: TranslateService) {
-    this.getData();
-  }
-  canActivate(
+  savedLangauge: boolean = false;
+  constructor(private router: Router) {}
+  async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return !this.selectLangauge;
-  }
-
-  async getData() {
+  ): Promise<boolean> {
     const val = await Storage.get({ key: 'lang' });
     console.log('lang value :' + val.value);
-    console.log('opened is ' + this.selectLangauge);
+    console.log('opened is ' + this.savedLangauge);
     if (val.value == null) {
-      this.selectLangauge = true;
+      this.savedLangauge = true;
     } else {
       this.router.navigate(['/on-boarding']);
-      this.selectLangauge = false;
+      this.savedLangauge = false;
     }
+    return this.savedLangauge;
   }
 }
