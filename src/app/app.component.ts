@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { AuthData, AuthResponse } from './models/loginData';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 import { Storage } from '@capacitor/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -56,7 +57,9 @@ export class AppComponent {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private alertController:AlertController,
+    private translate:TranslateService
   ) {
     this.initializeApp();
   }
@@ -79,12 +82,15 @@ export class AppComponent {
     // });
 
     const loginStatus = await Storage.get({ key: 'status' });
-    if (loginStatus.value != null) {
+    if (loginStatus.value =='non-active') {
       this.auth.isLogined();
+      this.auth. getLoginedObservable().subscribe((val)=>{
+        this.logined=val;
+      })
     }
   }
 
-  logout() {
+  async logout() {
     this.auth.getUserIDObservable().subscribe((val) => {
       this.logoutData = {
         lang: this.languageService.getLanguage(),
@@ -93,25 +99,49 @@ export class AppComponent {
       };
     });
 
-    this.util.showLoadingSpinner().then((__) => {
-      this.auth.logout(this.logoutData).subscribe(
-        (data: AuthResponse) => {
-          if (data.key == 1) {
-            console.log('login res :' + JSON.stringify(data));
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: this.translate.instant('confirm logout'),
+      buttons: [
+        {
+          text: this.translate.instant('ok'),
+          handler: () => {
+            this.util.showLoadingSpinner().then((__) => {
+              this.auth.logout(this.logoutData).subscribe(
+                (data: AuthResponse) => {
+                  if (data.key == 1) {
+                    console.log('login res :' + JSON.stringify(data));
+                    this.router.navigateByUrl('/login-register');
+                    this.auth.removeToken();
+                    this.auth.removeUserID();
+                    this.auth.removeRegistrationData();
+                  } else {
+                    this.util.showMessage(data.msg);
+                  }
+                  this.util.dismissLoading();
+                },
+                (err) => {
+                  this.util.dismissLoading();
+                }
+              );
+            });
             this.router.navigateByUrl('/login-register');
-            this.auth.removeToken();
-            this.auth.removeUserID();
-            this.auth.removeRegistrationData();
-          } else {
-            this.util.showMessage(data.msg);
-          }
-          this.util.dismissLoading();
+          },
         },
-        (err) => {
-          this.util.dismissLoading();
-        }
-      );
+        {
+          text: this.translate.instant('cancel'),
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          },
+        },
+      ],
     });
-    this.router.navigateByUrl('/login-register');
+
+    await alert.present();
+
+    
   }
 }

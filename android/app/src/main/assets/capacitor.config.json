@@ -7,6 +7,7 @@
 		"SplashScreen": {
 			"launchShowDuration": 9000,
 			"launchAutoHide": true,
+			"androidScaleType": "CENTER_CROP",
 			"androidSplashResourceName": "splash",
 			"splashFullScreen": true,
 			"splashImmersive": false
