@@ -110,5 +110,6 @@
   "confirm delete this notification":"confirm delete this notification ?",
   "login now":"login now" ,
   "no-notifications":"no-notifications",
-  "confirm logout":"confirm logout ?"
+  "confirm logout":"confirm logout ?",
+  "connection error":"connection error"
 }

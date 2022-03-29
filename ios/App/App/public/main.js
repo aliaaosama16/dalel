@@ -104,16 +104,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 30836);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/auth/auth.service */ 9171);
 /* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/language/language.service */ 40301);
 /* harmony import */ var _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/utilities/utilities.service */ 11062);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _services_network_network_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/network/network.service */ 33401);
+
+
 
 
 
@@ -125,12 +129,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, languageService, util, router, auth) {
+    constructor(platform, languageService, util, router, auth, alertController, translate, network) {
         this.platform = platform;
         this.languageService = languageService;
         this.util = util;
         this.router = router;
         this.auth = auth;
+        this.alertController = alertController;
+        this.translate = translate;
+        this.network = network;
         this.currentLanguage = '';
         this.pages = [
             {
@@ -174,11 +181,12 @@ let AppComponent = class AppComponent {
             this.util.getPlatformType();
             this.util.getDeviceID();
             this.getLoginStatus();
+            this.network.getNetworkStatus();
         });
     }
     //this.store('status', data.status);
     getLoginStatus() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             // this.auth.getLoginedObservable().subscribe((val) => {
             //   this.logined = val;
             // });
@@ -192,42 +200,67 @@ let AppComponent = class AppComponent {
         });
     }
     logout() {
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.logoutData = {
-                lang: this.languageService.getLanguage(),
-                user_id: val,
-                device_id: this.util.deviceID,
-            };
-        });
-        this.util.showLoadingSpinner().then((__) => {
-            this.auth.logout(this.logoutData).subscribe((data) => {
-                if (data.key == 1) {
-                    console.log('login res :' + JSON.stringify(data));
-                    this.router.navigateByUrl('/login-register');
-                    this.auth.removeToken();
-                    this.auth.removeUserID();
-                    this.auth.removeRegistrationData();
-                }
-                else {
-                    this.util.showMessage(data.msg);
-                }
-                this.util.dismissLoading();
-            }, (err) => {
-                this.util.dismissLoading();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.auth.getUserIDObservable().subscribe((val) => {
+                this.logoutData = {
+                    lang: this.languageService.getLanguage(),
+                    user_id: val,
+                    device_id: this.util.deviceID,
+                };
             });
+            const alert = yield this.alertController.create({
+                cssClass: 'my-custom-class',
+                message: this.translate.instant('confirm logout'),
+                buttons: [
+                    {
+                        text: this.translate.instant('ok'),
+                        handler: () => {
+                            this.util.showLoadingSpinner().then((__) => {
+                                this.auth.logout(this.logoutData).subscribe((data) => {
+                                    if (data.key == 1) {
+                                        console.log('login res :' + JSON.stringify(data));
+                                        this.router.navigateByUrl('/login-register');
+                                        this.auth.removeToken();
+                                        this.auth.removeUserID();
+                                        this.auth.removeRegistrationData();
+                                    }
+                                    else {
+                                        this.util.showMessage(data.msg);
+                                    }
+                                    this.util.dismissLoading();
+                                }, (err) => {
+                                    this.util.dismissLoading();
+                                });
+                            });
+                            this.router.navigateByUrl('/login-register');
+                        },
+                    },
+                    {
+                        text: this.translate.instant('cancel'),
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: () => {
+                            console.log('Confirm Cancel');
+                        },
+                    },
+                ],
+            });
+            yield alert.present();
         });
-        this.router.navigateByUrl('/login-register');
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Platform },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.Platform },
     { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
     { type: _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
-    { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router },
+    { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.AlertController },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateService },
+    { type: _services_network_network_service__WEBPACK_IMPORTED_MODULE_6__.NetworkService }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-root',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -640,6 +673,48 @@ LanguageService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
         providedIn: 'root',
     })
 ], LanguageService);
+
+
+
+/***/ }),
+
+/***/ 33401:
+/*!*****************************************************!*\
+  !*** ./src/app/services/network/network.service.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NetworkService": () => (/* binding */ NetworkService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _capacitor_network__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/network */ 35609);
+
+
+
+let NetworkService = class NetworkService {
+    constructor() { }
+    listenToNetwork() {
+        _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.addListener('networkStatusChange', (status) => {
+            console.log('Network status changed', status);
+        });
+    }
+    getNetworkStatus() {
+        _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.getStatus().then((status) => {
+            console.log('network status :' + JSON.stringify(status));
+            console.log('network type ' + status.connectionType);
+        });
+    }
+};
+NetworkService.ctorParameters = () => [];
+NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root',
+    })
+], NetworkService);
 
 
 

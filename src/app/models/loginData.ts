@@ -3,7 +3,7 @@ export interface AuthData {
   phone?: number;
   password?: string;
   device_id: string;
-  user_id?:number;
+  user_id?: number;
 }
 
 export interface AuthResponse {
@@ -26,4 +26,10 @@ export interface AuthDataResponse {
   is_confirmed: boolean;
   lang: string;
   avatar: string;
+}
+
+export enum Status {
+  Active = 'active',
+  NonActive = 'non-active',
+  Blocked = 'blocked',
 }

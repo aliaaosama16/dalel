@@ -9,14 +9,14 @@
       class="ion-text-start primary-color dalel-Bold fn-18 custom-title"
       >{{ title | translate }}</ion-title
     >
-    <ion-buttons slot="end">
-      <ion-button class="edit-btn" *ngIf="isEditable" (click)="navigate(forwardRoute)">
+    <ion-buttons slot="end" class="arrow-edit-btns">
+      <ion-button  *ngIf="isEditable" (click)="navigate(forwardRoute)">
         <ion-icon
           slot="icon-only"
           src="./../../../assets/icon/edit.svg"
         ></ion-icon>
       </ion-button>
-      <ion-button class="arrow-btn" *ngIf="!isMain" (click)="navigate(backwardRoute)">
+      <ion-button  *ngIf="!isMain" (click)="navigate(backwardRoute)">
         <ion-icon
           slot="icon-only"
           name="arrow-forward-outline"

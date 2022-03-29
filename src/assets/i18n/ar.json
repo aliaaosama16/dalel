@@ -110,5 +110,6 @@
   "confirm delete this notification":"تأكيد حذف هذا الاشعار؟",
   "login now":"قم بالتسجيل الآن",
   "no-notifications":"لا توجد اشعارات",
-  "confirm logout":"تأكيد تسجيل الخروج؟"
+  "confirm logout":"تأكيد تسجيل الخروج؟",
+  "connection error":"خطا في الاتصال بالانترنت"
 }

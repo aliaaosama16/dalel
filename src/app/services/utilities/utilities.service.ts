@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Toast } from '@capacitor/toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
-import {  LoadingController, Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Device } from '@capacitor/device';
 

@@ -8,6 +8,8 @@ import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 import { Storage } from '@capacitor/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { Network } from '@capacitor/network';
+import { NetworkService } from './services/network/network.service';
 
 @Component({
   selector: 'app-root',
@@ -59,7 +61,8 @@ export class AppComponent {
     private router: Router,
     private auth: AuthService,
     private alertController:AlertController,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private network:NetworkService
   ) {
     this.initializeApp();
   }
@@ -73,6 +76,7 @@ export class AppComponent {
 
       this.util.getDeviceID();
       this.getLoginStatus();
+  
     });
   }
   //this.store('status', data.status);

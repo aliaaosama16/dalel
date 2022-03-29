@@ -607,6 +607,40 @@ const Geolocation = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlug
 
 /***/ }),
 
+/***/ 16501:
+/*!*****************************************************************!*\
+  !*** ./node_modules/@capacitor/network/dist/esm/definitions.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ 35609:
+/*!***********************************************************!*\
+  !*** ./node_modules/@capacitor/network/dist/esm/index.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Network": () => (/* binding */ Network)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 16501);
+
+const Network = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Network', {
+    web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_network_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 29435)).then(m => new m.NetworkWeb()),
+});
+
+
+
+
+/***/ }),
+
 /***/ 81638:
 /*!*****************************************************************!*\
   !*** ./node_modules/@capacitor/storage/dist/esm/definitions.js ***!

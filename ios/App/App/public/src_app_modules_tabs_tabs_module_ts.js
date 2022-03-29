@@ -32,11 +32,13 @@ let IsAuthGuard = class IsAuthGuard {
     canActivate(route, state) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_2__.Storage.get({ key: 'status' });
+            console.log('login status' + loginStatus.value);
             if (loginStatus.value == 'non-active') {
                 this.auth.isLogined();
                 return true;
             }
             else {
+                this.router.navigateByUrl('/login-register');
                 return false;
             }
         });
