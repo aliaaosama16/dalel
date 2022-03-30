@@ -36,7 +36,7 @@ export class LoginRegisterPage implements OnInit {
   iconRegisterConfirmName: string = 'eye-off-outline';
   inputRegisterConfirmType: any = 'password';
 
-  authType: string = 'register';
+  authType: string = 'signin';
   inputFocusPerson: boolean = false;
   inputFocusPersonIcon: string = './../../../../assets/icon/person-active.svg';
   inputInFocusPersonIcon: string =

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { ShowBoardingPageGuard } from './guards/on-boarding/show-boarding-page.guard';
+import { DataResolverService } from './services/resolver/data-resolver.service';
 
 const routes: Routes = [
   {
@@ -32,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'login-register',
+    resolve: {
+     page : DataResolverService,
+    },
     loadChildren: () =>
       import('./modules/auth/login-register/login-register.module').then(
         (m) => m.LoginRegisterPageModule

@@ -86,7 +86,7 @@ export class AppComponent {
     // });
 
     const loginStatus = await Storage.get({ key: 'status' });
-    if (loginStatus.value =='non-active') {
+    if (loginStatus.value =='active') {
       this.auth.isLogined();
       this.auth. getLoginedObservable().subscribe((val)=>{
         this.logined=val;
@@ -116,9 +116,7 @@ export class AppComponent {
                 (data: AuthResponse) => {
                   if (data.key == 1) {
                     console.log('login res :' + JSON.stringify(data));
-                    this.router.navigateByUrl('/login-register');
-                    this.auth.removeToken();
-                    this.auth.removeUserID();
+                    this.auth.isLogout();
                     this.auth.removeRegistrationData();
                   } else {
                     this.util.showMessage(data.msg);
@@ -130,7 +128,7 @@ export class AppComponent {
                 }
               );
             });
-            this.router.navigateByUrl('/login-register');
+            
           },
         },
         {

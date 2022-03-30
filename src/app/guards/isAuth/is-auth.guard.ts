@@ -26,7 +26,7 @@ export class IsAuthGuard implements CanActivate {
   ): Promise<boolean> {
     const loginStatus = await Storage.get({ key: 'status' });
     console.log('login status'+loginStatus.value);
-    if (loginStatus.value == 'non-active') {
+    if (loginStatus.value == 'active') {
       this.auth.isLogined();
       return true;
     } else {
