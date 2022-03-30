@@ -8,6 +8,7 @@ import { CodePageRoutingModule } from './code-routing.module';
 
 import { CodePage } from './code.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgOtpInputModule } from  'ng-otp-input';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     CodePageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    NgOtpInputModule
   ],
   declarations: [CodePage]
 })

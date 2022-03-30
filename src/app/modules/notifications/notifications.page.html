@@ -9,7 +9,7 @@
 <ion-content class="ion-padding">
   <ion-card
     class="ion-no-margin"
-    *ngIf="getNotifications && !noNotifications"
+    *ngIf="!noNotifications"
   >
     <ion-item-sliding *ngFor="let item of notifications">
       <ion-item (click)="openOrederDetails(item.order_id)">
@@ -36,7 +36,7 @@
     </ion-item-sliding>
   </ion-card>
 
-  <div class="no-notifications" *ngIf="noNotifications && getNotifications ">
+  <div class="no-notifications" *ngIf="noNotifications  ">
     <h5>{{'no-notifications'|translate}}</h5>
   </div>
 </ion-content>

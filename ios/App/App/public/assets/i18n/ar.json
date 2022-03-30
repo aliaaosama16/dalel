@@ -111,5 +111,6 @@
   "login now":"قم بالتسجيل الآن",
   "no-notifications":"لا توجد اشعارات",
   "confirm logout":"تأكيد تسجيل الخروج؟",
-  "connection error":"خطا في الاتصال بالانترنت"
+  "connection error":"خطا في الاتصال بالانترنت",
+  "you are blocked.Contact with management":"تم حظر هذا الاكونت .تواصل مع الادارة"
 }

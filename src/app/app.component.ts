@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, Platform } from '@ionic/angular';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
-import { AuthData, AuthResponse } from './models/loginData';
+import { AuthData, AuthResponse, Status } from './models/loginData';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
@@ -80,7 +80,7 @@ export class AppComponent {
 
   async getLoginStatus() {
     const loginStatus = await Storage.get({ key: 'status' });
-    if (loginStatus.value == 'active') {
+    if (loginStatus.value == Status.Active) {
       this.auth.isLogined();
       this.auth.getLoginedObservable().subscribe((val) => {
         this.logined = val;
@@ -129,6 +129,7 @@ export class AppComponent {
             console.log('login res :' + JSON.stringify(data));
             this.auth.isLogout();
             this.auth.removeRegistrationData();
+            this.router.navigateByUrl('/tabs/main');
           } else {
             this.util.showMessage(data.msg);
           }

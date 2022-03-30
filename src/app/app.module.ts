@@ -18,7 +18,9 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    
     BrowserModule,
+    
     IonicModule.forRoot({
       backButtonText: '',
       mode: 'md',
@@ -35,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {
     provide: HTTP_INTERCEPTORS,

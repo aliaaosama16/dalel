@@ -202,6 +202,7 @@ export class LoginRegisterPage implements OnInit {
                 this.router.navigateByUrl('/tabs/main');
                 this.auth.storeStatusAfterLogin(data);
               }else if(data.status==Status.NonActive){
+                this.auth. setUserID(data.data.id);
                 this.router.navigateByUrl('/code');
               }else if(data.status==Status.Blocked){
                 this.util.showMessage('you are blocked.Contact with management');

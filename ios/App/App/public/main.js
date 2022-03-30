@@ -491,11 +491,11 @@ let AuthService = class AuthService {
     }
     storeStatusAfterLogin(data) {
         var _a;
+        this.isLogined();
+        this.setUserID(data.data.id);
         this.storeToken((_a = data.data) === null || _a === void 0 ? void 0 : _a.api_token);
         this.store('status', data.status);
         this.store('userID', data.data.id);
-        this.setUserID(data.data.id);
-        this.isLogined();
     }
     removeRegistrationData() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
@@ -1028,6 +1028,7 @@ const environment = {
     production: false,
     BASE_URL: 'https://dalell.online/api/',
     Google_API_KEY: 'AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ',
+    ImageBaseUrl: 'https://dalell.online/public/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

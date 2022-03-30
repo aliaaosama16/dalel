@@ -39,13 +39,14 @@
     ion-icon {
       font-size: 16px;
     }
-  }
-  ion-fab-button::part(native) {
-    button.button-native {
-      height: 40px !important;
-      width: 40px !important;
+    &::part(native) {
+      button.button-native {
+        height: 40px !important;
+        width: 40px !important;
+      }
     }
   }
+ 
 
   .filter-fab {
     padding: 0px;

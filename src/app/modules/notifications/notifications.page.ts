@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-// import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications',
@@ -66,12 +65,11 @@ export class NotificationsPage implements OnInit {
           if (data.key == 0) {
             this.noNotifications = true;
           } else if (data.notification_count == 0 && data.key == 1) {
-            this.getNotifications = this.noNotifications = true;
+             this.noNotifications = true;
           } else {
             this.notifications = data.data;
-            this.getNotifications = true;
+            this.noNotifications = false;
           }
-
           console.log('notifications' + JSON.stringify(this.notifications));
           this.util.dismissLoading();
         },

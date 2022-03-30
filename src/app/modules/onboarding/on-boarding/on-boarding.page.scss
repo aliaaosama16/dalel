@@ -1,11 +1,11 @@
-// ion-content.background {
-//   --background: url(./../../../../assets/images/boarding.svg) center
-//     center/cover no-repeat;
-// }
+ion-content.background {
+  --background: url(./../../../../assets/images/boarding.svg) center
+    center/cover no-repeat;
+}
 
 :root[dir="rtl"] {
   .swiper-pagination-bullets {
-    top: 57% !important;
+    top: 23% !important;
     right:  32px !important;
     height: fit-content;
     text-align: right;
@@ -14,7 +14,7 @@
 
 :root[dir="ltr"] {
   .swiper-pagination-bullets {
-    top: 57% !important;
+    top: 23% !important;
     right:  32px !important;
     height: fit-content;
     text-align: left;

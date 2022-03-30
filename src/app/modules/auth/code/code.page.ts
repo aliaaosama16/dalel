@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ActivationData } from 'src/app/models/activationData';
@@ -20,6 +20,25 @@ export class CodePage implements OnInit {
   codeValues: string;
   code: number;
   activationData: ActivationData;
+  config: any = {
+    length: 4,
+    inputStyles: {
+      'border': '1px solid var(--ion-color-secondary)',
+      'color': 'var(--ion-color-primary)',
+      'outline': 'none',
+      'background-color': 'var(--ion-color-white)',
+      'border-radius':'10px',
+      'width':'100%',
+      'height':'60px',
+      'font-size':' 25px',
+    },
+    containerStyles:{
+      'display': 'flex',
+      'justify-content':'space-between'
+    },
+    allowNumbersOnly: true,
+  };
+
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -104,4 +123,8 @@ export class CodePage implements OnInit {
   }
 
   focusFristNumber() {}
+
+  onOtpChange($event) {
+    console.log('numbers' + JSON.stringify($event));
+  }
 }

@@ -18,7 +18,6 @@ export class NetworkService {
   getNetworkStatus() {
     Network.getStatus().then((status) => {
       this.networkStatus.next(status.connected);
-    
     });
   }
 
