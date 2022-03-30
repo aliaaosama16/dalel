@@ -30,6 +30,7 @@ export class InterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         this.network.getNetworkStatus();
         this.network.getNetworkStatusObservable().subscribe((status) => {
+          console.log('current network status : '+status);
           if (!status) {
             this.util.showMessage('connection error');
           }

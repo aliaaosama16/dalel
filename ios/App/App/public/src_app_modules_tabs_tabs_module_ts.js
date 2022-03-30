@@ -33,7 +33,7 @@ let IsAuthGuard = class IsAuthGuard {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_2__.Storage.get({ key: 'status' });
             console.log('login status' + loginStatus.value);
-            if (loginStatus.value == 'non-active') {
+            if (loginStatus.value == 'active') {
                 this.auth.isLogined();
                 return true;
             }
@@ -302,89 +302,6 @@ TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
         styles: [_tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], TabsPage);
-
-
-
-/***/ }),
-
-/***/ 34257:
-/*!***********************************************!*\
-  !*** ./src/app/services/data/data.service.ts ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DataService": () => (/* binding */ DataService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 14001);
-
-
-let DataService = class DataService {
-    constructor() {
-        this.data = [];
-        this.dates = { from: '', to: '' };
-    }
-    setData(id, data) {
-        console.log(JSON.stringify(data));
-        this.data[id] = data;
-    }
-    getData(id) {
-        return this.data[id];
-    }
-    setDates(dates) {
-        this.dates = dates;
-        console.log('selected dates ' + JSON.stringify(dates));
-    }
-    getDates() {
-        return this.dates;
-    }
-};
-DataService.ctorParameters = () => [];
-DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
-        providedIn: 'root',
-    })
-], DataService);
-
-
-
-/***/ }),
-
-/***/ 8873:
-/*!************************************************************!*\
-  !*** ./src/app/services/resolver/data-resolver.service.ts ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DataResolverService": () => (/* binding */ DataResolverService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _data_data_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/data.service */ 34257);
-
-
-
-let DataResolverService = class DataResolverService {
-    constructor(dataService) {
-        this.dataService = dataService;
-    }
-    resolve(route) {
-        let id = route.paramMap.get('id');
-        return this.dataService.getData(id);
-    }
-};
-DataResolverService.ctorParameters = () => [
-    { type: _data_data_service__WEBPACK_IMPORTED_MODULE_0__.DataService }
-];
-DataResolverService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
-        providedIn: 'root',
-    })
-], DataResolverService);
 
 
 

@@ -18,9 +18,7 @@ export class NetworkService {
   getNetworkStatus() {
     Network.getStatus().then((status) => {
       this.networkStatus.next(status.connected);
-      this.getNetworkStatusObservable().subscribe((status) =>
-        console.log('current network status :' + status)
-      );
+    
     });
   }
 

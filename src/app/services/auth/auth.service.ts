@@ -16,7 +16,7 @@ import { ForgetPasswordData } from 'src/app/models/forgetPassword';
   providedIn: 'root',
 })
 export class AuthService {
-  logined = new BehaviorSubject(false);
+  isAuthenticated = new BehaviorSubject(false);
   userID = new BehaviorSubject(0);
   userToken: string = '';
 
@@ -46,11 +46,11 @@ export class AuthService {
   }
 
   isLogined() {
-    this.logined.next(true);
+    this.isAuthenticated.next(true);
   }
 
   isLogout() {
-    this.logined.next(false);
+    this.isAuthenticated.next(false);
   }
 
   setUserID(userID: number) {
@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   getLoginedObservable(): Observable<boolean> {
-    return this.logined.asObservable();
+    return this.isAuthenticated.asObservable();
   }
 
   async storeToken(token: string) {

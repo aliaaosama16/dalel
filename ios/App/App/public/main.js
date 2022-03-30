@@ -11,11 +11,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var _guards_language_show_language_page_guard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./guards/language/show-language-page.guard */ 24909);
 /* harmony import */ var _guards_on_boarding_show_boarding_page_guard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./guards/on-boarding/show-boarding-page.guard */ 91542);
+/* harmony import */ var _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/resolver/data-resolver.service */ 8873);
+
 
 
 
@@ -43,6 +45,9 @@ const routes = [
     },
     {
         path: 'login-register',
+        resolve: {
+            page: _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_2__.DataResolverService,
+        },
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_modules_auth_login-register_login-register_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/auth/login-register/login-register.module */ 64418)).then((m) => m.LoginRegisterPageModule),
     },
     {
@@ -80,12 +85,12 @@ const routes = [
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
-AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_4__.PreloadAllModules }),
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_5__.PreloadAllModules }),
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule],
     })
 ], AppRoutingModule);
 
@@ -181,7 +186,6 @@ let AppComponent = class AppComponent {
             this.util.getPlatformType();
             this.util.getDeviceID();
             this.getLoginStatus();
-            this.network.getNetworkStatus();
         });
     }
     //this.store('status', data.status);
@@ -191,7 +195,7 @@ let AppComponent = class AppComponent {
             //   this.logined = val;
             // });
             const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__.Storage.get({ key: 'status' });
-            if (loginStatus.value == 'non-active') {
+            if (loginStatus.value == 'active') {
                 this.auth.isLogined();
                 this.auth.getLoginedObservable().subscribe((val) => {
                     this.logined = val;
@@ -219,9 +223,7 @@ let AppComponent = class AppComponent {
                                 this.auth.logout(this.logoutData).subscribe((data) => {
                                     if (data.key == 1) {
                                         console.log('login res :' + JSON.stringify(data));
-                                        this.router.navigateByUrl('/login-register');
-                                        this.auth.removeToken();
-                                        this.auth.removeUserID();
+                                        this.auth.isLogout();
                                         this.auth.removeRegistrationData();
                                     }
                                     else {
@@ -232,7 +234,6 @@ let AppComponent = class AppComponent {
                                     this.util.dismissLoading();
                                 });
                             });
-                            this.router.navigateByUrl('/login-register');
                         },
                     },
                     {
@@ -283,16 +284,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTranslateLoader": () => (/* binding */ createTranslateLoader),
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ 86219);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 86219);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 2050);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 83696);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/http-loader */ 82003);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/http-loader */ 82003);
+/* harmony import */ var _services_interceptor_interceptor_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/interceptor/interceptor.service */ 56600);
+
 
 
 
@@ -304,33 +307,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function createTranslateLoader(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_2__.TranslateHttpLoader(http, 'assets/i18n/', '.json');
+    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_3__.TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
         entryComponents: [],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule.forRoot({
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule.forRoot({
                 backButtonText: '',
                 mode: 'md',
                 scrollAssist: false,
                 scrollPadding: false,
             }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule,
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule,
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateModule.forRoot({
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule,
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateModule.forRoot({
                 loader: {
-                    provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateLoader,
+                    provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateLoader,
                     useFactory: createTranslateLoader,
-                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClient],
+                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClient],
                 },
             }),
         ],
-        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_9__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicRouteStrategy }],
+        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicRouteStrategy }, {
+                provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HTTP_INTERCEPTORS,
+                useClass: _services_interceptor_interceptor_service__WEBPACK_IMPORTED_MODULE_2__.InterceptorService,
+                multi: true
+            }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })
 ], AppModule);
@@ -497,6 +504,7 @@ let AuthService = class AuthService {
             this.removeUserID();
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'activation-status' });
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'confirmation-status' });
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'status' });
         });
     }
     isLogined() {
@@ -596,6 +604,115 @@ AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
+/***/ 34257:
+/*!***********************************************!*\
+  !*** ./src/app/services/data/data.service.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataService": () => (/* binding */ DataService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 14001);
+
+
+let DataService = class DataService {
+    constructor() {
+        this.data = [];
+        this.dates = { from: '', to: '' };
+    }
+    setData(id, data) {
+        console.log(JSON.stringify(data));
+        this.data[id] = data;
+    }
+    getData(id) {
+        return this.data[id];
+    }
+    setDates(dates) {
+        this.dates = dates;
+        console.log('selected dates ' + JSON.stringify(dates));
+    }
+    getDates() {
+        return this.dates;
+    }
+};
+DataService.ctorParameters = () => [];
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root',
+    })
+], DataService);
+
+
+
+/***/ }),
+
+/***/ 56600:
+/*!*************************************************************!*\
+  !*** ./src/app/services/interceptor/interceptor.service.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InterceptorService": () => (/* binding */ InterceptorService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 9500);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 88377);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 10592);
+/* harmony import */ var _network_network_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../network/network.service */ 33401);
+/* harmony import */ var _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilities/utilities.service */ 11062);
+
+
+
+
+
+
+
+let InterceptorService = class InterceptorService {
+    constructor(network, util) {
+        this.network = network;
+        this.util = util;
+    }
+    intercept(request, next) {
+        return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)((event) => {
+            if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpResponse) {
+                console.log('http request response', event);
+            }
+            return event;
+        }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.catchError)((error) => {
+            this.network.getNetworkStatus();
+            this.network.getNetworkStatusObservable().subscribe((status) => {
+                if (!status) {
+                    this.util.showMessage('connection error');
+                }
+            });
+            console.error(error);
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.throwError)(error);
+        }));
+    }
+};
+InterceptorService.ctorParameters = () => [
+    { type: _network_network_service__WEBPACK_IMPORTED_MODULE_0__.NetworkService },
+    { type: _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__.UtilitiesService }
+];
+InterceptorService = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)({
+        providedIn: 'root',
+    })
+], InterceptorService);
+
+
+
+/***/ }),
+
 /***/ 40301:
 /*!*******************************************************!*\
   !*** ./src/app/services/language/language.service.ts ***!
@@ -689,14 +806,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NetworkService": () => (/* binding */ NetworkService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _capacitor_network__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/network */ 35609);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 41119);
+
 
 
 
 let NetworkService = class NetworkService {
-    constructor() { }
+    constructor() {
+        this.networkStatus = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(false);
+    }
     listenToNetwork() {
         _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.addListener('networkStatusChange', (status) => {
             console.log('Network status changed', status);
@@ -704,17 +825,59 @@ let NetworkService = class NetworkService {
     }
     getNetworkStatus() {
         _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.getStatus().then((status) => {
-            console.log('network status :' + JSON.stringify(status));
-            console.log('network type ' + status.connectionType);
+            this.networkStatus.next(status.connected);
+            this.getNetworkStatusObservable().subscribe((status) => console.log('current network status :' + status));
         });
+    }
+    getNetworkStatusObservable() {
+        return this.networkStatus.asObservable();
     }
 };
 NetworkService.ctorParameters = () => [];
-NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
         providedIn: 'root',
     })
 ], NetworkService);
+
+
+
+/***/ }),
+
+/***/ 8873:
+/*!************************************************************!*\
+  !*** ./src/app/services/resolver/data-resolver.service.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataResolverService": () => (/* binding */ DataResolverService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _data_data_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/data.service */ 34257);
+
+
+
+let DataResolverService = class DataResolverService {
+    constructor(dataService) {
+        this.dataService = dataService;
+    }
+    resolve(route) {
+        let id = route.paramMap.get('id');
+        return this.dataService.getData(id);
+    }
+};
+DataResolverService.ctorParameters = () => [
+    { type: _data_data_service__WEBPACK_IMPORTED_MODULE_0__.DataService }
+];
+DataResolverService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root',
+    })
+], DataResolverService);
 
 
 
