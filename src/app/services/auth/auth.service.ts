@@ -30,11 +30,11 @@ export class AuthService {
   }
 
   storeStatusAfterLogin(data: AuthResponse) {
+    this.isLogined();
     this.storeToken(data.data?.api_token);
     this.store('status', data.status);
     this.store('userID', data.data.id);
     this.setUserID(data.data.id);
-    this.isLogined();
   }
 
   async removeRegistrationData() {

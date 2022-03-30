@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { AuthData, AuthResponse } from 'src/app/models/loginData';
+import { AuthData, AuthResponse, Status } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { RegisterData } from 'src/app/models/registerData';
 import { TranslateService } from '@ngx-translate/core';
@@ -198,8 +198,15 @@ export class LoginRegisterPage implements OnInit {
           (data: AuthResponse) => {
             if (data.key == 1) {
               console.log('login res :' + JSON.stringify(data));
-              this.router.navigateByUrl('/tabs/main');
-              this.auth.storeStatusAfterLogin(data);
+              if(data.status==Status.Active){
+                this.router.navigateByUrl('/tabs/main');
+                this.auth.storeStatusAfterLogin(data);
+              }else if(data.status==Status.NonActive){
+                this.router.navigateByUrl('/code');
+              }else if(data.status==Status.Blocked){
+                this.util.showMessage('you are blocked.Contact with management');
+              }
+            
             } else {
               this.util.showMessage(data.msg);
             }

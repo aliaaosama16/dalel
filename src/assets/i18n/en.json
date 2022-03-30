@@ -111,5 +111,6 @@
   "login now":"login now" ,
   "no-notifications":"no-notifications",
   "confirm logout":"confirm logout ?",
-  "connection error":"connection error"
+  "connection error":"connection error",
+  "you are blocked.Contact with management":"you are blocked.Contact with management"
 }

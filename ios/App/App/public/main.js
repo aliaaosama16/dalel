@@ -188,12 +188,8 @@ let AppComponent = class AppComponent {
             this.getLoginStatus();
         });
     }
-    //this.store('status', data.status);
     getLoginStatus() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
-            // this.auth.getLoginedObservable().subscribe((val) => {
-            //   this.logined = val;
-            // });
             const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__.Storage.get({ key: 'status' });
             if (loginStatus.value == 'active') {
                 this.auth.isLogined();
@@ -219,21 +215,7 @@ let AppComponent = class AppComponent {
                     {
                         text: this.translate.instant('ok'),
                         handler: () => {
-                            this.util.showLoadingSpinner().then((__) => {
-                                this.auth.logout(this.logoutData).subscribe((data) => {
-                                    if (data.key == 1) {
-                                        console.log('login res :' + JSON.stringify(data));
-                                        this.auth.isLogout();
-                                        this.auth.removeRegistrationData();
-                                    }
-                                    else {
-                                        this.util.showMessage(data.msg);
-                                    }
-                                    this.util.dismissLoading();
-                                }, (err) => {
-                                    this.util.dismissLoading();
-                                });
-                            });
+                            this.logoutService();
                         },
                     },
                     {
@@ -247,6 +229,23 @@ let AppComponent = class AppComponent {
                 ],
             });
             yield alert.present();
+        });
+    }
+    logoutService() {
+        this.util.showLoadingSpinner().then((__) => {
+            this.auth.logout(this.logoutData).subscribe((data) => {
+                if (data.key == 1) {
+                    console.log('login res :' + JSON.stringify(data));
+                    this.auth.isLogout();
+                    this.auth.removeRegistrationData();
+                }
+                else {
+                    this.util.showMessage(data.msg);
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
         });
     }
 };
