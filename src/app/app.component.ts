@@ -60,9 +60,9 @@ export class AppComponent {
     private util: UtilitiesService,
     private router: Router,
     private auth: AuthService,
-    private alertController:AlertController,
-    private translate:TranslateService,
-    private network:NetworkService
+    private alertController: AlertController,
+    private translate: TranslateService,
+    private network: NetworkService
   ) {
     this.initializeApp();
   }
@@ -73,24 +73,18 @@ export class AppComponent {
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
-
       this.util.getDeviceID();
       this.getLoginStatus();
-  
     });
   }
-  //this.store('status', data.status);
-  async getLoginStatus() {
-    // this.auth.getLoginedObservable().subscribe((val) => {
-    //   this.logined = val;
-    // });
 
+  async getLoginStatus() {
     const loginStatus = await Storage.get({ key: 'status' });
-    if (loginStatus.value =='active') {
+    if (loginStatus.value == 'active') {
       this.auth.isLogined();
-      this.auth. getLoginedObservable().subscribe((val)=>{
-        this.logined=val;
-      })
+      this.auth.getLoginedObservable().subscribe((val) => {
+        this.logined = val;
+      });
     }
   }
 
@@ -103,7 +97,6 @@ export class AppComponent {
       };
     });
 
-
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: this.translate.instant('confirm logout'),
@@ -111,24 +104,7 @@ export class AppComponent {
         {
           text: this.translate.instant('ok'),
           handler: () => {
-            this.util.showLoadingSpinner().then((__) => {
-              this.auth.logout(this.logoutData).subscribe(
-                (data: AuthResponse) => {
-                  if (data.key == 1) {
-                    console.log('login res :' + JSON.stringify(data));
-                    this.auth.isLogout();
-                    this.auth.removeRegistrationData();
-                  } else {
-                    this.util.showMessage(data.msg);
-                  }
-                  this.util.dismissLoading();
-                },
-                (err) => {
-                  this.util.dismissLoading();
-                }
-              );
-            });
-            
+            this.logoutService();
           },
         },
         {
@@ -143,7 +119,25 @@ export class AppComponent {
     });
 
     await alert.present();
+  }
 
-    
+  logoutService() {
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.logout(this.logoutData).subscribe(
+        (data: AuthResponse) => {
+          if (data.key == 1) {
+            console.log('login res :' + JSON.stringify(data));
+            this.auth.isLogout();
+            this.auth.removeRegistrationData();
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 }

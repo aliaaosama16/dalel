@@ -164,14 +164,14 @@ ion-input {
       }
       ion-button {
         --color: var(--ion-color-white);
-      }
-      ion-button::part(native) {
-        height: 50px !important;
-        background-image: linear-gradient(
-          to left,
-          var(--ion-color-primary),
-          var(--ion-color-secondary)
-        );
+        &::part(native) {
+          height: 50px !important;
+          background-image: linear-gradient(
+            to left,
+            var(--ion-color-primary),
+            var(--ion-color-secondary)
+          );
+        }
       }
 
       .auth-btn {

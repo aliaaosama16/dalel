@@ -234,13 +234,13 @@ let CategoryDetailsPage = class CategoryDetailsPage {
     reserve() { }
     addToFavourite() {
         this.itemDetails.isFav = !this.itemDetails.isFav;
-        if (this.authService.logined.value) {
+        if (this.authService.isAuthenticated.value) {
             // call api to add to favourite
         }
         else {
             this.util.showMessage('please login first');
             this.router.navigateByUrl('/login-register');
-            return this.authService.logined.value;
+            return this.authService.isAuthenticated.value;
         }
     }
 };

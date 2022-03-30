@@ -479,7 +479,7 @@ __webpack_require__.r(__webpack_exports__);
 let AuthService = class AuthService {
     constructor(httpclient) {
         this.httpclient = httpclient;
-        this.logined = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(false);
+        this.isAuthenticated = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(false);
         this.userID = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(0);
         this.userToken = '';
     }
@@ -508,10 +508,10 @@ let AuthService = class AuthService {
         });
     }
     isLogined() {
-        this.logined.next(true);
+        this.isAuthenticated.next(true);
     }
     isLogout() {
-        this.logined.next(false);
+        this.isAuthenticated.next(false);
     }
     setUserID(userID) {
         console.log('set id to behavour sybject ' + userID);
@@ -530,7 +530,7 @@ let AuthService = class AuthService {
         return this.userID.asObservable();
     }
     getLoginedObservable() {
-        return this.logined.asObservable();
+        return this.isAuthenticated.asObservable();
     }
     storeToken(token) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
@@ -690,6 +690,7 @@ let InterceptorService = class InterceptorService {
         }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.catchError)((error) => {
             this.network.getNetworkStatus();
             this.network.getNetworkStatusObservable().subscribe((status) => {
+                console.log('current network status : ' + status);
                 if (!status) {
                     this.util.showMessage('connection error');
                 }
@@ -826,7 +827,6 @@ let NetworkService = class NetworkService {
     getNetworkStatus() {
         _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.getStatus().then((status) => {
             this.networkStatus.next(status.connected);
-            this.getNetworkStatusObservable().subscribe((status) => console.log('current network status :' + status));
         });
     }
     getNetworkStatusObservable() {
