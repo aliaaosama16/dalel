@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false,
   plugins: {
     SplashScreen: {
-      launchShowDuration: 9000,
+      launchShowDuration: 0,
       launchAutoHide: true,
       androidScaleType: 'CENTER_CROP',
       androidSplashResourceName: 'splash',
