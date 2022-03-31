@@ -63,14 +63,16 @@ export class NotificationsPage implements OnInit {
       this.userNotifications.showNotification(data).subscribe(
         (data: NotificationsResponse) => {
           if (data.key == 0) {
+            console.log('no response');
             this.noNotifications = true;
           } else if (data.notification_count == 0 && data.key == 1) {
+            console.log('no Notifications');
              this.noNotifications = true;
           } else {
+            console.log(' Notifications');
             this.notifications = data.data;
             this.noNotifications = false;
           }
-          console.log('notifications' + JSON.stringify(this.notifications));
           this.util.dismissLoading();
         },
         (err) => {

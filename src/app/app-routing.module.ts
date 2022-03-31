@@ -91,6 +91,11 @@ const routes: Routes = [
         (m) => m.FavouritesPageModule
       ),
   },
+ 
+  {
+    path: 'chnage-password/:userID',
+    loadChildren: () => import('./modules/auth/chnage-password/chnage-password.module').then( m => m.ChnagePasswordPageModule)
+  },
 ];
 
 @NgModule({

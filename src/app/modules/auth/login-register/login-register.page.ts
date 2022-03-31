@@ -264,6 +264,7 @@ export class LoginRegisterPage implements OnInit {
     this.iconLoginName = this.showLoginPass ? 'eye-outline' : 'eye-off-outline';
     this.inputLoginType = this.showLoginPass ? 'text' : 'password';
   }
+
   showRegisterPassword() {
     this.showLRegisterPass = !this.showLRegisterPass;
     this.iconRegisterName = this.showLRegisterPass
@@ -271,6 +272,7 @@ export class LoginRegisterPage implements OnInit {
       : 'eye-off-outline';
     this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
   }
+  
   showRegisterConfirmPassword() {
     this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
     this.iconRegisterConfirmName = this.showLRegisterConfirmPass

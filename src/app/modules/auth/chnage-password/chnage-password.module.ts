@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PasswordPageRoutingModule } from './password-routing.module';
+import { ChnagePasswordPageRoutingModule } from './chnage-password-routing.module';
 
-import { PasswordPage } from './password.page';
+import { ChnagePasswordPage } from './chnage-password.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,10 +14,10 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    PasswordPageRoutingModule,
-    TranslateModule,
+    ChnagePasswordPageRoutingModule,
+    TranslateModule ,
     ReactiveFormsModule
   ],
-  declarations: [PasswordPage]
+  declarations: [ChnagePasswordPage]
 })
-export class PasswordPageModule {}
+export class ChnagePasswordPageModule {}

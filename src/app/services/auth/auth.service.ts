@@ -3,14 +3,21 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
-import { UpdateUserData, UserData, UserResponse } from 'src/app/models/userData';
+import {
+  UpdateUserData,
+  UserData,
+  UserResponse,
+} from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
 import {
   ActivationData,
   ActivationResponse,
 } from 'src/app/models/activationData';
-import { ForgetPasswordData } from 'src/app/models/forgetPassword';
+import {
+  ChangePasswordData,
+  ForgetPasswordData,
+} from 'src/app/models/forgetPassword';
 
 @Injectable({
   providedIn: 'root',
@@ -54,7 +61,7 @@ export class AuthService {
   }
 
   setUserID(userID: number) {
-    console.log('set id to behavour sybject '+userID);
+    console.log('set id to behavour sybject ' + userID);
     this.userID.next(userID);
   }
 
@@ -152,6 +159,13 @@ export class AuthService {
   forgetPassword(data: ForgetPasswordData): Observable<AuthResponse> {
     return this.httpclient.post<AuthResponse>(
       `${environment.BASE_URL}forget-password`,
+      data
+    );
+  }
+
+  changePassword(data: ChangePasswordData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}reset-password`,
       data
     );
   }

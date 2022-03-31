@@ -112,5 +112,8 @@
   "no-notifications":"no-notifications",
   "confirm logout":"confirm logout ?",
   "connection error":"connection error",
-  "you are blocked.Contact with management":"you are blocked.Contact with management"
+  "you are blocked.Contact with management":"you are blocked.Contact with management",
+  "change password":"change password",
+  "please enter code verification":"please enter code verification",
+  "code verification should be 4 numbers":"code verification should be 4 numbers"
 }

@@ -5,12 +5,12 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-<!-- [ngClass]="item.isRead ? 'isRead' : ''" -->
+<!-- [ngClass]="item.isRead ? 'isRead' : ''" 
+ *ngIf="!noNotifications"
+-->
+
 <ion-content class="ion-padding">
-  <ion-card
-    class="ion-no-margin"
-    *ngIf="!noNotifications"
-  >
+  <ion-card class="ion-no-margin">
     <ion-item-sliding *ngFor="let item of notifications">
       <ion-item (click)="openOrederDetails(item.order_id)">
         <ul>

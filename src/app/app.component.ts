@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { AuthData, AuthResponse, Status } from './models/loginData';
 import { AuthService } from './services/auth/auth.service';
@@ -62,9 +62,13 @@ export class AppComponent {
     private auth: AuthService,
     private alertController: AlertController,
     private translate: TranslateService,
-    private network: NetworkService
+    private network: NetworkService,
+    private menuCtrl:MenuController
   ) {
     this.initializeApp();
+    this.auth.getLoginedObservable().subscribe((val) => {
+      this.logined = val;
+    });
   }
 
   initializeApp() {
@@ -74,7 +78,7 @@ export class AppComponent {
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
       this.util.getDeviceID();
-      this.getLoginStatus();
+     // this.getLoginStatus();
     });
   }
 
@@ -105,6 +109,8 @@ export class AppComponent {
           text: this.translate.instant('ok'),
           handler: () => {
             this.logoutService();
+            this.menuCtrl.close();
+            this.router.navigateByUrl('/tabs/main');
           },
         },
         {
@@ -129,7 +135,7 @@ export class AppComponent {
             console.log('login res :' + JSON.stringify(data));
             this.auth.isLogout();
             this.auth.removeRegistrationData();
-            this.router.navigateByUrl('/tabs/main');
+            
           } else {
             this.util.showMessage(data.msg);
           }
