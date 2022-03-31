@@ -115,5 +115,8 @@
   "you are blocked.Contact with management":"تم حظر هذا الاكونت .تواصل مع الادارة",
   "change password":"تغيير كلمة المرور",
 "please enter code verification":"ادخل كود التفعيل المرسل لجوالك",
-"code verification should be 4 numbers":"كود التفعيل ٤ ارقام"
+"code verification should be 4 numbers":"كود التفعيل ٤ ارقام",
+"settings":"الاعدادات",
+"change langauge":"تغيير لغة التطبيق",
+"change":"تغيير "
 }

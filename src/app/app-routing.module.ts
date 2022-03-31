@@ -96,6 +96,7 @@ const routes: Routes = [
     path: 'chnage-password/:userID',
     loadChildren: () => import('./modules/auth/chnage-password/chnage-password.module').then( m => m.ChnagePasswordPageModule)
   },
+ 
 ];
 
 @NgModule({

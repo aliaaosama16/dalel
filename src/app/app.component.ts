@@ -53,6 +53,12 @@ export class AppComponent {
       iconActive: './../assets/icon/heart-active.svg',
       iconInActive: './../assets/icon/heart-inactive.svg',
     },
+    {
+      title: 'settings',
+      url: '/tabs/main/settings',
+      iconActive: './../assets/icon/settings-active.svg',
+      iconInActive: './../assets/icon/settings-non-active.svg',
+    },
   ];
   constructor(
     private platform: Platform,

@@ -80,18 +80,29 @@ const routes: Routes = [
           {
             path: 'policy',
             loadChildren: () =>
-              import('./../../modules/policy/policy.module').then((m) => m.PolicyPageModule),
+              import('./../../modules/policy/policy.module').then(
+                (m) => m.PolicyPageModule
+              ),
           },
           {
             path: 'about',
             loadChildren: () =>
-              import('./../../modules/about/about.module').then((m) => m.AboutPageModule),
+              import('./../../modules/about/about.module').then(
+                (m) => m.AboutPageModule
+              ),
           },
           {
             path: 'favourites',
             loadChildren: () =>
               import('./../../modules/favourites/favourites.module').then(
                 (m) => m.FavouritesPageModule
+              ),
+          },
+          {
+            path: 'settings',
+            loadChildren: () =>
+              import('./../../modules/settings/settings.module').then(
+                (m) => m.SettingsPageModule
               ),
           },
         ],

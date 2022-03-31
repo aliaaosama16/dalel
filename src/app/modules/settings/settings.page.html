@@ -1,0 +1,60 @@
+<app-header
+  [title]="'settings'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/main'"
+  [isMain]="false"
+  class="header-height"
+></app-header>
+<ion-content class="background">
+  <ion-card class="ion-padding">
+    <div
+    class="language"
+    [ngClass]="currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'"
+  >
+    <ion-list>
+      <ion-radio-group (ionChange)="chooseLanguage($event)">
+        <ion-list-header>
+          <ion-label>
+            <h5 class="title">{{ "change langauge"|translate}}</h5></ion-label
+          >
+        </ion-list-header>
+
+        <ion-item class="lang-item" lines="none">
+          <ion-radio
+            value="ar"
+            slot="start"
+            [ngClass]="currentlangauge == 'ar' ? 'arabic' : 'english'"
+          ></ion-radio>
+          <ion-label class="lang-label">{{'arabic'|translate}}</ion-label>
+        </ion-item>
+
+        <ion-item class="lang-item" lines="none">
+          <ion-radio
+            value="en"
+            slot="start"
+            [ngClass]="currentlangauge == 'en' ? 'english' : 'arabic'"
+          ></ion-radio>
+          <ion-label class="lang-label"> {{'english'|translate}}</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <!-- <ion-button
+      expand="block"
+      class="btn-custom"
+      routerLink="/on-boarding"
+      routerDirection="forward"
+    >
+      <span>{{"change"|translate}}</span>
+    </ion-button> -->
+
+    
+  </div>
+  <ion-button expand="block" routerLink="/tabs/main">
+    <span class="auth-btn fn-16 white-color dalel-Bold">
+      {{ "change"|translate}}
+    </span>
+  </ion-button> 
+  </ion-card>
+  
+</ion-content>
