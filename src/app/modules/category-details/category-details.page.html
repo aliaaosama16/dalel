@@ -12,7 +12,7 @@
     <ion-icon
       (click)="addToFavourite()"
       [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
-      [src]="itemDetails.isFav ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
+      [src]="itemDetails.is_favourite ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
     ></ion-icon>
 
     <div class="details-container ion-padding">
@@ -30,25 +30,28 @@
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/space.svg"></ion-icon>
-      <p class="fn-14 dalel-Regular secondary-color">{{itemDetails.space}} م</p>
+      <p class="fn-14 dalel-Regular secondary-color">
+        {{itemDetails.area}} {{'meter square'|translate}}
+      </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/bed.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.roomsNumber}} غرف
+      
+        {{itemDetails.rooms_count}} {{'rooms'|translate}}
       </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/icon4.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.bathRoomsNUmber}} حمام
+        {{itemDetails.bathrooms_count}}  {{'bathroom'|translate}}
       </p>
     </div>
   </div>
 
   <div class="description">
     <h5 class="fn-16 dalel-SemiBold">{{"description"|translate}}</h5>
-    <p class="fn-12 dalel-Regular">{{itemDetails.description}}</p>
+    <p class="fn-12 dalel-Regular">{{itemDetails.desc}}</p>
   </div>
 
   <div class="place-images">
@@ -67,11 +70,12 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let cat of [{},{},{},{},{},{},{},{}]">
-        <img src="./../../../assets/images/512.png" />
+      <ng-template swiperSlide *ngFor="let image of itemDetails.images">
+        <img [src]="image.image" />
       </ng-template>
     </swiper>
   </div>
+  
   <div class="map-container">
     <div class="header">
       <div>
@@ -88,7 +92,7 @@
       </div>
     </div>
     <div>
-      <p class="fn-12 dalel-Regular">{{itemDetails.reservationRules}}</p>
+      <p class="fn-12 dalel-Regular">{{itemDetails.order_desc}}</p>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 <app-header [title]="'main'" [isMain]="true" class="header-height"></app-header>
 
-<ion-content >
+<ion-content>
   <div class="search-section ion-padding-horizontal">
     <div class="search-input">
       <ion-item lines="none" class="search-wrapper">
@@ -38,8 +38,8 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let cat of [{},{},{}]">
-        <img src="./../../../assets/images/1024-500.png" />
+      <ng-template swiperSlide *ngFor="let slide of Sliders">
+        <img [src]="slide.image" />
       </ng-template>
     </swiper>
   </div>
@@ -60,14 +60,17 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let cat of categories">
-        <ion-card class="ion-no-margin" (click)="categoryList(cat.name,cat.id)">
+      <ng-template swiperSlide *ngFor="let cat of sections">
+        <ion-card
+          class="ion-no-margin"
+          (click)="categoryList(cat.title,cat.id)"
+        >
           <ion-item>
             <ion-thumbnail>
               <img [src]="cat.image" />
             </ion-thumbnail>
             <ion-label class="cat-title-text">
-              {{cat.name|translate}}
+              {{cat.title|translate}}
             </ion-label>
           </ion-item>
         </ion-card>
@@ -88,11 +91,10 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let item of categoryItems">
+      <ng-template swiperSlide *ngFor="let item of nearDepartments">
         <app-custom-card
           [itemDetails]="item"
           [forwardRoute]="'/tabs/main/categories/'"
-         
         ></app-custom-card>
       </ng-template>
     </swiper>

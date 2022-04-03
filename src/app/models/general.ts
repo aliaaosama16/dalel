@@ -8,9 +8,9 @@ export interface Language {
   lang: string;
 }
 
-export interface Location extends UserData {
-  lat: string;
-  lng: string;
+export interface UserLocation extends UserData {
+  lat: number;
+  lng: number;
 }
 
 export interface UserData extends Language {
@@ -31,10 +31,7 @@ export interface AuthDataResponse {
   avatar: string;
 }
 
-export interface GeneralSection {
-  key: string;
-  msg: string;
-  show_image: boolean;
+export interface GeneralSection extends GeneralResponse {
   notification_count: number;
   data: GeneralSectionOptions;
 }
@@ -46,7 +43,7 @@ export interface GeneralSectionOptions {
   options: GeneralSection[];
 }
 
-export interface GeneralSection {
+export interface GeneralSectionResponse {
   id: string;
   title: string;
   image?: string;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemDetails } from 'src/app/models/itemDetails';
+import { Item } from 'src/app/models/item';
 import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class CustomDetailsComponent implements OnInit {
 
-  @Input() ItemDetails: ItemDetails;
+  @Input() ItemDetails: Item;
   @Input() isDetailed:boolean;
   currentlangauge: string;
   constructor(private langaugeservice: LanguageService) {}

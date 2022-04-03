@@ -4,9 +4,16 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
-import { ItemDetails } from 'src/app/models/itemDetails';
+import { Item } from 'src/app/models/item';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ItemsService } from 'src/app/services/items/items.service';
+import {
+  GeneralSection,
+  GeneralSectionResponse,
+  UserData,
+} from 'src/app/models/general';
+import { HomeResponse } from 'src/app/models/home';
 
 @Component({
   selector: 'app-main',
@@ -17,6 +24,7 @@ export class MainPage implements OnInit {
   searchText: string = '';
   currentlangauge: string;
   platform: string = '';
+  UserData: UserData;
 
   configSlider: SwiperOptions = {
     slidesPerView: 1,
@@ -65,69 +73,10 @@ export class MainPage implements OnInit {
       },
     },
   };
-  categories: any[] = [
-    { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 3, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 4, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 5, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 6, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 7, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 8, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 9, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
-  ];
+  sections: GeneralSectionResponse[];
 
-  categoryItems: ItemDetails[] = [
-    {
-      id: 1,
-      catID: 1,
-      name: 'اسم تجريبي',
-      city: 'الرياض',
-      address: 'حي الرمال',
-      rating: '3+',
-      price: 3000,
-      unit: 'currency',
-      perUnit: 'one night',
-      isFav: true,
-      description: '',
-      reservationRules: '',
-      image: './../../../assets/images/1024-500.png',
-      leftTime: '',
-    },
-    {
-      id: 1,
-      catID: 1,
-      name: 'اسم تجريبي',
-      city: 'الرياض',
-      address: 'حي الرمال',
-      rating: '3+',
-      price: 3000,
-      unit: 'currency',
-      perUnit: 'one night',
-      isFav: true,
-      description: '',
-      reservationRules: '',
-      image: './../../../assets/images/1024-500.png',
-      leftTime: '',
-    },
-    {
-      id: 1,
-      catID: 1,
-      name: 'اسم تجريبي',
-      city: 'الرياض',
-      address: 'حي الرمال',
-      rating: '3+',
-      price: 3000,
-      unit: 'currency',
-      perUnit: 'one night',
-      isFav: true,
-      description: '',
-      reservationRules: '',
-      image: './../../../assets/images/1024-500.png',
-      leftTime: '',
-    },
-  ];
+  nearDepartments: Item[];
+  Sliders: GeneralSectionResponse[];
 
   constructor(
     private menuCtrl: MenuController,
@@ -136,12 +85,41 @@ export class MainPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     public util: UtilitiesService,
-    private auth: AuthService
+    private auth: AuthService,
+    private items: ItemsService
   ) {
     this.menuCtrl.enable(true, 'main');
     this.util.getUserLocation();
     this.platform = this.util.platform;
     console.log('curret plt is ' + this.platform);
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+
+      this.UserData = {
+        lang: this.langaugeservice.getLanguage(),
+        user_id: val == 0 ? 1 : val,
+      };
+      this.getHomeData(this.UserData);
+    });
+  }
+
+  getHomeData(userData: UserData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.items.home(userData).subscribe(
+        (data: HomeResponse) => {
+          if (data.key == 1) {
+            console.log('home data : ' + JSON.stringify(data));
+            this.sections = data.data.sections;
+            this.Sliders = data.data.sliders;
+            this.nearDepartments = data.data.near_departments;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
   ngOnInit() {
@@ -183,17 +161,4 @@ export class MainPage implements OnInit {
     // Now you can use all slider methods like
     // swiper.slideNext();
   }
-
-  // this.util.showLoadingSpinner().then((__) => {
-  //   this.loanCalcService.getSocialStatus(gender).subscribe(
-  //     (data) => {
-  //       // console.log(data);
-  //       this.socialStatus = data;
-  //       this.utilities.dismissLoading();
-  //     },
-  //     (err) => {
-  //       this.utilities.dismissLoading();
-  //     }
-  //   );
-  // });
 }

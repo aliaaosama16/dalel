@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { UserData } from 'src/app/models/general';
 import {
-  UserData,
   UserDataResponse,
   NotificationsInfo,
   NotificationsResponse,
