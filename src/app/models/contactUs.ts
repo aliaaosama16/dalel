@@ -5,8 +5,3 @@ export interface ContactUsData {
   message: string;
 }
 
-export interface ContactUsResponse {
-  key: number;
-  msg: string;
-  show_image: boolean;
-}

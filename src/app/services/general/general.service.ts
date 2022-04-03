@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ContactUsData, ContactUsResponse } from 'src/app/models/contactUs';
+import { ContactUsData } from 'src/app/models/contactUs';
+import { GeneralResponse } from 'src/app/models/generalResponse';
 import { Intro, IntroData } from 'src/app/models/intro';
 import { StaticPageData, StaticPageResponse } from 'src/app/models/staticPage';
 import { environment } from 'src/environments/environment';
@@ -23,8 +24,8 @@ export class GeneralService {
     );
   }
 
-  contactUs(data: ContactUsData): Observable<ContactUsResponse> {
-    return this.httpclient.post<ContactUsResponse>(
+  contactUs(data: ContactUsData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
       `${environment.BASE_URL}contact-us`,
       data
     );

@@ -1,15 +1,12 @@
-export interface AuthData {
-  lang: string;
+import { GeneralResponse, UserData } from './generalResponse';
+
+export interface AuthData extends UserData {
   phone?: number;
   password?: string;
   device_id: string;
-  user_id?: number;
 }
 
-export interface AuthResponse {
-  key: number;
-  msg: string;
-  show_image: boolean;
+export interface AuthResponse extends GeneralResponse {
   status?: string;
   data?: AuthDataResponse;
 }

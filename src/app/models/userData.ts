@@ -1,20 +1,14 @@
-export interface UserData {
-  lang: string;
-  user_id: number;
-}
+import { GeneralResponse } from './generalResponse';
 
 export interface UpdateUserData {
   lang: string;
   user_id: number;
-  first_name:string;
-  email:string;
-  phone:string;
+  first_name: string;
+  email: string;
+  phone: string;
 }
 
-export interface UserResponse {
-  key: number;
-  msg: string;
-  show_image: boolean;
+export interface UserResponse extends GeneralResponse {
   status: string;
   data: UserDataResponse;
 }

@@ -1,3 +1,5 @@
+import { GeneralResponse } from './generalResponse';
+
 export interface RegisterData {
   lang: string;
   first_name: string;
@@ -6,10 +8,7 @@ export interface RegisterData {
   password: string;
 }
 
-export interface RegisterResponse {
-  key: number;
-  msg: string;
-  show_image: boolean;
+export interface RegisterResponse extends GeneralResponse {
   status: string;
   data: RegisterDataResponse;
 }
