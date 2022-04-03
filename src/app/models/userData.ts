@@ -1,7 +1,6 @@
-import { GeneralResponse } from './generalResponse';
+import { GeneralResponse, Language } from './general';
 
-export interface UpdateUserData {
-  lang: string;
+export interface UpdateUserData extends Language {
   user_id: number;
   first_name: string;
   email: string;

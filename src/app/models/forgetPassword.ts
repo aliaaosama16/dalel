@@ -1,5 +1,7 @@
-export interface ForgetPasswordData{
-    lang:string,
+import { Language } from "./general"
+
+export interface ForgetPasswordData extends Language{
+  
     phone:number
 }
 

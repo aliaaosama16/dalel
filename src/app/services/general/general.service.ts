@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactUsData } from 'src/app/models/contactUs';
-import { GeneralResponse } from 'src/app/models/generalResponse';
+import { GeneralResponse } from 'src/app/models/general';
 import { Intro, IntroData } from 'src/app/models/intro';
 import { StaticPageData, StaticPageResponse } from 'src/app/models/staticPage';
 import { environment } from 'src/environments/environment';

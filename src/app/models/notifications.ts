@@ -1,12 +1,8 @@
-import { GeneralResponse } from "./generalResponse";
+import { GeneralResponse, Language } from "./general";
 
-export interface UserData {
-  lang: string;
-  user_id: number;
-}
 
-export interface NotificationsInfo {
-  lang: string;
+export interface NotificationsInfo extends Language {
+  
   notification_id: number;
 }
 

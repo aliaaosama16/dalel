@@ -11,7 +11,7 @@ import {
   ChangePasswordData,
   ForgetPasswordData,
 } from 'src/app/models/forgetPassword';
-import { GeneralResponse, UserData } from 'src/app/models/generalResponse';
+import { GeneralResponse, UserData } from 'src/app/models/general';
 
 @Injectable({
   providedIn: 'root',

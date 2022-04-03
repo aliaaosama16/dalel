@@ -1,5 +1,6 @@
-export interface ContactUsData {
-  lang: string;
+import { Language } from "./general";
+
+export interface ContactUsData extends Language {
   name: string;
   phone: string;
   message: string;

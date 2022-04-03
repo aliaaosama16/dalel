@@ -1,4 +1,4 @@
-import { GeneralResponse } from './generalResponse';
+import { GeneralResponse } from './general';
 
 export interface Intro extends GeneralResponse {
   data: IntroData;

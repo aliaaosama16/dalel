@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { UserData } from 'src/app/models/generalResponse';
+import { UserData } from 'src/app/models/general';
 import { UpdateUserData,  UserResponse } from 'src/app/models/userData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';

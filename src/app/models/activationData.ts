@@ -1,4 +1,4 @@
-import { UserData } from "./generalResponse";
+import { UserData } from "./general";
 
 export interface  ActivationData extends UserData{  
     code:string,

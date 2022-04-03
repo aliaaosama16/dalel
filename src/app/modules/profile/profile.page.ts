@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { UserData } from 'src/app/models/generalResponse';
+import { UserData } from 'src/app/models/general';
 import { AuthResponse } from 'src/app/models/loginData';
 import { UserResponse } from 'src/app/models/userData';
 import { AuthService } from 'src/app/services/auth/auth.service';

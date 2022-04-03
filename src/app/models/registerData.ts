@@ -1,7 +1,6 @@
-import { GeneralResponse } from './generalResponse';
+import { AuthDataResponse, GeneralResponse, Language } from './general';
 
-export interface RegisterData {
-  lang: string;
+export interface RegisterData extends Language {
   first_name: string;
   email: string;
   phone: number;
@@ -10,19 +9,5 @@ export interface RegisterData {
 
 export interface RegisterResponse extends GeneralResponse {
   status: string;
-  data: RegisterDataResponse;
-}
-
-export interface RegisterDataResponse {
-  id: number;
-  user_type: string;
-  first_name: string;
-  email: string;
-  phone: string;
-  api_token: string;
-  is_active: boolean;
-  is_blocked: boolean;
-  is_confirmed: boolean;
-  lang: string;
-  avatar: string;
+  data: AuthDataResponse;
 }

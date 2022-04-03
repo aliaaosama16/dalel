@@ -1,4 +1,4 @@
-import { GeneralResponse, UserData } from './generalResponse';
+import { GeneralResponse, UserData } from './general';
 
 export interface StaticPageData extends UserData {
   title: string;

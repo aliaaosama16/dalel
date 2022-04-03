@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactUsData} from 'src/app/models/contactUs';
-import { GeneralResponse } from 'src/app/models/generalResponse';
+import { GeneralResponse } from 'src/app/models/general';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
