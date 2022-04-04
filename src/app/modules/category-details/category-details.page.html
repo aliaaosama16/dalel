@@ -1,32 +1,24 @@
-<app-header
-  [title]="'details'"
-  [isEditable]="false"
-  [backwardRoute]="'/tabs/main'"
-  [isMain]="false"
-  class="header-height"
-></app-header>
+<app-header [title]="'details'" [isEditable]="false" [backwardRoute]="'/tabs/main'" [isMain]="false"
+  class="header-height"></app-header>
 
 <ion-content class="ion-padding">
   <div class="item-image">
     <img src="./../../../assets/images/1024-500.png" />
-    <ion-icon
-      (click)="addToFavourite()"
-      [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
-      [src]="itemDetails.is_favourite ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'"
-    ></ion-icon>
+    <ion-icon (click)="addToFavourite()" [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
+      [src]="itemDetails.is_favourite ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'">
+    </ion-icon>
 
     <div class="details-container ion-padding">
-      <app-custom-details
-        [ItemDetails]="itemDetails"
-        [isDetailed]="true"
-      ></app-custom-details>
+      <app-custom-details [ItemDetails]="itemDetails" [isDetailed]="true"></app-custom-details>
     </div>
   </div>
 
   <div class="services">
     <div>
       <ion-icon src="./../../../assets/icon/icon1.svg"></ion-icon>
-      <p class="fn-14 dalel-Regular secondary-color">{{"chalet"|translate}}</p>
+      <p class="fn-14 dalel-Regular secondary-color">
+        {{itemDetails.section_title}}
+      </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/space.svg"></ion-icon>
@@ -37,14 +29,14 @@
     <div>
       <ion-icon src="./../../../assets/icon/bed.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-      
+
         {{itemDetails.rooms_count}} {{'rooms'|translate}}
       </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/icon4.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.bathrooms_count}}  {{'bathroom'|translate}}
+        {{itemDetails.bathrooms_count}} {{'bathroom'|translate}}
       </p>
     </div>
   </div>
@@ -64,18 +56,13 @@
       </div>
     </div>
 
-    <swiper
-      #swiper
-      [config]="configSlider"
-      class="custom-swiper"
-      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-    >
+    <swiper #swiper [config]="configSlider" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
       <ng-template swiperSlide *ngFor="let image of itemDetails.images">
         <img [src]="image.image" />
       </ng-template>
     </swiper>
   </div>
-  
+
   <div class="map-container">
     <div class="header">
       <div>

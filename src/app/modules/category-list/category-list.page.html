@@ -8,9 +8,9 @@
 
 <ion-content class="ion-padding" >
   <app-custom-card
-    [itemDetails]="cat"
-    [forwardRoute]="'/tabs/main/categories/'"
-    *ngFor="let cat of categoriesList"
+    [itemDetails]="item"
+    [forwardRoute]="'/tabs/main/categories'"
+    *ngFor="let item of sectionAllItems"
   ></app-custom-card>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">

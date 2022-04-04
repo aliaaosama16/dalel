@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
-import { Item } from 'src/app/models/item';
+import { DepartmentDetailsResponse, Item } from 'src/app/models/item';
+import { ShowDepartmetData } from 'src/app/models/sections';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { SwiperOptions } from 'swiper';
@@ -19,6 +21,7 @@ export class CategoryDetailsPage implements OnInit {
   lat: number;
   long: number;
   infowindow = new google.maps.InfoWindow();
+  departmentData: ShowDepartmetData;
   currentlangauge: string;
   platform: any;
   configSlider: SwiperOptions = {
@@ -47,15 +50,43 @@ export class CategoryDetailsPage implements OnInit {
     private authService: AuthService,
     private util: UtilitiesService,
     private router: Router,
-    private plt: Platform
+    private plt: Platform,
+    private items: ItemsService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.platform = this.util.platform;
+    console.log('dept id :'+parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')));
+    this.getItemDetails();
+  }
+
+  getItemDetails() {
+    //showDepartmentByID
+
+    this.departmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.items.showDepartmentByID(this.departmentData).subscribe(
+        (data: DepartmentDetailsResponse) => {
+          if (data.key == 1) {
+            console.log('showDepartmentByID data : ' + JSON.stringify(data));
+            this.itemDetails = data.data;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
   ionViewWillEnter() {
-    this.loadMap();
+    
     this.lat = this.itemDetails.lat;
     this.long = this.itemDetails.lng;
+    this.loadMap();
     this.loadItemPosition();
   }
 

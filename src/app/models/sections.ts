@@ -14,5 +14,5 @@ export interface SectionsResponseOptions {
 
 
 export interface ShowDepartmetData extends UserData{
-
+  department_id:number;
 }

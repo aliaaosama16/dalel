@@ -1,4 +1,4 @@
-ion-card{
+ion-card {
   margin: 0 0 16px 0 !important;
 }
 .container {
@@ -9,9 +9,9 @@ ion-card{
     height: 140px;
     object-fit: cover;
     object-position: initial;
-   
-      border-radius: 5px;
-      opacity: 0.62;
+
+    border-radius: 5px;
+    opacity: 0.62;
   }
 
   .title {
@@ -46,5 +46,37 @@ ion-card{
     ion-icon {
       font-size: 25px;
     }
+  }
+
+  .title-ar {
+    right: 13px;
+  }
+
+  .title-en {
+    left: 13px;
+  }
+
+  .location-ar {
+    right: 10px;
+  }
+
+  .location-en {
+    left: 10px;
+  }
+
+  .location-address-ar {
+    right: 30px;
+  }
+
+  .location-address-en {
+    left: 30px;
+  }
+
+  .address-detail-ar {
+    left: 10px;
+  }
+
+  .address-detail-en {
+    right: 10px;
   }
 }

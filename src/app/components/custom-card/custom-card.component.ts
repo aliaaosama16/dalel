@@ -10,7 +10,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class CustomCardComponent implements OnInit {
   currentlangauge: string;
-  @Input() cardOpacity:number;
+  @Input() cardOpacity: number;
   @Input() itemDetails: Item;
   @Input() forwardRoute: string;
   @Output() navigateTo = new EventEmitter<string>();
@@ -25,9 +25,11 @@ export class CustomCardComponent implements OnInit {
   }
 
   navigate(route) {
-    console.log('custom card : ' + JSON.stringify(this.itemDetails));
+    console.log('custom card item details : ' + JSON.stringify(this.itemDetails));
     console.log('current route is :  ' + route);
-    this.navigateTo.emit(route);
-    this.router.navigate([`/${route}/${this.itemDetails.section_id}/${this.itemDetails.id}`]);
+    //this.navigateTo.emit(route);
+    console.log(`route : ${route}/details/${this.itemDetails.id}`);
+    //this.router.navigate([`/${route}/details/${this.itemDetails.id}`]);
+    this.router.navigateByUrl(`/${route}/details/${this.itemDetails.id}`)
   }
 }

@@ -5,7 +5,9 @@ import {
   IonInfiniteScroll,
   MenuController,
 } from '@ionic/angular';
-import { Item } from 'src/app/models/item';
+import { DepartmentResponse, Item, SectionData } from 'src/app/models/item';
+import { SectionsResponse } from 'src/app/models/sections';
+import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
@@ -21,13 +23,15 @@ export class CategoryListPage implements OnInit {
   categoryName: string;
   currentlangauge: string;
   platform: any;
-  categoriesList: Item[];
+  sectionAllItems: Item[];
+  sectionData: SectionData;
 
   constructor(
     private menuCtrl: MenuController,
     private activatedRoute: ActivatedRoute,
     private langaugeservice: LanguageService,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private items: ItemsService
   ) {
     this.platform = this.util.platform;
     //this.loadItems();
@@ -41,20 +45,40 @@ export class CategoryListPage implements OnInit {
       this.categoryName = this.activatedRoute.snapshot.data['name'];
       console.log(`categoryName is ${this.categoryName}`);
     }
-    this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(`category id is ${this.categoryID}`);
 
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
+    this.getAllDepartmentsBySectionID();
   }
 
+  getAllDepartmentsBySectionID() {
+    this.sectionData = {
+      lang: this.langaugeservice.getLanguage(),
+      section_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.items.allDepartmentsBySectionID(this.sectionData).subscribe(
+        (data: DepartmentResponse) => {
+          if (data.key == 1) {
+            console.log('sections data : ' + JSON.stringify(data));
+            //this.sections = data.data.sections;
+            this.sectionAllItems = data.data;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
   loadItems(event?: InfiniteScrollCustomEvent) {
     // call api to get all categorey items
     let newResults = { results: [], totel_pages: 10 };
     //this.categoriesList=[...this.categoriesList,...newResults];
 
     //this.categoriesList.concat(...newResults);
-    this.categoriesList.push(...newResults.results);
+    this.sectionAllItems.push(...newResults.results);
     // after get data
     event?.target.complete();
     if (event) {

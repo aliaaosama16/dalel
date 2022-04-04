@@ -1,4 +1,4 @@
-import { GeneralResponse, GeneralSectionResponse } from './general';
+import { GeneralResponse, GeneralSectionResponse, Language } from './general';
 
 
 export interface Item {
@@ -42,4 +42,13 @@ export interface Item {
 
 export interface DepartmentResponse extends GeneralResponse {
   data:Item[]
+}
+
+export interface DepartmentDetailsResponse extends GeneralResponse {
+  data:Item
+}
+
+
+export interface SectionData extends Language{ 
+  section_id:number;
 }
