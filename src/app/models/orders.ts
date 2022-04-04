@@ -73,3 +73,21 @@ export interface OrderData extends UserData {
 export interface OrderDataResponse extends GeneralResponse {
   data: Order;
 }
+
+export interface StoreOrderData extends UserData{
+    department_id:number;
+    payment_method:PaymentMethod;
+    start_date:string;//  yyyy-mm-dd
+    start_time:string;//  hh:ii:ss
+    start_day:string;
+    end_date:string;
+    end_time:string;
+    end_day:string;
+    total_before_promo:number;
+    total_after_promo:number;
+}
+
+
+export enum PaymentMethod{
+    cash , transfer , online
+}
