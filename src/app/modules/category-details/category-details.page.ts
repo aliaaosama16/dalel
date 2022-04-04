@@ -24,8 +24,8 @@ export class CategoryDetailsPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number;
-  long: number;
+  lat: number=0;
+  long: number=0;
   infowindow = new google.maps.InfoWindow();
   departmentData: ShowDepartmetData;
   favDepartmentData: AddRemoveFavourite;
@@ -62,11 +62,7 @@ export class CategoryDetailsPage implements OnInit {
     private favouritesService: FavouritesService
   ) {
     this.platform = this.util.platform;
-    console.log(
-      'dept id :' +
-        parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId'))
-    );
-    this.getItemDetails();
+   
   }
 
   ngOnInit() {
@@ -75,6 +71,11 @@ export class CategoryDetailsPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    console.log(
+      'dept id :' +
+        parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId'))
+    );
+    this.getItemDetails();
     this.loadMap();
     this.loadItemPosition();
   }
@@ -98,6 +99,7 @@ export class CategoryDetailsPage implements OnInit {
             this.itemDetails = data.data;
             this.lat = this.itemDetails.lat;
             this.long = this.itemDetails.lng;
+            console.log('lat is :'+ this.lat + 'long is :'+  this.long)
           }
           this.util.dismissLoading();
         },

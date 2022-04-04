@@ -91,22 +91,22 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("src_app_modules_main_main_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../main/main.module */ 47366)).then((m) => m.MainPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_main_main_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../main/main.module */ 47366)).then((m) => m.MainPageModule),
                     },
                     {
                         path: 'categories',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_categories_categories_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/categories/categories.module */ 81550)).then((m) => m.CategoriesPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_categories_categories_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/categories/categories.module */ 81550)).then((m) => m.CategoriesPageModule),
                     },
                     {
                         path: 'categories/:id',
                         resolve: {
                             name: src_app_services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_1__.DataResolverService,
                         },
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_category-list_category-list_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/category-list/category-list.module */ 15450)).then((m) => m.CategoryListPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_category-list_category-list_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/category-list/category-list.module */ 15450)).then((m) => m.CategoryListPageModule),
                     },
                     {
-                        path: 'categories/:id/:subCatId',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("src_app_modules_category-details_category-details_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/category-details/category-details.module */ 47260)).then((m) => m.CategoryDetailsPageModule),
+                        path: 'categories/:sectionId/:departmetId',
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_category-details_category-details_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/category-details/category-details.module */ 47260)).then((m) => m.CategoryDetailsPageModule),
                     },
                     {
                         path: 'search-filter',
@@ -138,7 +138,8 @@ const routes = [
                     },
                     {
                         path: 'favourites',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_favourites_favourites_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/favourites/favourites.module */ 79814)).then((m) => m.FavouritesPageModule),
+                        canActivate: [src_app_guards_isAuth_is_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsAuthGuard],
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_favourites_favourites_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/favourites/favourites.module */ 79814)).then((m) => m.FavouritesPageModule),
                     },
                     {
                         path: 'settings',
@@ -256,7 +257,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TabsPage": () => (/* binding */ TabsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./tabs.page.html */ 26618);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./tabs.page.html */ 26618);
 /* harmony import */ var _tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.scss */ 88835);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
 
@@ -268,29 +269,28 @@ let TabsPage = class TabsPage {
         this.selectedTab = 'main';
         this.tabsData = [
             {
-                'tabName': 'main',
-                'tabActiveIcon': './../../../assets/icon/main-icon-active.svg',
-                'tabNotActiveIcon': './../../../assets/icon/main-icon-inactive.svg',
+                tabName: 'main',
+                tabActiveIcon: './../../../assets/icon/main-icon-active.svg',
+                tabNotActiveIcon: './../../../assets/icon/main-icon-inactive.svg',
             },
             {
-                'tabName': 'notifications',
-                'tabActiveIcon': './../../../assets/icon/notifications-icon-active.svg',
-                'tabNotActiveIcon': './../../../assets/icon/notifications-icon-inactive.svg',
+                tabName: 'notifications',
+                tabActiveIcon: './../../../assets/icon/notifications-icon-active.svg',
+                tabNotActiveIcon: './../../../assets/icon/notifications-icon-inactive.svg',
             },
             {
-                'tabName': 'profile',
-                'tabActiveIcon': './../../../assets/icon/profile-icon-active.svg',
-                'tabNotActiveIcon': './../../../assets/icon/profile-icon-inactive.svg',
+                tabName: 'profile',
+                tabActiveIcon: './../../../assets/icon/profile-icon-active.svg',
+                tabNotActiveIcon: './../../../assets/icon/profile-icon-inactive.svg',
             },
             {
-                'tabName': 'my-reservations',
-                'tabActiveIcon': './../../../assets/icon/reservations-icon-active.svg',
-                'tabNotActiveIcon': './../../../assets/icon/reservations-icon-inactive.svg',
-            }
+                tabName: 'my-reservations',
+                tabActiveIcon: './../../../assets/icon/reservations-icon-active.svg',
+                tabNotActiveIcon: './../../../assets/icon/reservations-icon-inactive.svg',
+            },
         ];
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     setCurrentTab() {
         this.selectedTab = this.tabs.getSelected();
     }
@@ -302,7 +302,7 @@ TabsPage.propDecorators = {
 TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-tabs',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], TabsPage);

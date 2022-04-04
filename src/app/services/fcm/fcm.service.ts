@@ -31,11 +31,11 @@ export class FcmService {
 
     await PushNotifications.addListener('registration', (token) => {
       console.info('Registration token: ', token.value);
-      alert('Registration token:' + token.value);
+      //alert('Registration token:' + token.value);
     });
     await PushNotifications.addListener('registrationError', (err) => {
       console.error('Registration error: ', err.error);
-      alert('Registration error:' + err.error);
+     // alert('Registration error:' + err.error);
     });
     await PushNotifications.addListener(
       'pushNotificationReceived',
@@ -44,7 +44,7 @@ export class FcmService {
           'Push notification received: ',
           JSON.stringify(notification)
         );
-        alert('Push notification received: ' + JSON.stringify(notification));
+       // alert('Push notification received: ' + JSON.stringify(notification));
       }
     );
 

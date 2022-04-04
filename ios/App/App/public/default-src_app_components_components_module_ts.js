@@ -68,7 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CustomButtonComponent": () => (/* binding */ CustomButtonComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-button.component.html */ 31495);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-button.component.html */ 31495);
 /* harmony import */ var _custom_button_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-button.component.scss */ 11932);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
 
@@ -88,7 +88,7 @@ CustomButtonComponent.propDecorators = {
 CustomButtonComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-custom-button',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_custom_button_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CustomButtonComponent);
@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CustomCardComponent": () => (/* binding */ CustomCardComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-card.component.html */ 74427);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-card.component.html */ 74427);
 /* harmony import */ var _custom_card_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-card.component.scss */ 99617);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -129,10 +129,7 @@ let CustomCardComponent = class CustomCardComponent {
         this.currentlangauge = this.languageService.getLanguage();
     }
     navigate(route) {
-        console.log('all object ' + JSON.stringify(this.itemDetails));
-        console.log('current route is :  ' + route);
-        this.navigateTo.emit(route);
-        this.router.navigate([`/${route}/${this.itemDetails.catID}/${this.itemDetails.id}`]);
+        this.router.navigateByUrl(`/${route}/categories/${this.itemDetails.section_id}/${this.itemDetails.id}`);
     }
 };
 CustomCardComponent.ctorParameters = () => [
@@ -148,7 +145,7 @@ CustomCardComponent.propDecorators = {
 CustomCardComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-custom-card',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_custom_card_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CustomCardComponent);
@@ -168,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CustomDetailsComponent": () => (/* binding */ CustomDetailsComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-details.component.html */ 28372);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-details.component.html */ 28372);
 /* harmony import */ var _custom_details_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-details.component.scss */ 99075);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
@@ -182,9 +179,8 @@ let CustomDetailsComponent = class CustomDetailsComponent {
         this.langaugeservice = langaugeservice;
     }
     ngOnInit() {
-        console.log('is detailed ' + this.isDetailed);
         this.currentlangauge = this.langaugeservice.getLanguage();
-        console.log(JSON.stringify(this.ItemDetails));
+        //console.log(JSON.stringify(this.ItemDetails))
     }
 };
 CustomDetailsComponent.ctorParameters = () => [
@@ -197,7 +193,7 @@ CustomDetailsComponent.propDecorators = {
 CustomDetailsComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-custom-details',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_custom_details_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CustomDetailsComponent);
@@ -217,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./header.component.html */ 20669);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./header.component.html */ 20669);
 /* harmony import */ var _header_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss */ 70228);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -259,7 +255,7 @@ HeaderComponent.propDecorators = {
 HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-header',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_header_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], HeaderComponent);
@@ -292,7 +288,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-card class=\"margin-bottom\" (click)=\"navigate(forwardRoute)\">\n  <div class=\"container\">\n    <img [src]=\"itemDetails.image\" [style.opacity]=\"cardOpacity\"/>\n    <div\n      class=\"title\"\n      [ngStyle]=\"currentlangauge == 'ar' ? { right: '13px' } : { left: '13px' }\"\n    >\n      <p class=\"fn-14 dalel-Bold white-color\">{{ itemDetails.name }}</p>\n    </div>\n    <div\n      class=\"location\"\n      [ngStyle]=\"currentlangauge == 'ar' ? { right: '10px' } : { left: '10px' }\"\n    >\n      <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </div>\n    <div\n      class=\"location-address\"\n      [ngStyle]=\"currentlangauge == 'ar' ? { right: '30px' } : { left: '30px' }\"\n    >\n      <p class=\"fn-14 dalel-Regular white-color\">{{ itemDetails.city }}</p>\n    </div>\n    <div\n      class=\"address-detail\"\n      [ngStyle]=\"currentlangauge == 'ar' ? { left: '10px' } : { right: '10px' }\"\n    >\n      <ion-icon name=\"arrow-forward-circle-outline\" color=\"white\"></ion-icon>\n    </div>\n  </div>\n</ion-card>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-card class=\"margin-bottom\" (click)=\"navigate(forwardRoute)\">\n  <div class=\"container\">\n    <img [src]=\"itemDetails.first_image\" [style.opacity]=\"cardOpacity\" />\n    <div class=\"title\" [ngClass]=\"currentlangauge == 'ar' ? 'title-ar':'title-en'\">\n      <p class=\"fn-14 dalel-Bold white-color\">{{ itemDetails.title }}</p>\n    </div>\n    <div class=\"location\" [ngClass]=\"currentlangauge == 'ar' ? 'location-ar':'location-en'    \">\n      <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </div>\n    <div class=\"location-address\" [ngClass]=\"currentlangauge == 'ar'? 'location-address-ar':'location-address-en'\">\n      <p class=\"fn-14 dalel-Regular white-color\">{{ itemDetails.city_title }}</p>\n    </div>\n    <div class=\"address-detail\" [ngClass]=\"currentlangauge == 'ar'? 'address-detail-ar':'address-detail-en'\">\n      <ion-icon name=\"arrow-forward-circle-outline\" color=\"white\"></ion-icon>\n    </div>\n  </div>\n</ion-card>");
 
 /***/ }),
 
@@ -306,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<div class=\"item-details\" >\n  <div class=\"name-rating-container\">\n    <div class=\"name\">\n      <h5 class=\"fn-16 dalel-Bold\"> {{ ItemDetails.name|translate }}</h5>\n    </div>\n\n    <div class=\"rating\">\n      <div class=\"rating-address-container\">\n        <div class=\"rating-container\">\n          <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n          <span class=\"white-color fn-12 dalel-Regular\">{{\n            ItemDetails.rating\n          }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"address-price-container\">\n    <ion-item lines=\"none\" class=\"address\" [ngClass]=\"isDetailed ? 'details' : ''\">\n      <ion-label>\n        <p class=\"fn-14 dalel-Regular dark-black-color\">\n           {{ ItemDetails.city }} - {{ ItemDetails.address }}\n        </p>\n      </ion-label>\n      <ion-icon slot=\"start\" name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </ion-item>\n\n    <div class=\"price\">\n      <p\n        class=\"fn-10 dalel-Bold primary-color\"\n        [ngClass]=\"currentlangauge == 'ar' ? 'float-left' : 'float-right'\"\n      >\n         {{ ItemDetails.price }} {{ ItemDetails.unit |translate }}/{{\n          ItemDetails.perUnit|translate\n        }}\n      </p>\n    </div>\n  </div>\n</div>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<div class=\"item-details\" >\n  <div class=\"name-rating-container\">\n    <div class=\"name\">\n      <h5 class=\"fn-16 dalel-Bold\"> {{ ItemDetails?.title }}</h5>\n    </div>\n\n    <div class=\"rating\">\n      <div class=\"rating-address-container\">\n        <div class=\"rating-container\">\n          <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n          <span class=\"white-color fn-12 dalel-Regular\">{{\n            ItemDetails?.rate\n          }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"address-price-container\">\n    <ion-item lines=\"none\" class=\"address\" [ngClass]=\"isDetailed ? 'details' : ''\">\n      <ion-label>\n        <p class=\"fn-14 dalel-Regular dark-black-color\">\n           {{ ItemDetails?.city_title }} - {{ ItemDetails?.neighborhood_title }}\n        </p>\n      </ion-label>\n      <ion-icon slot=\"start\" name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </ion-item>\n\n    <div class=\"price\">\n      <p\n        class=\"fn-10 dalel-Bold primary-color\"\n        [ngClass]=\"currentlangauge == 'ar' ? 'float-left' : 'float-right'\"\n      >\n         {{ ItemDetails?.price }} {{ 'currency' |translate }}/{{'one night'|translate }}\n      </p>\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -340,7 +336,7 @@ module.exports = ".btn-custom {\n  margin: 0 5%;\n  --color: var(--ion-color-whi
   \*******************************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-card {\n  margin: 0 0 16px 0 !important;\n}\n\n.container {\n  position: relative;\n  height: 140px;\n}\n\n.container img {\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n  object-position: initial;\n  border-radius: 5px;\n}\n\n.container .title {\n  position: absolute;\n  bottom: 30px;\n}\n\n.container .title p {\n  margin: 0px;\n}\n\n.container .location {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .location ion-icon {\n  font-size: 20px;\n}\n\n.container .location-address {\n  position: absolute;\n  bottom: 9px;\n}\n\n.container .location-address p {\n  margin: 0px;\n}\n\n.container .address-detail {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .address-detail ion-icon {\n  font-size: 25px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1jYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQUE7QUFDRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0EsYUFBQTtBQUVGOztBQURFO0VBQ0UsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLHdCQUFBO0VBRUUsa0JBQUE7QUFFTjs7QUFFRTtFQUNFLGtCQUFBO0VBQ0EsWUFBQTtBQUFKOztBQUNJO0VBQ0UsV0FBQTtBQUNOOztBQUdFO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0FBREo7O0FBR0k7RUFDRSxlQUFBO0FBRE47O0FBS0U7RUFDRSxrQkFBQTtFQUVBLFdBQUE7QUFKSjs7QUFLSTtFQUNFLFdBQUE7QUFITjs7QUFPRTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtBQUxKOztBQU1JO0VBQ0UsZUFBQTtBQUpOIiwiZmlsZSI6ImN1c3RvbS1jYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmR7XG4gIG1hcmdpbjogMCAwIDE2cHggMCAhaW1wb3J0YW50O1xufVxuLmNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgaGVpZ2h0OiAxNDBweDtcbiAgaW1nIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IDE0MHB4O1xuICAgIG9iamVjdC1maXQ6IGNvdmVyO1xuICAgIG9iamVjdC1wb3NpdGlvbjogaW5pdGlhbDtcbiAgIFxuICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIFxuICB9XG5cbiAgLnRpdGxlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIHAge1xuICAgICAgbWFyZ2luOiAwcHg7XG4gICAgfVxuICB9XG5cbiAgLmxvY2F0aW9uIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm90dG9tOiA1cHg7XG5cbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDIwcHg7XG4gICAgfVxuICB9XG5cbiAgLmxvY2F0aW9uLWFkZHJlc3Mge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcblxuICAgIGJvdHRvbTogOXB4O1xuICAgIHAge1xuICAgICAgbWFyZ2luOiAwcHg7XG4gICAgfVxuICB9XG5cbiAgLmFkZHJlc3MtZGV0YWlsIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm90dG9tOiA1cHg7XG4gICAgaW9uLWljb24ge1xuICAgICAgZm9udC1zaXplOiAyNXB4O1xuICAgIH1cbiAgfVxufVxuIl19 */";
+module.exports = "ion-card {\n  margin: 0 0 16px 0 !important;\n}\n\n.container {\n  position: relative;\n  height: 140px;\n}\n\n.container img {\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n  object-position: initial;\n  border-radius: 5px;\n  opacity: 0.62;\n}\n\n.container .title {\n  position: absolute;\n  bottom: 30px;\n}\n\n.container .title p {\n  margin: 0px;\n}\n\n.container .location {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .location ion-icon {\n  font-size: 20px;\n}\n\n.container .location-address {\n  position: absolute;\n  bottom: 9px;\n}\n\n.container .location-address p {\n  margin: 0px;\n}\n\n.container .address-detail {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .address-detail ion-icon {\n  font-size: 25px;\n}\n\n.container .title-ar {\n  right: 13px;\n}\n\n.container .title-en {\n  left: 13px;\n}\n\n.container .location-ar {\n  right: 10px;\n}\n\n.container .location-en {\n  left: 10px;\n}\n\n.container .location-address-ar {\n  right: 30px;\n}\n\n.container .location-address-en {\n  left: 30px;\n}\n\n.container .address-detail-ar {\n  left: 10px;\n}\n\n.container .address-detail-en {\n  right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1jYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQUE7QUFDRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0EsYUFBQTtBQUVGOztBQURFO0VBQ0UsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLHdCQUFBO0VBRUEsa0JBQUE7RUFDQSxhQUFBO0FBRUo7O0FBQ0U7RUFDRSxrQkFBQTtFQUNBLFlBQUE7QUFDSjs7QUFBSTtFQUNFLFdBQUE7QUFFTjs7QUFFRTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtBQUFKOztBQUVJO0VBQ0UsZUFBQTtBQUFOOztBQUlFO0VBQ0Usa0JBQUE7RUFFQSxXQUFBO0FBSEo7O0FBSUk7RUFDRSxXQUFBO0FBRk47O0FBTUU7RUFDRSxrQkFBQTtFQUNBLFdBQUE7QUFKSjs7QUFLSTtFQUNFLGVBQUE7QUFITjs7QUFPRTtFQUNFLFdBQUE7QUFMSjs7QUFRRTtFQUNFLFVBQUE7QUFOSjs7QUFTRTtFQUNFLFdBQUE7QUFQSjs7QUFVRTtFQUNFLFVBQUE7QUFSSjs7QUFXRTtFQUNFLFdBQUE7QUFUSjs7QUFZRTtFQUNFLFVBQUE7QUFWSjs7QUFhRTtFQUNFLFVBQUE7QUFYSjs7QUFjRTtFQUNFLFdBQUE7QUFaSiIsImZpbGUiOiJjdXN0b20tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jYXJkIHtcbiAgbWFyZ2luOiAwIDAgMTZweCAwICFpbXBvcnRhbnQ7XG59XG4uY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDE0MHB4O1xuICBpbWcge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTQwcHg7XG4gICAgb2JqZWN0LWZpdDogY292ZXI7XG4gICAgb2JqZWN0LXBvc2l0aW9uOiBpbml0aWFsO1xuXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIG9wYWNpdHk6IDAuNjI7XG4gIH1cblxuICAudGl0bGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDMwcHg7XG4gICAgcCB7XG4gICAgICBtYXJnaW46IDBweDtcbiAgICB9XG4gIH1cblxuICAubG9jYXRpb24ge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDVweDtcblxuICAgIGlvbi1pY29uIHtcbiAgICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgICB9XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuXG4gICAgYm90dG9tOiA5cHg7XG4gICAgcCB7XG4gICAgICBtYXJnaW46IDBweDtcbiAgICB9XG4gIH1cblxuICAuYWRkcmVzcy1kZXRhaWwge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDVweDtcbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDI1cHg7XG4gICAgfVxuICB9XG5cbiAgLnRpdGxlLWFyIHtcbiAgICByaWdodDogMTNweDtcbiAgfVxuXG4gIC50aXRsZS1lbiB7XG4gICAgbGVmdDogMTNweDtcbiAgfVxuXG4gIC5sb2NhdGlvbi1hciB7XG4gICAgcmlnaHQ6IDEwcHg7XG4gIH1cblxuICAubG9jYXRpb24tZW4ge1xuICAgIGxlZnQ6IDEwcHg7XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcy1hciB7XG4gICAgcmlnaHQ6IDMwcHg7XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcy1lbiB7XG4gICAgbGVmdDogMzBweDtcbiAgfVxuXG4gIC5hZGRyZXNzLWRldGFpbC1hciB7XG4gICAgbGVmdDogMTBweDtcbiAgfVxuXG4gIC5hZGRyZXNzLWRldGFpbC1lbiB7XG4gICAgcmlnaHQ6IDEwcHg7XG4gIH1cbn1cbiJdfQ== */";
 
 /***/ }),
 

@@ -569,7 +569,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CodePage": () => (/* binding */ CodePage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./code.page.html */ 20083);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./code.page.html */ 20083);
 /* harmony import */ var _code_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./code.page.scss */ 47180);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -667,6 +667,18 @@ let CodePage = class CodePage {
     }
     next(ev, nextInput) {
         console.log(ev.target.value);
+        if (nextInput == 'n2') {
+            this.inputFocusNumber1 = true;
+        }
+        else if (nextInput == 'n3') {
+            this.inputFocusNumber2 = true;
+        }
+        else if (nextInput == 'n4') {
+            this.inputFocusNumber3 = true;
+        }
+        else if (nextInput == '') {
+            this.inputFocusNumber4 = true;
+        }
         const input = ev.target;
         const length = input.value.length;
         console.log('length is ' + length);
@@ -693,7 +705,7 @@ CodePage.ctorParameters = () => [
 CodePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-code',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_code_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CodePage);
@@ -712,7 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n    <!-- <ion-card>\n      <ng-otp-input\n        (onInputChange)=\"onOtpChange($event)\"\n        [config]=\"config\"\n      ></ng-otp-input>\n    </ion-card> -->\n    <ion-card class=\"auth-container\">\n      <div class=\"auth-container-title\">\n        <h5>{{\"code-verification\"|translate}}</h5>\n      </div>\n\n      <div class=\"auth-container-sub-title\">\n        <p>{{\"enter code sent to mobile\"|translate}}</p>\n      </div>\n\n      <form class=\"auth-form\" (ngSubmit)=\"confirmVerificationCode()\">\n        <ion-row>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber1 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n1\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n2)\"\n                (ionFocus)=\"focusNumber1(true)\"\n                (ionBlur)=\"focusNumber1(false)\"\n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col size=\"3\">\n            <ion-item\n              lines=\"none\"\n              [ngClass]=\"inputFocusNumber2 ? 'focused' : 'unfocused' \"\n            >\n              <ion-input\n                class=\"otp\"\n                #n2\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n3)\"\n                (ionFocus)=\"focusNumber2(true)\"\n                (ionBlur)=\"focusNumber2(false)\"\n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber3 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n3\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n4)\"\n                (ionFocus)=\"focusNumber3(true)\"\n                (ionBlur)=\"focusNumber3(false)\"\n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber4 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n4\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,'')\"\n                (ionFocus)=\"focusNumber4(true)\"\n                (ionBlur)=\"focusNumber4(false)\"\n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{\"confirm\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n    <!-- <ion-card>\n      <ng-otp-input\n        (onInputChange)=\"onOtpChange($event)\"\n        [config]=\"config\"\n      ></ng-otp-input>\n    </ion-card> -->\n    <ion-card class=\"auth-container\">\n      <div class=\"auth-container-title\">\n        <h5>{{\"code-verification\"|translate}}</h5>\n      </div>\n\n      <div class=\"auth-container-sub-title\">\n        <p>{{\"enter code sent to mobile\"|translate}}</p>\n      </div>\n\n      <form class=\"auth-form\" (ngSubmit)=\"confirmVerificationCode()\">\n        <ion-row>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber1 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n1\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n2)\"\n              \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col size=\"3\">\n            <ion-item\n              lines=\"none\"\n              [ngClass]=\"inputFocusNumber2 ? 'focused' : 'unfocused' \"\n            >\n              <ion-input\n                class=\"otp\"\n                #n2\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n3)\"\n               \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber3 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n3\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n4)\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber4 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n4\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,'')\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{\"confirm\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

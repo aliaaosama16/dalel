@@ -1,13 +1,13 @@
 import { GeneralResponse, UserData } from './general';
 export interface UserOrdersData extends UserData {
-    status: string;
-  }
-  
-  export enum OrderStatus {
-    current,
-    finish,
-  }
-  
+  status: string;
+}
+
+export enum OrderStatus {
+  current,
+  finish,
+}
+
 export interface OrderResponse extends GeneralResponse {
   data: Order[];
 }
@@ -66,3 +66,10 @@ export enum StatusMap {
   finish,
 }
 
+export interface OrderData extends UserData {
+  order_id: number;
+}
+
+export interface OrderDataResponse extends GeneralResponse {
+  data: Order;
+}

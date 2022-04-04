@@ -80,7 +80,7 @@ const routes = [
     },
     {
         path: 'favourites',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_favourites_favourites_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/favourites/favourites.module */ 79814)).then((m) => m.FavouritesPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_favourites_favourites_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/favourites/favourites.module */ 79814)).then((m) => m.FavouritesPageModule),
     },
     {
         path: 'chnage-password/:userID',
@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 30836);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capacitor/storage */ 872);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
 /* harmony import */ var _services_network_network_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/network/network.service */ 33401);
-/* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/push-notifications */ 6727);
+/* harmony import */ var _services_fcm_fcm_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/fcm/fcm.service */ 50701);
 
 
 
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, languageService, util, router, auth, alertController, translate, network, menuCtrl) {
+    constructor(platform, languageService, util, router, auth, alertController, translate, network, menuCtrl, fcmService) {
         this.platform = platform;
         this.languageService = languageService;
         this.util = util;
@@ -152,6 +152,7 @@ let AppComponent = class AppComponent {
         this.translate = translate;
         this.network = network;
         this.menuCtrl = menuCtrl;
+        this.fcmService = fcmService;
         this.currentLanguage = '';
         this.pages = [
             {
@@ -195,31 +196,6 @@ let AppComponent = class AppComponent {
         this.auth.getLoginedObservable().subscribe((val) => {
             this.logined = val;
         });
-        this.initFcm();
-    }
-    initFcm() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
-            let permStatus = yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.checkPermissions();
-            if (permStatus.receive === 'prompt') {
-                permStatus = yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.requestPermissions();
-            }
-            if (permStatus.receive !== 'granted') {
-                throw new Error('User denied permissions!');
-            }
-            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.register();
-            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('registration', (token) => {
-                console.info('Registration token: ', token.value);
-            });
-            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('registrationError', (err) => {
-                console.error('Registration error: ', err.error);
-            });
-            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('pushNotificationReceived', (notification) => {
-                console.log('Push notification received: ', notification);
-            });
-            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
-                console.log('Push notification action performed', notification.actionId, notification.inputValue);
-            });
-        });
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -228,7 +204,8 @@ let AppComponent = class AppComponent {
             console.log(`language is ${this.currentLanguage}`);
             this.util.getPlatformType();
             this.util.getDeviceID();
-            // this.getLoginStatus();
+            this.getLoginStatus();
+            this.fcmService.initFcm();
         });
     }
     getLoginStatus() {
@@ -240,6 +217,7 @@ let AppComponent = class AppComponent {
                     this.logined = val;
                 });
             }
+            this.auth.getStoredUserID();
         });
     }
     logout() {
@@ -303,12 +281,13 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.AlertController },
     { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__.TranslateService },
     { type: _services_network_network_service__WEBPACK_IMPORTED_MODULE_7__.NetworkService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.MenuController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.MenuController },
+    { type: _services_fcm_fcm_service__WEBPACK_IMPORTED_MODULE_8__.FcmService }
 ];
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
         selector: 'app-root',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], AppComponent);
@@ -714,6 +693,78 @@ DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
         providedIn: 'root',
     })
 ], DataService);
+
+
+
+/***/ }),
+
+/***/ 50701:
+/*!*********************************************!*\
+  !*** ./src/app/services/fcm/fcm.service.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FcmService": () => (/* binding */ FcmService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 2960);
+/* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/push-notifications */ 6727);
+
+
+
+
+let FcmService = class FcmService {
+    constructor() {
+        //if (Capacitor.getPlatform() === 'ios' || Capacitor.getPlatform() === 'android') {
+        if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.Capacitor.isNativePlatform()) {
+            this.initFcm();
+        }
+    }
+    initFcm() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            // let permStatus = await PushNotifications.checkPermissions();
+            // if (permStatus.receive === 'prompt') {
+            //   permStatus = await PushNotifications.requestPermissions();
+            // }
+            // if (permStatus.receive !== 'granted') {
+            //   throw new Error('User denied permissions!');
+            // }
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.checkPermissions().then((permission) => (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+                if (permission.receive == 'granted') {
+                    yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.register();
+                }
+            }));
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.addListener('registration', (token) => {
+                console.info('Registration token: ', token.value);
+                //alert('Registration token:' + token.value);
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.addListener('registrationError', (err) => {
+                console.error('Registration error: ', err.error);
+                // alert('Registration error:' + err.error);
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.addListener('pushNotificationReceived', (notification) => {
+                console.log('Push notification received: ', JSON.stringify(notification));
+                // alert('Push notification received: ' + JSON.stringify(notification));
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_1__.PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+                console.log('Push notification action performed', notification.actionId, notification.inputValue);
+                alert('Push notification action performed' +
+                    notification.actionId +
+                    notification.inputValue);
+            });
+        });
+    }
+};
+FcmService.ctorParameters = () => [];
+FcmService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root',
+    })
+], FcmService);
 
 
 

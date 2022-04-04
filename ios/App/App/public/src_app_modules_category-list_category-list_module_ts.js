@@ -96,14 +96,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CategoryListPage": () => (/* binding */ CategoryListPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-list.page.html */ 47728);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-list.page.html */ 47728);
 /* harmony import */ var _category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category-list.page.scss */ 97800);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/items/items.service */ 17118);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
 
 
 
@@ -113,99 +115,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CategoryListPage = class CategoryListPage {
-    constructor(menuCtrl, activatedRoute, langaugeservice, util) {
+    constructor(menuCtrl, activatedRoute, langaugeservice, util, items) {
         this.menuCtrl = menuCtrl;
         this.activatedRoute = activatedRoute;
         this.langaugeservice = langaugeservice;
         this.util = util;
-        this.categoriesList = [
-            {
-                id: 1,
-                catID: 4,
-                name: 'اسم تجريبي',
-                city: 'مكه المكرمة',
-                address: 'الحرم',
-                rating: '3+',
-                price: 3000,
-                unit: 'currency',
-                perUnit: 'one night',
-                isFav: true,
-                description: '',
-                reservationRules: '',
-                image: './../../../assets/images/1024-500.png',
-                leftTime: '',
-            },
-            {
-                id: 2,
-                catID: 2,
-                name: 'اسم تجريبي',
-                city: 'الرياض',
-                address: 'حي الرمال',
-                rating: '3+',
-                price: 3000,
-                unit: 'currency',
-                perUnit: 'one night',
-                isFav: true,
-                description: '',
-                reservationRules: '',
-                image: './../../../assets/images/1024-500.png',
-                leftTime: '',
-            },
-            {
-                id: 3,
-                catID: 1,
-                name: 'اسم تجريبي',
-                city: 'الرياض',
-                address: 'حي الرمال',
-                rating: '3+',
-                price: 3000,
-                unit: 'currency',
-                perUnit: 'one night',
-                isFav: true,
-                description: '',
-                reservationRules: '',
-                image: './../../../assets/images/1024-500.png',
-                leftTime: '',
-            },
-            {
-                id: 4,
-                catID: 1,
-                name: 'اسم تجريبي',
-                city: 'الرياض',
-                address: 'حي الرمال',
-                rating: '3+',
-                price: 3000,
-                unit: 'currency',
-                perUnit: 'one night',
-                isFav: true,
-                description: '',
-                reservationRules: '',
-                image: './../../../assets/images/1024-500.png',
-                leftTime: '',
-            }
-        ];
+        this.items = items;
         this.platform = this.util.platform;
-        this.loadItems();
+        //this.loadItems();
     }
-    ;
     ngOnInit() {
         console.log(`category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`);
         if (this.activatedRoute.snapshot.data['name']) {
             this.categoryName = this.activatedRoute.snapshot.data['name'];
             console.log(`categoryName is ${this.categoryName}`);
         }
-        this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
-        console.log(`category id is ${this.categoryID}`);
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
+        this.getAllDepartmentsBySectionID();
+    }
+    getAllDepartmentsBySectionID() {
+        this.sectionData = {
+            lang: this.langaugeservice.getLanguage(),
+            section_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+        };
+        this.util.showLoadingSpinner().then((__) => {
+            this.items.allDepartmentsBySectionID(this.sectionData).subscribe((data) => {
+                if (data.key == 1) {
+                    console.log('sections data : ' + JSON.stringify(data));
+                    //this.sections = data.data.sections;
+                    this.sectionAllItems = data.data;
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
     loadItems(event) {
         // call api to get all categorey items
         let newResults = { results: [], totel_pages: 10 };
         //this.categoriesList=[...this.categoriesList,...newResults];
         //this.categoriesList.concat(...newResults);
-        this.categoriesList.push(...newResults.results);
-        // after get data 
+        this.sectionAllItems.push(...newResults.results);
+        // after get data
         event === null || event === void 0 ? void 0 : event.target.complete();
         if (event) {
             event.target.disabled = newResults.totel_pages === this.currentPage;
@@ -230,18 +183,19 @@ let CategoryListPage = class CategoryListPage {
     }
 };
 CategoryListPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_2__.ItemsService }
 ];
 CategoryListPage.propDecorators = {
-    infiniteScroll: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild, args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__.IonInfiniteScroll,] }]
+    infiniteScroll: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonInfiniteScroll,] }]
 };
-CategoryListPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+CategoryListPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-category-list',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoryListPage);
@@ -260,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <app-custom-card\n    [itemDetails]=\"cat\"\n    [forwardRoute]=\"'/tabs/main/categories/'\"\n    *ngFor=\"let cat of categoriesList\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <app-custom-card\n    [itemDetails]=\"item\"\n    [forwardRoute]=\"'/tabs/main'\"\n    *ngFor=\"let item of sectionAllItems\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
 
 /***/ }),
 
