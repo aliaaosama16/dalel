@@ -1,10 +1,7 @@
-export interface  ActivationData{
-    lang:string,
-    user_id:number,
+import { UserData } from "./general";
+
+export interface  ActivationData extends UserData{  
     code:string,
     device_id:string
 }
 
-export interface ActivationResponse{
-
-}

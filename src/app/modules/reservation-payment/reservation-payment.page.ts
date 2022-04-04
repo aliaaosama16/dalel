@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemDetails } from 'src/app/models/itemDetails';
+import { Item } from 'src/app/models/item';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import * as moment from 'moment';
@@ -11,7 +11,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class ReservationPaymentPage implements OnInit {
   platform: any;
-  ItemDetails: ItemDetails = {
+  ItemDetails = {
     name: 'اسم الاستراحه',
     rating: '3+',
     id: 1,

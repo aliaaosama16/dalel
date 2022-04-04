@@ -3,21 +3,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthData, AuthResponse } from 'src/app/models/loginData';
 import { RegisterData, RegisterResponse } from 'src/app/models/registerData';
-import {
-  UpdateUserData,
-  UserData,
-  UserResponse,
-} from 'src/app/models/userData';
+import { UpdateUserData, UserResponse } from 'src/app/models/userData';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
-import {
-  ActivationData,
-  ActivationResponse,
-} from 'src/app/models/activationData';
+import { ActivationData } from 'src/app/models/activationData';
 import {
   ChangePasswordData,
   ForgetPasswordData,
 } from 'src/app/models/forgetPassword';
+import { GeneralResponse, UserData } from 'src/app/models/general';
 
 @Injectable({
   providedIn: 'root',
@@ -142,8 +136,8 @@ export class AuthService {
     );
   }
 
-  activeAccount(data: ActivationData): Observable<ActivationResponse> {
-    return this.httpclient.post<ActivationResponse>(
+  activeAccount(data: ActivationData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
       `${environment.BASE_URL}active-account`,
       data
     );

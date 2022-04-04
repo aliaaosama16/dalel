@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { GeneralSectionResponse, UserData } from 'src/app/models/general';
+import { SectionsResponse } from 'src/app/models/sections';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data.service';
+import { ItemsService } from 'src/app/services/items/items.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
@@ -10,35 +15,53 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
-  platform:any;
-  categories: any[] = [
-    { id: 1, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 2, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 3, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 4, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 5, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 6, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 7, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 8, name: 'chalets', image: './../../../assets/images/1024-500.png' },
-    { id: 9, name: 'rests', image: './../../../assets/images/1024-500.png' },
-    { id: 10, name: 'rests', image: './../../../assets/images/1024-500.png' },
-  ];
+  platform: any;
+  sections: GeneralSectionResponse[];
+  userData: UserData;
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
     private dataService: DataService,
-    private util:UtilitiesService
+    private util: UtilitiesService,
+    private items: ItemsService,
+    private langaugeservice: LanguageService,
+    private auth: AuthService
   ) {
-    this.platform=this.util.platform;
+    this.platform = this.util.platform;
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+
+      this.userData = {
+        lang: this.langaugeservice.getLanguage(),
+        user_id: val == 0 ? 1 : val,
+      };
+      this.getAllSections();
+    });
   }
 
   ngOnInit() {}
 
+  getAllSections() {
+    this.util.showLoadingSpinner().then((__) => {
+      this.items.data(this.userData).subscribe(
+        (data: SectionsResponse) => {
+          if (data.key == 1) {
+            console.log('sections data : ' + JSON.stringify(data));
+            this.sections = data.data.sections;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
   openMenu() {
     this.menuCtrl.open();
   }
 
-  openCatList(catID,catName) {
+  openCatList(catID, catName) {
     this.dataService.setData(catID, catName);
     // go to categories list page
     this.router.navigateByUrl(`/tabs/main/categories/${catID}`);

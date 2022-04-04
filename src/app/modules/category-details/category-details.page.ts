@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
-import { ItemDetails } from 'src/app/models/itemDetails';
+import { Item } from 'src/app/models/item';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -16,8 +16,8 @@ export class CategoryDetailsPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number = 31.0283322;
-  long: number = 31.3617836;
+  lat: number;
+  long: number;
   infowindow = new google.maps.InfoWindow();
   currentlangauge: string;
   platform: any;
@@ -40,27 +40,7 @@ export class CategoryDetailsPage implements OnInit {
       },
     },
   };
-  itemDetails: ItemDetails = {
-    id: 1,
-    catID: 1,
-    name: 'اسم تجريبي',
-    city: 'الرياض',
-    address: 'حي الرمال',
-    rating: '3+',
-    price: 3000,
-    unit: 'currency',
-    perUnit: 'one night',
-    isFav: true,
-    description:
-      'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
-    reservationRules:
-      'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسومهناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
-    image: '',
-    leftTime: '',
-    roomsNumber: 10,
-    space: 450,
-    bathRoomsNUmber: 4,
-  };
+  itemDetails: Item;
   constructor(
     private menuCtrl: MenuController,
     private langaugeservice: LanguageService,
@@ -74,11 +54,13 @@ export class CategoryDetailsPage implements OnInit {
 
   ionViewWillEnter() {
     this.loadMap();
+    this.lat = this.itemDetails.lat;
+    this.long = this.itemDetails.lng;
     this.loadItemPosition();
   }
 
   loadMap() {
-    let latLng = new google.maps.LatLng(this.lat,this.long);
+    let latLng = new google.maps.LatLng(this.lat, this.long);
 
     let styles: google.maps.MapTypeStyle[] = [
       {
@@ -151,7 +133,7 @@ export class CategoryDetailsPage implements OnInit {
   reserve() {}
 
   addToFavourite() {
-    this.itemDetails.isFav = !this.itemDetails.isFav;
+    this.itemDetails.is_favourite = !this.itemDetails.is_favourite;
 
     if (this.authService.isAuthenticated.value) {
       // call api to add to favourite

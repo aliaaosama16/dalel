@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserData } from 'src/app/models/general';
 import {
-  NotificationsData,
+
   NotificationsInfo,
   NotificationsResponse,
 } from 'src/app/models/notifications';
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment';
 export class NotificationsService {
   constructor(private httpclient: HttpClient) {}
 
-  showNotification(data: NotificationsData): Observable<NotificationsResponse> {
+  showNotification(data: UserData): Observable<NotificationsResponse> {
     return this.httpclient.post<NotificationsResponse>(
       `${environment.BASE_URL}show-notification`,
       data

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ContactUsData, ContactUsResponse } from 'src/app/models/contactUs';
+import { ContactUsData} from 'src/app/models/contactUs';
+import { GeneralResponse } from 'src/app/models/general';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -97,7 +98,7 @@ export class ContactUsPage implements OnInit {
     };
     this.util.showLoadingSpinner().then((__) => {
       this.general.contactUs(this.contactData).subscribe(
-        (data: ContactUsResponse) => {
+        (data: GeneralResponse) => {
           if (data.key == 1) {
             console.log('contact us  res :' + JSON.stringify(data));
             this.util.showMessage(data.msg);

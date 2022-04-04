@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ItemDetails } from 'src/app/models/itemDetails';
+import { Item } from 'src/app/models/item';
 import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 export class CustomCardComponent implements OnInit {
   currentlangauge: string;
   @Input() cardOpacity:number;
-  @Input() itemDetails: ItemDetails;
+  @Input() itemDetails: Item;
   @Input() forwardRoute: string;
   @Output() navigateTo = new EventEmitter<string>();
 
@@ -25,10 +25,9 @@ export class CustomCardComponent implements OnInit {
   }
 
   navigate(route) {
-    console.log('all object ' + JSON.stringify(this.itemDetails));
+    console.log('custom card : ' + JSON.stringify(this.itemDetails));
     console.log('current route is :  ' + route);
     this.navigateTo.emit(route);
-    this.router.navigate([`/${route}/${this.itemDetails.catID}/${this.itemDetails.id}`]);
-  
+    this.router.navigate([`/${route}/${this.itemDetails.section_id}/${this.itemDetails.id}`]);
   }
 }

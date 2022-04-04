@@ -1,22 +1,17 @@
-export interface NotificationsData {
-  lang: string;
-  user_id: number;
-}
+import { GeneralResponse, Language } from "./general";
 
-export interface NotificationsInfo {
-  lang: string;
+
+export interface NotificationsInfo extends Language {
+  
   notification_id: number;
 }
 
-export interface NotificationsResponse {
-  key: number;
-  msg: string;
-  show_image: boolean;
+export interface NotificationsResponse extends GeneralResponse {
   notification_count?: number;
-  data?: NotificationsDataResponse[];
+  data?: UserDataResponse[];
 }
 
-export interface NotificationsDataResponse {
+export interface UserDataResponse {
   id: number;
   message: string;
   type: string;

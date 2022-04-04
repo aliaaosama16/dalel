@@ -9,13 +9,13 @@
 <ion-content >
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let cat of categories">
-        <ion-card class="ion-no-margin" (click)="openCatList(cat.id,cat.name)">
+      <ion-col size="6" *ngFor="let cat of sections">
+        <ion-card class="ion-no-margin" (click)="openCatList(cat.id,cat.title)">
           <ion-item>
             <ion-thumbnail>
               <img [src]="cat.image" />
             </ion-thumbnail>
-            <ion-label> {{cat.name|translate}} </ion-label>
+            <ion-label> {{cat.title|translate}} </ion-label>
           </ion-item>
         </ion-card>
       </ion-col>

@@ -15,14 +15,21 @@ export class PolicyPage implements OnInit {
   conditionDataResponse: StaticPageResponse;
   constructor(
     private util: UtilitiesService,
-    private general:GeneralService,
-    private language: LanguageService
+    private general: GeneralService,
+    private language: LanguageService,
+    private auth: AuthService
   ) {
-    this.conditionData = {
-      lang: this.language.getLanguage(),
-      user_id: 1,
-      title: 'condition',
-    };
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+      if (val != 0) {
+        this.conditionData = {
+          lang: this.language.getLanguage(),
+          user_id: val,
+          title: 'condition',
+        };
+      }
+    });
+
     this.getIntroData(this.conditionData);
   }
 
@@ -33,7 +40,9 @@ export class PolicyPage implements OnInit {
       this.general.staticPages(data).subscribe(
         (data: StaticPageResponse) => {
           this.conditionDataResponse = data;
-          console.log('conditionData ' + JSON.stringify(this.conditionDataResponse));
+          console.log(
+            'conditionData ' + JSON.stringify(this.conditionDataResponse)
+          );
           this.util.dismissLoading();
         },
         (err) => {

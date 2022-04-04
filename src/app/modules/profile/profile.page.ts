@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { UserData } from 'src/app/models/general';
 import { AuthResponse } from 'src/app/models/loginData';
-import { UserData, UserResponse } from 'src/app/models/userData';
+import { UserResponse } from 'src/app/models/userData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';

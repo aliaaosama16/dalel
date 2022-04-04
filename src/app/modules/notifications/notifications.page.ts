@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { UserData } from 'src/app/models/general';
 import {
-  NotificationsData,
-  NotificationsDataResponse,
+  UserDataResponse,
   NotificationsInfo,
   NotificationsResponse,
 } from 'src/app/models/notifications';
@@ -21,8 +21,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class NotificationsPage implements OnInit {
   currentlangauge: string;
   platform: any;
-  notificationsData: NotificationsData;
-  notifications: NotificationsDataResponse[];
+  UserData: UserData;
+  notifications: UserDataResponse[];
   getNotifications: boolean = false;
   noNotifications: boolean = false;
   constructor(
@@ -40,11 +40,11 @@ export class NotificationsPage implements OnInit {
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('user id :' + val);
       if (val != 0) {
-        this.notificationsData = {
+        this.UserData = {
           lang: this.langaugeservice.getLanguage(),
           user_id: val,
         };
-        this.showNotification(this.notificationsData);
+        this.showNotification(this.UserData);
       }
     });
   }
@@ -58,7 +58,7 @@ export class NotificationsPage implements OnInit {
     this.menuCtrl.open();
   }
 
-  showNotification(data: NotificationsData) {
+  showNotification(data: UserData) {
     this.util.showLoadingSpinner().then((__) => {
       this.userNotifications.showNotification(data).subscribe(
         (data: NotificationsResponse) => {
@@ -111,7 +111,7 @@ export class NotificationsPage implements OnInit {
                   );
                   this.util.showMessage(data.msg);
                   this.util.dismissLoading();
-                  this.showNotification(this.notificationsData);
+                  this.showNotification(this.UserData);
                 },
                 (err) => {
                   this.util.dismissLoading();
