@@ -14,6 +14,9 @@ const config: CapacitorConfig = {
       splashFullScreen: true,
       splashImmersive: false,
     },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
   },
   android: {
     allowMixedContent: true,

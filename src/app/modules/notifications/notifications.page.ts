@@ -62,6 +62,7 @@ export class NotificationsPage implements OnInit {
     this.util.showLoadingSpinner().then((__) => {
       this.userNotifications.showNotification(data).subscribe(
         (data: NotificationsResponse) => {
+          this.util.dismissLoading();
           if (data.key == 0) {
             console.log('no response');
             this.noNotifications = true;
@@ -73,7 +74,7 @@ export class NotificationsPage implements OnInit {
             this.notifications = data.data;
             this.noNotifications = false;
           }
-          this.util.dismissLoading();
+          
         },
         (err) => {
           this.util.dismissLoading();

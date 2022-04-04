@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "NotificationsPage": () => (/* binding */ NotificationsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
 /* harmony import */ var _notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.page.scss */ 87326);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -118,7 +118,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import * as moment from 'moment';
 let NotificationsPage = class NotificationsPage {
     constructor(menuCtrl, langaugeservice, util, router, userNotifications, alertController, translate, auth) {
         this.menuCtrl = menuCtrl;
@@ -154,18 +153,20 @@ let NotificationsPage = class NotificationsPage {
     showNotification(data) {
         this.util.showLoadingSpinner().then((__) => {
             this.userNotifications.showNotification(data).subscribe((data) => {
+                this.util.dismissLoading();
                 if (data.key == 0) {
+                    console.log('no response');
                     this.noNotifications = true;
                 }
                 else if (data.notification_count == 0 && data.key == 1) {
-                    this.getNotifications = this.noNotifications = true;
+                    console.log('no Notifications');
+                    this.noNotifications = true;
                 }
                 else {
+                    console.log(' Notifications');
                     this.notifications = data.data;
-                    this.getNotifications = true;
+                    this.noNotifications = false;
                 }
-                console.log('notifications' + JSON.stringify(this.notifications));
-                this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
                 this.getNotifications = false;
@@ -227,7 +228,7 @@ NotificationsPage.ctorParameters = () => [
 NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-notifications',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], NotificationsPage);
@@ -288,7 +289,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" -->\n<ion-content class=\"ion-padding\">\n  <ion-card\n    class=\"ion-no-margin\"\n    *ngIf=\"getNotifications && !noNotifications\"\n  >\n    <ion-item-sliding *ngFor=\"let item of notifications\">\n      <ion-item (click)=\"openOrederDetails(item.order_id)\">\n        <ul>\n          <li>\n            <ion-label>\n              <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n              <p\n                item-start\n                class=\"fn-12 dalel-Regular secondary-color\"\n                [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n              >\n                {{item.duration}}\n              </p>\n            </ion-label>\n          </li>\n        </ul>\n      </ion-item>\n      <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n        <ion-item-option color=\"danger\">\n          <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n\n  <div class=\"no-notifications\" *ngIf=\"noNotifications && getNotifications \">\n    <h5>{{'no-notifications'|translate}}</h5>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" \n *ngIf=\"!noNotifications\"\n-->\n\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\">\n    <ion-item-sliding *ngFor=\"let item of notifications\">\n      <ion-item (click)=\"openOrederDetails(item.order_id)\">\n        <ul>\n          <li>\n            <ion-label>\n              <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n              <p\n                item-start\n                class=\"fn-12 dalel-Regular secondary-color\"\n                [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n              >\n                {{item.duration}}\n              </p>\n            </ion-label>\n          </li>\n        </ul>\n      </ion-item>\n      <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n        <ion-item-option color=\"danger\">\n          <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n\n  <div class=\"no-notifications\" *ngIf=\"noNotifications  \">\n    <h5>{{'no-notifications'|translate}}</h5>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

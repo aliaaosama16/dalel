@@ -82,6 +82,10 @@ const routes = [
         path: 'favourites',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_favourites_favourites_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/favourites/favourites.module */ 79814)).then((m) => m.FavouritesPageModule),
     },
+    {
+        path: 'chnage-password/:userID',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_modules_auth_chnage-password_chnage-password_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/auth/chnage-password/chnage-password.module */ 3027)).then(m => m.ChnagePasswordPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -109,18 +113,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 30836);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/auth/auth.service */ 9171);
-/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/language/language.service */ 40301);
-/* harmony import */ var _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/utilities/utilities.service */ 11062);
-/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
-/* harmony import */ var _services_network_network_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/network/network.service */ 33401);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _models_loginData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./models/loginData */ 80261);
+/* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/auth/auth.service */ 9171);
+/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/language/language.service */ 40301);
+/* harmony import */ var _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/utilities/utilities.service */ 11062);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _services_network_network_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/network/network.service */ 33401);
+/* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/push-notifications */ 6727);
+
+
 
 
 
@@ -134,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, languageService, util, router, auth, alertController, translate, network) {
+    constructor(platform, languageService, util, router, auth, alertController, translate, network, menuCtrl) {
         this.platform = platform;
         this.languageService = languageService;
         this.util = util;
@@ -143,6 +151,7 @@ let AppComponent = class AppComponent {
         this.alertController = alertController;
         this.translate = translate;
         this.network = network;
+        this.menuCtrl = menuCtrl;
         this.currentLanguage = '';
         this.pages = [
             {
@@ -175,8 +184,42 @@ let AppComponent = class AppComponent {
                 iconActive: './../assets/icon/heart-active.svg',
                 iconInActive: './../assets/icon/heart-inactive.svg',
             },
+            {
+                title: 'settings',
+                url: '/tabs/main/settings',
+                iconActive: './../assets/icon/settings-active.svg',
+                iconInActive: './../assets/icon/settings-non-active.svg',
+            },
         ];
         this.initializeApp();
+        this.auth.getLoginedObservable().subscribe((val) => {
+            this.logined = val;
+        });
+        this.initFcm();
+    }
+    initFcm() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+            let permStatus = yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.checkPermissions();
+            if (permStatus.receive === 'prompt') {
+                permStatus = yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.requestPermissions();
+            }
+            if (permStatus.receive !== 'granted') {
+                throw new Error('User denied permissions!');
+            }
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.register();
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('registration', (token) => {
+                console.info('Registration token: ', token.value);
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('registrationError', (err) => {
+                console.error('Registration error: ', err.error);
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('pushNotificationReceived', (notification) => {
+                console.log('Push notification received: ', notification);
+            });
+            yield _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_8__.PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+                console.log('Push notification action performed', notification.actionId, notification.inputValue);
+            });
+        });
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -185,13 +228,13 @@ let AppComponent = class AppComponent {
             console.log(`language is ${this.currentLanguage}`);
             this.util.getPlatformType();
             this.util.getDeviceID();
-            this.getLoginStatus();
+            // this.getLoginStatus();
         });
     }
     getLoginStatus() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
-            const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__.Storage.get({ key: 'status' });
-            if (loginStatus.value == 'active') {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+            const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__.Storage.get({ key: 'status' });
+            if (loginStatus.value == _models_loginData__WEBPACK_IMPORTED_MODULE_2__.Status.Active) {
                 this.auth.isLogined();
                 this.auth.getLoginedObservable().subscribe((val) => {
                     this.logined = val;
@@ -200,7 +243,7 @@ let AppComponent = class AppComponent {
         });
     }
     logout() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             this.auth.getUserIDObservable().subscribe((val) => {
                 this.logoutData = {
                     lang: this.languageService.getLanguage(),
@@ -216,6 +259,8 @@ let AppComponent = class AppComponent {
                         text: this.translate.instant('ok'),
                         handler: () => {
                             this.logoutService();
+                            this.menuCtrl.close();
+                            this.router.navigateByUrl('/tabs/main');
                         },
                     },
                     {
@@ -250,19 +295,20 @@ let AppComponent = class AppComponent {
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.Platform },
-    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
-    { type: _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router },
-    { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.AlertController },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateService },
-    { type: _services_network_network_service__WEBPACK_IMPORTED_MODULE_6__.NetworkService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.Platform },
+    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_4__.LanguageService },
+    { type: _services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.Router },
+    { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__.AuthService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.AlertController },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__.TranslateService },
+    { type: _services_network_network_service__WEBPACK_IMPORTED_MODULE_7__.NetworkService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.MenuController }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
         selector: 'app-root',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], AppComponent);
@@ -452,6 +498,27 @@ ShowBoardingPageGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
+/***/ 80261:
+/*!*************************************!*\
+  !*** ./src/app/models/loginData.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Status": () => (/* binding */ Status)
+/* harmony export */ });
+var Status;
+(function (Status) {
+    Status["Active"] = "active";
+    Status["NonActive"] = "non-active";
+    Status["Blocked"] = "blocked";
+})(Status || (Status = {}));
+
+
+/***/ }),
+
 /***/ 9171:
 /*!***********************************************!*\
   !*** ./src/app/services/auth/auth.service.ts ***!
@@ -588,6 +655,9 @@ let AuthService = class AuthService {
     }
     forgetPassword(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}forget-password`, data);
+    }
+    changePassword(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}reset-password`, data);
     }
 };
 AuthService.ctorParameters = () => [

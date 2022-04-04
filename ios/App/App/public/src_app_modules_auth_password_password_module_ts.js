@@ -73,7 +73,8 @@ PasswordPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
             _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule,
             _password_routing_module__WEBPACK_IMPORTED_MODULE_0__.PasswordPageRoutingModule,
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateModule
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule
         ],
         declarations: [_password_page__WEBPACK_IMPORTED_MODULE_1__.PasswordPage]
     })
@@ -93,48 +94,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PasswordPage": () => (/* binding */ PasswordPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./password.page.html */ 66933);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./password.page.html */ 66933);
 /* harmony import */ var _password_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./password.page.scss */ 58565);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 18346);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
+
+
 
 
 
 
 
 let PasswordPage = class PasswordPage {
-    constructor(menuCtrl) {
+    constructor(menuCtrl, formBuilder, util, langaugeservice, auth, router) {
         this.menuCtrl = menuCtrl;
-        this.inputFocusPassword = false;
-        this.inputFocusPasswordIcon = './../../../../assets/icon/password-active.svg';
-        this.inputInFocusPasswordIcon = './../../../../assets/icon/password-inactive.svg';
-        this.inputFocusConfirmPassword = false;
-        this.inputFocusConfirmPasswordIcon = './../../../../assets/icon/password-active.svg';
-        this.inputInFocusConfirmPasswordIcon = './../../../../assets/icon/password-inactive.svg';
+        this.formBuilder = formBuilder;
+        this.util = util;
+        this.langaugeservice = langaugeservice;
+        this.auth = auth;
+        this.router = router;
+        this.isForgetPasswordSubmitted = false;
+        this.inputFocusPhone = false;
+        this.inputFocusPhoneIcon = './../../../../assets/icon/phone-active.svg';
+        this.inputInFocusPhoneIcon = './../../../../assets/icon/phone-inactive.svg';
         this.menuCtrl.enable(false, 'main');
+        this.buildForm();
     }
-    // ionViewWillEnter() {
-    //   this.menuCtrl.enable(false);
-    // }
     ngOnInit() { }
-    passwordChange() { }
-    focusPassword(focusStatus) {
-        console.log('input focus' + focusStatus);
-        this.inputFocusPassword = focusStatus;
+    forgetPassword() {
+        console.log('change pass form : ' + JSON.stringify(this.forgetPasswordForm.value));
+        if (this.forgetPasswordForm.valid) {
+            this.forgetPasswordData = {
+                lang: this.langaugeservice.getLanguage(),
+                phone: this.forgetPasswordForm.value.phoneNumber,
+            };
+            this.util.showLoadingSpinner().then((__) => {
+                this.auth.forgetPassword(this.forgetPasswordData).subscribe((data) => {
+                    if (data.key == 1) {
+                        console.log('login res :' + JSON.stringify(data));
+                        this.util.showMessage(data.msg);
+                        this.router.navigateByUrl('/chnage-password/' + data.data.id);
+                    }
+                    else {
+                        this.util.showMessage(data.msg);
+                    }
+                    this.util.dismissLoading();
+                }, (err) => {
+                    this.util.dismissLoading();
+                });
+            });
+        }
     }
-    focusConfirmPassword(focusStatus) {
+    buildForm() {
+        this.forgetPasswordForm = this.formBuilder.group({
+            phoneNumber: [
+                '',
+                [
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.maxLength(10),
+                    //10
+                ],
+            ],
+        });
+    }
+    get forgetPasswordErrorControl() {
+        return this.forgetPasswordForm.controls;
+    }
+    focusPhone(focusStatus) {
         console.log('input focus' + focusStatus);
-        this.inputFocusConfirmPassword = focusStatus;
+        this.inputFocusPhone = focusStatus;
     }
 };
 PasswordPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.MenuController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router }
 ];
-PasswordPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+PasswordPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-password',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_password_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], PasswordPage);
@@ -153,7 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n\n    <ion-card class=\"auth-container\">\n   \n      <div class=\"auth-container-title\">\n        <h5> {{ \"password-change\"|translate}}  </h5>\n      </div>\n      \n\n      <form class=\"auth-form\" (ngSubmit)=\"passwordChange()\">\n       \n        <ion-item lines=\"none\" [ngClass]=\"inputFocusPassword ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPassword?inputFocusPasswordIcon:inputInFocusPasswordIcon}}\"\n          ></ion-icon>\n          <ion-input (ionFocus)=\"focusPassword(true)\" (ionBlur)=\"focusPassword(false)\"\n            placeholder=\"{{'password'|translate}}\"\n            type=\"password\"\n          ></ion-input>\n        </ion-item>\n\n        <ion-item lines=\"none\" [ngClass]=\"inputFocusConfirmPassword ? 'focused' : 'unfocused' \">\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusConfirmPassword?inputFocusConfirmPasswordIcon:inputInFocusConfirmPasswordIcon}}\"\n          ></ion-icon>\n          <ion-input (ionFocus)=\"focusConfirmPassword(true)\" (ionBlur)=\"focusConfirmPassword(false)\"\n            placeholder=\"{{'confirm-password'|translate}}\"\n            type=\"password\"\n          ></ion-input>\n        </ion-item>\n\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{\"confirm\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n   \n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n\n    <ion-card class=\"auth-container\">\n      <div class=\"auth-container-title\">\n        <h5>{{ \"password-change\"|translate}}</h5>\n      </div>\n\n      <form\n        class=\"auth-form\"\n        (ngSubmit)=\"forgetPassword()\"\n        [formGroup]=\"forgetPasswordForm\"\n      >\n        <ion-item\n          lines=\"none\"\n          [ngClass]=\"inputFocusPhone ? 'focused' : 'unfocused' \"\n        >\n          <ion-icon\n            item-start\n            color=\"primary\"\n            src=\"{{inputFocusPhone?inputFocusPhoneIcon:inputInFocusPhoneIcon}}\"\n          ></ion-icon>\n          <ion-input\n            (ionFocus)=\"focusPhone(true)\"\n            (ionBlur)=\"focusPhone(false)\"\n            placeholder=\"{{'phone-number'|translate}}\"\n            type=\"tel\"\n            formControlName=\"phoneNumber\"\n          ></ion-input>\n        </ion-item>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isForgetPasswordSubmitted && forgetPasswordErrorControl.phoneNumber.errors?.required\"\n        >\n          {{'please enter phone number' | translate}}\n        </div>\n\n        <div\n          class=\"error-box\"\n          *ngIf=\"isForgetPasswordSubmitted && forgetPasswordErrorControl.phoneNumber.errors?.minlength\"\n        >\n          {{'phone number should be 10 numbers' | translate}}\n        </div>\n\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{\"change password\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -163,7 +216,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.background {\n  --background: url('authBg-left.png') 0 0 /100% 100%\n    no-repeat;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhc3N3b3JkLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO2FBQUE7QUFFSiIsImZpbGUiOiJwYXNzd29yZC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudC5iYWNrZ3JvdW5kIHtcbiAgICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLWxlZnQucG5nKSAwIDAgLzEwMCUgMTAwJVxuICAgICAgbm8tcmVwZWF0O1xuICB9XG5cbiAgIl19 */";
+module.exports = "ion-content.background {\n  --background: url('authBg-left.png') 0 0 /100% 100%\n    no-repeat;\n}\n\nion-item {\n  --highlight-color-focused:var(--ion-color-primary);\n  --highlight-color-valid:var(--ion-color-primary);\n  --highlight-color-invalid:var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhc3N3b3JkLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO2FBQUE7QUFFSjs7QUFHQTtFQUNFLGtEQUFBO0VBQ0EsZ0RBQUE7RUFDQSxrREFBQTtBQUFGIiwiZmlsZSI6InBhc3N3b3JkLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJhY2tncm91bmQge1xuICAgIC0tYmFja2dyb3VuZDogdXJsKC4vLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9hdXRoQmctbGVmdC5wbmcpIDAgMCAvMTAwJSAxMDAlXG4gICAgICBuby1yZXBlYXQ7XG4gIH1cblxuICBcbmlvbi1pdGVte1xuICAtLWhpZ2hsaWdodC1jb2xvci1mb2N1c2VkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1oaWdobGlnaHQtY29sb3ItdmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAtLWhpZ2hsaWdodC1jb2xvci1pbnZhbGlkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbn0iXX0= */";
 
 /***/ })
 

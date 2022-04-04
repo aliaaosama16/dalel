@@ -10,6 +10,7 @@ import { Storage } from '@capacitor/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { Network } from '@capacitor/network';
 import { NetworkService } from './services/network/network.service';
+import { FcmService } from './services/fcm/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -69,7 +70,8 @@ export class AppComponent {
     private alertController: AlertController,
     private translate: TranslateService,
     private network: NetworkService,
-    private menuCtrl:MenuController
+    private menuCtrl: MenuController,
+    private fcmService:FcmService
   ) {
     this.initializeApp();
     this.auth.getLoginedObservable().subscribe((val) => {
@@ -84,7 +86,8 @@ export class AppComponent {
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
       this.util.getDeviceID();
-     // this.getLoginStatus();
+      // this.getLoginStatus();
+      this.fcmService.initFcm();
     });
   }
 
@@ -141,7 +144,6 @@ export class AppComponent {
             console.log('login res :' + JSON.stringify(data));
             this.auth.isLogout();
             this.auth.removeRegistrationData();
-            
           } else {
             this.util.showMessage(data.msg);
           }
