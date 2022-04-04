@@ -36,7 +36,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'categories/details/:departmetId',
+            path: 'details/:departmetId',
             loadChildren: () =>
               import(
                 './../../modules/category-details/category-details.module'
@@ -93,6 +93,7 @@ const routes: Routes = [
           },
           {
             path: 'favourites',
+            canActivate: [IsAuthGuard],
             loadChildren: () =>
               import('./../../modules/favourites/favourites.module').then(
                 (m) => m.FavouritesPageModule
