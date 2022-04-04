@@ -7,40 +7,38 @@ import { IonTabs } from '@ionic/angular';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  selectedTab ='main';
+  selectedTab = 'main';
   @ViewChild('tabs', { static: false }) tabs: IonTabs;
 
-  tabsData=[
+  tabsData = [
     {
-      'tabName':'main',
-      'tabActiveIcon':'./../../../assets/icon/main-icon-active.svg',
-      'tabNotActiveIcon':'./../../../assets/icon/main-icon-inactive.svg',
+      tabName: 'main',
+      tabActiveIcon: './../../../assets/icon/main-icon-active.svg',
+      tabNotActiveIcon: './../../../assets/icon/main-icon-inactive.svg',
     },
     {
-      'tabName':'notifications',
-      'tabActiveIcon':'./../../../assets/icon/notifications-icon-active.svg',
-      'tabNotActiveIcon':'./../../../assets/icon/notifications-icon-inactive.svg',
+      tabName: 'notifications',
+      tabActiveIcon: './../../../assets/icon/notifications-icon-active.svg',
+      tabNotActiveIcon:
+        './../../../assets/icon/notifications-icon-inactive.svg',
     },
     {
-      'tabName':'profile',
-      'tabActiveIcon':'./../../../assets/icon/profile-icon-active.svg',
-      'tabNotActiveIcon':'./../../../assets/icon/profile-icon-inactive.svg',
+      tabName: 'profile',
+      tabActiveIcon: './../../../assets/icon/profile-icon-active.svg',
+      tabNotActiveIcon: './../../../assets/icon/profile-icon-inactive.svg',
     },
     {
-      'tabName':'my-reservations',
-      'tabActiveIcon':'./../../../assets/icon/reservations-icon-active.svg',
-      'tabNotActiveIcon':'./../../../assets/icon/reservations-icon-inactive.svg',
-    }
+      tabName: 'my-reservations',
+      tabActiveIcon: './../../../assets/icon/reservations-icon-active.svg',
+      tabNotActiveIcon: './../../../assets/icon/reservations-icon-inactive.svg',
+    },
   ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 
   setCurrentTab() {
     this.selectedTab = this.tabs.getSelected();
-   
   }
 }

@@ -2,6 +2,7 @@ export interface GeneralResponse {
   key: number;
   msg: string;
   show_image: boolean;
+  notification_count?: number;
 }
 
 export interface Language {

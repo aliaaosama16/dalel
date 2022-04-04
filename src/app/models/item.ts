@@ -1,5 +1,9 @@
-import { GeneralResponse, GeneralSectionResponse, Language } from './general';
-
+import {
+  GeneralResponse,
+  GeneralSectionResponse,
+  Language,
+  UserData,
+} from './general';
 
 export interface Item {
   id: number;
@@ -18,6 +22,7 @@ export interface Item {
   seen: number;
   saler_id: number;
   saler_name: string;
+  saler_rate?:number,
   saler_phone: string;
   saler_full_phone: string;
   rate: number;
@@ -41,14 +46,21 @@ export interface Item {
 }
 
 export interface DepartmentResponse extends GeneralResponse {
-  data:Item[]
+  data: Item[];
 }
+
 
 export interface DepartmentDetailsResponse extends GeneralResponse {
-  data:Item
+  data: Item;
+}
+
+export interface SectionData extends Language {
+  section_id: number;
+}
+
+export interface AddRemoveFavourite extends UserData {
+  department_id: number;
 }
 
 
-export interface SectionData extends Language{ 
-  section_id:number;
-}
+

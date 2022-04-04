@@ -1,9 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
-import { DepartmentDetailsResponse, Item } from 'src/app/models/item';
+import { GeneralResponse } from 'src/app/models/general';
+import {
+  AddRemoveFavourite,
+  DepartmentDetailsResponse,
+  Item,
+} from 'src/app/models/item';
 import { ShowDepartmetData } from 'src/app/models/sections';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FavouritesService } from 'src/app/services/favourites/favourites.service';
 import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -22,6 +28,7 @@ export class CategoryDetailsPage implements OnInit {
   long: number;
   infowindow = new google.maps.InfoWindow();
   departmentData: ShowDepartmetData;
+  favDepartmentData: AddRemoveFavourite;
   currentlangauge: string;
   platform: any;
   configSlider: SwiperOptions = {
@@ -47,31 +54,50 @@ export class CategoryDetailsPage implements OnInit {
   constructor(
     private menuCtrl: MenuController,
     private langaugeservice: LanguageService,
-    private authService: AuthService,
     private util: UtilitiesService,
-    private router: Router,
+    private auth: AuthService,
     private plt: Platform,
     private items: ItemsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private favouritesService: FavouritesService
   ) {
     this.platform = this.util.platform;
-    console.log('dept id :'+parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')));
+    console.log(
+      'dept id :' +
+        parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId'))
+    );
     this.getItemDetails();
   }
 
-  getItemDetails() {
-    //showDepartmentByID
+  ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+  }
 
-    this.departmentData = {
-      lang: this.langaugeservice.getLanguage(),
-      department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
-    };
+  ionViewWillEnter() {
+    this.loadMap();
+    this.loadItemPosition();
+  }
+
+  getItemDetails() {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.departmentData = {
+        lang: this.langaugeservice.getLanguage(),
+        department_id: parseInt(
+          this.activatedRoute.snapshot.paramMap.get('departmetId')
+        ),
+        user_id: val == 0 ? 1 : val,
+      };
+    });
+
     this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
         (data: DepartmentDetailsResponse) => {
           if (data.key == 1) {
             console.log('showDepartmentByID data : ' + JSON.stringify(data));
             this.itemDetails = data.data;
+            this.lat = this.itemDetails.lat;
+            this.long = this.itemDetails.lng;
           }
           this.util.dismissLoading();
         },
@@ -80,14 +106,6 @@ export class CategoryDetailsPage implements OnInit {
         }
       );
     });
-  }
-
-  ionViewWillEnter() {
-    
-    this.lat = this.itemDetails.lat;
-    this.long = this.itemDetails.lng;
-    this.loadMap();
-    this.loadItemPosition();
   }
 
   loadMap() {
@@ -152,11 +170,6 @@ export class CategoryDetailsPage implements OnInit {
     // });
   }
 
-  ngOnInit() {
-    this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-  }
-
   openMenu() {
     this.menuCtrl.open();
   }
@@ -164,14 +177,34 @@ export class CategoryDetailsPage implements OnInit {
   reserve() {}
 
   addToFavourite() {
-    this.itemDetails.is_favourite = !this.itemDetails.is_favourite;
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('get id from behavour subject if just logined' + val);
+      if (val != 0) {
+        this.favDepartmentData = {
+          lang: this.langaugeservice.getLanguage(),
+          user_id: val,
+          department_id: parseInt(
+            this.activatedRoute.snapshot.paramMap.get('departmetId')
+          ),
+        };
+      }
+    });
 
-    if (this.authService.isAuthenticated.value) {
-      // call api to add to favourite
-    } else {
-      this.util.showMessage('please login first');
-      this.router.navigateByUrl('/login-register');
-      return this.authService.isAuthenticated.value;
-    }
+    this.util.showLoadingSpinner().then((__) => {
+      this.favouritesService
+        .addRemoveFavourite(this.favDepartmentData)
+        .subscribe(
+          (data: GeneralResponse) => {
+            if (data.key == 1) {
+              console.log('addRemoveFavourite : ' + JSON.stringify(data));
+              this.itemDetails.is_favourite = !this.itemDetails.is_favourite;
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
+        );
+    });
   }
 }

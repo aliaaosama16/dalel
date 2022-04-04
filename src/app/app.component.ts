@@ -71,7 +71,7 @@ export class AppComponent {
     private translate: TranslateService,
     private network: NetworkService,
     private menuCtrl: MenuController,
-    private fcmService:FcmService
+    private fcmService: FcmService
   ) {
     this.initializeApp();
     this.auth.getLoginedObservable().subscribe((val) => {
@@ -86,7 +86,7 @@ export class AppComponent {
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
       this.util.getDeviceID();
-      // this.getLoginStatus();
+      this.getLoginStatus();
       this.fcmService.initFcm();
     });
   }
@@ -99,6 +99,8 @@ export class AppComponent {
         this.logined = val;
       });
     }
+
+    this.auth.getStoredUserID();
   }
 
   async logout() {

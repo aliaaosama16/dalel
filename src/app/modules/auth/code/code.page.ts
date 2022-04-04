@@ -109,6 +109,15 @@ export class CodePage implements OnInit {
 
   next(ev, nextInput) {
     console.log(ev.target.value);
+    if(nextInput=='n2'){
+      this.inputFocusNumber1=true;
+    }else if(nextInput=='n3'){
+      this.inputFocusNumber2=true;
+    }else if(nextInput=='n4'){
+      this.inputFocusNumber3=true;
+    }else if(nextInput==''){
+      this.inputFocusNumber4=true;
+    }
 
     const input = ev.target;
     const length = input.value.length;

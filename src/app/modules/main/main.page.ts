@@ -93,8 +93,6 @@ export class MainPage implements OnInit {
     this.platform = this.util.platform;
     console.log('curret plt is ' + this.platform);
     this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
         user_id: val == 0 ? 1 : val,
@@ -108,7 +106,6 @@ export class MainPage implements OnInit {
       this.items.home(userData).subscribe(
         (data: HomeResponse) => {
           if (data.key == 1) {
-            console.log('home data : ' + JSON.stringify(data));
             this.sections = data.data.sections;
             this.Sliders = data.data.sliders;
             this.nearDepartments = data.data.near_departments;

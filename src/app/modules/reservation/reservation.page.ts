@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarComponentOptions } from 'ion2-calendar';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 //mport { CalendarComponentOptions } from 'ion2-calendar';
 // import { CalendarComponentOptions } from 'ion2-calendar';
@@ -25,9 +27,12 @@ export class ReservationPage implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private auth:AuthService,
+    private langaugeservice:LanguageService
   ) {
     this.platform = this.util.platform;
+   
   }
   onChange(selectedDates) {
     console.log('selecte dates : ' + JSON.stringify(selectedDates));

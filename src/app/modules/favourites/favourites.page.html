@@ -5,8 +5,8 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-<ion-content class="custom-padding" >
-  <ion-grid >
+<ion-content class="custom-padding">
+  <ion-grid>
     <ion-row>
       <ion-col
         sizeXs="6"
@@ -18,7 +18,8 @@
       >
         <ion-card
           class="ion-no-margin"
-          routerLink="/tabs/main/details/{{item.id}}" *ngIf="item!=null"
+          routerLink="/tabs/main/categories/{{item.section_id}}/{{item.id}}"
+          *ngIf="item!=null"
         >
           <img src="./../../../assets/images/512.png" />
 
@@ -29,7 +30,6 @@
           </div>
 
           <ion-card-content>
-            <!-- <app-custom-details [ItemDetails]="item"></app-custom-details> -->
             <div class="name">
               <p class="fn-14 dalel-Bold dark-black-color">{{item.title}}</p>
             </div>
@@ -41,9 +41,9 @@
                 </p>
               </div>
 
-              <div class="rating-container" *ngIf="item.rate!=0">
+              <div class="rating-container" *ngIf="item.saler_rate!=0">
                 <ion-icon color="secondary" slot="end" name="star"></ion-icon>
-                <span  class="white-color fn-10 dalel-Regular"
+                <span class="white-color fn-10 dalel-Regular"
                   >{{item.rate}}</span
                 >
               </div>

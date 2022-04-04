@@ -36,7 +36,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'details/:departmetId',
+            path: 'categories/:sectionId/:departmetId',
             loadChildren: () =>
               import(
                 './../../modules/category-details/category-details.module'

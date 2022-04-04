@@ -29,8 +29,6 @@ export class CategoriesPage implements OnInit {
   ) {
     this.platform = this.util.platform;
     this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-
       this.userData = {
         lang: this.langaugeservice.getLanguage(),
         user_id: val == 0 ? 1 : val,
@@ -46,7 +44,6 @@ export class CategoriesPage implements OnInit {
       this.items.data(this.userData).subscribe(
         (data: SectionsResponse) => {
           if (data.key == 1) {
-            console.log('sections data : ' + JSON.stringify(data));
             this.sections = data.data.sections;
           }
           this.util.dismissLoading();
@@ -63,7 +60,6 @@ export class CategoriesPage implements OnInit {
 
   openCatList(catID, catName) {
     this.dataService.setData(catID, catName);
-    // go to categories list page
     this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
   }
 }

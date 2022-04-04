@@ -6,28 +6,28 @@
   class="header-height"
 ></app-header>
 
-<ion-content class="ion-padding" >
+<ion-content class="ion-padding">
   <ion-segment
     (ionChange)="reservationsTypeChange($event)"
-    value="register"
+    [value]="current"
     [(ngModel)]="reservationsType"
   >
     <ion-segment-button
-      value="old"
-      [ngClass]="reservationsType=='old' ?'selected':'old-unselected'"
-    >
-      <ion-label>{{"old"|translate}}</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button
-      value="current"
-      [ngClass]="reservationsType=='current' ?'selected':'current-unselected'"
+      [value]="current"
+      [ngClass]="reservationsType==current ?'selected':'old-unselected'"
     >
       <ion-label>{{"current"|translate}}</ion-label>
     </ion-segment-button>
+
+    <ion-segment-button
+      [value]="old"
+      [ngClass]="reservationsType==old ?'selected':'current-unselected'"
+    >
+      <ion-label>{{"old"|translate}}</ion-label>
+    </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="reservationsType=='old'">
+  <div *ngIf="reservationsType==current">
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of oldReservations"
@@ -36,35 +36,53 @@
       <div class="container">
         <img src="./../../../assets/images/1024-500.png" />
 
-
         <div class="price">
-          <p class="fn-15 dalel-SemiBold secondary-color">{{item.price}}   {{item.unit|translate}}/ {{item.perUnit|translate}}</p>
+          <p class="fn-15 dalel-SemiBold secondary-color">
+            {{item.department_price}} {{'currency'|translate}}/ {{'one
+            night'|translate}}
+          </p>
         </div>
 
-        <div class="title"  [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}">
-          <p class="fn-14 dalel-Bold white-color">{{item.name|translate}}</p>
+        <div
+          class="title"
+          [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}"
+        >
+          <p class="fn-14 dalel-Bold white-color">
+            {{item.department_title|translate}}
+          </p>
         </div>
 
-        <div class="location" [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}">
+        <div
+          class="location"
+          [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}"
+        >
           <ion-icon
             src="./../../../assets/icon/pin-underline.svg"
             color="primary"
           ></ion-icon>
         </div>
 
-        <div class="location-address" [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}">
-          <p class="fn-10 dalel-Regular white-color">{{item.city}} - {{item.country}}</p>
+        <div
+          class="location-address"
+          [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}"
+        >
+          <p class="fn-10 dalel-Regular white-color">
+            {{item.department_city_title}} - {{item.department_country_title}}
+          </p>
         </div>
 
-        <div class="rating" [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}">
-          <span class="white-color"> {{item.rating}}</span>
+        <div
+          class="rating"
+          [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}"
+        >
+          <span class="white-color"> {{item.department_rate}}</span>
           <ion-icon name="star" color="secondary"></ion-icon>
         </div>
       </div>
     </ion-card>
   </div>
 
-  <div *ngIf="reservationsType=='current'">
+  <div *ngIf="reservationsType">
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of currentReservations"
@@ -74,26 +92,45 @@
         <img src="./../../../assets/images/1024-500.png" />
 
         <div class="price">
-          <p class="fn-15 dalel-SemiBold secondary-color">{{item.price}}   {{item.unit|translate}}/ {{item.perUnit|translate}}</p>
+          <p class="fn-15 dalel-SemiBold secondary-color">
+            {{item.department_price}} {{'currency'|translate}}/ {{'one
+            night'|translate}}
+          </p>
         </div>
 
-        <div class="title"  [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}">
-          <p class="fn-14 dalel-Bold white-color">{{item.name|translate}}</p>
+        <div
+          class="title"
+          [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}"
+        >
+          <p class="fn-14 dalel-Bold white-color">
+            {{item.department_title|translate}}
+          </p>
         </div>
 
-        <div class="location" [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}">
+        <div
+          class="location"
+          [ngStyle]="currentlangauge=='ar'?{'right': '10px'} : {'left': '10px'}"
+        >
           <ion-icon
             src="./../../../assets/icon/pin-underline.svg"
             color="primary"
           ></ion-icon>
         </div>
 
-        <div class="location-address" [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}">
-          <p class="fn-10 dalel-Regular white-color">{{item.city}} - {{item.country}}</p>
+        <div
+          class="location-address"
+          [ngStyle]="currentlangauge=='ar'?{'right': '35px'} : {'left': '35px'}"
+        >
+          <p class="fn-10 dalel-Regular white-color">
+            {{item.department_city_title}} - {{item.department_country_title}}
+          </p>
         </div>
 
-        <div class="rating" [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}">
-          <span class="white-color"> {{item.rating}}</span>
+        <div
+          class="rating"
+          [ngStyle]="currentlangauge=='ar'?{'left': '16px'} : {'right': '16px'}"
+        >
+          <span class="white-color"> {{item.department_rate}}</span>
           <ion-icon name="star" color="secondary"></ion-icon>
         </div>
       </div>

@@ -5,7 +5,7 @@
   <div class="item-image">
     <img src="./../../../assets/images/1024-500.png" />
     <ion-icon (click)="addToFavourite()" [ngClass]="currentlangauge =='ar' ?'fav-ar':'fav-en' "
-      [src]="itemDetails.is_favourite ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'">
+      [src]="itemDetails?.is_favourite ? './../../../assets/icon/fav-active.svg' :'./../../../assets/icon/fav-inactive.svg'">
     </ion-icon>
 
     <div class="details-container ion-padding">
@@ -17,33 +17,33 @@
     <div>
       <ion-icon src="./../../../assets/icon/icon1.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.section_title}}
+        {{itemDetails?.section_title}}
       </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/space.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.area}} {{'meter square'|translate}}
+        {{itemDetails?.area}} {{'meter square'|translate}}
       </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/bed.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
 
-        {{itemDetails.rooms_count}} {{'rooms'|translate}}
+        {{itemDetails?.rooms_count}} {{'rooms'|translate}}
       </p>
     </div>
     <div>
       <ion-icon src="./../../../assets/icon/icon4.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
-        {{itemDetails.bathrooms_count}} {{'bathroom'|translate}}
+        {{itemDetails?.bathrooms_count}} {{'bathroom'|translate}}
       </p>
     </div>
   </div>
 
   <div class="description">
     <h5 class="fn-16 dalel-SemiBold">{{"description"|translate}}</h5>
-    <p class="fn-12 dalel-Regular">{{itemDetails.desc}}</p>
+    <p class="fn-12 dalel-Regular">{{itemDetails?.desc}}</p>
   </div>
 
   <div class="place-images">
@@ -57,7 +57,7 @@
     </div>
 
     <swiper #swiper [config]="configSlider" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
-      <ng-template swiperSlide *ngFor="let image of itemDetails.images">
+      <ng-template swiperSlide *ngFor="let image of itemDetails?.images">
         <img [src]="image.image" />
       </ng-template>
     </swiper>
@@ -79,7 +79,7 @@
       </div>
     </div>
     <div>
-      <p class="fn-12 dalel-Regular">{{itemDetails.order_desc}}</p>
+      <p class="fn-12 dalel-Regular">{{itemDetails?.order_desc}}</p>
     </div>
   </div>
 

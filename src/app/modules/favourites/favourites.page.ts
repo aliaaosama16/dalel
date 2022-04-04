@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserData } from 'src/app/models/general';
-import { DepartmentDetailsResponse, DepartmentResponse, Item } from 'src/app/models/item';
+import {
+  DepartmentDetailsResponse,
+  DepartmentResponse,
+  Item,
+} from 'src/app/models/item';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FavouritesService } from 'src/app/services/favourites/favourites.service';
 import { LanguageService } from 'src/app/services/language/language.service';
@@ -19,12 +23,10 @@ export class FavouritesPage implements OnInit {
     private util: UtilitiesService,
     private auth: AuthService,
     private langaugeservice: LanguageService,
-    private favService:FavouritesService
+    private favService: FavouritesService
   ) {
     this.platform = this.util.platform;
     this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
         user_id: val == 0 ? 1 : val,
@@ -35,14 +37,13 @@ export class FavouritesPage implements OnInit {
 
   ngOnInit() {}
 
-  showFavourites(userData:UserData){
+  showFavourites(userData: UserData) {
     this.util.showLoadingSpinner().then((__) => {
       this.favService.showFavourites(userData).subscribe(
         (data: DepartmentResponse) => {
           if (data.key == 1) {
-            console.log('Favourites data : ' + JSON.stringify(data));
-            this.favourites = data.data
-            
+            this.util.showMessage(data.msg);
+            this.favourites = data.data;
           }
           this.util.dismissLoading();
         },
