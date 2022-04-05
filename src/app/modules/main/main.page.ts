@@ -92,6 +92,14 @@ export class MainPage implements OnInit {
     this.util.getUserLocation();
     this.platform = this.util.platform;
     console.log('curret plt is ' + this.platform);
+    
+  }
+  ngOnInit() {
+
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+    this.auth.getUserToken();
+    console.log(this.auth.userToken);
     this.auth.getUserIDObservable().subscribe((val) => {
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
@@ -117,13 +125,6 @@ export class MainPage implements OnInit {
         }
       );
     });
-  }
-
-  ngOnInit() {
-    this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-    this.auth.getUserToken();
-    console.log(this.auth.userToken);
   }
 
   openMenu() {

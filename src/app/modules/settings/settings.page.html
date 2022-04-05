@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 <ion-content class="background">
-  <ion-card class="ion-padding">
+  <!-- <ion-card class="ion-padding"> -->
     <div
     class="language"
     [ngClass]="currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'"
@@ -50,11 +50,11 @@
 
     
   </div>
-  <ion-button expand="block" routerLink="/tabs/main">
+  <ion-button  class="ion-padding-horizontal" expand="block" routerLink="/tabs/main">
     <span class="auth-btn fn-16 white-color dalel-Bold">
       {{ "change"|translate}}
     </span>
   </ion-button> 
-  </ion-card>
+  <!-- </ion-card> -->
   
 </ion-content>

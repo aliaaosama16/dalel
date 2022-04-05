@@ -4,7 +4,7 @@ import { AlertController, MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UserData } from 'src/app/models/general';
 import {
-  UserDataResponse,
+  NotificationResponse,
   NotificationsInfo,
   NotificationsResponse,
 } from 'src/app/models/notifications';
@@ -22,7 +22,7 @@ export class NotificationsPage implements OnInit {
   currentlangauge: string;
   platform: any;
   UserData: UserData;
-  notifications: UserDataResponse[];
+  notifications: NotificationResponse[];
   getNotifications: boolean = false;
   noNotifications: boolean = false;
   constructor(
@@ -37,6 +37,11 @@ export class NotificationsPage implements OnInit {
   ) {
     this.platform = this.util.platform;
     this.auth.getStoredUserID();
+  }
+
+  ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('user id :' + val);
       if (val != 0) {
@@ -49,39 +54,20 @@ export class NotificationsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-  }
-
   openMenu() {
     this.menuCtrl.open();
   }
 
-  showNotification(data: UserData) {
-    this.util.showLoadingSpinner().then((__) => {
-      this.userNotifications.showNotification(data).subscribe(
-        (data: NotificationsResponse) => {
-          this.util.dismissLoading();
-          if (data.key == 0) {
-            console.log('no response');
-            this.noNotifications = true;
-          } else if (data.notification_count == 0 && data.key == 1) {
-            console.log('no Notifications');
-             this.noNotifications = true;
-          } else {
-            console.log(' Notifications');
-            this.notifications = data.data;
-            this.noNotifications = false;
-          }
-          
-        },
-        (err) => {
-          this.util.dismissLoading();
-          this.getNotifications = false;
+  showNotification(notificationData: UserData) {
+    this.userNotifications.showNotification(notificationData).subscribe(
+      (data: NotificationsResponse) => {
+        if (data.key == 1) {
+          console.log('all notifications :' + JSON.stringify(data.data));
+          this.notifications = data.data;
         }
-      );
-    });
+      },
+      (err) => {}
+    );
   }
 
   openOrederDetails(orderID) {

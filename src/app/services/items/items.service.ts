@@ -1,9 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GeneralSection, Language, UserData } from 'src/app/models/general';
+import {
+  CountryData,
+  CountryResponse,
+  GeneralSection,
+  Language,
+  NeighborhoodsData,
+  UserData,
+} from 'src/app/models/general';
 import { HomeResponse } from 'src/app/models/home';
-import { DepartmentDetailsResponse, DepartmentResponse, SectionData } from 'src/app/models/item';
+import {
+  DepartmentDetailsResponse,
+  DepartmentResponse,
+  FilterData,
+  SectionData,
+} from 'src/app/models/item';
 import { SectionsResponse, ShowDepartmetData } from 'src/app/models/sections';
 import { environment } from 'src/environments/environment';
 
@@ -16,6 +28,22 @@ export class ItemsService {
   data(data: UserData): Observable<SectionsResponse> {
     return this.httpclient.post<SectionsResponse>(
       `${environment.BASE_URL}sections`,
+      data
+    );
+  }
+
+  getCitiesByCountryID(data: CountryData): Observable<CountryResponse> {
+    return this.httpclient.post<CountryResponse>(
+      `${environment.BASE_URL}cities`,
+      data
+    );
+  }
+
+  getNeighborhoodsByCityID(
+    data: NeighborhoodsData
+  ): Observable<CountryResponse> {
+    return this.httpclient.post<CountryResponse>(
+      `${environment.BASE_URL}neighborhoods`,
       data
     );
   }
@@ -33,7 +61,7 @@ export class ItemsService {
       data
     );
   }
-  
+
   allDepartmentsBySectionID(data: SectionData): Observable<DepartmentResponse> {
     return this.httpclient.post<DepartmentResponse>(
       `${environment.BASE_URL}all-departments`,
@@ -41,7 +69,16 @@ export class ItemsService {
     );
   }
 
-  showDepartmentByID(data:ShowDepartmetData): Observable<DepartmentDetailsResponse> {
+  allDepartmentsByFilters(data: FilterData): Observable<DepartmentResponse> {
+    return this.httpclient.post<DepartmentResponse>(
+      `${environment.BASE_URL}all-departments`,
+      data
+    );
+  }
+
+  showDepartmentByID(
+    data: ShowDepartmetData
+  ): Observable<DepartmentDetailsResponse> {
     return this.httpclient.post<DepartmentDetailsResponse>(
       `${environment.BASE_URL}show-department`,
       data

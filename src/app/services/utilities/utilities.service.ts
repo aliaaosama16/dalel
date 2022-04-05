@@ -5,6 +5,7 @@ import { Storage } from '@capacitor/storage';
 import { LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Device } from '@capacitor/device';
+import { FilterData } from 'src/app/models/item';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class UtilitiesService {
   platform: any;
   deviceID: string;
   userLocation = { lat: 0, lng: 0 };
+  filtersData:FilterData;
   constructor(
     private translate: TranslateService,
     private loadingCtrl: LoadingController,
@@ -64,6 +66,10 @@ export class UtilitiesService {
     return this.loading;
   }
 
+  public dismissLoading() {
+    this.loadingCtrl.dismiss();
+  }
+  
   getUserLocation() {
     return new Promise(async (resolve, reject) => {
       const locationStatus = await Geolocation.requestPermissions().then(
@@ -96,7 +102,12 @@ export class UtilitiesService {
     this.setDeviceID(device);
   }
 
-  public dismissLoading() {
-    this.loadingCtrl.dismiss();
+  
+  setFilters(filtersData:FilterData){
+    this.filtersData=filtersData;
+  }
+
+  get filters(){
+    return this.filtersData;
   }
 }

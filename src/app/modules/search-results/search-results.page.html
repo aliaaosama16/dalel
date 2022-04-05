@@ -6,12 +6,12 @@
   <div class="search-result" *ngFor="let item of resultItems ">
     <ion-item lines="none"  detail="false" routerLink="/tabs/main/categories/1/{{item.id}}">
       <ion-thumbnail slot="start" [ngClass]="  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  ">
-        <img [src]="item.image">
+        <img [src]="item.first_image">
       </ion-thumbnail>
       <ion-label class="ion-text-start">
 
         <ion-text>
-          <h3 class="dark-black-color fn-16 dalel-SemiBold"> {{item.name}}</h3>
+          <h3 class="dark-black-color fn-16 dalel-SemiBold"> {{item?.title}}</h3>
         </ion-text>
 
         <div class="address-container">
@@ -19,18 +19,18 @@
             <ion-icon color="secondary" slot="start" src="./../../../assets/icon/pin-white.svg"></ion-icon>
           </ion-button>
 
-          <p class="primary-color fn-10 dalel-Regular"> {{item.city}} - {{item.address}}</p>
+          <p class="primary-color fn-10 dalel-Regular"> {{item?.city_title}} - {{item?.neighborhood_title}}</p>
         </div>
 
         <div class="price-container">
           <ion-button disabled='true' color="secondary">
-            <span class="white-color fn-10 dalel-Bold"> {{item.price}} {{item.unit|translate}}
-              /{{item.perUnit|translate}} </span>
+            <span class="white-color fn-10 dalel-Bold"> {{item?.price}} {{'currency'|translate}}
+              /{{'one night'|translate}} </span>
           </ion-button>
           <ion-button disabled='true' color="primary">
             <div class="rating">
               <div class="rating-value">
-                <span class="white-color fn-12 dalel-Regular">{{item.rating}}</span>
+                <span class="white-color fn-12 dalel-Regular">{{item?.rate}}</span>
               </div>
 
               <div class="rating-icon">

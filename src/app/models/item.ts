@@ -62,5 +62,30 @@ export interface AddRemoveFavourite extends UserData {
   department_id: number;
 }
 
+export interface FilterData extends UserData{
+  saler_id?:number;
+  lat?:number;
+  lng?:number;
+  title?:string;
+  section_id?:number;
+  country_id?:number;
+  city_id?:number;
+  neighborhood_id?:number;
+  rooms_count?:number;
+  bathrooms_count?:number;
+  people_count?:number;
+  area?:number;
+  price?:number;
+  min_area?:number;
+  max_area?:number;
+  min_price?:number;
+  max_price?:number;
+  categories?:string[];
+  options?:string[];
+}
+
+export interface FilterResponse extends GeneralResponse{
+  data: Item[];
+}
 
 

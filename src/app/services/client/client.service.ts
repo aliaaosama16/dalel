@@ -14,10 +14,10 @@ import {
 export class ClientService {
   constructor(private httpclient: HttpClient) {}
 
-  // updateLocation(data: UserLocation): Observable<GeneralResponse> {
-  //   return this.httpclient.post<GeneralResponse>(
-  //     `${environment.BASE_URL}update-location`,
-  //     data
-  //   );
-  // }
+  updateLocation(data: UserLocation): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
+      `${environment.BASE_URL}update-location`,
+      data
+    );
+  }
 }

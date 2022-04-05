@@ -8,10 +8,10 @@ export interface NotificationsInfo extends Language {
 
 export interface NotificationsResponse extends GeneralResponse {
   notification_count?: number;
-  data?: UserDataResponse[];
+  data?: NotificationResponse[];
 }
 
-export interface UserDataResponse {
+export interface NotificationResponse {
   id: number;
   message: string;
   type: string;

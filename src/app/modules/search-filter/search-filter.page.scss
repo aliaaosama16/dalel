@@ -110,3 +110,11 @@ ion-button::part(native) {
     var(--ion-color-secondary)
   );
 }
+ion-input{
+  --placeholder-color: #ababab;
+}
+ion-item{
+  --highlight-color-focused:var(--ion-color-secondary);
+  --highlight-color-valid:var(--ion-color-secondary);
+  --highlight-color-invalid:var(--ion-color-secondary);
+}

@@ -24,8 +24,8 @@ export class CategoryDetailsPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number=0;
-  long: number=0;
+  lat: number = 0;
+  long: number = 0;
   infowindow = new google.maps.InfoWindow();
   departmentData: ShowDepartmetData;
   favDepartmentData: AddRemoveFavourite;
@@ -62,26 +62,15 @@ export class CategoryDetailsPage implements OnInit {
     private favouritesService: FavouritesService
   ) {
     this.platform = this.util.platform;
-   
   }
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-  }
-
-  ionViewWillEnter() {
-    console.log(
-      'dept id :' +
-        parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId'))
-    );
     this.getItemDetails();
-    this.loadMap();
-    this.loadItemPosition();
   }
 
-  getItemDetails() {
-    this.auth.getUserIDObservable().subscribe((val) => {
+  async getItemDetails() {
+    await this.auth.getUserIDObservable().subscribe((val) => {
       this.departmentData = {
         lang: this.langaugeservice.getLanguage(),
         department_id: parseInt(
@@ -91,15 +80,15 @@ export class CategoryDetailsPage implements OnInit {
       };
     });
 
-    this.util.showLoadingSpinner().then((__) => {
+    await this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
         (data: DepartmentDetailsResponse) => {
           if (data.key == 1) {
-            console.log('showDepartmentByID data : ' + JSON.stringify(data));
             this.itemDetails = data.data;
             this.lat = this.itemDetails.lat;
             this.long = this.itemDetails.lng;
-            console.log('lat is :'+ this.lat + 'long is :'+  this.long)
+            this.loadMap();
+            this.loadItemPosition();
           }
           this.util.dismissLoading();
         },
@@ -139,11 +128,6 @@ export class CategoryDetailsPage implements OnInit {
     this.plt.ready().then(() => {
       this.focusMap(this.lat, this.long);
       this.addMarker(this.lat, this.long);
-
-      // this.addMarker(
-      //   31.0283322, 31.3617836,
-      //   '<b>My castle</b><br>Come and get your princess'
-      // );
     });
   }
 
@@ -162,14 +146,6 @@ export class CategoryDetailsPage implements OnInit {
       animation: google.maps.Animation.DROP,
       icon: '',
     });
-
-    // ------------ info window for item --------------- //
-    // let infoWindow = new google.maps.InfoWindow({
-    //   content: info
-    // });
-    // this.home.addListener('click', () => {
-    //   infoWindow.open(this.map, this.home);
-    // });
   }
 
   openMenu() {
@@ -180,7 +156,6 @@ export class CategoryDetailsPage implements OnInit {
 
   addToFavourite() {
     this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('get id from behavour subject if just logined' + val);
       if (val != 0) {
         this.favDepartmentData = {
           lang: this.langaugeservice.getLanguage(),
@@ -198,7 +173,6 @@ export class CategoryDetailsPage implements OnInit {
         .subscribe(
           (data: GeneralResponse) => {
             if (data.key == 1) {
-              console.log('addRemoveFavourite : ' + JSON.stringify(data));
               this.itemDetails.is_favourite = !this.itemDetails.is_favourite;
             }
             this.util.dismissLoading();

@@ -49,3 +49,19 @@ export interface GeneralSectionResponse {
   title: string;
   image?: string;
 }
+
+export interface CountryData extends UserData{
+  country_id:number;
+}
+
+export interface NeighborhoodsData extends UserData{
+  city_id:number;
+}
+
+export interface CountryResponse extends GeneralResponse{
+  data: GeneralSection[];
+}
+
+
+
+
