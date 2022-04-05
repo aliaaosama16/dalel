@@ -4,7 +4,7 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
-import { Item } from 'src/app/models/item';
+import { FilterData, Item } from 'src/app/models/item';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ItemsService } from 'src/app/services/items/items.service';
@@ -77,7 +77,7 @@ export class MainPage implements OnInit {
 
   nearDepartments: Item[];
   Sliders: GeneralSectionResponse[];
-
+  filterData: FilterData;
   constructor(
     private menuCtrl: MenuController,
     public modalController: ModalController,
@@ -92,10 +92,8 @@ export class MainPage implements OnInit {
     this.util.getUserLocation();
     this.platform = this.util.platform;
     console.log('curret plt is ' + this.platform);
-    
   }
   ngOnInit() {
-
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
     this.auth.getUserToken();
@@ -139,10 +137,26 @@ export class MainPage implements OnInit {
   showResults() {
     console.log(`this.searchText is ${this.searchText}`);
     if (this.searchText != '') {
-      this.router.navigateByUrl('/tabs/main/search-results');
+      this.getItemsByFilters(this.searchText);
     } else {
       this.util.showMessage('please enter search text');
     }
+  }
+
+  getItemsByFilters(searcText: string) {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+      this.filterData = {
+        user_id: val,
+        title: searcText,
+        lang: this.currentlangauge,
+      };
+    });
+
+    this.util.setFilters(this.filterData);
+
+    console.log('filters ' + JSON.stringify(this.filterData));
+    this.router.navigate(['/tabs/main/search-results']);
   }
 
   showAllCategories() {

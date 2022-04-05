@@ -1,5 +1,10 @@
-<app-header [title]="'search-filter'" [isEditable]="false" [backwardRoute]="'/tabs/main'" [isMain]="false"
-  class="header-height"></app-header>
+<app-header
+  [title]="'search-filter'"
+  [isEditable]="false"
+  [backwardRoute]="'/tabs/main'"
+  [isMain]="false"
+  class="header-height"
+></app-header>
 
 <ion-content class="ion-padding">
   <h5 class="fn-14 dalel-Bold dark-black-color">
@@ -14,12 +19,19 @@
       <ion-select-option value="black">Black</ion-select-option>
       <ion-select-option value="red">Red</ion-select-option>
     </ion-select> -->
-    <ion-input [(ngModel)]="title" placeholder='{{"search with place name"|translate}}'></ion-input>
+    <ion-input
+      [(ngModel)]="title"
+      placeholder='{{"search with place name"|translate}}'
+    ></ion-input>
   </ion-item>
 
   <ion-item lines="none" class="select-container">
-    <ion-select (ionChange)="selectPlace($event)" placeholder='{{"choose place"|translate}}' okText='{{"ok"|translate}}'
-      cancelText='{{"cancel"|translate}}'>
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{"choose place"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
       <ion-select-option value="brown">Brown</ion-select-option>
       <ion-select-option value="blonde">Blonde</ion-select-option>
       <ion-select-option value="black">Black</ion-select-option>
@@ -28,8 +40,12 @@
   </ion-item>
 
   <ion-item lines="none" class="select-container">
-    <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "choose city"|translate}}' okText='{{"ok"|translate}}'
-      cancelText='{{"cancel"|translate}}'>
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{ "choose city"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
       <ion-select-option value="brown">Brown</ion-select-option>
       <ion-select-option value="blonde">Blonde</ion-select-option>
       <ion-select-option value="black">Black</ion-select-option>
@@ -38,8 +54,12 @@
   </ion-item>
 
   <ion-item lines="none" class="select-container">
-    <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "choose neighborhood"|translate}}'
-      okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+    <ion-select
+      (ionChange)="selectPlace($event)"
+      placeholder='{{ "choose neighborhood"|translate}}'
+      okText='{{"ok"|translate}}'
+      cancelText='{{"cancel"|translate}}'
+    >
       <ion-select-option value="brown">Brown</ion-select-option>
       <ion-select-option value="blonde">Blonde</ion-select-option>
       <ion-select-option value="black">Black</ion-select-option>
@@ -50,8 +70,12 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "rooms number"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "rooms number"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -62,8 +86,12 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "people number"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "people number"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -73,13 +101,19 @@
     </div>
   </div>
 
-  <p class="fn-14 dalel-Regular primary-color"> {{"determine space"|translate}}</p>
+  <p class="fn-14 dalel-Regular primary-color">
+    {{"determine space"|translate}}
+  </p>
 
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "least space"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "least space"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -90,8 +124,12 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "highest space"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "highest space"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -101,13 +139,19 @@
     </div>
   </div>
 
-  <p class="fn-14 dalel-Regular primary-color"> {{"determine price"|translate}}</p>
+  <p class="fn-14 dalel-Regular primary-color">
+    {{"determine price"|translate}}
+  </p>
 
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{ "least price"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{ "least price"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -118,8 +162,12 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select (ionChange)="selectPlace($event)" placeholder='{{  "highest price"|translate}}'
-          okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+        <ion-select
+          (ionChange)="selectPlace($event)"
+          placeholder='{{  "highest price"|translate}}'
+          okText='{{"ok"|translate}}'
+          cancelText='{{"cancel"|translate}}'
+        >
           <ion-select-option value="brown">Brown</ion-select-option>
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
@@ -137,25 +185,36 @@
     <div class="items-container">
       <div>
         <ion-item lines="none">
-          <ion-label class="fn-14 gray-color dalel-Regular"
-            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+          <ion-label
+            class="fn-14 gray-color dalel-Regular"
+            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'"
+          >
             {{"show available only"|translate}}
           </ion-label>
-          <ion-checkbox color="secondary" slot="start" value="true"
-            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+          <ion-checkbox
+            color="secondary"
+            slot="start"
+            value="true"
+            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"
+          ></ion-checkbox>
         </ion-item>
       </div>
       <div>
         <ion-item lines="none">
-          <ion-label class="fn-14 gray-color dalel-Regular"
-            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+          <ion-label
+            class="fn-14 gray-color dalel-Regular"
+            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'"
+          >
             {{ "show offers only"|translate}}
           </ion-label>
-          <ion-checkbox color="secondary" slot="start" value="true"
-            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+          <ion-checkbox
+            color="secondary"
+            slot="start"
+            value="true"
+            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"
+          ></ion-checkbox>
         </ion-item>
       </div>
-
     </div>
   </div>
 
@@ -167,12 +226,19 @@
     <div class="items-container">
       <div *ngFor="let category of categories">
         <ion-item lines="none">
-          <ion-label class="fn-14 gray-color dalel-Regular"
-            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+          <ion-label
+            class="fn-14 gray-color dalel-Regular"
+            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'"
+          >
             {{category.title}}
           </ion-label>
-          <ion-checkbox (ionChange)="chooseCategory(category.id)" color="secondary" slot="start" value="true"
-            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+          <ion-checkbox
+            
+            color="secondary"
+            slot="start"
+            (click)="chooseCategory(category)"
+            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"
+          ></ion-checkbox>
         </ion-item>
       </div>
     </div>
@@ -186,12 +252,18 @@
     <div class="items-container">
       <div *ngFor="let option of options">
         <ion-item lines="none">
-          <ion-label class="fn-14 gray-color dalel-Regular"
-            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+          <ion-label
+            class="fn-14 gray-color dalel-Regular"
+            [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'"
+          >
             {{option.title}}
           </ion-label>
-          <ion-checkbox color="secondary" slot="start" value="true" (ionChange)="chooseOption(option.id)"
-            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"></ion-checkbox>
+          <ion-checkbox
+            color="secondary"
+            slot="start"
+            (click)="chooseOption(option)"
+            [ngClass]="currentlangauge == 'ar' ?'margin-right':'margin-left'"
+          ></ion-checkbox>
         </ion-item>
       </div>
     </div>

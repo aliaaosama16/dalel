@@ -14,16 +14,15 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./search-filter.page.scss'],
 })
 export class SearchFilterPage implements OnInit {
-  title: string;
+  title: string = '';
   currentlangauge: string;
   platform: any;
   userData: UserData;
   countries: GeneralSectionResponse[];
-
   categories: GeneralSectionResponse[];
-  selectedCategories: string[];
+  selectedCategories: string[] = [];
   options: GeneralSectionResponse[];
-  selectedOptions: string[];
+  selectedOptions: string[] = [];
   filterData: FilterData;
   constructor(
     private langaugeservice: LanguageService,
@@ -64,18 +63,21 @@ export class SearchFilterPage implements OnInit {
       );
     });
   }
+
   selectPlace(ev) {
     console.log(ev);
   }
 
-  chooseCategory(categoryId) {
-    console.log('cat id :' + categoryId);
-    this.selectedCategories.push(categoryId);
+  chooseCategory(category: GeneralSectionResponse) {
+    this.selectedCategories.push(category.id.toString());
+    console.log(
+      'selected Categories :' + JSON.stringify(this.selectedCategories)
+    );
   }
 
-  chooseOption(optionId) {
-    console.log('cat id :' + optionId);
-    this.selectedOptions.push(optionId);
+  chooseOption(option: GeneralSectionResponse) {
+    this.selectedOptions.push(option.id.toString());
+    console.log('selected optiopns :' + JSON.stringify(this.selectedOptions));
   }
 
   getItemsByFilters() {
@@ -87,14 +89,10 @@ export class SearchFilterPage implements OnInit {
         title: this.title,
         lang: this.currentlangauge,
         categories: this.selectedCategories,
+        options: this.selectedOptions,
       };
     });
 
-    // const navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //     special: JSON.stringify(this.filterData),
-    //   },
-    // };
     this.util.setFilters(this.filterData);
 
     console.log('filters ' + JSON.stringify(this.filterData));

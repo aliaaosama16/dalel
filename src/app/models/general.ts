@@ -48,6 +48,7 @@ export interface GeneralSectionResponse {
   id: string;
   title: string;
   image?: string;
+  checked?:boolean;
 }
 
 export interface CountryData extends UserData{
