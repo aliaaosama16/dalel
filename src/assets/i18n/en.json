@@ -123,5 +123,10 @@
   "change langauge":"change langauge",
   "change":"change",
   "rooms":"rooms",
-  "choose payment method":"choose payment method"
+  "choose payment method":"choose payment method",
+  "no old reservations": "no old reservations",
+"no current reservations":"no current reservations",
+"no Categories":"no Categories",
+"no favourites items":"favourites list is empty",
+"no items in this section":"no items in this section"
 }

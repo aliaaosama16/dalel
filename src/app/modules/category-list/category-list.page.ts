@@ -18,6 +18,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class CategoryListPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  noItems:boolean=false;
   currentPage: number;
   categoryID: string;
   categoryName: string;
@@ -62,6 +63,9 @@ export class CategoryListPage implements OnInit {
           if (data.key == 1) {
             console.log('sections data : ' + JSON.stringify(data));
             //this.sections = data.data.sections;
+            if(data.data.length==0){
+              this.noItems=true;
+            }
             this.sectionAllItems = data.data;
           }
           this.util.dismissLoading();

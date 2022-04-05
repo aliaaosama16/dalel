@@ -28,6 +28,9 @@
   </ion-segment>
 
   <div *ngIf="reservationsType==current">
+    <div *ngIf="noCurrentOrders" class="no-data">
+      <p>{{'no current reservations'|translate}}</p>
+     </div>
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of currentReservations"
@@ -38,8 +41,7 @@
 
         <div class="price">
           <p class="fn-15 dalel-SemiBold secondary-color">
-            {{item.department_price}} {{'currency'|translate}}/ {{'one
-            night'|translate}}
+            {{item.department_price}} {{'currency'|translate}}/ {{'one night'|translate}}
           </p>
         </div>
 
@@ -83,6 +85,11 @@
   </div>
 
   <div *ngIf="reservationsType==old">
+ 
+
+   <div *ngIf="noOldOrders" class="no-data">
+    <p>{{'no old reservations'|translate}}</p>
+   </div>
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of oldReservations"
@@ -93,8 +100,7 @@
 
         <div class="price">
           <p class="fn-15 dalel-SemiBold secondary-color">
-            {{item.department_price}} {{'currency'|translate}}/ {{'one
-            night'|translate}}
+            {{item.department_price}} {{'currency'|translate}}/ {{'one night'|translate}}
           </p>
         </div>
 

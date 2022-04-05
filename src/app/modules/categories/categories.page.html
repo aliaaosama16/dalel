@@ -7,6 +7,9 @@
 ></app-header>
 
 <ion-content >
+  <div *ngIf="noCategoriesData" class="no-data">
+    <p>{{'no Categories'|translate}}</p>
+   </div>
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let cat of sections">

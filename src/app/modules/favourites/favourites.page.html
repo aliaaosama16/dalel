@@ -6,6 +6,9 @@
   class="header-height"
 ></app-header>
 <ion-content class="custom-padding">
+  <div *ngIf="noFavourites" class="no-data">
+    <p>{{"no favourites items"|translate}}</p>
+   </div>
   <ion-grid>
     <ion-row>
       <ion-col

@@ -62,7 +62,7 @@ export class NotificationsPage implements OnInit {
     this.userNotifications.showNotification(notificationData).subscribe(
       (data: NotificationsResponse) => {
         if (data.key == 1) {
-          console.log('all notifications :' + JSON.stringify(data.data));
+          //console.log('all notifications :' + JSON.stringify(data.data));
           this.notifications = data.data;
         }
       },

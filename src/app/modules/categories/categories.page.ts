@@ -18,6 +18,7 @@ export class CategoriesPage implements OnInit {
   platform: any;
   sections: GeneralSectionResponse[];
   userData: UserData;
+  noCategoriesData: boolean = false;
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
@@ -44,6 +45,9 @@ export class CategoriesPage implements OnInit {
       this.items.data(this.userData).subscribe(
         (data: SectionsResponse) => {
           if (data.key == 1) {
+            if (data.data.sections.length == 0) {
+              this.noCategoriesData = true;
+            }
             this.sections = data.data.sections;
           }
           this.util.dismissLoading();
@@ -54,6 +58,7 @@ export class CategoriesPage implements OnInit {
       );
     });
   }
+
   openMenu() {
     this.menuCtrl.open();
   }

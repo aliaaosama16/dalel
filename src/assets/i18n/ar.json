@@ -123,5 +123,10 @@
 "change langauge":"تغيير لغة التطبيق",
 "change":"تغيير ",
 "rooms":"غرف",
-"choose payment method":"من فضلك قم باختيار طريقه الدفع"
+"choose payment method":"من فضلك قم باختيار طريقه الدفع",
+"no old reservations":"لاتوجد حجوزات سابقة",
+"no current reservations":"لا توجد حجوزات حالية",
+"no Categories":"لا توجد اقسام",
+"no favourites items":"قائمة المفضلة فارغة",
+"no items in this section":"لا توجد عناصر في هذا القسم"
 }

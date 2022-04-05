@@ -58,6 +58,18 @@
     border-radius: 0px 80px 0px 0px;
   }
 }
+
+.no-data{
+  text-align: center;
+  margin-top: 30%;
+  p{
+    font-size: 18px;
+    color: var(--ion-color-primary);
+  }
+}
+.badge-color{
+  color: var(--ion-color-white);
+}
 .my-custom-class{
   div#alert-1-msg{
     margin-top: 13px !important;

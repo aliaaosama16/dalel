@@ -19,6 +19,7 @@ export class FavouritesPage implements OnInit {
   platform: any;
   favourites: Item[];
   UserData: UserData;
+  noFavourites:boolean=false;
   constructor(
     private util: UtilitiesService,
     private auth: AuthService,
@@ -43,6 +44,9 @@ export class FavouritesPage implements OnInit {
         (data: DepartmentResponse) => {
           if (data.key == 1) {
             this.util.showMessage(data.msg);
+            if(data.data.length==0){
+              this.noFavourites=true;
+            }
             this.favourites = data.data;
           }
           this.util.dismissLoading();
