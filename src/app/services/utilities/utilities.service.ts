@@ -6,6 +6,7 @@ import { LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Device } from '@capacitor/device';
 import { FilterData } from 'src/app/models/item';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -110,4 +111,30 @@ export class UtilitiesService {
   get filters(){
     return this.filtersData;
   }
+
+  getFormattedDate(date, format: any, lang?) {
+    return moment(date).format(format);
+  }
+
+  getDay(date, lang) {
+    return moment(date).locale(lang).format('dddd');
+  }
+
+  getTime(date, lang?) {
+    let str = moment(date).format('LTS'); //hh:ii:ss
+    str = str.substring(0, str.length - 3);
+    return str;
+  }
+
+  getDatesDifference(dateFrom, dateTo) {
+    let days = Math.floor(
+      (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /
+        1000 /
+        60 /
+        60 /
+        24
+    );
+    return days;
+  }
+
 }
