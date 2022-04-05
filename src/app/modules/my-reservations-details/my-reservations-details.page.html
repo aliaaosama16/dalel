@@ -7,10 +7,10 @@
 ></app-header>
 <ion-content class="ion-padding" >
   <div class="container">
-    <img [src]="ItemDetails.image " />
+    <img [src]="orderDetials.department_image " />
   </div>
   <app-custom-details
-    [ItemDetails]="ItemDetails"
+    [OrderDetails]="orderDetials"
     [isDetailed]="false"
   ></app-custom-details>
 
@@ -25,12 +25,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{ItemDetails.arrivalTime}}
+          {{orderDetials?.order_date}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span> {{"arrival-date"|translate}} :{{ItemDetails.leftTime}} </span>
+        <span> {{"arrival-date"|translate}} :{{orderDetials?.order_date}} </span>
       </p>
     </div>
 
@@ -40,12 +40,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{ItemDetails.leftTime}}
+          {{orderDetials?.order_date}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span> {{"arrival-date"|translate}} :{{ItemDetails.leftDate}} </span>
+        <span> {{"arrival-date"|translate}} :{{orderDetials?.order_date}} </span>
       </p>
     </div>
   </div>

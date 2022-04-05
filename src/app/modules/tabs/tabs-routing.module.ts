@@ -57,14 +57,14 @@ const routes: Routes = [
               ).then((m) => m.SearchResultsPageModule),
           },
           {
-            path: 'reservation',
+            path: 'reservation/:departmetId',
             loadChildren: () =>
               import('./../../modules/reservation/reservation.module').then(
                 (m) => m.ReservationPageModule
               ),
           },
           {
-            path: 'reservation-payment',
+            path: 'reservation-payment/:departmetId',
             loadChildren: () =>
               import(
                 './../../modules/reservation-payment/reservation-payment.module'

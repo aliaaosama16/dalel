@@ -1,17 +1,18 @@
 <app-header
   [title]="'reservation'"
   [isEditable]="false"
-  [backwardRoute]="'/tabs/main/reservation'"
+  [backwardRoute]="'/tabs/main/reservation/'+itemDetails?.id"
   [isMain]="false"
   class="header-height"
 ></app-header>
-<ion-content class="ion-padding" >
+<ion-content class="ion-padding">
   <div class="container">
-    <img [src]="ItemDetails.image " />
+    <img [src]="itemDetails?.first_image " />
   </div>
 
   <app-custom-details
-    [ItemDetails]="ItemDetails" [isDetailed]="false"
+    [ItemDetails]="itemDetails"
+    [isDetailed]="false"
   ></app-custom-details>
 
   <div class="details">
@@ -25,14 +26,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
         >
-          {{ItemDetails.arrivalTime}}
+          {{orderData?.start_time}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span>
-          {{"arrival-date"|translate}} :{{ItemDetails.arrivalDate}}
-        </span>
+        <span> {{"arrival-date"|translate}} :{{orderData?.start_date}} </span>
       </p>
     </div>
 
@@ -42,14 +41,12 @@
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
         >
-          {{ItemDetails.leftTime}}
+          {{orderData?.end_time}}
         </span>
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span>
-          {{"left-date"|translate}} :{{ItemDetails.leftDate}}
-        </span>
+        <span> {{"left-date"|translate}} :{{orderData?.end_date}} </span>
       </p>
     </div>
   </div>
@@ -60,12 +57,12 @@
     <div class="fees-details">
       <div>
         <p class="fn-14 dalel-Bold">
-         {{ItemDetails.unit |translate}}* {{ItemDetails.price}}
+          {{itemDetails?.price}} {{'currency' |translate}}
         </p>
       </div>
       <div>
         <p class="fn-14 dalel-Bold">
-          {{ItemDetails.price}}   {{ItemDetails.perUnit |translate}} 
+          {{itemDetails?.price}} {{'one night' |translate}}
         </p>
       </div>
     </div>
@@ -78,7 +75,7 @@
       </div>
       <div>
         <p class="fn-14 dalel-Bold primary-color">
-          {{ItemDetails.price}} {{ItemDetails.unit|translate}}
+          {{orderData?.total_after_promo}} {{'currency'|translate}}
         </p>
       </div>
     </div>
@@ -86,14 +83,23 @@
 
   <div class="payment-method">
     <ion-item lines="none">
-      <ion-label class="fn-14 black-color dalel-Regular" [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'">
+      <ion-label
+        class="fn-14 black-color dalel-Regular"
+        [ngClass]="currentlangauge == 'ar' ? 'align-right':'align-left'"
+      >
         {{"pay on arrival"|translate}}
       </ion-label>
-      <ion-checkbox color="secondary" slot="start" value="true"></ion-checkbox>
+      <ion-checkbox
+        color="secondary"
+        slot="start"
+        value="cash"
+        [(ngModel)]="paymentMethod"
+        
+      ></ion-checkbox>
     </ion-item>
   </div>
 
-  <ion-button expand="block" routerLink="/tabs/main">
+  <ion-button expand="block" (click)="setOrderData()">
     <span class="auth-btn fn-16 white-color dalel-Bold">
       {{ "confirm reservation"|translate}}
     </span>

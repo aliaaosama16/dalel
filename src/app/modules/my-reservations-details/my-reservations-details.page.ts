@@ -49,6 +49,7 @@ export class MyReservationsDetailsPage implements OnInit {
           if (data.key == 1) {
             this.util.showMessage(data.msg);
             console.log('order data :' + JSON.stringify(data.data));
+            this.orderDetials=data.data
           }
           this.util.dismissLoading();
         },

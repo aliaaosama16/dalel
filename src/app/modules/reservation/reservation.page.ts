@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data.service';
@@ -28,11 +28,11 @@ export class ReservationPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     private util: UtilitiesService,
-    private auth:AuthService,
-    private langaugeservice:LanguageService
+    private auth: AuthService,
+    private langaugeservice: LanguageService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.platform = this.util.platform;
-   
   }
   onChange(selectedDates) {
     console.log('selecte dates : ' + JSON.stringify(selectedDates));
@@ -46,7 +46,11 @@ export class ReservationPage implements OnInit {
       this.util.showMessage('please choose from and to dates');
     } else {
       this.dataService.setDates(this.dateRange);
-      this.router.navigateByUrl('/tabs/main/reservation-payment');
+      this.router.navigate([
+        '/tabs/main/reservation-payment',
+        parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+      ]);
+
     }
   }
 }

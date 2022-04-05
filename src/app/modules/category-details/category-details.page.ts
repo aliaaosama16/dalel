@@ -51,6 +51,7 @@ export class CategoryDetailsPage implements OnInit {
     },
   };
   itemDetails: Item;
+  dataLoaded: boolean = false;
   constructor(
     private menuCtrl: MenuController,
     private langaugeservice: LanguageService,
@@ -59,7 +60,8 @@ export class CategoryDetailsPage implements OnInit {
     private plt: Platform,
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
-    private favouritesService: FavouritesService
+    private favouritesService: FavouritesService,
+    private router:Router
   ) {
     this.platform = this.util.platform;
   }
@@ -84,6 +86,7 @@ export class CategoryDetailsPage implements OnInit {
       this.items.showDepartmentByID(this.departmentData).subscribe(
         (data: DepartmentDetailsResponse) => {
           if (data.key == 1) {
+            this.dataLoaded = true;
             this.itemDetails = data.data;
             this.lat = this.itemDetails.lat;
             this.long = this.itemDetails.lng;
@@ -182,5 +185,18 @@ export class CategoryDetailsPage implements OnInit {
           }
         );
     });
+  }
+
+  storeOrder() {
+
+    this.auth.getUserIDObservable().subscribe((val) => {
+      if (val != 0) {
+        this.router.navigate(['/tabs/main/reservation/',this.itemDetails?.id]);
+      }else{
+        this.router.navigateByUrl('/login-register');
+      }
+    });
+
+    
   }
 }
