@@ -10,7 +10,7 @@ import {
   StoreOrderData,
 } from 'src/app/models/orders';
 import { ItemsService } from 'src/app/services/items/items.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShowDepartmetData } from 'src/app/models/sections';
 import { ReservationsService } from 'src/app/services/reservations/reservations.service';
 @Component({
@@ -33,7 +33,8 @@ export class ReservationPaymentPage implements OnInit {
     private auth: AuthService,
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
-    private reservationsService: ReservationsService
+    private reservationsService: ReservationsService,
+    private router:Router
   ) {
     this.platform = this.util.platform;
     console.log(this.activatedRoute.snapshot.paramMap.get('departmetId'));
@@ -123,7 +124,6 @@ export class ReservationPaymentPage implements OnInit {
     });
   }
 
- 
   setOrderData() {
     if (this.paymentMethod) {
       this.auth.getUserIDObservable().subscribe((val) => {
@@ -222,6 +222,8 @@ export class ReservationPaymentPage implements OnInit {
       this.reservationsService.storeOrder(storeData).subscribe(
         (data: OrderDataResponse) => {
           if (data.key == 1) {
+            this.util.showMessage(data.msg);
+            this.router.navigateByUrl('/tabs/my-reservations');
           }
           this.util.dismissLoading();
         },

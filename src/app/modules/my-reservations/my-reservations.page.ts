@@ -41,7 +41,7 @@ export class MyReservationsPage implements OnInit {
         user_id: val == 0 ? 1 : val,
         status: orderStatus == 0 ? 'current' : 'finish',
       };
-      console.log(JSON.stringify(this.userOrdersData));
+      console.log('userOrdersData : '+JSON.stringify(this.userOrdersData));
       this.showAllOrdersByID(this.userOrdersData);
     });
   }
@@ -55,8 +55,15 @@ export class MyReservationsPage implements OnInit {
             this.util.showMessage(data.msg);
             if (userOrdersData.status == 'current') {
               this.currentReservations = data.data;
+              console.log(
+                'currentReservations :' +
+                  JSON.stringify(this.currentReservations)
+              );
             } else if (userOrdersData.status == 'finish') {
               this.oldReservations = data.data;
+              console.log(
+                'oldReservations :' + JSON.stringify(this.oldReservations)
+              );
             }
           }
           this.util.dismissLoading();
