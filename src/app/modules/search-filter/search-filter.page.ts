@@ -15,6 +15,12 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class SearchFilterPage implements OnInit {
   title: string = '';
+  rooms:number[];
+  people:number[];
+  max_area:number;
+  min_area:number;
+  max_price:number;
+  min_price:number;
   currentlangauge: string;
   platform: any;
   userData: UserData;
@@ -64,10 +70,6 @@ export class SearchFilterPage implements OnInit {
     });
   }
 
-  selectPlace(ev) {
-    console.log(ev);
-  }
-
   chooseCategory(category: GeneralSectionResponse) {
     this.selectedCategories.push(category.id.toString());
     console.log(
@@ -97,5 +99,16 @@ export class SearchFilterPage implements OnInit {
 
     console.log('filters ' + JSON.stringify(this.filterData));
     this.router.navigate(['/tabs/main/search-results']);
+  }
+
+  chooseCountry($event) {
+    console.log('country : ' + $event);
+  }
+
+  chooseCity($event) {
+    console.log('country : ' + $event);
+  }
+  chooseNeiborhoods($event) {
+    console.log('country : ' + $event);
   }
 }

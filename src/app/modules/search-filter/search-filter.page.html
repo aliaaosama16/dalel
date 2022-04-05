@@ -12,13 +12,6 @@
   </h5>
 
   <ion-item lines="none" class="select-container">
-    <!-- <ion-select (ionChange)="selectPlace($event)" placeholder='{{"search with place name"|translate}}'
-      okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
-      <ion-select-option value="brown">Brown</ion-select-option>
-      <ion-select-option value="blonde">Blonde</ion-select-option>
-      <ion-select-option value="black">Black</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
-    </ion-select> -->
     <ion-input
       [(ngModel)]="title"
       placeholder='{{"search with place name"|translate}}'
@@ -27,21 +20,20 @@
 
   <ion-item lines="none" class="select-container">
     <ion-select
-      (ionChange)="selectPlace($event)"
+      (ionChange)="chooseCountry($event)"
       placeholder='{{"choose place"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
     >
-      <ion-select-option value="brown">Brown</ion-select-option>
-      <ion-select-option value="blonde">Blonde</ion-select-option>
-      <ion-select-option value="black">Black</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+      <ion-select-option *ngFor="let country of countries" [value]="country.id">
+        {{country.title}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item lines="none" class="select-container">
     <ion-select
-      (ionChange)="selectPlace($event)"
+      (ionChange)="chooseCity($event)"
       placeholder='{{ "choose city"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
@@ -55,7 +47,7 @@
 
   <ion-item lines="none" class="select-container">
     <ion-select
-      (ionChange)="selectPlace($event)"
+      (ionChange)="chooseNeiborhoods($event)"
       placeholder='{{ "choose neighborhood"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
@@ -70,7 +62,7 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{ "rooms number"|translate}}'
           okText='{{"ok"|translate}}'
@@ -80,13 +72,18 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="rooms"
+        placeholder='{{ "rooms number"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{ "people number"|translate}}'
           okText='{{"ok"|translate}}'
@@ -96,7 +93,12 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="people"
+        placeholder='{{ "people number"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
   </div>
@@ -108,7 +110,7 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{ "least space"|translate}}'
           okText='{{"ok"|translate}}'
@@ -118,13 +120,18 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="min_area"
+        placeholder='{{ "least space"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{ "highest space"|translate}}'
           okText='{{"ok"|translate}}'
@@ -134,7 +141,12 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="max_area"
+        placeholder='{{ "highest space"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
   </div>
@@ -146,7 +158,7 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{ "least price"|translate}}'
           okText='{{"ok"|translate}}'
@@ -156,13 +168,18 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="max_price"
+        placeholder='{{ "least price"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <ion-select
+        <!-- <ion-select
           (ionChange)="selectPlace($event)"
           placeholder='{{  "highest price"|translate}}'
           okText='{{"ok"|translate}}'
@@ -172,7 +189,12 @@
           <ion-select-option value="blonde">Blonde</ion-select-option>
           <ion-select-option value="black">Black</ion-select-option>
           <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-input
+        [(ngModel)]="min_price"
+        placeholder='{{ "least price"|translate}}'
+      ></ion-input>
       </ion-item>
     </div>
   </div>
@@ -233,7 +255,6 @@
             {{category.title}}
           </ion-label>
           <ion-checkbox
-            
             color="secondary"
             slot="start"
             (click)="chooseCategory(category)"
