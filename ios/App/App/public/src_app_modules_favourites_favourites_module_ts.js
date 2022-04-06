@@ -118,6 +118,7 @@ let FavouritesPage = class FavouritesPage {
         this.auth = auth;
         this.langaugeservice = langaugeservice;
         this.favService = favService;
+        this.noFavourites = false;
         this.platform = this.util.platform;
         this.auth.getUserIDObservable().subscribe((val) => {
             this.UserData = {
@@ -133,6 +134,9 @@ let FavouritesPage = class FavouritesPage {
             this.favService.showFavourites(userData).subscribe((data) => {
                 if (data.key == 1) {
                     this.util.showMessage(data.msg);
+                    if (data.data.length == 0) {
+                        this.noFavourites = true;
+                    }
                     this.favourites = data.data;
                 }
                 this.util.dismissLoading();
@@ -170,7 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'favourites'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"custom-padding\">\n  <ion-grid>\n    <ion-row>\n      <ion-col\n        sizeXs=\"6\"\n        sizeSm=\"4\"\n        sizeMd=\"4\"\n        sizeLg=\"4\"\n        sizeMd=\"4\"\n        *ngFor=\"let item of favourites\"\n      >\n        <ion-card\n          class=\"ion-no-margin\"\n          routerLink=\"/tabs/main/categories/{{item.section_id}}/{{item.id}}\"\n          *ngIf=\"item!=null\"\n        >\n          <img src=\"./../../../assets/images/512.png\" />\n\n          <div class=\"price-container\">\n            <span class=\"white-color fn-12 dalel-Regular\"\n              >{{item.price}} {{'currency'|translate}}</span\n            >\n          </div>\n\n          <ion-card-content>\n            <div class=\"name\">\n              <p class=\"fn-14 dalel-Bold dark-black-color\">{{item.title}}</p>\n            </div>\n            <div class=\"rating-address-container\">\n              <div class=\"address-container\">\n                <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n                <p class=\"fn-14 dalel-Regular dark-black-color\">\n                   {{item.city_title}}\n                </p>\n              </div>\n\n              <div class=\"rating-container\" *ngIf=\"item.saler_rate!=0\">\n                <ion-icon color=\"secondary\" slot=\"end\" name=\"star\"></ion-icon>\n                <span class=\"white-color fn-10 dalel-Regular\"\n                  >{{item.rate}}</span\n                >\n              </div>\n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'favourites'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"custom-padding\">\n  <div *ngIf=\"noFavourites\" class=\"no-data\">\n    <p>{{\"no favourites items\"|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col\n        sizeXs=\"6\"\n        sizeSm=\"4\"\n        sizeMd=\"4\"\n        sizeLg=\"4\"\n        sizeMd=\"4\"\n        *ngFor=\"let item of favourites\"\n      >\n        <ion-card\n          class=\"ion-no-margin\"\n          routerLink=\"/tabs/main/categories/{{item.section_id}}/{{item.id}}\"\n          *ngIf=\"item!=null\"\n        >\n          <img src=\"./../../../assets/images/512.png\" />\n\n          <div class=\"price-container\">\n            <span class=\"white-color fn-12 dalel-Regular\"\n              >{{item.price}} {{'currency'|translate}}</span\n            >\n          </div>\n\n          <ion-card-content>\n            <div class=\"name\">\n              <p class=\"fn-14 dalel-Bold dark-black-color\">{{item.title}}</p>\n            </div>\n            <div class=\"rating-address-container\">\n              <div class=\"address-container\">\n                <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n                <p class=\"fn-14 dalel-Regular dark-black-color\">\n                   {{item.city_title}}\n                </p>\n              </div>\n\n              <div class=\"rating-container\" *ngIf=\"item.saler_rate!=0\">\n                <ion-icon color=\"secondary\" slot=\"end\" name=\"star\"></ion-icon>\n                <span class=\"white-color fn-10 dalel-Regular\"\n                  >{{item.rate}}</span\n                >\n              </div>\n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 

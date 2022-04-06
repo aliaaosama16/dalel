@@ -96,12 +96,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SearchResultsPage": () => (/* binding */ SearchResultsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_search_results_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./search-results.page.html */ 47541);
 /* harmony import */ var _search_results_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-results.page.scss */ 24617);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/items/items.service */ 17118);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
 
 
 
@@ -109,105 +115,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SearchResultsPage = class SearchResultsPage {
-    constructor(langaugeservice, util) {
+    constructor(langaugeservice, util, auth, route, items) {
         this.langaugeservice = langaugeservice;
         this.util = util;
+        this.auth = auth;
+        this.route = route;
+        this.items = items;
         this.currentlangauge = '';
-        this.resultItems = [
-            {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 1,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 2,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 3,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 4,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 5,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 1,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 1,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }, {
-                name: "عنوان تجريبي",
-                rating: '3+',
-                id: 1,
-                image: "./../../../assets/icon/image.svg",
-                city: "الرياض",
-                address: "المملكة العربية السعودية",
-                price: 1120,
-                unit: "currency",
-                perUnit: "one night",
-            }
-        ];
+        this.noResults = false;
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
+        console.log('filters ', this.util.filters);
+        this.getResultsItemsByFilters(this.util.filters);
+    }
+    getResultsItemsByFilters(filterData) {
+        this.util.showLoadingSpinner().then((__) => {
+            this.items.allDepartmentsByFilters(filterData).subscribe((data) => {
+                if (data.key == 1) {
+                    console.log('resultItems data : ' + JSON.stringify(data));
+                    if (data.data.length == 0) {
+                        this.noResults = true;
+                    }
+                    this.resultItems = data.data;
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
 };
 SearchResultsPage.ctorParameters = () => [
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
+    { type: src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_3__.ItemsService }
 ];
-SearchResultsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+SearchResultsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-search-results',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_search_results_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_search_results_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -228,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'search-results'\" [isEditable]=\"false\" [backwardRoute]=\"'/tabs/main'\" [isMain]=\"false\">\n</app-header>\n\n<ion-content class=\"ion-padding\" >\n\n  <div class=\"search-result\" *ngFor=\"let item of resultItems \">\n    <ion-item lines=\"none\"  detail=\"false\" routerLink=\"/tabs/main/categories/1/{{item.id}}\">\n      <ion-thumbnail slot=\"start\" [ngClass]=\"  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  \">\n        <img [src]=\"item.image\">\n      </ion-thumbnail>\n      <ion-label class=\"ion-text-start\">\n\n        <ion-text>\n          <h3 class=\"dark-black-color fn-16 dalel-SemiBold\"> {{item.name}}</h3>\n        </ion-text>\n\n        <div class=\"address-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <ion-icon color=\"secondary\" slot=\"start\" src=\"./../../../assets/icon/pin-white.svg\"></ion-icon>\n          </ion-button>\n\n          <p class=\"primary-color fn-10 dalel-Regular\"> {{item.city}} - {{item.address}}</p>\n        </div>\n\n        <div class=\"price-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <span class=\"white-color fn-10 dalel-Bold\"> {{item.price}} {{item.unit|translate}}\n              /{{item.perUnit|translate}} </span>\n          </ion-button>\n          <ion-button disabled='true' color=\"primary\">\n            <div class=\"rating\">\n              <div class=\"rating-value\">\n                <span class=\"white-color fn-12 dalel-Regular\">{{item.rating}}</span>\n              </div>\n\n              <div class=\"rating-icon\">\n                <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n              </div>\n            </div>\n          </ion-button>\n        </div>\n\n      </ion-label>\n    </ion-item>\n  </div>\n\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header class=\"header-height\" [title]=\"'search-results'\" [isEditable]=\"false\" [backwardRoute]=\"'/tabs/main'\" [isMain]=\"false\">\n</app-header>\n\n<ion-content class=\"ion-padding\" >\n\n  <div *ngIf=\"noResults\" class=\"no-data\">\n    <p>{{\"no results for this search\"|translate}}</p>\n   </div>\n  \n  <div class=\"search-result\" *ngFor=\"let item of resultItems \">\n    <ion-item lines=\"none\"  detail=\"false\" routerLink=\"/tabs/main/categories/1/{{item.id}}\">\n      <ion-thumbnail slot=\"start\" [ngClass]=\"  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  \">\n        <img [src]=\"item.first_image\">\n      </ion-thumbnail>\n      <ion-label class=\"ion-text-start\">\n\n        <ion-text>\n          <h3 class=\"dark-black-color fn-16 dalel-SemiBold\"> {{item?.title}}</h3>\n        </ion-text>\n\n        <div class=\"address-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <ion-icon color=\"secondary\" slot=\"start\" src=\"./../../../assets/icon/pin-white.svg\"></ion-icon>\n          </ion-button>\n\n          <p class=\"primary-color fn-10 dalel-Regular\"> {{item?.city_title}} - {{item?.neighborhood_title}}</p>\n        </div>\n\n        <div class=\"price-container\">\n          <ion-button disabled='true' color=\"secondary\">\n            <span class=\"white-color fn-10 dalel-Bold\"> {{item?.price}} {{'currency'|translate}}\n              /{{'one night'|translate}} </span>\n          </ion-button>\n          <ion-button disabled='true' color=\"primary\">\n            <div class=\"rating\">\n              <div class=\"rating-value\">\n                <span class=\"white-color fn-12 dalel-Regular\">{{item?.rate}}</span>\n              </div>\n\n              <div class=\"rating-icon\">\n                <ion-icon color=\"secondary\" slot=\"start\" name=\"star\"></ion-icon>\n              </div>\n            </div>\n          </ion-button>\n        </div>\n\n      </ion-label>\n    </ion-item>\n  </div>\n\n</ion-content>");
 
 /***/ }),
 

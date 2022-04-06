@@ -132,6 +132,10 @@ let NotificationsPage = class NotificationsPage {
         this.noNotifications = false;
         this.platform = this.util.platform;
         this.auth.getStoredUserID();
+    }
+    ngOnInit() {
+        this.currentlangauge = this.langaugeservice.getLanguage();
+        console.log(this.currentlangauge);
         this.auth.getUserIDObservable().subscribe((val) => {
             console.log('user id :' + val);
             if (val != 0) {
@@ -143,35 +147,18 @@ let NotificationsPage = class NotificationsPage {
             }
         });
     }
-    ngOnInit() {
-        this.currentlangauge = this.langaugeservice.getLanguage();
-        console.log(this.currentlangauge);
-    }
     openMenu() {
         this.menuCtrl.open();
     }
-    showNotification(data) {
-        this.util.showLoadingSpinner().then((__) => {
-            this.userNotifications.showNotification(data).subscribe((data) => {
-                this.util.dismissLoading();
-                if (data.key == 0) {
-                    console.log('no response');
+    showNotification(notificationData) {
+        this.userNotifications.showNotification(notificationData).subscribe((data) => {
+            if (data.key == 1) {
+                if (data.data.length == 0) {
                     this.noNotifications = true;
                 }
-                else if (data.notification_count == 0 && data.key == 1) {
-                    console.log('no Notifications');
-                    this.noNotifications = true;
-                }
-                else {
-                    console.log(' Notifications');
-                    this.notifications = data.data;
-                    this.noNotifications = false;
-                }
-            }, (err) => {
-                this.util.dismissLoading();
-                this.getNotifications = false;
-            });
-        });
+                this.notifications = data.data;
+            }
+        }, (err) => { });
     }
     openOrederDetails(orderID) {
         this.router.navigateByUrl(`/tabs/my-reservations/my-reservations-details/` + orderID);
@@ -193,8 +180,8 @@ let NotificationsPage = class NotificationsPage {
                                 this.userNotifications.deleteNotification(data).subscribe((data) => {
                                     console.log('delete item ' + JSON.stringify(this.notifications));
                                     this.util.showMessage(data.msg);
-                                    this.util.dismissLoading();
                                     this.showNotification(this.UserData);
+                                    this.util.dismissLoading();
                                 }, (err) => {
                                     this.util.dismissLoading();
                                 });
@@ -212,6 +199,28 @@ let NotificationsPage = class NotificationsPage {
                 ],
             });
             yield alert.present();
+        });
+    }
+    doRefresh($event) {
+        this.auth.getUserIDObservable().subscribe((val) => {
+            console.log('user id :' + val);
+            if (val != 0) {
+                this.UserData = {
+                    lang: this.langaugeservice.getLanguage(),
+                    user_id: val,
+                };
+                this.userNotifications.showNotification(this.UserData).subscribe((data) => {
+                    if (data.key == 1) {
+                        if (data.data.length == 0) {
+                            this.noNotifications = true;
+                        }
+                        this.notifications = data.data;
+                    }
+                    $event.target.complete();
+                }, (err) => {
+                    $event.target.complete();
+                });
+            }
         });
     }
 };
@@ -237,48 +246,6 @@ NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
 
 /***/ }),
 
-/***/ 31670:
-/*!*****************************************************************!*\
-  !*** ./src/app/services/notifications/notifications.service.ts ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NotificationsService": () => (/* binding */ NotificationsService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
-
-
-
-
-let NotificationsService = class NotificationsService {
-    constructor(httpclient) {
-        this.httpclient = httpclient;
-    }
-    showNotification(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-notification`, data);
-    }
-    deleteNotification(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}delete-notification`, data);
-    }
-};
-NotificationsService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
-];
-NotificationsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root',
-    })
-], NotificationsService);
-
-
-
-/***/ }),
-
 /***/ 74289:
 /*!******************************************************************************************************************************!*\
   !*** ./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./src/app/modules/notifications/notifications.page.html ***!
@@ -289,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<!-- [ngClass]=\"item.isRead ? 'isRead' : ''\" \n *ngIf=\"!noNotifications\"\n-->\n\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\">\n    <ion-item-sliding *ngFor=\"let item of notifications\">\n      <ion-item (click)=\"openOrederDetails(item.order_id)\">\n        <ul>\n          <li>\n            <ion-label>\n              <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n              <p\n                item-start\n                class=\"fn-12 dalel-Regular secondary-color\"\n                [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n              >\n                {{item.duration}}\n              </p>\n            </ion-label>\n          </li>\n        </ul>\n      </ion-item>\n      <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n        <ion-item-option color=\"danger\">\n          <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n\n  <div class=\"no-notifications\" *ngIf=\"noNotifications  \">\n    <h5>{{'no-notifications'|translate}}</h5>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'notifications'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isEditable]=\"false\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <div *ngIf=\"noNotifications\" class=\"no-data\">\n    <p>{{\"no Notifications\"|translate}}</p>\n  </div>\n  <ion-card class=\"ion-no-margin\">\n    <ion-item-sliding *ngFor=\"let item of notifications\">\n      <ion-item (click)=\"openOrederDetails(item.order_id)\">\n        <ul>\n          <li>\n            <ion-label>\n              <h5 class=\"fn-14 dalel-Regular\">{{item.message}}</h5>\n              <p\n                item-start\n                class=\"fn-12 dalel-Regular secondary-color\"\n                [ngClass]=\"currentlangauge == 'ar' ? 'float-right' : 'float-left'\"\n              >\n                {{item.duration}}\n              </p>\n            </ion-label>\n          </li>\n        </ul>\n      </ion-item>\n      <ion-item-options side=\"end\" (click)=\"deleteItem(item.id)\">\n        <ion-item-option color=\"danger\">\n          <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 

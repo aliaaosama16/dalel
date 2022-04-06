@@ -52,6 +52,7 @@ export class AuthService {
     await Storage.remove({ key: 'activation-status' });
     await Storage.remove({ key: 'confirmation-status' });
     await Storage.remove({ key: 'status' });
+    await Storage.clear();
   }
 
   isLogined() {
@@ -74,26 +75,26 @@ export class AuthService {
   async getStoredUserID() {
     const val = await Storage.get({ key: 'userID' });
     this.setUserID(parseInt(val.value));
-    this. setNoOfNotifications();
+    this.setNoOfNotifications(parseInt(val.value));
   }
 
-  setNoOfNotifications() {
-    this.getUserIDObservable().subscribe((userID) => {
-      if (userID) {
-        const userData: UserData = {
-          lang: this.languageService.getLanguage(),
-          user_id: userID,
-        };
-        this.userNotifications.showNotification(userData).subscribe(
-          (data: NotificationsResponse) => {
-            if (data.key == 1) {
-              this.noOfNotifications.next(data.data.length);
-            }
-          },
-          (err) => {}
-        );
-      }
-    });
+  setNoOfNotifications(userId: number) {
+    // this.getUserIDObservable().subscribe((userID) => {
+    //   if (userID) {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: userId,
+    };
+    this.userNotifications.showNotification(userData).subscribe(
+      (data: NotificationsResponse) => {
+        if (data.key == 1) {
+          this.noOfNotifications.next(data.data.length);
+        }
+      },
+      (err) => {}
+    );
+    // }
+    //});
   }
 
   getNoOfNotifications(): Observable<number> {

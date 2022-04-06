@@ -110,19 +110,19 @@ const routes = [
                     },
                     {
                         path: 'search-filter',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_search-filter_search-filter_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/search-filter/search-filter.module */ 7395)).then((m) => m.SearchFilterPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_search-filter_search-filter_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/search-filter/search-filter.module */ 7395)).then((m) => m.SearchFilterPageModule),
                     },
                     {
                         path: 'search-results',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_search-results_search-results_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/search-results/search-results.module */ 40487)).then((m) => m.SearchResultsPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_search-results_search-results_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/search-results/search-results.module */ 40487)).then((m) => m.SearchResultsPageModule),
                     },
                     {
-                        path: 'reservation',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("src_app_modules_reservation_reservation_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation/reservation.module */ 86391)).then((m) => m.ReservationPageModule),
+                        path: 'reservation/:departmetId',
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_reservation_reservation_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation/reservation.module */ 86391)).then((m) => m.ReservationPageModule),
                     },
                     {
-                        path: 'reservation-payment',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("src_app_modules_reservation-payment_reservation-payment_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation-payment/reservation-payment.module */ 84475)).then((m) => m.ReservationPaymentPageModule),
+                        path: 'reservation-payment/:departmetId',
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_reservation-payment_reservation-payment_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../../modules/reservation-payment/reservation-payment.module */ 84475)).then((m) => m.ReservationPaymentPageModule),
                     },
                     {
                         path: 'contact-us',
@@ -172,11 +172,11 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_my-reservations_my-reservations_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../my-reservations/my-reservations.module */ 40121)).then((m) => m.MyReservationsPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_my-reservations_my-reservations_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../my-reservations/my-reservations.module */ 40121)).then((m) => m.MyReservationsPageModule),
                     },
                     {
                         path: 'my-reservations-details/:id',
-                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("src_app_modules_my-reservations-details_my-reservations-details_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../my-reservations-details/my-reservations-details.module */ 80845)).then((m) => m.MyReservationsDetailsPageModule),
+                        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_components_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_my-reservations-details_my-reservations-details_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./../my-reservations-details/my-reservations-details.module */ 80845)).then((m) => m.MyReservationsDetailsPageModule),
                     },
                 ],
             },
@@ -256,17 +256,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TabsPage": () => (/* binding */ TabsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./tabs.page.html */ 26618);
 /* harmony import */ var _tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.scss */ 88835);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+
 
 
 
 
 let TabsPage = class TabsPage {
-    constructor() {
+    constructor(auth) {
+        this.auth = auth;
         this.selectedTab = 'main';
+        this.isLogined = false;
         this.tabsData = [
             {
                 tabName: 'main',
@@ -290,17 +294,30 @@ let TabsPage = class TabsPage {
             },
         ];
     }
-    ngOnInit() { }
+    ngOnInit() {
+        this.auth.getNoOfNotifications().subscribe((val) => {
+            console.log('noOfNotifications :' + val);
+            if (val != 0) {
+                this.noOfNotifications = val;
+            }
+        });
+        this.auth.isAuthenticated.subscribe((val) => {
+            console.log('is logined:' + val);
+            this.isLogined = val;
+        });
+    }
     setCurrentTab() {
         this.selectedTab = this.tabs.getSelected();
     }
 };
-TabsPage.ctorParameters = () => [];
+TabsPage.ctorParameters = () => [
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService }
+];
 TabsPage.propDecorators = {
-    tabs: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ViewChild, args: ['tabs', { static: false },] }]
+    tabs: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.ViewChild, args: ['tabs', { static: false },] }]
 };
-TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-tabs',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -321,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-tabs #tabs (ionTabsDidChange)=\"setCurrentTab()\">\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button [ngClass]=\"selectedTab==tab.tabName?'selected':''\" [tab]=\"tab.tabName\" *ngFor=\"let tab of tabsData\">\n      <ion-icon\n        [src]=\"selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon\"\n      ></ion-icon>\n      <ion-label [ngClass]=\"selectedTab==tab.tabName?'selected-label':''\" > {{tab.tabName|translate}} </ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-tabs #tabs (ionTabsDidChange)=\"setCurrentTab()\">\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button\n      [ngClass]=\"selectedTab==tab.tabName?'selected':''\"\n      [tab]=\"tab.tabName\"\n      *ngFor=\"let tab of tabsData\"\n    >\n    <ion-badge *ngIf=\"tab.tabName=='notifications' && noOfNotifications!=0 && isLogined\" color=\"primary\">\n      <span ngClass=\"badge-color\">{{noOfNotifications}}</span>\n    </ion-badge>\n      <ion-icon\n        [src]=\"selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon\"\n      ></ion-icon>\n      <ion-label [ngClass]=\"selectedTab==tab.tabName?'selected-label':''\">\n        {{tab.tabName|translate}}\n      </ion-label>\n     \n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs>\n");
 
 /***/ }),
 

@@ -96,12 +96,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MyReservationsDetailsPage": () => (/* binding */ MyReservationsDetailsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations-details.page.html */ 38347);
 /* harmony import */ var _my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-reservations-details.page.scss */ 73029);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_reservations_reservations_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/reservations/reservations.service */ 29105);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+
+
+
 
 
 
@@ -109,22 +115,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MyReservationsDetailsPage = class MyReservationsDetailsPage {
-    constructor(langaugeservice, util) {
+    constructor(langaugeservice, util, reservationsService, auth, activatedRoute) {
         this.langaugeservice = langaugeservice;
         this.util = util;
+        this.reservationsService = reservationsService;
+        this.auth = auth;
+        this.activatedRoute = activatedRoute;
         this.platform = this.util.platform;
+        this.showOrdersByID();
+    }
+    showOrdersByID() {
+        this.auth.getUserIDObservable().subscribe((val) => {
+            this.orderData = {
+                lang: this.langaugeservice.getLanguage(),
+                user_id: val == 0 ? 1 : val,
+                order_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+            };
+            console.log(JSON.stringify(this.orderData));
+            this.showAllOrdersByID(this.orderData);
+        });
+    }
+    showAllOrdersByID(orderData) {
+        console.log(JSON.stringify(orderData));
+        this.util.showLoadingSpinner().then((__) => {
+            this.reservationsService.showOrderByID(orderData).subscribe((data) => {
+                if (data.key == 1) {
+                    this.util.showMessage(data.msg);
+                    console.log('order data :' + JSON.stringify(data.data));
+                    this.orderDetials = data.data;
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
     }
 };
 MyReservationsDetailsPage.ctorParameters = () => [
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
+    { type: src_app_services_reservations_reservations_service__WEBPACK_IMPORTED_MODULE_4__.ReservationsService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute }
 ];
-MyReservationsDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
-        selector: "app-my-reservations-details",
+MyReservationsDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+        selector: 'app-my-reservations-details',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
@@ -144,7 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'my-reservations-details'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/my-reservations'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\" >\n  <div class=\"container\">\n    <img [src]=\"ItemDetails.image \" />\n  </div>\n  <app-custom-details\n    [ItemDetails]=\"ItemDetails\"\n    [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{ItemDetails.arrivalTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{ItemDetails.leftTime}} </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{ItemDetails.leftTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{ItemDetails.leftDate}} </span>\n      </p>\n    </div>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'my-reservations-details'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/my-reservations'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\" >\n  <div class=\"container\">\n    <img [src]=\"orderDetials?.department_image \" />\n  </div>\n  <app-custom-details\n    [OrderDetails]=\"orderDetials\"\n    [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <!-- <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{orderDetials?.order_date}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderDetials?.order_date}} </span>\n      </p> -->\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{orderDetials?.start_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderDetials?.start_date}} </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <!-- <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{orderDetials?.order_date}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} \n          :{{orderDetials?.order_date}} </span>\n      </p> -->\n\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{orderDetials?.end_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} :{{orderDetials?.end_date}} </span>\n      </p>\n    </div>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

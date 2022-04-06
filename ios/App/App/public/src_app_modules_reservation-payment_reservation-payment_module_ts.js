@@ -96,15 +96,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ReservationPaymentPage": () => (/* binding */ ReservationPaymentPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_payment_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation-payment.page.html */ 54427);
 /* harmony import */ var _reservation_payment_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation-payment.page.scss */ 35201);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ 29243);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
+/* harmony import */ var src_app_models_orders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/models/orders */ 76857);
+/* harmony import */ var src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/items/items.service */ 17118);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_services_reservations_reservations_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/reservations/reservations.service */ 29105);
+
+
+
+
 
 
 
@@ -114,56 +121,129 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ReservationPaymentPage = class ReservationPaymentPage {
-    constructor(langaugeservice, dataService, language, util) {
+    constructor(langaugeservice, dataService, language, util, auth, items, activatedRoute, reservationsService, router) {
         this.langaugeservice = langaugeservice;
         this.dataService = dataService;
         this.language = language;
         this.util = util;
-        this.ItemDetails = {
-            name: 'اسم الاستراحه',
-            rating: '3+',
-            id: 1,
-            image: './../../../assets/images/1024-500.png',
-            city: 'الرياض',
-            address: ' السعودية',
-            price: 1120,
-            unit: 'currency',
-            perUnit: 'one night',
-            arrivalTime: '‏12.00 مساءا',
-            leftTime: '‏12.00 صباحا',
-            arrivalDate: '',
-            leftDate: '',
-            isFav: false,
-            description: '',
-            reservationRules: '',
-            catID: 0,
-        };
+        this.auth = auth;
+        this.items = items;
+        this.activatedRoute = activatedRoute;
+        this.reservationsService = reservationsService;
+        this.router = router;
+        this.paymentMethod = false;
         this.platform = this.util.platform;
+        console.log(this.activatedRoute.snapshot.paramMap.get('departmetId'));
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
-        this.ItemDetails.arrivalDate =
-            this.getDay(this.dataService.getDates().from, this.language.getLanguage()) +
-                this.getFormattedDate(this.dataService.getDates().from, this.language.getLanguage());
-        this.ItemDetails.leftDate =
-            this.getDay(this.dataService.getDates().to, this.language.getLanguage()) +
-                this.getFormattedDate(this.dataService.getDates().to, this.language.getLanguage());
+        this.getIntialOrderData();
+        this.getItemDetails();
     }
-    getFormattedDate(date, lang) {
-        return moment__WEBPACK_IMPORTED_MODULE_4__(date).format('L');
+    getIntialOrderData() {
+        this.auth.getUserIDObservable().subscribe((val) => {
+            this.orderData = {
+                lang: this.langaugeservice.getLanguage(),
+                user_id: val,
+                department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+                start_date: this.util.getDay(this.dataService.getDates().from, this.language.getLanguage()) +
+                    ' ' +
+                    this.util.getFormattedDate(this.dataService.getDates().from, 'L', this.language.getLanguage()),
+                start_time: this.util.getTime(this.dataService.getDates().from, this.language.getLanguage()),
+                end_date: this.util.getDay(this.dataService.getDates().to, this.language.getLanguage()) +
+                    ' ' +
+                    this.util.getFormattedDate(this.dataService.getDates().to, 'L', this.language.getLanguage()),
+                end_time: this.util.getTime(this.dataService.getDates().to, this.language.getLanguage()),
+            };
+            console.log('order data intial :' + JSON.stringify(this.orderData));
+        });
     }
-    getDay(date, lang) {
-        return moment__WEBPACK_IMPORTED_MODULE_4__(date).locale(lang).format('dddd');
+    getItemDetails() {
+        this.auth.getUserIDObservable().subscribe((val) => {
+            this.departmentData = {
+                lang: this.langaugeservice.getLanguage(),
+                department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+                user_id: val == 0 ? 1 : val,
+            };
+        });
+        this.util.showLoadingSpinner().then((__) => {
+            this.items.showDepartmentByID(this.departmentData).subscribe((data) => {
+                if (data.key == 1) {
+                    this.itemDetails = data.data;
+                    this.orderData.total_after_promo =
+                        (this.util.getDatesDifference(this.dataService.getDates().from, this.dataService.getDates().to) +
+                            1) *
+                            this.itemDetails.price;
+                    console.log('total : ' + this.orderData.total_after_promo);
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
+    }
+    setOrderData() {
+        if (this.paymentMethod) {
+            this.auth.getUserIDObservable().subscribe((val) => {
+                this.orderData = {
+                    lang: this.langaugeservice.getLanguage(),
+                    user_id: val,
+                    department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+                    start_date: this.util.getFormattedDate(this.dataService.getDates().from, 'YYYY-MM-DD', this.language.getLanguage()),
+                    start_time: this.util.getTime(this.dataService.getDates().from, this.language.getLanguage()),
+                    start_day: this.util.getDay(this.dataService.getDates().from, this.language.getLanguage()),
+                    end_date: this.util.getFormattedDate(this.dataService.getDates().to, 'YYYY-MM-DD', this.language.getLanguage()),
+                    end_time: this.util.getTime(this.dataService.getDates().to, this.language.getLanguage()),
+                    end_day: this.util.getDay(this.dataService.getDates().to, this.language.getLanguage()),
+                    total_after_promo: (this.util.getDatesDifference(this.dataService.getDates().from, this.dataService.getDates().to) +
+                        1) *
+                        this.itemDetails.price,
+                    total_before_promo: (this.util.getDatesDifference(this.dataService.getDates().from, this.dataService.getDates().to) +
+                        1) *
+                        this.itemDetails.price,
+                    payment_method: src_app_models_orders__WEBPACK_IMPORTED_MODULE_6__.PaymentMethod.cash,
+                };
+                console.log('order data to send to backend : ' + JSON.stringify(this.orderData));
+                console.log('days :  ' +
+                    this.util.getDatesDifference(this.dataService.getDates().from, this.dataService.getDates().to));
+            });
+            this.storeOrder(this.orderData);
+        }
+        else {
+            console.log('please choose payment method');
+            this.util.showMessage('choose payment method');
+        }
+    }
+    setPaymentMethod($event) {
+        this.paymentMethod = $event.detail.value;
+    }
+    storeOrder(storeData) {
+        this.util.showLoadingSpinner().then((__) => {
+            this.reservationsService.storeOrder(storeData).subscribe((data) => {
+                if (data.key == 1) {
+                    this.util.showMessage(data.msg);
+                    this.router.navigateByUrl('/tabs/my-reservations');
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
 };
 ReservationPaymentPage.ctorParameters = () => [
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
     { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService }
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService },
+    { type: src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_7__.ItemsService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.ActivatedRoute },
+    { type: src_app_services_reservations_reservations_service__WEBPACK_IMPORTED_MODULE_8__.ReservationsService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router }
 ];
-ReservationPaymentPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+ReservationPaymentPage = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-reservation-payment',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_payment_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_reservation_payment_page_scss__WEBPACK_IMPORTED_MODULE_1__]
@@ -184,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main/reservation'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\" >\n  <div class=\"container\">\n    <img [src]=\"ItemDetails.image \" />\n  </div>\n\n  <app-custom-details\n    [ItemDetails]=\"ItemDetails\" [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{ItemDetails.arrivalTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"arrival-date\"|translate}} :{{ItemDetails.arrivalDate}}\n        </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{ItemDetails.leftTime}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span>\n          {{\"left-date\"|translate}} :{{ItemDetails.leftDate}}\n        </span>\n      </p>\n    </div>\n  </div>\n\n  <div class=\"fees\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">{{ \"fees\"|translate }}</h5>\n\n    <div class=\"fees-details\">\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n         {{ItemDetails.unit |translate}}* {{ItemDetails.price}}\n        </p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n          {{ItemDetails.price}}   {{ItemDetails.perUnit |translate}} \n        </p>\n      </div>\n    </div>\n\n    <hr class=\"separator\" />\n\n    <div class=\"fees-total\">\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">{{\"total\"|translate}}</p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">\n          {{ItemDetails.price}} {{ItemDetails.unit|translate}}\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"payment-method\">\n    <ion-item lines=\"none\">\n      <ion-label class=\"fn-14 black-color dalel-Regular\" [ngClass]=\"currentlangauge == 'ar' ? 'align-right':'align-left'\">\n        {{\"pay on arrival\"|translate}}\n      </ion-label>\n      <ion-checkbox color=\"secondary\" slot=\"start\" value=\"true\"></ion-checkbox>\n    </ion-item>\n  </div>\n\n  <ion-button expand=\"block\" routerLink=\"/tabs/main\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"confirm reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main/reservation/'+itemDetails?.id\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <div class=\"container\">\n    <img [src]=\"itemDetails?.first_image \" />\n  </div>\n\n  <app-custom-details\n    [ItemDetails]=\"itemDetails\"\n    [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{orderData?.start_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderData?.start_date}} </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{orderData?.end_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} :{{orderData?.end_date}} </span>\n      </p>\n    </div>\n  </div>\n\n  <div class=\"fees\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">{{ \"fees\"|translate }}</h5>\n\n    <div class=\"fees-details\">\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n          {{itemDetails?.price}} {{'currency' |translate}}\n        </p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold\">\n          {{itemDetails?.price}} {{'one night' |translate}}\n        </p>\n      </div>\n    </div>\n\n    <hr class=\"separator\" />\n\n    <div class=\"fees-total\">\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">{{\"total\"|translate}}</p>\n      </div>\n      <div>\n        <p class=\"fn-14 dalel-Bold primary-color\">\n          {{orderData?.total_after_promo}} {{'currency'|translate}}\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"payment-method\">\n    <ion-item lines=\"none\">\n      <ion-label\n        class=\"fn-14 black-color dalel-Regular\"\n        [ngClass]=\"currentlangauge == 'ar' ? 'align-right':'align-left'\"\n      >\n        {{\"pay on arrival\"|translate}}\n      </ion-label>\n      <ion-checkbox\n        color=\"secondary\"\n        slot=\"start\"\n        value=\"cash\"\n        [(ngModel)]=\"paymentMethod\"\n        \n      ></ion-checkbox>\n    </ion-item>\n  </div>\n\n  <ion-button expand=\"block\" (click)=\"setOrderData()\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"confirm reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 

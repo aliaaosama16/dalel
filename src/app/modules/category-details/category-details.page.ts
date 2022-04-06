@@ -61,7 +61,7 @@ export class CategoryDetailsPage implements OnInit {
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
     private favouritesService: FavouritesService,
-    private router:Router
+    private router: Router
   ) {
     this.platform = this.util.platform;
   }
@@ -188,15 +188,13 @@ export class CategoryDetailsPage implements OnInit {
   }
 
   storeOrder() {
-
-    this.auth.getUserIDObservable().subscribe((val) => {
-      if (val != 0) {
-        this.router.navigate(['/tabs/main/reservation/',this.itemDetails?.id]);
-      }else{
-        this.router.navigateByUrl('/login-register');
-      }
-    });
-
-    
+    console.log('is logined : ' + this.auth.isAuthenticated.value);
+    if (this.auth.isAuthenticated.value) {
+      this.util.setClosedDates(this.itemDetails?.closed_date);
+      this.router.navigate(['/tabs/main/reservation/', this.itemDetails?.id]);
+    } else {
+      this.util.showMessage('login now');
+      this.router.navigateByUrl('/login-register');
+    }
   }
 }

@@ -217,7 +217,10 @@ let AppComponent = class AppComponent {
                     this.logined = val;
                 });
             }
-            this.auth.getStoredUserID();
+            const userID = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__.Storage.get({ key: 'userID' });
+            this.auth.userID.next(parseInt(userID.value));
+            console.log('stored user id : ' + parseInt(userID.value));
+            //this.auth.getStoredUserID();
         });
     }
     logout() {
@@ -357,11 +360,14 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
                 },
             }),
         ],
-        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicRouteStrategy }, {
+        providers: [
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicRouteStrategy },
+            {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HTTP_INTERCEPTORS,
                 useClass: _services_interceptor_interceptor_service__WEBPACK_IMPORTED_MODULE_2__.InterceptorService,
-                multi: true
-            }],
+                multi: true,
+            },
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })
 ], AppModule);
@@ -509,12 +515,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AuthService": () => (/* binding */ AuthService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 41119);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 41119);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
+/* harmony import */ var _language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../language/language.service */ 40301);
+/* harmony import */ var _notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../notifications/notifications.service */ 31670);
+
+
 
 
 
@@ -522,10 +532,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AuthService = class AuthService {
-    constructor(httpclient) {
+    constructor(httpclient, languageService, userNotifications) {
         this.httpclient = httpclient;
-        this.isAuthenticated = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(false);
-        this.userID = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(0);
+        this.languageService = languageService;
+        this.userNotifications = userNotifications;
+        this.isAuthenticated = new rxjs__WEBPACK_IMPORTED_MODULE_4__.BehaviorSubject(false);
+        this.userID = new rxjs__WEBPACK_IMPORTED_MODULE_4__.BehaviorSubject(0);
+        this.noOfNotifications = new rxjs__WEBPACK_IMPORTED_MODULE_4__.BehaviorSubject(0);
         this.userToken = '';
     }
     storeStatusAfterRegisteration(data) {
@@ -544,12 +557,13 @@ let AuthService = class AuthService {
         this.store('userID', data.data.id);
     }
     removeRegistrationData() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.removeToken();
             this.removeUserID();
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'activation-status' });
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'confirmation-status' });
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'status' });
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.clear();
         });
     }
     isLogined() {
@@ -566,10 +580,29 @@ let AuthService = class AuthService {
         this.userID.next(0);
     }
     getStoredUserID() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: 'userID' });
             this.setUserID(parseInt(val.value));
+            this.setNoOfNotifications(parseInt(val.value));
         });
+    }
+    setNoOfNotifications(userId) {
+        // this.getUserIDObservable().subscribe((userID) => {
+        //   if (userID) {
+        const userData = {
+            lang: this.languageService.getLanguage(),
+            user_id: userId,
+        };
+        this.userNotifications.showNotification(userData).subscribe((data) => {
+            if (data.key == 1) {
+                this.noOfNotifications.next(data.data.length);
+            }
+        }, (err) => { });
+        // }
+        //});
+    }
+    getNoOfNotifications() {
+        return this.noOfNotifications.asObservable();
     }
     getUserIDObservable() {
         return this.userID.asObservable();
@@ -578,7 +611,7 @@ let AuthService = class AuthService {
         return this.isAuthenticated.asObservable();
     }
     storeToken(token) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: 'USER-TOKEN',
                 value: token,
@@ -586,14 +619,14 @@ let AuthService = class AuthService {
         });
     }
     removeToken() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
                 key: 'USER-TOKEN',
             });
         });
     }
     storeActivationStatus(status) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: 'activation-status',
                 value: status.toString(),
@@ -601,7 +634,7 @@ let AuthService = class AuthService {
         });
     }
     store(key, value) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: key,
                 value: value,
@@ -609,7 +642,7 @@ let AuthService = class AuthService {
         });
     }
     getUserToken() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: 'USER-TOKEN' });
             this.userToken = val.value;
         });
@@ -640,10 +673,12 @@ let AuthService = class AuthService {
     }
 };
 AuthService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClient },
+    { type: _language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: _notifications_notifications_service__WEBPACK_IMPORTED_MODULE_3__.NotificationsService }
 ];
-AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)({
         providedIn: 'root',
     })
 ], AuthService);
@@ -964,6 +999,49 @@ NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 
 /***/ }),
 
+/***/ 31670:
+/*!*****************************************************************!*\
+  !*** ./src/app/services/notifications/notifications.service.ts ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NotificationsService": () => (/* binding */ NotificationsService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
+
+
+let NotificationsService = class NotificationsService {
+    constructor(httpclient) {
+        this.httpclient = httpclient;
+    }
+    showNotification(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-notification`, data);
+    }
+    deleteNotification(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}delete-notification`, data);
+    }
+};
+NotificationsService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+NotificationsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root',
+    })
+], NotificationsService);
+
+
+
+/***/ }),
+
 /***/ 8873:
 /*!************************************************************!*\
   !*** ./src/app/services/resolver/data-resolver.service.ts ***!
@@ -1014,14 +1092,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UtilitiesService": () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/toast */ 85188);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/geolocation */ 2233);
 /* harmony import */ var _capacitor_device__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/device */ 94219);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ 29243);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -1046,14 +1127,14 @@ let UtilitiesService = class UtilitiesService {
         this.deviceID = val;
     }
     showMessage(message) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_toast__WEBPACK_IMPORTED_MODULE_0__.Toast.show({
                 text: this.translate.instant(message),
             });
         });
     }
     storeData(key, value) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: key,
                 value: value,
@@ -1061,7 +1142,7 @@ let UtilitiesService = class UtilitiesService {
         });
     }
     getDataByKey(key) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const val = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({ key: key });
             console.log('openBoarding stored value :' + JSON.stringify(val));
             this.getValue(val.value);
@@ -1071,7 +1152,8 @@ let UtilitiesService = class UtilitiesService {
         return value;
     }
     showLoadingSpinner() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            console.log('show loading');
             this.loading = yield this.loadingCtrl.create({
                 mode: 'md',
                 spinner: 'dots',
@@ -1082,9 +1164,12 @@ let UtilitiesService = class UtilitiesService {
             return this.loading;
         });
     }
+    dismissLoading() {
+        this.loadingCtrl.dismiss();
+    }
     getUserLocation() {
-        return new Promise((resolve, reject) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            const locationStatus = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.requestPermissions().then((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            const locationStatus = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.requestPermissions().then((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
                 if (res['location'] == 'granted') {
                     const coordinates = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_2__.Geolocation.getCurrentPosition();
                     console.log(coordinates);
@@ -1107,22 +1192,50 @@ let UtilitiesService = class UtilitiesService {
         });
     }
     getDeviceID() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const device = yield (yield _capacitor_device__WEBPACK_IMPORTED_MODULE_3__.Device.getId()).uuid;
             this.setDeviceID(device);
         });
     }
-    dismissLoading() {
-        this.loadingCtrl.dismiss();
+    setFilters(filtersData) {
+        this.filtersData = filtersData;
+    }
+    get filters() {
+        return this.filtersData;
+    }
+    setClosedDates(closedDates) {
+        this.closedDates = closedDates;
+    }
+    get itemClosedDates() {
+        return this.closedDates;
+    }
+    getFormattedDate(date, format, lang) {
+        return moment__WEBPACK_IMPORTED_MODULE_4__(date).format(format);
+    }
+    getDay(date, lang) {
+        return moment__WEBPACK_IMPORTED_MODULE_4__(date).locale(lang).format('dddd');
+    }
+    getTime(date, lang) {
+        let str = moment__WEBPACK_IMPORTED_MODULE_4__(date).format('LTS'); //hh:ii:ss
+        str = str.substring(0, str.length - 3);
+        return str;
+    }
+    getDatesDifference(dateFrom, dateTo) {
+        let days = Math.floor((new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /
+            1000 /
+            60 /
+            60 /
+            24);
+        return days;
     }
 };
 UtilitiesService.ctorParameters = () => [
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__.TranslateService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform }
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Platform }
 ];
-UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)({
+UtilitiesService = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Injectable)({
         providedIn: 'root',
     })
 ], UtilitiesService);
@@ -1454,6 +1567,307 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"main\">\n      <ion-header class=\"header-image ion-no-border\">\n        <img\n          [ngClass]=\"currentLanguage == 'ar' ? 'image-right' : 'image-left'\"\n          src=\"./../assets/images/512.png\"\n        />\n      </ion-header>\n\n      <ion-content class=\"my-menu-content\">\n        <ion-list class=\"ion-padding\">\n          <ion-menu-toggle\n            auto-hide=\"false\"\n            *ngFor=\"let p of pages; let i = index\"\n            (click)=\"selectedIndex = i\"\n            routerDirection=\"root\"\n            [routerLink]=\"[p.url]\"\n            [class.selected]=\"selectedIndex == i\"\n          >\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon\n                slot=\"start\"\n                [src]=\"selectedIndex == i ? p.iconActive : p.iconInActive\"\n                [ngClass]=\"currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'\"\n              ></ion-icon>\n              <ion-label\n                [ngStyle]=\"\n                  currentLanguage == 'ar'\n                    ? { 'margin-right': '10px' }\n                    : { 'margin-left': '10px' }\n                \"\n                >{{ p.title | translate }}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n\n      <ion-footer *ngIf=\"logined\" class=\"ion-padding logout-section ion-no-border\">\n        <ion-item lines=\"none\" detail=\"false\" (click)=\"logout()\">\n          <ion-icon slot=\"start\" src=\"./../assets/icon/logout.svg\"></ion-icon>\n          <ion-label>{{ \"logout\" | translate }}</ion-label>\n        </ion-item>\n      </ion-footer>\n    </ion-menu>\n\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
+
+/***/ }),
+
+/***/ 46700:
+/*!***************************************************!*\
+  !*** ./node_modules/moment/locale/ sync ^\.\/.*$ ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./af": 32139,
+	"./af.js": 32139,
+	"./ar": 22600,
+	"./ar-dz": 81001,
+	"./ar-dz.js": 81001,
+	"./ar-kw": 99842,
+	"./ar-kw.js": 99842,
+	"./ar-ly": 9826,
+	"./ar-ly.js": 9826,
+	"./ar-ma": 15452,
+	"./ar-ma.js": 15452,
+	"./ar-sa": 11802,
+	"./ar-sa.js": 11802,
+	"./ar-tn": 4094,
+	"./ar-tn.js": 4094,
+	"./ar.js": 22600,
+	"./az": 96375,
+	"./az.js": 96375,
+	"./be": 2086,
+	"./be.js": 2086,
+	"./bg": 85236,
+	"./bg.js": 85236,
+	"./bm": 81704,
+	"./bm.js": 81704,
+	"./bn": 94506,
+	"./bn-bd": 34466,
+	"./bn-bd.js": 34466,
+	"./bn.js": 94506,
+	"./bo": 47891,
+	"./bo.js": 47891,
+	"./br": 93348,
+	"./br.js": 93348,
+	"./bs": 84848,
+	"./bs.js": 84848,
+	"./ca": 35928,
+	"./ca.js": 35928,
+	"./cs": 31839,
+	"./cs.js": 31839,
+	"./cv": 59151,
+	"./cv.js": 59151,
+	"./cy": 35761,
+	"./cy.js": 35761,
+	"./da": 56686,
+	"./da.js": 56686,
+	"./de": 85177,
+	"./de-at": 2311,
+	"./de-at.js": 2311,
+	"./de-ch": 54407,
+	"./de-ch.js": 54407,
+	"./de.js": 85177,
+	"./dv": 79729,
+	"./dv.js": 79729,
+	"./el": 60430,
+	"./el.js": 60430,
+	"./en-au": 28430,
+	"./en-au.js": 28430,
+	"./en-ca": 61139,
+	"./en-ca.js": 61139,
+	"./en-gb": 56747,
+	"./en-gb.js": 56747,
+	"./en-ie": 79466,
+	"./en-ie.js": 79466,
+	"./en-il": 52121,
+	"./en-il.js": 52121,
+	"./en-in": 41167,
+	"./en-in.js": 41167,
+	"./en-nz": 62030,
+	"./en-nz.js": 62030,
+	"./en-sg": 43646,
+	"./en-sg.js": 43646,
+	"./eo": 73126,
+	"./eo.js": 73126,
+	"./es": 38819,
+	"./es-do": 69293,
+	"./es-do.js": 69293,
+	"./es-mx": 65304,
+	"./es-mx.js": 65304,
+	"./es-us": 66068,
+	"./es-us.js": 66068,
+	"./es.js": 38819,
+	"./et": 23291,
+	"./et.js": 23291,
+	"./eu": 1400,
+	"./eu.js": 1400,
+	"./fa": 70043,
+	"./fa.js": 70043,
+	"./fi": 16138,
+	"./fi.js": 16138,
+	"./fil": 11466,
+	"./fil.js": 11466,
+	"./fo": 76803,
+	"./fo.js": 76803,
+	"./fr": 65523,
+	"./fr-ca": 697,
+	"./fr-ca.js": 697,
+	"./fr-ch": 69001,
+	"./fr-ch.js": 69001,
+	"./fr.js": 65523,
+	"./fy": 21116,
+	"./fy.js": 21116,
+	"./ga": 66151,
+	"./ga.js": 66151,
+	"./gd": 93094,
+	"./gd.js": 93094,
+	"./gl": 11279,
+	"./gl.js": 11279,
+	"./gom-deva": 64458,
+	"./gom-deva.js": 64458,
+	"./gom-latn": 66320,
+	"./gom-latn.js": 66320,
+	"./gu": 78658,
+	"./gu.js": 78658,
+	"./he": 52153,
+	"./he.js": 52153,
+	"./hi": 98732,
+	"./hi.js": 98732,
+	"./hr": 84960,
+	"./hr.js": 84960,
+	"./hu": 76339,
+	"./hu.js": 76339,
+	"./hy-am": 11862,
+	"./hy-am.js": 11862,
+	"./id": 71068,
+	"./id.js": 71068,
+	"./is": 61260,
+	"./is.js": 61260,
+	"./it": 1007,
+	"./it-ch": 78063,
+	"./it-ch.js": 78063,
+	"./it.js": 1007,
+	"./ja": 6854,
+	"./ja.js": 6854,
+	"./jv": 92390,
+	"./jv.js": 92390,
+	"./ka": 35958,
+	"./ka.js": 35958,
+	"./kk": 67216,
+	"./kk.js": 67216,
+	"./km": 61061,
+	"./km.js": 61061,
+	"./kn": 24060,
+	"./kn.js": 24060,
+	"./ko": 55216,
+	"./ko.js": 55216,
+	"./ku": 50894,
+	"./ku.js": 50894,
+	"./ky": 609,
+	"./ky.js": 609,
+	"./lb": 3591,
+	"./lb.js": 3591,
+	"./lo": 38381,
+	"./lo.js": 38381,
+	"./lt": 56118,
+	"./lt.js": 56118,
+	"./lv": 67889,
+	"./lv.js": 67889,
+	"./me": 94274,
+	"./me.js": 94274,
+	"./mi": 39226,
+	"./mi.js": 39226,
+	"./mk": 528,
+	"./mk.js": 528,
+	"./ml": 27938,
+	"./ml.js": 27938,
+	"./mn": 35456,
+	"./mn.js": 35456,
+	"./mr": 94393,
+	"./mr.js": 94393,
+	"./ms": 93647,
+	"./ms-my": 33049,
+	"./ms-my.js": 33049,
+	"./ms.js": 93647,
+	"./mt": 26097,
+	"./mt.js": 26097,
+	"./my": 66277,
+	"./my.js": 66277,
+	"./nb": 67245,
+	"./nb.js": 67245,
+	"./ne": 3988,
+	"./ne.js": 3988,
+	"./nl": 42557,
+	"./nl-be": 20478,
+	"./nl-be.js": 20478,
+	"./nl.js": 42557,
+	"./nn": 9046,
+	"./nn.js": 9046,
+	"./oc-lnc": 83131,
+	"./oc-lnc.js": 83131,
+	"./pa-in": 51731,
+	"./pa-in.js": 51731,
+	"./pl": 8409,
+	"./pl.js": 8409,
+	"./pt": 41178,
+	"./pt-br": 56558,
+	"./pt-br.js": 56558,
+	"./pt.js": 41178,
+	"./ro": 84138,
+	"./ro.js": 84138,
+	"./ru": 73380,
+	"./ru.js": 73380,
+	"./sd": 42889,
+	"./sd.js": 42889,
+	"./se": 22774,
+	"./se.js": 22774,
+	"./si": 53776,
+	"./si.js": 53776,
+	"./sk": 9597,
+	"./sk.js": 9597,
+	"./sl": 93871,
+	"./sl.js": 93871,
+	"./sq": 44228,
+	"./sq.js": 44228,
+	"./sr": 40774,
+	"./sr-cyrl": 61928,
+	"./sr-cyrl.js": 61928,
+	"./sr.js": 40774,
+	"./ss": 83176,
+	"./ss.js": 83176,
+	"./sv": 52422,
+	"./sv.js": 52422,
+	"./sw": 71621,
+	"./sw.js": 71621,
+	"./ta": 5731,
+	"./ta.js": 5731,
+	"./te": 18025,
+	"./te.js": 18025,
+	"./tet": 53934,
+	"./tet.js": 53934,
+	"./tg": 99958,
+	"./tg.js": 99958,
+	"./th": 84251,
+	"./th.js": 84251,
+	"./tk": 65494,
+	"./tk.js": 65494,
+	"./tl-ph": 38568,
+	"./tl-ph.js": 38568,
+	"./tlh": 73158,
+	"./tlh.js": 73158,
+	"./tr": 49574,
+	"./tr.js": 49574,
+	"./tzl": 64311,
+	"./tzl.js": 64311,
+	"./tzm": 99990,
+	"./tzm-latn": 42380,
+	"./tzm-latn.js": 42380,
+	"./tzm.js": 99990,
+	"./ug-cn": 52356,
+	"./ug-cn.js": 52356,
+	"./uk": 54934,
+	"./uk.js": 54934,
+	"./ur": 84515,
+	"./ur.js": 84515,
+	"./uz": 40058,
+	"./uz-latn": 41875,
+	"./uz-latn.js": 41875,
+	"./uz.js": 40058,
+	"./vi": 13325,
+	"./vi.js": 13325,
+	"./x-pseudo": 39208,
+	"./x-pseudo.js": 39208,
+	"./yo": 18742,
+	"./yo.js": 18742,
+	"./zh-cn": 42378,
+	"./zh-cn.js": 42378,
+	"./zh-hk": 21074,
+	"./zh-hk.js": 21074,
+	"./zh-mo": 74671,
+	"./zh-mo.js": 74671,
+	"./zh-tw": 20259,
+	"./zh-tw.js": 20259
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 46700;
 
 /***/ }),
 

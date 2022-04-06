@@ -17,6 +17,7 @@ export class UtilitiesService {
   deviceID: string;
   userLocation = { lat: 0, lng: 0 };
   filtersData:FilterData;
+  closedDates:Array<string>
   constructor(
     private translate: TranslateService,
     private loadingCtrl: LoadingController,
@@ -57,6 +58,7 @@ export class UtilitiesService {
   }
 
   public async showLoadingSpinner() {
+    console.log('show loading')
     this.loading = await this.loadingCtrl.create({
       mode: 'md',
       spinner: 'dots',
@@ -110,6 +112,14 @@ export class UtilitiesService {
 
   get filters(){
     return this.filtersData;
+  }
+
+  setClosedDates(closedDates:Array<string> ){
+    this.closedDates=closedDates;
+  }
+
+  get itemClosedDates(){
+    return this.closedDates;
   }
 
   getFormattedDate(date, format: any, lang?) {

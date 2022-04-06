@@ -94,16 +94,17 @@ export class AppComponent {
 
   async getLoginStatus() {
     const loginStatus = await Storage.get({ key: 'status' });
+
     if (loginStatus.value == Status.Active) {
       this.auth.isLogined();
       this.auth.getLoginedObservable().subscribe((val) => {
         this.logined = val;
       });
-     
-      
     }
-
-    this.auth.getStoredUserID();
+    const userID = await Storage.get({ key: 'userID' });
+    this.auth.userID.next(parseInt(userID.value));
+    console.log('stored user id : ' + parseInt(userID.value));
+    //this.auth.getStoredUserID();
   }
 
   async logout() {

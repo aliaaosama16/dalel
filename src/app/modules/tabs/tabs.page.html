@@ -5,7 +5,7 @@
       [tab]="tab.tabName"
       *ngFor="let tab of tabsData"
     >
-    <ion-badge *ngIf="tab.tabName=='notifications' && noOfNotifications!=0" color="primary">
+    <ion-badge *ngIf="tab.tabName=='notifications' && noOfNotifications!=0 && isLogined" color="primary">
       <span ngClass="badge-color">{{noOfNotifications}}</span>
     </ion-badge>
       <ion-icon

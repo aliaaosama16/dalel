@@ -222,6 +222,7 @@ let LoginRegisterPage = class LoginRegisterPage {
                         if (data.key == 1) {
                             console.log('register res :' + JSON.stringify(data));
                             this.util.showMessage(data.msg);
+                            this.auth.userID.next(data.data.id);
                             this.auth.storeStatusAfterRegisteration(data);
                             this.router.navigateByUrl('/code');
                         }
@@ -260,6 +261,7 @@ let LoginRegisterPage = class LoginRegisterPage {
                         if (data.status == src_app_models_loginData__WEBPACK_IMPORTED_MODULE_4__.Status.Active) {
                             this.router.navigateByUrl('/tabs/main');
                             this.auth.storeStatusAfterLogin(data);
+                            this.auth.userID.next(data.data.id);
                         }
                         else if (data.status == src_app_models_loginData__WEBPACK_IMPORTED_MODULE_4__.Status.NonActive) {
                             this.auth.setUserID(data.data.id);

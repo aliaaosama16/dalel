@@ -121,6 +121,7 @@ let CategoryListPage = class CategoryListPage {
         this.langaugeservice = langaugeservice;
         this.util = util;
         this.items = items;
+        this.noItems = false;
         this.platform = this.util.platform;
         //this.loadItems();
     }
@@ -144,6 +145,9 @@ let CategoryListPage = class CategoryListPage {
                 if (data.key == 1) {
                     console.log('sections data : ' + JSON.stringify(data));
                     //this.sections = data.data.sections;
+                    if (data.data.length == 0) {
+                        this.noItems = true;
+                    }
                     this.sectionAllItems = data.data;
                 }
                 this.util.dismissLoading();
@@ -214,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <app-custom-card\n    [itemDetails]=\"item\"\n    [forwardRoute]=\"'/tabs/main'\"\n    *ngFor=\"let item of sectionAllItems\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <div *ngIf=\"noItems\" class=\"no-data\">\n    <p>{{\"no items in this section\"|translate}}</p>\n   </div>\n  \n  <app-custom-card\n    [itemDetails]=\"item\"\n    [forwardRoute]=\"'/tabs/main'\"\n    *ngFor=\"let item of sectionAllItems\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
 
 /***/ }),
 

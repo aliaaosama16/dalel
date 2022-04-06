@@ -34,7 +34,7 @@ export class ReservationPaymentPage implements OnInit {
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
     private reservationsService: ReservationsService,
-    private router:Router
+    private router: Router
   ) {
     this.platform = this.util.platform;
     console.log(this.activatedRoute.snapshot.paramMap.get('departmetId'));
@@ -192,29 +192,10 @@ export class ReservationPaymentPage implements OnInit {
       console.log('please choose payment method');
       this.util.showMessage('choose payment method');
     }
-
-    // console.log(
-    //   'check choose payment_method : ' + this.orderData.payment_method
-    // );
-    // if (this.orderData.payment_method == undefined) {
-    //   console.log('please choose payment method');
-    //   this.util.showMessage('choose payment method');
-    // } else {
-    //   this.storeOrder(this.orderData);
-    // }
   }
 
   setPaymentMethod($event) {
     this.paymentMethod = $event.detail.value;
-    // if ($event.detail.value) {
-    //   this.orderData.payment_method = PaymentMethod.cash;
-    //   //this.setOrderData();
-    //   this.paymentMethod=true;
-    // } else {
-    //   this.paymentMethod=fa
-    //   console.log(' choose payment method');
-    //   this.util.showMessage('choose payment method');
-    // }
   }
 
   storeOrder(storeData: StoreOrderData) {

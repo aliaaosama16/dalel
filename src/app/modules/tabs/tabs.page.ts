@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class TabsPage implements OnInit {
   selectedTab = 'main';
   @ViewChild('tabs', { static: false }) tabs: IonTabs;
-  noOfNotifications:number;
+  noOfNotifications: number;
+  isLogined: boolean = false;
 
   tabsData = [
     {
@@ -36,14 +37,18 @@ export class TabsPage implements OnInit {
     },
   ];
 
-  constructor(private auth:AuthService) {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit() {
     this.auth.getNoOfNotifications().subscribe((val) => {
       console.log('noOfNotifications :' + val);
       if (val != 0) {
-       this.noOfNotifications=val
+        this.noOfNotifications = val;
       }
+    });
+    this.auth.isAuthenticated.subscribe((val) => {
+      console.log('is logined:'+val)
+      this.isLogined = val;
     });
   }
 

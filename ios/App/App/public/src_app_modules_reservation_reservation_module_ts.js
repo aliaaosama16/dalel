@@ -2103,17 +2103,21 @@ __webpack_require__.r(__webpack_exports__);
 //mport { CalendarComponentOptions } from 'ion2-calendar';
 // import { CalendarComponentOptions } from 'ion2-calendar';
 let ReservationPage = class ReservationPage {
-    constructor(router, dataService, util, auth, langaugeservice) {
+    constructor(router, dataService, util, auth, langaugeservice, activatedRoute) {
         this.router = router;
         this.dataService = dataService;
         this.util = util;
         this.auth = auth;
         this.langaugeservice = langaugeservice;
+        this.activatedRoute = activatedRoute;
         this.optionsRange = {
             pickMode: 'range',
             showAdjacentMonthDay: true,
             showMonthPicker: true,
             showToggleButtons: true,
+            color: 'primary',
+            from: new Date(),
+            daysConfig: [],
         };
         this.platform = this.util.platform;
     }
@@ -2121,7 +2125,22 @@ let ReservationPage = class ReservationPage {
         console.log('selecte dates : ' + JSON.stringify(selectedDates));
         this.dateRange = selectedDates;
     }
-    ngOnInit() { }
+    ngOnInit() {
+        console.log('item closed dates :' + this.util.itemClosedDates);
+        // this.optionsRange.daysConfig.forEach((date) => {
+        //   this.util.itemClosedDates.forEach((elem) => {
+        //     date.date = new Date(elem);
+        //     date.disable = true;
+        //   });
+        // });
+        for (let i = 0; i < this.util.itemClosedDates.length; i++) {
+            this.optionsRange.daysConfig.push({
+                date: new Date(this.util.itemClosedDates[i]),
+                disable: true,
+            });
+        }
+        console.log('closed dates :' + this.optionsRange.daysConfig);
+    }
     completeReservation() {
         console.log('selecte dates : ' + JSON.stringify(this.dateRange));
         if (this.dateRange == undefined) {
@@ -2129,7 +2148,10 @@ let ReservationPage = class ReservationPage {
         }
         else {
             this.dataService.setDates(this.dateRange);
-            this.router.navigateByUrl('/tabs/main/reservation-payment');
+            this.router.navigate([
+                '/tabs/main/reservation-payment',
+                parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+            ]);
         }
     }
 };
@@ -2138,7 +2160,8 @@ ReservationPage.ctorParameters = () => [
     { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_3__.DataService },
     { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
     { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__.LanguageService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute }
 ];
 ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({

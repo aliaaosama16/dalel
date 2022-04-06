@@ -922,6 +922,41 @@ const openURL = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ 76857:
+/*!**********************************!*\
+  !*** ./src/app/models/orders.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "OrderStatus": () => (/* binding */ OrderStatus),
+/* harmony export */   "StatusMap": () => (/* binding */ StatusMap),
+/* harmony export */   "PaymentMethod": () => (/* binding */ PaymentMethod)
+/* harmony export */ });
+var OrderStatus;
+(function (OrderStatus) {
+    OrderStatus[OrderStatus["current"] = 0] = "current";
+    OrderStatus[OrderStatus["finish"] = 1] = "finish";
+})(OrderStatus || (OrderStatus = {}));
+var StatusMap;
+(function (StatusMap) {
+    StatusMap[StatusMap["refused"] = 0] = "refused";
+    StatusMap[StatusMap["new"] = 1] = "new";
+    StatusMap[StatusMap["has_provider"] = 2] = "has_provider";
+    StatusMap[StatusMap["in_way"] = 3] = "in_way";
+    StatusMap[StatusMap["finish"] = 4] = "finish";
+})(StatusMap || (StatusMap = {}));
+var PaymentMethod;
+(function (PaymentMethod) {
+    PaymentMethod["cash"] = "cash";
+    PaymentMethod["transfer"] = "transfer";
+    PaymentMethod["online"] = "online";
+})(PaymentMethod || (PaymentMethod = {}));
+
+
+/***/ }),
+
 /***/ 62700:
 /*!***********************************************************!*\
   !*** ./src/app/services/favourites/favourites.service.ts ***!
@@ -1034,6 +1069,12 @@ let ItemsService = class ItemsService {
     data(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}sections`, data);
     }
+    getCitiesByCountryID(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}cities`, data);
+    }
+    getNeighborhoodsByCityID(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}neighborhoods`, data);
+    }
     home(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}home`, data);
     }
@@ -1041,6 +1082,9 @@ let ItemsService = class ItemsService {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}all-departments`, data);
     }
     allDepartmentsBySectionID(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}all-departments`, data);
+    }
+    allDepartmentsByFilters(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}all-departments`, data);
     }
     showDepartmentByID(data) {
@@ -1055,6 +1099,51 @@ ItemsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
         providedIn: 'root',
     })
 ], ItemsService);
+
+
+
+/***/ }),
+
+/***/ 29105:
+/*!***************************************************************!*\
+  !*** ./src/app/services/reservations/reservations.service.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReservationsService": () => (/* binding */ ReservationsService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
+
+
+let ReservationsService = class ReservationsService {
+    constructor(httpclient) {
+        this.httpclient = httpclient;
+    }
+    storeOrder(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}store-order`, data);
+    }
+    showAllOrdersByID(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-all-orders`, data);
+    }
+    showOrderByID(data) {
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}show-order`, data);
+    }
+};
+ReservationsService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+ReservationsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root',
+    })
+], ReservationsService);
 
 
 

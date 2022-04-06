@@ -159,6 +159,7 @@ export class LoginRegisterPage implements OnInit {
               if (data.key == 1) {
                 console.log('register res :' + JSON.stringify(data));
                 this.util.showMessage(data.msg);
+                this.auth.userID.next(data.data.id);
                 this.auth.storeStatusAfterRegisteration(data);
                 this.router.navigateByUrl('/code');
               } else {
@@ -201,6 +202,7 @@ export class LoginRegisterPage implements OnInit {
               if(data.status==Status.Active){
                 this.router.navigateByUrl('/tabs/main');
                 this.auth.storeStatusAfterLogin(data);
+                this.auth.userID.next(data.data.id);
               }else if(data.status==Status.NonActive){
                 this.auth. setUserID(data.data.id);
                 this.router.navigateByUrl('/code');
