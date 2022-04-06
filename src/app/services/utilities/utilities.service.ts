@@ -104,7 +104,7 @@ export class UtilitiesService {
   }
 
   
-  setFilters(filtersData:FilterData){
+  setFilters(filtersData:any){
     this.filtersData=filtersData;
   }
 

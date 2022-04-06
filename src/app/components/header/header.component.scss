@@ -16,14 +16,13 @@ ion-header {
   }
 }
 ion-toolbar {
- 
   --background: none !important;
   .toolbar-container {
     padding-inline-start: 0px !important;
     padding-inline-end: 0px !important;
   }
   .custom-title {
-    padding: 0 20px !important;
+    padding: 0px !important; //0 20px !important;
     margin-top: 18px !important;
   }
 

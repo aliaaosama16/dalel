@@ -80,8 +80,8 @@ export interface FilterData extends UserData{
   max_area?:number;
   min_price?:number;
   max_price?:number;
-  categories?:string[];
-  options?:string[];
+  categories?:string;//[];
+  options?:string;//[];
 }
 
 export interface FilterResponse extends GeneralResponse{

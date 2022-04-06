@@ -29,7 +29,9 @@ export class MainPage implements OnInit {
   configSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
-    pagination: true
+    pagination: true,
+    effect: 'fade',
+    autoplay:true
     // {
     //   el: '.swiper-pagination',
     //   clickable: true,
@@ -89,6 +91,7 @@ export class MainPage implements OnInit {
     private auth: AuthService,
     private items: ItemsService
   ) {
+    
     this.menuCtrl.enable(true, 'main');
     this.util.getUserLocation();
     this.platform = this.util.platform;
@@ -175,7 +178,7 @@ export class MainPage implements OnInit {
     // swiper.slideNext();
   }
 
-  doRefresh($event){
+  doRefresh($event) {
     this.auth.getUserIDObservable().subscribe((val) => {
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),

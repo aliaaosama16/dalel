@@ -20,7 +20,7 @@
     </h5>
 
     <div class="arrival-date-spacer">
-      <p class="arrival fn-14 dalel-Regular">
+      <!-- <p class="arrival fn-14 dalel-Regular">
         <img src="./../../../assets/icon/calender.svg" />
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
@@ -31,11 +31,24 @@
 
       <p class="arrival fn-14 dalel-Regular">
         <span> {{"arrival-date"|translate}} :{{orderDetials?.order_date}} </span>
+      </p> -->
+
+      <p class="arrival fn-14 dalel-Regular">
+        <img src="./../../../assets/icon/calender.svg" />
+        <span
+          [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
+        >
+          {{orderDetials?.start_time}}
+        </span>
+      </p>
+
+      <p class="arrival fn-14 dalel-Regular">
+        <span> {{"arrival-date"|translate}} :{{orderDetials?.start_date}} </span>
       </p>
     </div>
 
     <div class="left-date-spacer">
-      <p class="arrival fn-14 dalel-Regular">
+      <!-- <p class="arrival fn-14 dalel-Regular">
         <img src="./../../../assets/icon/calender.svg" />
         <span
           [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
@@ -45,7 +58,22 @@
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span> {{"left-date"|translate}} :{{orderDetials?.order_date}} </span>
+        <span> {{"left-date"|translate}} 
+          :{{orderDetials?.order_date}} </span>
+      </p> -->
+
+
+      <p class="arrival fn-14 dalel-Regular">
+        <img src="./../../../assets/icon/calender.svg" />
+        <span
+          [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
+        >
+          {{orderDetials?.end_time}}
+        </span>
+      </p>
+
+      <p class="arrival fn-14 dalel-Regular">
+        <span> {{"left-date"|translate}} :{{orderDetials?.end_date}} </span>
       </p>
     </div>
   </div>

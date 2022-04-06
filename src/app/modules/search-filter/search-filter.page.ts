@@ -95,13 +95,13 @@ export class SearchFilterPage implements OnInit {
   getItemsByFilters() {
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('user id :' + val);
-
+//console.log(typeof(JSON.parse('["item1", "item2", "item3"]')))
       this.filterData = {
         user_id: val,
         title: this.title,
         lang: this.currentlangauge,
-        categories: this.selectedCategories,
-        options: this.selectedOptions,
+        categories: JSON.stringify(this.selectedCategories).replace(/\\/g, ''),
+        options:  JSON.stringify(this.selectedOptions).replace(/\\/g, ''),
         max_area: this.max_area,
         min_area: this.min_area,
         min_price: this.min_price,
@@ -114,8 +114,8 @@ export class SearchFilterPage implements OnInit {
       };
     });
 
-    this.util.setFilters(this.filterData);
-
+    this.util.setFilters(JSON.stringify(this.filterData));
+console.log(this.filterData.categories.toString())
     console.log('filters ' + JSON.stringify(this.filterData));
     this.router.navigate(['/tabs/main/search-results']);
   }
