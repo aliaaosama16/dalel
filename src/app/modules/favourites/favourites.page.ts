@@ -43,7 +43,7 @@ export class FavouritesPage implements OnInit {
       this.favService.showFavourites(userData).subscribe(
         (data: DepartmentResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
             if(data.data.length==0){
               this.noFavourites=true;
             }

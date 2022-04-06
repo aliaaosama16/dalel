@@ -47,7 +47,7 @@ export class MyReservationsDetailsPage implements OnInit {
       this.reservationsService.showOrderByID(orderData).subscribe(
         (data: OrderDataResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
             console.log('order data :' + JSON.stringify(data.data));
             this.orderDetials=data.data
           }

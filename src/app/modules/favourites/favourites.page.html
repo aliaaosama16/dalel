@@ -24,7 +24,7 @@
           routerLink="/tabs/main/categories/{{item.section_id}}/{{item.id}}"
           *ngIf="item!=null"
         >
-          <img src="./../../../assets/images/512.png" />
+          <img [src]="item?.first_image" />
 
           <div class="price-container">
             <span class="white-color fn-12 dalel-Regular"

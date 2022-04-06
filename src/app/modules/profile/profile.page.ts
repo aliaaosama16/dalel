@@ -23,7 +23,7 @@ export class ProfilePage implements OnInit {
     private auth: AuthService,
     private language: LanguageService
   ) {
-    this.auth.getStoredUserID();
+    // this.auth.getStoredUserID();
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('get id from behavour subject if just logined' + val);
       if (val != 0) {
@@ -41,7 +41,7 @@ export class ProfilePage implements OnInit {
             this.userResponse = data;
             console.log('user all data :' + JSON.stringify(this.userResponse));
             this.auth.getStoredUserID();
-            this.getData = true;
+           // this.getData = true;
           } else {
             this.util.showMessage(data.msg);
           }
@@ -49,7 +49,7 @@ export class ProfilePage implements OnInit {
         },
         (err) => {
           this.util.dismissLoading();
-          this.getData = false;
+          //this.getData = false;
         }
       );
     });
@@ -77,9 +77,9 @@ export class ProfilePage implements OnInit {
         (data: UserResponse) => {
           if (data.key == 1) {
             this.userResponse = data;
-            console.log('user all data :' + JSON.stringify(this.userResponse));
-            this.auth.getStoredUserID();
-            this.getData = true;
+            // console.log('user all data :' + JSON.stringify(this.userResponse));
+            // this.auth.getStoredUserID();
+           // this.getData = true;
           } else {
             this.util.showMessage(data.msg);
           }
@@ -87,7 +87,7 @@ export class ProfilePage implements OnInit {
         },
         (err) => {
           $event.target.complete();
-          this.getData = false;
+         // this.getData = false;
         }
       );
     });

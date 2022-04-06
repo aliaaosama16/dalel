@@ -96,8 +96,6 @@ export class MainPage implements OnInit {
     this.util.getUserLocation();
     this.platform = this.util.platform;
     console.log('curret plt is ' + this.platform);
-  }
-  ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
     this.auth.getUserToken();
@@ -109,6 +107,9 @@ export class MainPage implements OnInit {
       };
       this.getHomeData(this.UserData);
     });
+  }
+  ngOnInit() {
+    
   }
 
   getHomeData(userData: UserData) {

@@ -1,18 +1,10 @@
-<app-header
-  [title]="'my-reservations-details'"
-  [isEditable]="false"
-  [backwardRoute]="'/tabs/my-reservations'"
-  [isMain]="false"
-  class="header-height"
-></app-header>
-<ion-content class="ion-padding" >
+<app-header [title]="'my-reservations-details'" [isEditable]="false" [backwardRoute]="'/tabs/my-reservations'"
+  [isMain]="false" class="header-height"></app-header>
+<ion-content class="ion-padding">
   <div class="container">
     <img [src]="orderDetials?.department_image " />
   </div>
-  <app-custom-details
-    [OrderDetails]="orderDetials"
-    [isDetailed]="false"
-  ></app-custom-details>
+  <app-custom-details [OrderDetails]="orderDetials" [isDetailed]="false"></app-custom-details>
 
   <div class="details">
     <h5 class="fn-14 dalel-Bold primary-color">
@@ -20,24 +12,9 @@
     </h5>
 
     <div class="arrival-date-spacer">
-      <!-- <p class="arrival fn-14 dalel-Regular">
-        <img src="./../../../assets/icon/calender.svg" />
-        <span
-          [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
-        >
-          {{orderDetials?.order_date}}
-        </span>
-      </p>
-
-      <p class="arrival fn-14 dalel-Regular">
-        <span> {{"arrival-date"|translate}} :{{orderDetials?.order_date}} </span>
-      </p> -->
-
       <p class="arrival fn-14 dalel-Regular">
         <img src="./../../../assets/icon/calender.svg" />
-        <span
-          [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'"
-        >
+        <span [ngClass]="currentlangauge == 'ar' ?  'margin-right' :'margin-left'">
           {{orderDetials?.start_time}}
         </span>
       </p>
@@ -48,26 +25,9 @@
     </div>
 
     <div class="left-date-spacer">
-      <!-- <p class="arrival fn-14 dalel-Regular">
-        <img src="./../../../assets/icon/calender.svg" />
-        <span
-          [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
-        >
-          {{orderDetials?.order_date}}
-        </span>
-      </p>
-
-      <p class="arrival fn-14 dalel-Regular">
-        <span> {{"left-date"|translate}} 
-          :{{orderDetials?.order_date}} </span>
-      </p> -->
-
-
       <p class="arrival fn-14 dalel-Regular">
         <img src="./../../../assets/icon/calender.svg" />
-        <span
-          [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'"
-        >
+        <span [ngClass]="currentlangauge == 'ar' ?  'margin-right':'margin-left'">
           {{orderDetials?.end_time}}
         </span>
       </p>

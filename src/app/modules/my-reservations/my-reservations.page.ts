@@ -53,7 +53,7 @@ export class MyReservationsPage implements OnInit {
       this.reservationsService.showAllOrdersByID(userOrdersData).subscribe(
         (data: OrderResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
             if (userOrdersData.status == 'current') {
               if (data.data.length == 0) {
                 this.noCurrentOrders = true;

@@ -22,7 +22,7 @@ export class AppComponent {
   currentLanguage: string = '';
   selectedIndex: number;
   logoutData: AuthData;
-  logined: boolean;
+  logined: boolean=this.auth.isAuthenticated.value;
 
   pages = [
     {
@@ -75,14 +75,17 @@ export class AppComponent {
     private fcmService: FcmService
   ) {
     this.initializeApp();
-    this.auth.getLoginedObservable().subscribe((val) => {
-      this.logined = val;
-    });
+    // this.auth.getLoginedObservable().subscribe((val) => {
+    //   this.logined = val;
+    // });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.languageService.setInitialAppLanguage();
+
+      this.logined=this.auth.isAuthenticated.value;
+      
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
@@ -92,18 +95,24 @@ export class AppComponent {
     });
   }
 
+ 
+
   async getLoginStatus() {
     const loginStatus = await Storage.get({ key: 'status' });
 
     if (loginStatus.value == Status.Active) {
       this.auth.isLogined();
-      this.auth.getLoginedObservable().subscribe((val) => {
-        this.logined = val;
-      });
+      // this.auth.getLoginedObservable().subscribe((val) => {
+      //   this.logined = val;
+      // });
+
+      
     }
     const userID = await Storage.get({ key: 'userID' });
-    this.auth.userID.next(parseInt(userID.value));
     console.log('stored user id : ' + parseInt(userID.value));
+    this.auth.setNoOfNotifications(parseInt(userID.value));
+    this.auth.userID.next(parseInt(userID.value));
+    
     //this.auth.getStoredUserID();
   }
 

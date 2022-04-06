@@ -199,17 +199,18 @@ export class LoginRegisterPage implements OnInit {
           (data: AuthResponse) => {
             if (data.key == 1) {
               console.log('login res :' + JSON.stringify(data));
-              if(data.status==Status.Active){
+              if (data.status == Status.Active) {
                 this.router.navigateByUrl('/tabs/main');
+               // window.location.reload();
                 this.auth.storeStatusAfterLogin(data);
-                this.auth.userID.next(data.data.id);
-              }else if(data.status==Status.NonActive){
-                this.auth. setUserID(data.data.id);
+                this.auth.setUserID(data.data.id);
+              } else if (data.status == Status.NonActive) {
                 this.router.navigateByUrl('/code');
-              }else if(data.status==Status.Blocked){
-                this.util.showMessage('you are blocked.Contact with management');
+              } else if (data.status == Status.Blocked) {
+                this.util.showMessage(
+                  'you are blocked.Contact with management'
+                );
               }
-            
             } else {
               this.util.showMessage(data.msg);
             }
@@ -274,7 +275,7 @@ export class LoginRegisterPage implements OnInit {
       : 'eye-off-outline';
     this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
   }
-  
+
   showRegisterConfirmPassword() {
     this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
     this.iconRegisterConfirmName = this.showLRegisterConfirmPass

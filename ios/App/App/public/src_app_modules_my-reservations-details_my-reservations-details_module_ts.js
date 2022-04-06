@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MyReservationsDetailsPage": () => (/* binding */ MyReservationsDetailsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations-details.page.html */ 38347);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations-details.page.html */ 38347);
 /* harmony import */ var _my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-reservations-details.page.scss */ 73029);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -140,7 +140,7 @@ let MyReservationsDetailsPage = class MyReservationsDetailsPage {
         this.util.showLoadingSpinner().then((__) => {
             this.reservationsService.showOrderByID(orderData).subscribe((data) => {
                 if (data.key == 1) {
-                    this.util.showMessage(data.msg);
+                    // this.util.showMessage(data.msg);
                     console.log('order data :' + JSON.stringify(data.data));
                     this.orderDetials = data.data;
                 }
@@ -164,7 +164,7 @@ MyReservationsDetailsPage.ctorParameters = () => [
 MyReservationsDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-my-reservations-details',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], MyReservationsDetailsPage);
@@ -183,7 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'my-reservations-details'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/my-reservations'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\" >\n  <div class=\"container\">\n    <img [src]=\"orderDetials?.department_image \" />\n  </div>\n  <app-custom-details\n    [OrderDetails]=\"orderDetials\"\n    [isDetailed]=\"false\"\n  ></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <!-- <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{orderDetials?.order_date}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderDetials?.order_date}} </span>\n      </p> -->\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\"\n        >\n          {{orderDetials?.start_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderDetials?.start_date}} </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <!-- <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{orderDetials?.order_date}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} \n          :{{orderDetials?.order_date}} </span>\n      </p> -->\n\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span\n          [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\"\n        >\n          {{orderDetials?.end_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} :{{orderDetials?.end_date}} </span>\n      </p>\n    </div>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header [title]=\"'my-reservations-details'\" [isEditable]=\"false\" [backwardRoute]=\"'/tabs/my-reservations'\"\n  [isMain]=\"false\" class=\"header-height\"></app-header>\n<ion-content class=\"ion-padding\">\n  <div class=\"container\">\n    <img [src]=\"orderDetials?.department_image \" />\n  </div>\n  <app-custom-details [OrderDetails]=\"orderDetials\" [isDetailed]=\"false\"></app-custom-details>\n\n  <div class=\"details\">\n    <h5 class=\"fn-14 dalel-Bold primary-color\">\n      {{\"my-reservations-details\"|translate}}\n    </h5>\n\n    <div class=\"arrival-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span [ngClass]=\"currentlangauge == 'ar' ?  'margin-right' :'margin-left'\">\n          {{orderDetials?.start_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"arrival-date\"|translate}} :{{orderDetials?.start_date}} </span>\n      </p>\n    </div>\n\n    <div class=\"left-date-spacer\">\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <img src=\"./../../../assets/icon/calender.svg\" />\n        <span [ngClass]=\"currentlangauge == 'ar' ?  'margin-right':'margin-left'\">\n          {{orderDetials?.end_time}}\n        </span>\n      </p>\n\n      <p class=\"arrival fn-14 dalel-Regular\">\n        <span> {{\"left-date\"|translate}} :{{orderDetials?.end_date}} </span>\n      </p>\n    </div>\n  </div>\n</ion-content>");
 
 /***/ }),
 

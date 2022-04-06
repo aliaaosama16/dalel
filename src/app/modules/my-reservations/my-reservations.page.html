@@ -37,7 +37,7 @@
       routerLink="/tabs/my-reservations/my-reservations-details/{{item.id}}"
     >
       <div class="container">
-        <img src="./../../../assets/images/1024-500.png" />
+        <img [src]="item?.department_image" />
 
         <div class="price">
           <p class="fn-15 dalel-SemiBold secondary-color">
@@ -95,7 +95,7 @@
       routerLink="/tabs/my-reservations/my-reservations-details/{{item.id}}"
     >
       <div class="container">
-        <img src="./../../../assets/images/1024-500.png" />
+        <img [src]="item?.department_image" />
 
         <div class="price">
           <p class="fn-15 dalel-SemiBold secondary-color">

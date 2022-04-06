@@ -37,20 +37,19 @@ export class TabsPage implements OnInit {
     },
   ];
 
-  constructor(private auth: AuthService) {}
-
-  ngOnInit() {
-    this.auth.getNoOfNotifications().subscribe((val) => {
-      console.log('noOfNotifications :' + val);
-      if (val != 0) {
-        this.noOfNotifications = val;
-      }
-    });
-    this.auth.isAuthenticated.subscribe((val) => {
-      console.log('is logined:'+val)
-      this.isLogined = val;
-    });
+  constructor(private auth: AuthService) {
+    if (this.auth.isAuthenticated.value) {
+      this.auth.getNoOfNotifications().subscribe((val) => {
+        console.log('noOfNotifications :' + val);
+        if (val != 0) {
+          this.noOfNotifications = val;
+        }
+      });
+      this.isLogined = this.auth.isAuthenticated.value;
+    }
   }
+
+  ngOnInit() {}
 
   setCurrentTab() {
     this.selectedTab = this.tabs.getSelected();

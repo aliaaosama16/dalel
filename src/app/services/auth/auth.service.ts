@@ -40,11 +40,20 @@ export class AuthService {
 
   storeStatusAfterLogin(data: AuthResponse) {
     this.isLogined();
-    this.setUserID(data.data.id);
-    this.storeToken(data.data?.api_token);
+    this.setUserID(data?.data?.id);
+    this.storeToken(data?.data?.api_token);
     this.store('status', data.status);
-    this.store('userID', data.data.id);
+    this.storeUserId( data?.data?.id.toString());
+    this.setNoOfNotifications(data?.data?.id);
   }
+
+  async storeUserId(id:string) {
+    await Storage.set({
+      key: "userID",
+      value: id,
+    });
+  }
+
 
   async removeRegistrationData() {
     this.removeToken();
