@@ -12,6 +12,9 @@ import {
   ForgetPasswordData,
 } from 'src/app/models/forgetPassword';
 import { GeneralResponse, UserData } from 'src/app/models/general';
+import { LanguageService } from '../language/language.service';
+import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationsResponse } from 'src/app/models/notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +22,14 @@ import { GeneralResponse, UserData } from 'src/app/models/general';
 export class AuthService {
   isAuthenticated = new BehaviorSubject(false);
   userID = new BehaviorSubject(0);
+  noOfNotifications = new BehaviorSubject(0);
   userToken: string = '';
 
-  constructor(private httpclient: HttpClient) {}
+  constructor(
+    private httpclient: HttpClient,
+    private languageService: LanguageService,
+    private userNotifications: NotificationsService
+  ) {}
 
   storeStatusAfterRegisteration(data: AuthResponse) {
     this.storeToken(data.data?.api_token);
@@ -66,6 +74,30 @@ export class AuthService {
   async getStoredUserID() {
     const val = await Storage.get({ key: 'userID' });
     this.setUserID(parseInt(val.value));
+    this. setNoOfNotifications();
+  }
+
+  setNoOfNotifications() {
+    this.getUserIDObservable().subscribe((userID) => {
+      if (userID) {
+        const userData: UserData = {
+          lang: this.languageService.getLanguage(),
+          user_id: userID,
+        };
+        this.userNotifications.showNotification(userData).subscribe(
+          (data: NotificationsResponse) => {
+            if (data.key == 1) {
+              this.noOfNotifications.next(data.data.length);
+            }
+          },
+          (err) => {}
+        );
+      }
+    });
+  }
+
+  getNoOfNotifications(): Observable<number> {
+    return this.noOfNotifications.asObservable();
   }
 
   getUserIDObservable(): Observable<number> {

@@ -3,6 +3,10 @@
 
 <ion-content class="ion-padding" >
 
+  <div *ngIf="noResults" class="no-data">
+    <p>{{"no results for this search"|translate}}</p>
+   </div>
+  
   <div class="search-result" *ngFor="let item of resultItems ">
     <ion-item lines="none"  detail="false" routerLink="/tabs/main/categories/1/{{item.id}}">
       <ion-thumbnail slot="start" [ngClass]="  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  ">

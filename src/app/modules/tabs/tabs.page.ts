@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,6 +10,7 @@ import { IonTabs } from '@ionic/angular';
 export class TabsPage implements OnInit {
   selectedTab = 'main';
   @ViewChild('tabs', { static: false }) tabs: IonTabs;
+  noOfNotifications:number;
 
   tabsData = [
     {
@@ -34,9 +36,16 @@ export class TabsPage implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private auth:AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth.getNoOfNotifications().subscribe((val) => {
+      console.log('noOfNotifications :' + val);
+      if (val != 0) {
+       this.noOfNotifications=val
+      }
+    });
+  }
 
   setCurrentTab() {
     this.selectedTab = this.tabs.getSelected();

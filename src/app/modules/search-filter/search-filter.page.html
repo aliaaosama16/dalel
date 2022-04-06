@@ -21,9 +21,11 @@
   <ion-item lines="none" class="select-container">
     <ion-select
       (ionChange)="chooseCountry($event)"
-      placeholder='{{"choose place"|translate}}'
+      placeholder='{{"choose country"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
+      interface="popover"
+      mode="ios"
     >
       <ion-select-option *ngFor="let country of countries" [value]="country.id">
         {{country.title}}
@@ -37,11 +39,12 @@
       placeholder='{{ "choose city"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
+      interface="popover"
+      mode="ios"
     >
-      <ion-select-option value="brown">Brown</ion-select-option>
-      <ion-select-option value="blonde">Blonde</ion-select-option>
-      <ion-select-option value="black">Black</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+      <ion-select-option *ngFor="let city of cities" [value]="city.id">
+        {{city.title}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -51,11 +54,15 @@
       placeholder='{{ "choose neighborhood"|translate}}'
       okText='{{"ok"|translate}}'
       cancelText='{{"cancel"|translate}}'
+      interface="popover"
+      mode="ios"
     >
-      <ion-select-option value="brown">Brown</ion-select-option>
-      <ion-select-option value="blonde">Blonde</ion-select-option>
-      <ion-select-option value="black">Black</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+      <ion-select-option
+        *ngFor="let neighborhood of neighborhoods"
+        [value]="neighborhood.id"
+      >
+        {{neighborhood.title}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -75,9 +82,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="rooms"
-        placeholder='{{ "rooms number"|translate}}'
-      ></ion-input>
+          [(ngModel)]="rooms"
+          placeholder='{{ "rooms number"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
 
@@ -96,9 +103,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="people"
-        placeholder='{{ "people number"|translate}}'
-      ></ion-input>
+          [(ngModel)]="people"
+          placeholder='{{ "people number"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
   </div>
@@ -123,9 +130,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="min_area"
-        placeholder='{{ "least space"|translate}}'
-      ></ion-input>
+          [(ngModel)]="min_area"
+          placeholder='{{ "least space"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
 
@@ -144,9 +151,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="max_area"
-        placeholder='{{ "highest space"|translate}}'
-      ></ion-input>
+          [(ngModel)]="max_area"
+          placeholder='{{ "highest space"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
   </div>
@@ -171,9 +178,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="max_price"
-        placeholder='{{ "least price"|translate}}'
-      ></ion-input>
+          [(ngModel)]="max_price"
+          placeholder='{{ "least price"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
 
@@ -192,9 +199,9 @@
         </ion-select> -->
 
         <ion-input
-        [(ngModel)]="min_price"
-        placeholder='{{ "least price"|translate}}'
-      ></ion-input>
+          [(ngModel)]="min_price"
+          placeholder='{{ "least price"|translate}}'
+        ></ion-input>
       </ion-item>
     </div>
   </div>

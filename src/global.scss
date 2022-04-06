@@ -59,31 +59,41 @@
   }
 }
 
-.no-data{
+.no-data {
   text-align: center;
   margin-top: 30%;
-  p{
+  p {
     font-size: 18px;
     color: var(--ion-color-primary);
   }
 }
-.badge-color{
+
+ion-badge {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  text-align: center;
+  span {
+    font-size: 10px;
+  }
+}
+.badge-color {
   color: var(--ion-color-white);
 }
-.my-custom-class{
-  div#alert-1-msg{
+.my-custom-class {
+  div#alert-1-msg {
     margin-top: 13px !important;
     color: var(--ion-color-dark-black) !important;
   }
-  .alert-button-group.sc-ion-alert-md{
+  .alert-button-group.sc-ion-alert-md {
     display: flex !important;
     justify-content: space-around !important;
-    button.alert-button.ion-focusable.ion-activatable.sc-ion-alert-md{
+    button.alert-button.ion-focusable.ion-activatable.sc-ion-alert-md {
       font-size: 18px !important;
     }
   }
 }
-.ng-otp-input-wrapper[_ngcontent-vvk-c142] .otp-input[_ngcontent-vvk-c142]{
+.ng-otp-input-wrapper[_ngcontent-vvk-c142] .otp-input[_ngcontent-vvk-c142] {
   margin-right: 8px !important;
 }
 // .focused {

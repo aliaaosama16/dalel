@@ -1,40 +1,65 @@
-<app-header class="header-height" [title]="'profile'" [backwardRoute]="'/tabs/main'" [forwardRoute]="'/tabs/profile/edit-profile'"
-  [isEditable]="true" [isMain]="false"></app-header>
+<app-header
+  class="header-height"
+  [title]="'profile'"
+  [backwardRoute]="'/tabs/main'"
+  [forwardRoute]="'/tabs/profile/edit-profile'"
+  [isEditable]="true"
+  [isMain]="false"
+></app-header>
 
-<ion-content class="ion-padding" >
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-
-  <div class="profile-card-wrapper" *ngIf="getData">
-
+  <div class="profile-card-wrapper" >
     <ion-card class="ion-no-margin ion-padding">
-
       <div class="img-wrapper">
-        <!-- <img src="./../../../assets/icon/person-inactive.svg" /> -->
         <img src="./../../../assets/icon/profile.png" />
       </div>
       <div class="ion-text-center">
-        <h4 class="dark-black-color fn-16 dalel-Bold name">{{userResponse.data.first_name}}</h4>
+        <h4 class="dark-black-color fn-16 dalel-Bold name">
+          {{userResponse?.data?.first_name}}
+        </h4>
       </div>
       <ion-item lines="none">
-        <ion-icon item-start color="primary" src="'./../../../../assets/icon/person-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userResponse.data.first_name" type="text"></ion-input>
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/person-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userResponse?.data?.first_name"
+          type="text"
+        ></ion-input>
       </ion-item>
 
       <ion-item lines="none">
-        <ion-icon item-start color="primary" src="'./../../../../assets/icon/phone-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userResponse.data.phone" type="nummber"></ion-input>
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/phone-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userResponse?.data?.phone"
+          type="nummber"
+        ></ion-input>
       </ion-item>
 
       <ion-item lines="none">
-        <ion-icon item-start color="primary" src="'./../../../../assets/icon/email-inactive.svg"></ion-icon>
-        <ion-input readonly="true" [value]="userResponse.data.email" type="email"></ion-input>
+        <ion-icon
+          item-start
+          color="primary"
+          src="'./../../../../assets/icon/email-inactive.svg"
+        ></ion-icon>
+        <ion-input
+          readonly="true"
+          [value]="userResponse?.data?.email"
+          type="email"
+        ></ion-input>
       </ion-item>
     </ion-card>
-
-
   </div>
-
-
-
-
 </ion-content>

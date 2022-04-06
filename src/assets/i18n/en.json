@@ -73,7 +73,7 @@
   "total":"total",
   "search results filter":"search results filter",
   "search with place name":"search with place name",
-  "choose place":"choose place",
+  "choose country":"choose country",
   "choose city":"choose city",
   "choose neighborhood":"choose neighborhood",
   "rooms number":"rooms number",
@@ -128,5 +128,7 @@
 "no current reservations":"no current reservations",
 "no Categories":"no Categories",
 "no favourites items":"favourites list is empty",
-"no items in this section":"no items in this section"
+"no items in this section":"no items in this section",
+"no Notifications":"no Notifications",
+"no results for this search":"no results for this search"
 }

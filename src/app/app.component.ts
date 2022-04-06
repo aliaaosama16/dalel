@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Network } from '@capacitor/network';
 import { NetworkService } from './services/network/network.service';
 import { FcmService } from './services/fcm/fcm.service';
+import { UserData } from './models/general';
 
 @Component({
   selector: 'app-root',
@@ -98,6 +99,8 @@ export class AppComponent {
       this.auth.getLoginedObservable().subscribe((val) => {
         this.logined = val;
       });
+     
+      
     }
 
     this.auth.getStoredUserID();

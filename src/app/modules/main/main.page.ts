@@ -29,10 +29,11 @@ export class MainPage implements OnInit {
   configSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
+    pagination: true
+    // {
+    //   el: '.swiper-pagination',
+    //   clickable: true,
+    // },
   };
   configCategories: SwiperOptions = {
     slidesPerView: 2.5,
@@ -172,5 +173,27 @@ export class MainPage implements OnInit {
     // const swiper = document.querySelector('.swiper').swiper;
     // Now you can use all slider methods like
     // swiper.slideNext();
+  }
+
+  doRefresh($event){
+    this.auth.getUserIDObservable().subscribe((val) => {
+      this.UserData = {
+        lang: this.langaugeservice.getLanguage(),
+        user_id: val == 0 ? 1 : val,
+      };
+      this.items.home(this.UserData).subscribe(
+        (data: HomeResponse) => {
+          if (data.key == 1) {
+            this.sections = data.data.sections;
+            this.Sliders = data.data.sliders;
+            this.nearDepartments = data.data.near_departments;
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+    });
   }
 }

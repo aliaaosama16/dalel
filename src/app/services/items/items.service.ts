@@ -5,8 +5,9 @@ import {
   CountryData,
   CountryResponse,
   GeneralSection,
+  GeneralSectionResponse,
   Language,
-  NeighborhoodsData,
+  CitysData,
   UserData,
 } from 'src/app/models/general';
 import { HomeResponse } from 'src/app/models/home';
@@ -32,15 +33,15 @@ export class ItemsService {
     );
   }
 
-  getCitiesByCountryID(data: CountryData): Observable<CountryResponse> {
-    return this.httpclient.post<CountryResponse>(
+  getCitiesByCountryID(data: CountryData): Observable<GeneralSectionResponse> {
+    return this.httpclient.post<GeneralSectionResponse>(
       `${environment.BASE_URL}cities`,
       data
     );
   }
 
   getNeighborhoodsByCityID(
-    data: NeighborhoodsData
+    data: CitysData
   ): Observable<CountryResponse> {
     return this.httpclient.post<CountryResponse>(
       `${environment.BASE_URL}neighborhoods`,

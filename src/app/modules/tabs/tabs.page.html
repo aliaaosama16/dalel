@@ -5,15 +5,16 @@
       [tab]="tab.tabName"
       *ngFor="let tab of tabsData"
     >
+    <ion-badge *ngIf="tab.tabName=='notifications' && noOfNotifications!=0" color="primary">
+      <span ngClass="badge-color">{{noOfNotifications}}</span>
+    </ion-badge>
       <ion-icon
         [src]="selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon"
       ></ion-icon>
       <ion-label [ngClass]="selectedTab==tab.tabName?'selected-label':''">
         {{tab.tabName|translate}}
       </ion-label>
-      <ion-badge *ngIf="tab.tabName=='notifications'" color="primary">
-        <span ngClass="badge-color">10</span>
-      </ion-badge>
+     
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

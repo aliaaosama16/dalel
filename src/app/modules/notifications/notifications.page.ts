@@ -62,7 +62,9 @@ export class NotificationsPage implements OnInit {
     this.userNotifications.showNotification(notificationData).subscribe(
       (data: NotificationsResponse) => {
         if (data.key == 1) {
-          //console.log('all notifications :' + JSON.stringify(data.data));
+          if (data.data.length == 0) {
+            this.noNotifications = true;
+          }
           this.notifications = data.data;
         }
       },
@@ -96,8 +98,9 @@ export class NotificationsPage implements OnInit {
                     'delete item ' + JSON.stringify(this.notifications)
                   );
                   this.util.showMessage(data.msg);
-                  this.util.dismissLoading();
+
                   this.showNotification(this.UserData);
+                  this.util.dismissLoading();
                 },
                 (err) => {
                   this.util.dismissLoading();
@@ -118,5 +121,31 @@ export class NotificationsPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  doRefresh($event){
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+      if (val != 0) {
+        this.UserData = {
+          lang: this.langaugeservice.getLanguage(),
+          user_id: val,
+        };
+        this.userNotifications.showNotification( this.UserData).subscribe(
+          (data: NotificationsResponse) => {
+            if (data.key == 1) {
+              if (data.data.length == 0) {
+                this.noNotifications = true;
+              }
+              this.notifications = data.data;
+            }
+            $event.target.complete();
+          },
+          (err) => {
+            $event.target.complete();
+          }
+        );
+      }
+    });
   }
 }

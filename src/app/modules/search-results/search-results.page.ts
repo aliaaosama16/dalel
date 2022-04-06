@@ -14,6 +14,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class SearchResultsPage implements OnInit {
   currentlangauge: string = '';
   resultItems: Item[];
+  noResults:boolean=false;
   constructor(
     private langaugeservice: LanguageService,
     private util: UtilitiesService,
@@ -35,6 +36,9 @@ export class SearchResultsPage implements OnInit {
           (data: DepartmentResponse) => {
             if (data.key == 1) {
               console.log('resultItems data : ' + JSON.stringify(data));
+              if(data.data.length==0){
+                this.noResults=true;
+              }
               this.resultItems = data.data;
             }
             this.util.dismissLoading();

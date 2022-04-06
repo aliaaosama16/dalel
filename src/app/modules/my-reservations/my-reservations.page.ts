@@ -18,8 +18,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class MyReservationsPage implements OnInit {
   current = OrderStatus.current;
   old = OrderStatus.finish;
-  noCurrentOrders:boolean=false;
-  noOldOrders:boolean=false;
+  noCurrentOrders: boolean = false;
+  noOldOrders: boolean = false;
   reservationsType: OrderStatus = OrderStatus.current;
   currentlangauge: string;
   userOrdersData: UserOrdersData;
@@ -43,7 +43,6 @@ export class MyReservationsPage implements OnInit {
         user_id: val == 0 ? 1 : val,
         status: orderStatus == 0 ? 'current' : 'finish',
       };
-      //console.log('userOrdersData : '+JSON.stringify(this.userOrdersData));
       this.showAllOrdersByID(this.userOrdersData);
     });
   }
@@ -56,22 +55,15 @@ export class MyReservationsPage implements OnInit {
           if (data.key == 1) {
             this.util.showMessage(data.msg);
             if (userOrdersData.status == 'current') {
-              if(data.data.length==0){
-                this.noCurrentOrders=true;
+              if (data.data.length == 0) {
+                this.noCurrentOrders = true;
               }
               this.currentReservations = data.data;
-              // console.log(
-              //   'currentReservations :' +
-              //     JSON.stringify(this.currentReservations)
-              // );
             } else if (userOrdersData.status == 'finish') {
-              if(data.data.length==0){
-                this.noOldOrders=true;
+              if (data.data.length == 0) {
+                this.noOldOrders = true;
               }
               this.oldReservations = data.data;
-              // console.log(
-              //   'oldReservations :' + JSON.stringify(this.oldReservations)
-              // );
             }
           }
           this.util.dismissLoading();

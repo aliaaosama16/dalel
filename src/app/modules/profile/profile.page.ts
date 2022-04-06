@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   platform: any;
   userData: UserData;
   userResponse: UserResponse;
-  getData:boolean=false;
+  getData: boolean = false;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -25,8 +25,8 @@ export class ProfilePage implements OnInit {
   ) {
     this.auth.getStoredUserID();
     this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('get id from behavour subject if just logined'+val);
-      if(val!=0){
+      console.log('get id from behavour subject if just logined' + val);
+      if (val != 0) {
         this.userData = {
           lang: this.language.getLanguage(),
           user_id: val,
@@ -41,7 +41,7 @@ export class ProfilePage implements OnInit {
             this.userResponse = data;
             console.log('user all data :' + JSON.stringify(this.userResponse));
             this.auth.getStoredUserID();
-            this.getData=true;
+            this.getData = true;
           } else {
             this.util.showMessage(data.msg);
           }
@@ -49,7 +49,7 @@ export class ProfilePage implements OnInit {
         },
         (err) => {
           this.util.dismissLoading();
-          this.getData=false;
+          this.getData = false;
         }
       );
     });
@@ -59,5 +59,37 @@ export class ProfilePage implements OnInit {
 
   openMenu() {
     this.menuCtrl.open();
+  }
+
+  doRefresh($event) {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('get id from behavour subject if just logined' + val);
+      if (val != 0) {
+        this.userData = {
+          lang: this.language.getLanguage(),
+          user_id: val,
+        };
+      }
+    });
+    this.platform = this.util.platform;
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.userData(this.userData).subscribe(
+        (data: UserResponse) => {
+          if (data.key == 1) {
+            this.userResponse = data;
+            console.log('user all data :' + JSON.stringify(this.userResponse));
+            this.auth.getStoredUserID();
+            this.getData = true;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+          this.getData = false;
+        }
+      );
+    });
   }
 }

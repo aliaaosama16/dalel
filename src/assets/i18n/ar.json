@@ -73,7 +73,7 @@
   "total":"المجموع",
   "search results filter":"تصفية نتائج البحث",
   "search with place name":"بحث باسم المكان",
-  "choose place":"اختر المكان",
+  "choose country":"اختر الدولة",
   "choose city":"اختر المدينة",
   "choose neighborhood":"اختر الحي",
   "rooms number":"عدد الغرف",
@@ -128,5 +128,7 @@
 "no current reservations":"لا توجد حجوزات حالية",
 "no Categories":"لا توجد اقسام",
 "no favourites items":"قائمة المفضلة فارغة",
-"no items in this section":"لا توجد عناصر في هذا القسم"
+"no items in this section":"لا توجد عناصر في هذا القسم",
+"no Notifications":"لا توجد اشعارات",
+"no results for this search":"لا توجد نتائج لهذا البحث"
 }

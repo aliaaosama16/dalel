@@ -30,7 +30,7 @@
   <div *ngIf="reservationsType==current">
     <div *ngIf="noCurrentOrders" class="no-data">
       <p>{{'no current reservations'|translate}}</p>
-     </div>
+    </div>
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of currentReservations"
@@ -85,11 +85,10 @@
   </div>
 
   <div *ngIf="reservationsType==old">
- 
+    <div *ngIf="noOldOrders" class="no-data">
+      <p>{{'no old reservations'|translate}}</p>
+    </div>
 
-   <div *ngIf="noOldOrders" class="no-data">
-    <p>{{'no old reservations'|translate}}</p>
-   </div>
     <ion-card
       class="ion-no-margin"
       *ngFor="let item of oldReservations"

@@ -6,7 +6,7 @@ export interface GeneralResponse {
 }
 
 export interface Language {
-  lang: string;
+  lang?: string;
 }
 
 export interface UserLocation extends UserData {
@@ -43,8 +43,10 @@ export interface GeneralSectionOptions {
   categories: GeneralSection[];
   options: GeneralSection[];
 }
-
-export interface GeneralSectionResponse {
+export interface GeneralAddressResponse extends GeneralResponse {
+  data?:GeneralSectionResponse
+}
+export interface GeneralSectionResponse  {
   id: string;
   title: string;
   image?: string;
@@ -55,7 +57,7 @@ export interface CountryData extends UserData{
   country_id:number;
 }
 
-export interface NeighborhoodsData extends UserData{
+export interface CitysData extends UserData{
   city_id:number;
 }
 

@@ -7,7 +7,7 @@
 ></app-header>
 <ion-content class="ion-padding" >
   <div class="container">
-    <img [src]="orderDetials.department_image " />
+    <img [src]="orderDetials?.department_image " />
   </div>
   <app-custom-details
     [OrderDetails]="orderDetials"
@@ -45,7 +45,7 @@
       </p>
 
       <p class="arrival fn-14 dalel-Regular">
-        <span> {{"arrival-date"|translate}} :{{orderDetials?.order_date}} </span>
+        <span> {{"left-date"|translate}} :{{orderDetials?.order_date}} </span>
       </p>
     </div>
   </div>
