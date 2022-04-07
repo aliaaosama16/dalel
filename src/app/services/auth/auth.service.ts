@@ -56,8 +56,10 @@ export class AuthService {
 
 
   async removeRegistrationData() {
+    this.isLogout();
     this.removeToken();
     this.removeUserID();
+    this.noOfNotifications.next(0);
     await Storage.remove({ key: 'activation-status' });
     await Storage.remove({ key: 'confirmation-status' });
     await Storage.remove({ key: 'status' });

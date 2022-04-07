@@ -294,13 +294,15 @@ let TabsPage = class TabsPage {
             },
         ];
         if (this.auth.isAuthenticated.value) {
+            this.isLogined = this.auth.isAuthenticated.value;
             this.auth.getNoOfNotifications().subscribe((val) => {
-                console.log('noOfNotifications :' + val);
                 if (val != 0) {
                     this.noOfNotifications = val;
                 }
+                else {
+                    this.noOfNotifications = 0;
+                }
             });
-            this.isLogined = this.auth.isAuthenticated.value;
         }
     }
     ngOnInit() { }

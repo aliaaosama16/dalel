@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-notifications',
@@ -100,6 +101,7 @@ export class NotificationsPage implements OnInit {
                   this.util.showMessage(data.msg);
 
                   this.showNotification(this.UserData);
+                 this.updateNoOfNotifications();
                   this.util.dismissLoading();
                 },
                 (err) => {
@@ -123,6 +125,11 @@ export class NotificationsPage implements OnInit {
     await alert.present();
   }
 
+  async updateNoOfNotifications(){
+    const userID = await Storage.get({ key: 'userID' });
+    console.log('stored user id : ' + parseInt(userID.value));
+    this.auth.setNoOfNotifications(parseInt(userID.value));
+  }
   doRefresh($event){
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('user id :' + val);

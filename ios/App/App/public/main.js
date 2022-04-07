@@ -201,7 +201,7 @@ let AppComponent = class AppComponent {
     initializeApp() {
         this.platform.ready().then(() => {
             this.languageService.setInitialAppLanguage();
-            this.logined = this.auth.isAuthenticated.value;
+            // this.logined=this.auth.isAuthenticated.value;
             this.currentLanguage = this.languageService.getLanguage();
             console.log(`language is ${this.currentLanguage}`);
             this.util.getPlatformType();
@@ -223,6 +223,7 @@ let AppComponent = class AppComponent {
             console.log('stored user id : ' + parseInt(userID.value));
             this.auth.setNoOfNotifications(parseInt(userID.value));
             this.auth.userID.next(parseInt(userID.value));
+            this.logined = this.auth.isAuthenticated.value;
             //this.auth.getStoredUserID();
         });
     }
@@ -265,7 +266,6 @@ let AppComponent = class AppComponent {
             this.auth.logout(this.logoutData).subscribe((data) => {
                 if (data.key == 1) {
                     console.log('login res :' + JSON.stringify(data));
-                    this.auth.isLogout();
                     this.auth.removeRegistrationData();
                 }
                 else {
@@ -570,8 +570,10 @@ let AuthService = class AuthService {
     }
     removeRegistrationData() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            this.isLogout();
             this.removeToken();
             this.removeUserID();
+            this.noOfNotifications.next(0);
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'activation-status' });
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'confirmation-status' });
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({ key: 'status' });

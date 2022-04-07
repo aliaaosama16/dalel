@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
-import { ShowLanguagePageGuard } from './guards/language/show-language-page.guard';
 import { AuthData, AuthResponse, Status } from './models/loginData';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 import { Storage } from '@capacitor/storage';
 import { TranslateService } from '@ngx-translate/core';
-import { Network } from '@capacitor/network';
 import { NetworkService } from './services/network/network.service';
 import { FcmService } from './services/fcm/fcm.service';
-import { UserData } from './models/general';
 
 @Component({
   selector: 'app-root',
@@ -84,7 +81,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.languageService.setInitialAppLanguage();
 
-      this.logined=this.auth.isAuthenticated.value;
+     // this.logined=this.auth.isAuthenticated.value;
       
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
@@ -112,7 +109,7 @@ export class AppComponent {
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
     this.auth.userID.next(parseInt(userID.value));
-    
+    this.logined=this.auth.isAuthenticated.value;
     //this.auth.getStoredUserID();
   }
 
@@ -157,7 +154,7 @@ export class AppComponent {
         (data: AuthResponse) => {
           if (data.key == 1) {
             console.log('login res :' + JSON.stringify(data));
-            this.auth.isLogout();
+            
             this.auth.removeRegistrationData();
           } else {
             this.util.showMessage(data.msg);
