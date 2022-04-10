@@ -38,7 +38,7 @@ export class ProfilePage implements OnInit {
         if (data.key == 1) {
           this.userResponse = data;
           console.log('user all data :' + JSON.stringify(this.userResponse));
-          this.auth.getStoredUserID();
+          //this.auth.getStoredUserID();
           // this.getData = true;
         } else {
           //  this.util.showMessage(data.msg);

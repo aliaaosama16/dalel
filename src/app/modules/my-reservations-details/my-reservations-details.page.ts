@@ -30,15 +30,15 @@ export class MyReservationsDetailsPage implements OnInit {
   }
 
   showOrdersByID() {
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.orderData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
         order_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
       };
       console.log(JSON.stringify(this.orderData));
       this.showAllOrdersByID(this.orderData);
-    });
+  //  });
   }
 
   showAllOrdersByID(orderData: OrderData) {
