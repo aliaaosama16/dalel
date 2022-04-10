@@ -33,7 +33,6 @@ export class AboutPage implements OnInit {
       this.general.staticPages(data).subscribe(
         (data: StaticPageResponse) => {
           this.aboutDataResponse = data;
-          console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
           this.util.dismissLoading();
         },
         (err) => {
@@ -47,7 +46,6 @@ export class AboutPage implements OnInit {
       this.general.staticPages( this.aboutData).subscribe(
         (data: StaticPageResponse) => {
           this.aboutDataResponse = data;
-          console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
           $event.target.complete();
         },
         (err) => {

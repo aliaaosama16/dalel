@@ -40,9 +40,6 @@ export class PolicyPage implements OnInit {
       this.general.staticPages(data).subscribe(
         (data: StaticPageResponse) => {
           this.conditionDataResponse = data;
-          console.log(
-            'conditionData ' + JSON.stringify(this.conditionDataResponse)
-          );
           this.util.dismissLoading();
         },
         (err) => {
@@ -52,7 +49,7 @@ export class PolicyPage implements OnInit {
     });
   }
 
-  doRefresh($event){
+  doRefresh($event) {
     this.auth.getUserIDObservable().subscribe((val) => {
       console.log('user id :' + val);
       if (val != 0) {
@@ -66,9 +63,6 @@ export class PolicyPage implements OnInit {
     this.general.staticPages(this.conditionData).subscribe(
       (data: StaticPageResponse) => {
         this.conditionDataResponse = data;
-        console.log(
-          'conditionData ' + JSON.stringify(this.conditionDataResponse)
-        );
         $event.target.complete();
       },
       (err) => {

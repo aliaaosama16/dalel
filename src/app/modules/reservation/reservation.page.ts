@@ -32,8 +32,6 @@ export class ReservationPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     private util: UtilitiesService,
-    private auth: AuthService,
-    private langaugeservice: LanguageService,
     private activatedRoute: ActivatedRoute
   ) {
     this.platform = this.util.platform;
@@ -45,14 +43,6 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('item closed dates :' + this.util.itemClosedDates);
-    // this.optionsRange.daysConfig.forEach((date) => {
-    //   this.util.itemClosedDates.forEach((elem) => {
-    //     date.date = new Date(elem);
-    //     date.disable = true;
-    //   });
-    // });
-
     for (let i = 0; i < this.util.itemClosedDates.length; i++) {
       this.optionsRange.daysConfig.push({
         date: new Date(this.util.itemClosedDates[i]),

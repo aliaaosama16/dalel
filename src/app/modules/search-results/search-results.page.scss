@@ -12,12 +12,12 @@
     }
   }
 
-  .image-margin-right{
+  .image-margin-right {
     margin: 0px 0 0 10px !important;
     margin-inline: 0px 10px !important;
   }
 
-  .image-margin-left{
+  .image-margin-left {
     margin: 0px 10px 0 0px !important;
     margin-inline: 0px 10px !important;
   }
@@ -25,6 +25,9 @@
   ion-thumbnail {
     width: 100px;
     height: 100px;
+    img{
+      border-radius: 10px;
+    }
   }
   ion-label {
     margin-top: -3px !important;
@@ -50,18 +53,15 @@
     }
 
     .price-container {
-      ion-button::part(native) {
-        box-shadow: none !important;
-      }
       margin-top: 4px;
       .rating {
         display: flex;
-
-        // .rating-icon {
-        //   ion-icon {
-        //     font-size: 10px;
-        //   }
-        // }
+        .rating-icon{
+          margin: 1px 4px;
+        }
+      }
+      ion-button::part(native) {
+        box-shadow: none !important;
       }
     }
   }
