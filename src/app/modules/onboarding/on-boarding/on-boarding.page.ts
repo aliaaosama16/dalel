@@ -18,7 +18,7 @@ import Swiper, {
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import {  Intro, IntroData } from 'src/app/models/intro';
+import { Intro, IntroData } from 'src/app/models/intro';
 import { GeneralService } from 'src/app/services/general/general.service';
 
 Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
@@ -39,10 +39,9 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     spaceBetween: 0,
     pagination: true,
     allowTouchMove: false,
-    
   };
   introData: Intro;
-  getIntro:boolean=false;
+  getIntro: boolean = false;
 
   constructor(
     private langaugeservice: LanguageService,
@@ -58,7 +57,6 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
     this.getIntroData();
-    
   }
 
   async skipBoarding() {
@@ -74,31 +72,33 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
           this.introData = data;
           console.log('INTRO ' + JSON.stringify(this.introData));
           this.util.dismissLoading();
-          this.getIntro=true;
+          this.getIntro = true;
         },
         (err) => {
           this.util.dismissLoading();
-          this.getIntro=false;
+          this.getIntro = false;
         }
       );
     });
   }
 
   nextSlide(ev) {
-    console.log('pointerId : ' + ev.pointerId);
-    if (this.nextClicked < 3) {
-      this.nextClicked++;
-    } else {
-      // this.setBoarding();
+    // console.log('pointerId : ' + ev.pointerId);
+    // if (this.nextClicked < 3) {
+    //   this.nextClicked++;
+    // } else {
+    //   // this.setBoarding();
 
-      // this.router.navigateByUrl('/tabs/main');
-    }
+    //   // this.router.navigateByUrl('/tabs/main');
+      
+    // }
+    this.swiper.swiperRef.slideNext()
   }
 
-  start(){
+  start() {
     this.setBoarding();
 
-      this.router.navigateByUrl('/tabs/main');
+    this.router.navigateByUrl('/tabs/main');
   }
 
   async setBoarding() {
