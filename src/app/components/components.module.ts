@@ -14,7 +14,8 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
     CustomButtonComponent,
     HeaderComponent,
     CustomDetailsComponent,
-    CustomCardComponent
+    CustomCardComponent,
+    
   ],
   imports: [
     CommonModule,

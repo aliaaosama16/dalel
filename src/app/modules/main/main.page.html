@@ -1,9 +1,10 @@
 <app-header [title]="'main'" [isMain]="true" class="header-height"></app-header>
 
-<ion-content>
+<ion-content class="ion-safe-area">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   <div class="search-section ion-padding-horizontal">
     <div class="search-input">
       <ion-item lines="none" class="search-wrapper">
@@ -49,8 +50,9 @@
 
   <div class="categories-section ion-padding-horizontal">
     <div class="categories-section-title">
-      <div>
-        <h5 class="categories-title">{{"categories"|translate}}</h5>
+      <div >
+        <h5 appHighlight class="categories-title">{{"categories"|translate}}</h5>
+        
       </div>
       <div routerLink="/tabs/main/categories">
         <p class="categories-sub-title">{{"show all"|translate}}</p>

@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MyReservationsDetailsPage": () => (/* binding */ MyReservationsDetailsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations-details.page.html */ 38347);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations-details.page.html */ 38347);
 /* harmony import */ var _my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-reservations-details.page.scss */ 73029);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -164,7 +164,7 @@ MyReservationsDetailsPage.ctorParameters = () => [
 MyReservationsDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-my-reservations-details',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_my_reservations_details_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], MyReservationsDetailsPage);

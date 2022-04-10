@@ -31,27 +31,29 @@ export class ProfilePage implements OnInit {
           lang: this.language.getLanguage(),
           user_id: val,
         };
+        this.platform = this.util.platform;
+     //   this.util.showLoadingSpinner().then((__) => {
+          this.auth.userData(this.userData).subscribe(
+            (data: UserResponse) => {
+              if (data.key == 1) {
+                this.userResponse = data;
+                console.log(
+                  'user all data :' + JSON.stringify(this.userResponse)
+                );
+                this.auth.getStoredUserID();
+                // this.getData = true;
+              } else {
+              //  this.util.showMessage(data.msg);
+              }
+              //this.util.dismissLoading();
+            },
+            (err) => {
+              this.util.dismissLoading();
+              //this.getData = false;
+            }
+          );
+       // });
       }
-    });
-    this.platform = this.util.platform;
-    this.util.showLoadingSpinner().then((__) => {
-      this.auth.userData(this.userData).subscribe(
-        (data: UserResponse) => {
-          if (data.key == 1) {
-            this.userResponse = data;
-            console.log('user all data :' + JSON.stringify(this.userResponse));
-            this.auth.getStoredUserID();
-           // this.getData = true;
-          } else {
-            this.util.showMessage(data.msg);
-          }
-          this.util.dismissLoading();
-        },
-        (err) => {
-          this.util.dismissLoading();
-          //this.getData = false;
-        }
-      );
     });
   }
 
@@ -72,14 +74,14 @@ export class ProfilePage implements OnInit {
       }
     });
     this.platform = this.util.platform;
-    this.util.showLoadingSpinner().then((__) => {
+   // this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {
           if (data.key == 1) {
             this.userResponse = data;
             // console.log('user all data :' + JSON.stringify(this.userResponse));
             // this.auth.getStoredUserID();
-           // this.getData = true;
+            // this.getData = true;
           } else {
             this.util.showMessage(data.msg);
           }
@@ -87,9 +89,9 @@ export class ProfilePage implements OnInit {
         },
         (err) => {
           $event.target.complete();
-         // this.getData = false;
+          // this.getData = false;
         }
       );
-    });
+    //});
   }
 }
