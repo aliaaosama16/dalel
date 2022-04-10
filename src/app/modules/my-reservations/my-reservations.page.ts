@@ -36,6 +36,11 @@ export class MyReservationsPage implements OnInit {
     this.showOrdersByStatus(OrderStatus.current);
   }
 
+  ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+  }
+
   showOrdersByStatus(orderStatus: OrderStatus) {
     this.auth.getUserIDObservable().subscribe((val) => {
       this.userOrdersData = {
@@ -75,10 +80,7 @@ export class MyReservationsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-  }
+
 
   reservationsTypeChange($event) {
     console.log($event.detail.value);

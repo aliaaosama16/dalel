@@ -1,7 +1,7 @@
 ion-segment {
   border-radius: 10px !important;
   margin-bottom: 24px;
-  --background:var(--ion-color-orange-light);
+  --background: var(--ion-color-orange-light);
   display: flex;
   justify-content: space-between;
   .selected {
@@ -24,7 +24,7 @@ ion-segment-button {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
   height: 48px;
-  --background: var(--ion-color-orange-light); 
+  --background: var(--ion-color-orange-light);
   --color-checked: var(--ion-color-white);
   --color: var(--ion-color-secondary);
   --background-checked: var(--ion-color-primary);
@@ -44,14 +44,15 @@ ion-card {
 
     .price {
       position: absolute;
-      left: 16px;
       top: 16px;
       color: var(--ion-color-secondary);
-      p {
-        font-size: 14px;
-        margin: 0px;
-        font-family: "Cairo-Bold";
-      }
+    
+    }
+    .price-ar {
+      left: 16px;
+    }
+    .price-en {
+      right: 16px;
     }
     img {
       width: 100%;
@@ -63,17 +64,13 @@ ion-card {
     .title {
       position: absolute;
       bottom: 30px;
-    
       margin-bottom: 7px;
-      p {
-        margin: 0px;
-      }
     }
 
     .location {
       position: absolute;
       bottom: 5px;
-     
+
       ion-icon {
         font-size: 20px;
       }
@@ -81,11 +78,11 @@ ion-card {
 
     .location-address {
       position: absolute;
-   
+
       font-size: 10px;
       bottom: 13px;
       p {
-        margin:0 0 -5px 0;
+        margin: 0 0 -5px 0;
       }
     }
 

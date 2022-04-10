@@ -38,7 +38,8 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     slidesPerView: 1,
     spaceBetween: 0,
     pagination: true,
-    //allowTouchMove: false,
+    allowTouchMove: false,
+    
   };
   introData: Intro;
   getIntro:boolean=false;
@@ -57,6 +58,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
     this.getIntroData();
+    
   }
 
   async skipBoarding() {

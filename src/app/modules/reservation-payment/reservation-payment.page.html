@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 <ion-content class="ion-padding">
-  <div class="container">
+  <div class="container" *ngIf="itemDetails?.first_image">
     <img [src]="itemDetails?.first_image " />
   </div>
 

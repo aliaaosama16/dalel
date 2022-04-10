@@ -39,17 +39,17 @@
       <div class="container">
         <img [src]="item?.department_image" />
 
-        <div class="price">
-          <p class="fn-15 dalel-SemiBold secondary-color">
+        <div class="price" [ngClass]="currentlangauge=='ar'  ?'price-ar':'price-en' ">
+          <p class="fn-14 dalel-Bold secondary-color ion-no-margin">
             {{item.department_price}} {{'currency'|translate}}/ {{'one night'|translate}}
           </p>
         </div>
 
         <div
-          class="title"
+          class="title "
           [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}"
         >
-          <p class="fn-14 dalel-Bold white-color">
+          <p class="fn-14 dalel-Bold white-color ion-no-margin">
             {{item.department_title|translate}}
           </p>
         </div>

@@ -41,10 +41,16 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "~swiper/css";
 @import "~swiper/css/bundle";
-
+// ion-menu::part(backdrop) {
+//   background-color: transparent;
+// }
 :root {
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
+  ion-menu {
+    --ion-backdrop-color: var(--ion-color-dark-black);
+  }
+  --ion-text-transform:lowercase !important;
 }
 
 :root[dir="rtl"] {

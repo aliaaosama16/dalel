@@ -98,7 +98,7 @@ export class SearchFilterPage implements OnInit {
       this.filterData = {
         user_id: val,
         title: this.title,
-        lang: this.currentlangauge,
+        lang: this.langaugeservice.getLanguage(),
         categories: JSON.stringify(this.selectedCategories).replace(/\\/g, ''),
         options: JSON.stringify(this.selectedOptions).replace(/\\/g, ''),
         max_area: this.max_area,

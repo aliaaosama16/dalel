@@ -69,18 +69,6 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{ "rooms number"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="rooms"
           placeholder='{{ "rooms number"|translate}}'
@@ -90,18 +78,6 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{ "people number"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="people"
           placeholder='{{ "people number"|translate}}'
@@ -111,24 +87,12 @@
   </div>
 
   <p class="fn-14 dalel-Regular primary-color">
-    {{"determine space"|translate}}
+    {{"determine space"|translate}} ({{"meter"|translate}}<sup>2</sup>)
   </p>
 
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{ "least space"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="min_area"
           placeholder='{{ "least space"|translate}}'
@@ -138,18 +102,6 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{ "highest space"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="max_area"
           placeholder='{{ "highest space"|translate}}'
@@ -165,18 +117,6 @@
   <div class="flex-container">
     <div [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{ "least price"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="max_price"
           placeholder='{{ "least price"|translate}}'
@@ -186,18 +126,6 @@
 
     <div [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <ion-item lines="none" class="select-container">
-        <!-- <ion-select
-          (ionChange)="selectPlace($event)"
-          placeholder='{{  "highest price"|translate}}'
-          okText='{{"ok"|translate}}'
-          cancelText='{{"cancel"|translate}}'
-        >
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select> -->
-
         <ion-input
           [(ngModel)]="min_price"
           placeholder='{{ "least price"|translate}}'

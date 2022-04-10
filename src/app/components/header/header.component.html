@@ -2,7 +2,7 @@
   <ion-toolbar class="my-toolbar">
     <ion-buttons slot="start" class="menu-icon">
       <ion-button (click)="openMenu()">
-        <ion-icon src="./../../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon [ngClass]="currentLanguage=='ar'? '':'direction-en'" src="./../../../assets/icon/menu.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title
