@@ -18,7 +18,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class CategoryListPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  noItems:boolean=false;
+  noItems: boolean = false;
   currentPage: number;
   categoryID: string;
   categoryName: string;
@@ -62,9 +62,8 @@ export class CategoryListPage implements OnInit {
         (data: DepartmentResponse) => {
           if (data.key == 1) {
             console.log('sections data : ' + JSON.stringify(data));
-            //this.sections = data.data.sections;
-            if(data.data.length==0){
-              this.noItems=true;
+            if (data.data.length == 0) {
+              this.noItems = true;
             }
             this.sectionAllItems = data.data;
           }
@@ -76,6 +75,7 @@ export class CategoryListPage implements OnInit {
       );
     });
   }
+
   loadItems(event?: InfiniteScrollCustomEvent) {
     // call api to get all categorey items
     let newResults = { results: [], totel_pages: 10 };
@@ -93,7 +93,7 @@ export class CategoryListPage implements OnInit {
   openMenu() {
     this.menuCtrl.open();
   }
-  //:InfiniteScrollCustomEvent
+
   loadData(event) {
     this.currentPage++;
     this.loadItems(event);
@@ -107,5 +107,35 @@ export class CategoryListPage implements OnInit {
     //     event.target.disabled = true;
     //   }
     // }, 500);
+  }
+
+  doRefresh($event) {
+    if (this.activatedRoute.snapshot.data['name']) {
+      this.categoryName = this.activatedRoute.snapshot.data['name'];
+      console.log(`categoryName is ${this.categoryName}`);
+    }
+
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+
+    this.sectionData = {
+      lang: this.langaugeservice.getLanguage(),
+      section_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+    };
+    this.items.allDepartmentsBySectionID(this.sectionData).subscribe(
+      (data: DepartmentResponse) => {
+        if (data.key == 1) {
+          console.log('sections data : ' + JSON.stringify(data));
+          if (data.data.length == 0) {
+            this.noItems = true;
+          }
+          this.sectionAllItems = data.data;
+        }
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

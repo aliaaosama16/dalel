@@ -51,4 +51,29 @@ export class PolicyPage implements OnInit {
       );
     });
   }
+
+  doRefresh($event){
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+      if (val != 0) {
+        this.conditionData = {
+          lang: this.language.getLanguage(),
+          user_id: val,
+          title: 'condition',
+        };
+      }
+    });
+    this.general.staticPages(this.conditionData).subscribe(
+      (data: StaticPageResponse) => {
+        this.conditionDataResponse = data;
+        console.log(
+          'conditionData ' + JSON.stringify(this.conditionDataResponse)
+        );
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
+  }
 }
