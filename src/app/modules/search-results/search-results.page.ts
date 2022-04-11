@@ -14,40 +14,37 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class SearchResultsPage implements OnInit {
   currentlangauge: string = '';
   resultItems: Item[];
-  noResults:boolean=false;
+  noResults: boolean = false;
   constructor(
     private langaugeservice: LanguageService,
     private util: UtilitiesService,
-    private auth: AuthService,
-    private route: ActivatedRoute,
-    private items:ItemsService
+    private items: ItemsService
   ) {}
 
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
-     console.log('filters ',this.util.filters);
+    console.log('filters ', this.util.filters);
     this.getResultsItemsByFilters(this.util.filters);
   }
 
-  getResultsItemsByFilters(filterData:FilterData){
-       this.util.showLoadingSpinner().then((__) => {
-        this.items.allDepartmentsByFilters(filterData).subscribe(
-          (data: DepartmentResponse) => {
-            if (data.key == 1) {
-              console.log('resultItems data : ' + JSON.stringify(data));
-              if(data.data.length==0){
-                this.noResults=true;
-              }
-              this.resultItems = data.data;
+  getResultsItemsByFilters(filterData: FilterData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.items.allDepartmentsByFilters(filterData).subscribe(
+        (data: DepartmentResponse) => {
+          if (data.key == 1) {
+            console.log('resultItems data : ' + JSON.stringify(data));
+            if (data.data.length == 0) {
+              this.noResults = true;
             }
-            this.util.dismissLoading();
-          },
-          (err) => {
-            this.util.dismissLoading();
+            this.resultItems = data.data;
           }
-        );
-      });
-    }
-  
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
 }

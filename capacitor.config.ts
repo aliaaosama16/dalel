@@ -14,8 +14,13 @@ const config: CapacitorConfig = {
       splashFullScreen: true,
       splashImmersive: false,
     },
-    "PushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert"]
+    Keyboard: {
+      resize: "body",
+      style: "dark",
+      resizeOnFullScreen: true,
+    },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"]
     }
   },
   android: {

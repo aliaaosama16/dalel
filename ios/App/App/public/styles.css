@@ -2297,10 +2297,10 @@ ion-tab-bar ion-tab-button ion-icon {
   float: left;
 }
 .alert-head.sc-ion-alert-md {
-  padding: 0px !important;
+  padding: 10px !important;
 }
 .alert-head.sc-ion-alert-ios {
-  padding: 0px !important;
+  padding: 10px !important;
 }
 .swiper-pagination-bullet-active {
   background-color: var(--ion-color-primary) !important;
@@ -2322,6 +2322,10 @@ ion-tab-bar ion-tab-button ion-icon {
   width: 15px;
   border-radius: 10px;
   opacity: 0.5;
+}
+.my-loading-class {
+  --background: transparent;
+  --spinner-color: var(--ion-color-primary);
 }
 
 /*# sourceMappingURL=styles.css.map*/

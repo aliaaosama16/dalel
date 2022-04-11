@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language/language.service';
-import {
-  FormGroup,
-  Validators,
-  FormBuilder,
-  FormControl,
-  AbstractControl,
-  ValidatorFn,
-} from '@angular/forms';
-import { MenuController } from '@ionic/angular';
+import { Location } from '@angular/common';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MenuController, Platform } from '@ionic/angular';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthData, AuthResponse, Status } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -76,9 +70,15 @@ export class LoginRegisterPage implements OnInit {
     private menuCtrl: MenuController,
     private util: UtilitiesService,
     private auth: AuthService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private platform: Platform,
+    private location: Location
   ) {
     this.menuCtrl.enable(false, 'main');
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   ngOnInit() {
@@ -201,7 +201,7 @@ export class LoginRegisterPage implements OnInit {
               console.log('login res :' + JSON.stringify(data));
               if (data.status == Status.Active) {
                 this.router.navigateByUrl('/tabs/main');
-               // window.location.reload();
+
                 this.auth.storeStatusAfterLogin(data);
                 this.auth.setUserID(data.data.id);
               } else if (data.status == Status.NonActive) {
@@ -221,10 +221,8 @@ export class LoginRegisterPage implements OnInit {
           }
         );
       });
-      // return false;
     } else {
       return false;
-      console.log(this.signinForm.value);
     }
   }
 
@@ -236,7 +234,6 @@ export class LoginRegisterPage implements OnInit {
     this.authType = authType;
   }
 
-  // change icon beside input : just for style
   focusPerson(focusStatus: boolean) {
     console.log('input focus' + focusStatus);
     this.inputFocusPerson = focusStatus;

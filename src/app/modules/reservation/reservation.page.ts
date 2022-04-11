@@ -15,6 +15,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./reservation.page.scss'],
 })
 export class ReservationPage implements OnInit {
+  currentLanguage: string;
   platform: any;
   dateRange: { from: string; to: string };
   type: 'string';
@@ -24,6 +25,8 @@ export class ReservationPage implements OnInit {
     showAdjacentMonthDay: true,
     showMonthPicker: true,
     showToggleButtons: true,
+  
+    
     color: 'primary',
     from: new Date(),
     daysConfig: [],
@@ -32,9 +35,11 @@ export class ReservationPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     private util: UtilitiesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private language: LanguageService
   ) {
     this.platform = this.util.platform;
+    this.currentLanguage = this.language.getLanguage();
   }
 
   onChange(selectedDates) {

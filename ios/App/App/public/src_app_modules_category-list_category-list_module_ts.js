@@ -96,12 +96,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CategoryListPage": () => (/* binding */ CategoryListPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-list.page.html */ 47728);
 /* harmony import */ var _category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category-list.page.scss */ 97800);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 28267);
 /* harmony import */ var src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/items/items.service */ 17118);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
@@ -114,16 +115,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let CategoryListPage = class CategoryListPage {
-    constructor(menuCtrl, activatedRoute, langaugeservice, util, items) {
+    constructor(menuCtrl, activatedRoute, langaugeservice, util, items, plt, location) {
         this.menuCtrl = menuCtrl;
         this.activatedRoute = activatedRoute;
         this.langaugeservice = langaugeservice;
         this.util = util;
         this.items = items;
+        this.plt = plt;
+        this.location = location;
         this.noItems = false;
         this.platform = this.util.platform;
         //this.loadItems();
+        this.plt.backButton.subscribeWithPriority(10, () => {
+            console.log('Handler was called!');
+            this.location.back();
+        });
     }
     ngOnInit() {
         console.log(`category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`);
@@ -213,13 +221,15 @@ CategoryListPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
     { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
-    { type: src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_2__.ItemsService }
+    { type: src_app_services_items_items_service__WEBPACK_IMPORTED_MODULE_2__.ItemsService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.Platform },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__.Location }
 ];
 CategoryListPage.propDecorators = {
-    infiniteScroll: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonInfiniteScroll,] }]
+    infiniteScroll: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonInfiniteScroll,] }]
 };
-CategoryListPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+CategoryListPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-category-list',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__]

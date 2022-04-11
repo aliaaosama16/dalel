@@ -5,13 +5,15 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-<ion-content class="ion-padding"  >
+<ion-content class="ion-padding">
   <ion-calendar
+    lockSwipeToPrev="true"
     [(ngModel)]="dateRange"
     (change)="onChange($event)"
     [options]="optionsRange"
     [type]="type"
     [format]="'YYYY-MM-DD'"
+    [dir]="currentLanguage=='ar'?'rtl':'ltr'"
   >
   </ion-calendar>
 

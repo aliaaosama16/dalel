@@ -135,7 +135,6 @@ let PolicyPage = class PolicyPage {
         this.util.showLoadingSpinner().then((__) => {
             this.general.staticPages(data).subscribe((data) => {
                 this.conditionDataResponse = data;
-                console.log('conditionData ' + JSON.stringify(this.conditionDataResponse));
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
@@ -155,7 +154,6 @@ let PolicyPage = class PolicyPage {
         });
         this.general.staticPages(this.conditionData).subscribe((data) => {
             this.conditionDataResponse = data;
-            console.log('conditionData ' + JSON.stringify(this.conditionDataResponse));
             $event.target.complete();
         }, (err) => {
             $event.target.complete();

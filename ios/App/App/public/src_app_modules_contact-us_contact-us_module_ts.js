@@ -182,7 +182,6 @@ let ContactUsPage = class ContactUsPage {
         this.util.showLoadingSpinner().then((__) => {
             this.general.contactUs(this.contactData).subscribe((data) => {
                 if (data.key == 1) {
-                    console.log('contact us  res :' + JSON.stringify(data));
                     this.util.showMessage(data.msg);
                 }
                 else {

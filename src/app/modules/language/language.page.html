@@ -31,7 +31,7 @@
       </ion-radio-group>
     </ion-list>
 
-    <ion-button expand="block" class="btn-custom" routerLink="/on-boarding" routerDirection="forward">
+    <ion-button expand="block" [disabled]="!selectLanguage" class="btn-custom" routerLink="/on-boarding" routerDirection="forward">
       <span>{{"start"|translate}}</span>
     </ion-button>
   </div>

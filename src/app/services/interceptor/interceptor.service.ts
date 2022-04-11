@@ -21,20 +21,20 @@ export class InterceptorService implements HttpInterceptor {
   ) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(request).pipe(
-      map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log('http request response', event);
-        }
-        return event;
-      }),
+      // map((event: HttpEvent<any>) => {
+      //   if (event instanceof HttpResponse) {
+      //     console.log('http request response', event);
+      //   }
+      //   return event;
+      // }),
       catchError((error: HttpErrorResponse) => {
-        this.network.getNetworkStatus();
-        this.network.getNetworkStatusObservable().subscribe((status) => {
-          console.log('current network status : '+status);
-          if (!status) {
-            this.util.showMessage('connection error');
-          }
-        });
+        this.network.listenToNetwork();
+        // this.network.getNetworkStatusObservable().subscribe((status) => {
+        //   console.log('current network status : '+status);
+        //   if (!status) {
+        //     this.util.showMessage('connection error');
+        //   }
+        // });
 
         console.error(error);
         return throwError(error);

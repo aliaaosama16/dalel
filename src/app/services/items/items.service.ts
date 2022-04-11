@@ -40,9 +40,7 @@ export class ItemsService {
     );
   }
 
-  getNeighborhoodsByCityID(
-    data: CitysData
-  ): Observable<CountryResponse> {
+  getNeighborhoodsByCityID(data: CitysData): Observable<CountryResponse> {
     return this.httpclient.post<CountryResponse>(
       `${environment.BASE_URL}neighborhoods`,
       data

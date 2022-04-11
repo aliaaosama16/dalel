@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-phone-number',
@@ -13,8 +14,17 @@ export class PhoneNumberPage implements OnInit {
   inputInFocusPhoneIcon: string =
     './../../../../assets/icon/phone-inactive.svg';
 
-  constructor(private router: Router, private menuCtrl: MenuController) {
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private platform: Platform,
+    private location: Location
+  ) {
     this.menuCtrl.enable(false, 'main');
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   // ionViewWillEnter() {

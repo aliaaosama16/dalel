@@ -120,33 +120,33 @@ let ProfilePage = class ProfilePage {
         this.language = language;
         this.getData = false;
         // this.auth.getStoredUserID();
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('get id from behavour subject if just logined' + val);
-            if (val != 0) {
-                this.userData = {
-                    lang: this.language.getLanguage(),
-                    user_id: val,
-                };
-                this.platform = this.util.platform;
-                this.util.showLoadingSpinner().then((__) => {
-                    this.auth.userData(this.userData).subscribe((data) => {
-                        if (data.key == 1) {
-                            this.userResponse = data;
-                            console.log('user all data :' + JSON.stringify(this.userResponse));
-                            this.auth.getStoredUserID();
-                            // this.getData = true;
-                        }
-                        else {
-                            this.util.showMessage(data.msg);
-                        }
-                        this.util.dismissLoading();
-                    }, (err) => {
-                        this.util.dismissLoading();
-                        //this.getData = false;
-                    });
-                });
-            }
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        // console.log('get id from behavour subject if just logined' + val);
+        // if (val != 0) {
+        this.userData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+        };
+        this.platform = this.util.platform;
+        this.util.showLoadingSpinner().then((__) => {
+            this.auth.userData(this.userData).subscribe((data) => {
+                if (data.key == 1) {
+                    this.userResponse = data;
+                    console.log('user all data :' + JSON.stringify(this.userResponse));
+                    //this.auth.getStoredUserID();
+                    // this.getData = true;
+                }
+                else {
+                    //  this.util.showMessage(data.msg);
+                }
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+                //this.getData = false;
+            });
         });
+        // }
+        //});
     }
     ngOnInit() { }
     openMenu() {
@@ -163,23 +163,23 @@ let ProfilePage = class ProfilePage {
             }
         });
         this.platform = this.util.platform;
-        this.util.showLoadingSpinner().then((__) => {
-            this.auth.userData(this.userData).subscribe((data) => {
-                if (data.key == 1) {
-                    this.userResponse = data;
-                    // console.log('user all data :' + JSON.stringify(this.userResponse));
-                    // this.auth.getStoredUserID();
-                    // this.getData = true;
-                }
-                else {
-                    this.util.showMessage(data.msg);
-                }
-                $event.target.complete();
-            }, (err) => {
-                $event.target.complete();
-                // this.getData = false;
-            });
+        // this.util.showLoadingSpinner().then((__) => {
+        this.auth.userData(this.userData).subscribe((data) => {
+            if (data.key == 1) {
+                this.userResponse = data;
+                // console.log('user all data :' + JSON.stringify(this.userResponse));
+                // this.auth.getStoredUserID();
+                // this.getData = true;
+            }
+            else {
+                this.util.showMessage(data.msg);
+            }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
+            // this.getData = false;
         });
+        //});
     }
 };
 ProfilePage.ctorParameters = () => [

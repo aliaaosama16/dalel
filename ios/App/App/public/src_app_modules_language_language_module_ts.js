@@ -119,6 +119,9 @@ let LanguagePage = class LanguagePage {
     }
     chooseLanguage(ev) {
         console.log(ev.detail.value);
+        if (ev.detail.value) {
+            this.selectLanguage = true;
+        }
         this.langaugeservice.setLanguage(ev.detail.value);
         if (ev.detail.value == 'ar') {
             document.documentElement.dir = 'rtl';
@@ -155,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div\n    class=\"language\"\n    [ngClass]=\"currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'\"\n  >\n    <ion-list >\n      <ion-radio-group (ionChange)=\"chooseLanguage($event)\">\n        <ion-list-header >\n          <ion-label>\n            <h5 class=\"title\">{{ \"choose_langauge\"|translate}}</h5></ion-label\n          >\n        </ion-list-header>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"ar\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'ar' ? 'arabic' : 'english'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\">{{'arabic'|translate}}</ion-label>\n        </ion-item>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"en\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'en' ? 'english' : 'arabic'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\"> {{'english'|translate}}</ion-label>\n        </ion-item>\n      </ion-radio-group>\n    </ion-list>\n\n    <ion-button expand=\"block\" class=\"btn-custom\" routerLink=\"/on-boarding\" routerDirection=\"forward\">\n      <span>{{\"start\"|translate}}</span>\n    </ion-button>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div\n    class=\"language\"\n    [ngClass]=\"currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'\"\n  >\n    <ion-list >\n      <ion-radio-group (ionChange)=\"chooseLanguage($event)\">\n        <ion-list-header >\n          <ion-label>\n            <h5 class=\"title\">{{ \"choose_langauge\"|translate}}</h5></ion-label\n          >\n        </ion-list-header>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"ar\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'ar' ? 'arabic' : 'english'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\">{{'arabic'|translate}}</ion-label>\n        </ion-item>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"en\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'en' ? 'english' : 'arabic'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\"> {{'english'|translate}}</ion-label>\n        </ion-item>\n      </ion-radio-group>\n    </ion-list>\n\n    <ion-button expand=\"block\" [disabled]=\"!selectLanguage\" class=\"btn-custom\" routerLink=\"/on-boarding\" routerDirection=\"forward\">\n      <span>{{\"start\"|translate}}</span>\n    </ion-button>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

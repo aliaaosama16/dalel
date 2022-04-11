@@ -82,16 +82,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     });
   }
 
-  nextSlide(ev) {
-    // console.log('pointerId : ' + ev.pointerId);
-    // if (this.nextClicked < 3) {
-    //   this.nextClicked++;
-    // } else {
-    //   // this.setBoarding();
-
-    //   // this.router.navigateByUrl('/tabs/main');
-      
-    // }
+  nextSlide() {
     this.swiper.swiperRef.slideNext()
   }
 

@@ -138,29 +138,34 @@ let NotificationsPage = class NotificationsPage {
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('user id :' + val);
-            if (val != 0) {
-                this.UserData = {
-                    lang: this.langaugeservice.getLanguage(),
-                    user_id: val,
-                };
-                this.showNotification(this.UserData);
-            }
-        });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        //   console.log('user id :' + val);
+        //   if (val != 0) {
+        this.UserData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value,
+        };
+        this.showNotification(this.UserData);
+        //}
+        ///});
     }
     openMenu() {
         this.menuCtrl.open();
     }
     showNotification(notificationData) {
-        this.userNotifications.showNotification(notificationData).subscribe((data) => {
-            if (data.key == 1) {
-                if (data.data.length == 0) {
-                    this.noNotifications = true;
+        this.util.showLoadingSpinner().then((__) => {
+            this.userNotifications.showNotification(notificationData).subscribe((data) => {
+                if (data.key == 1) {
+                    if (data.data.length == 0) {
+                        this.noNotifications = true;
+                    }
+                    this.notifications = data.data;
                 }
-                this.notifications = data.data;
-            }
-        }, (err) => { });
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
     openOrederDetails(orderID) {
         this.router.navigateByUrl(`/tabs/my-reservations/my-reservations-details/` + orderID);

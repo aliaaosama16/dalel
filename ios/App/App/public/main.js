@@ -194,14 +194,10 @@ let AppComponent = class AppComponent {
             },
         ];
         this.initializeApp();
-        // this.auth.getLoginedObservable().subscribe((val) => {
-        //   this.logined = val;
-        // });
     }
     initializeApp() {
         this.platform.ready().then(() => {
             this.languageService.setInitialAppLanguage();
-            // this.logined=this.auth.isAuthenticated.value;
             this.currentLanguage = this.languageService.getLanguage();
             console.log(`language is ${this.currentLanguage}`);
             this.util.getPlatformType();
@@ -215,27 +211,28 @@ let AppComponent = class AppComponent {
             const loginStatus = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__.Storage.get({ key: 'status' });
             if (loginStatus.value == _models_loginData__WEBPACK_IMPORTED_MODULE_2__.Status.Active) {
                 this.auth.isLogined();
-                // this.auth.getLoginedObservable().subscribe((val) => {
-                //   this.logined = val;
-                // });
             }
+            this.logined = this.auth.isAuthenticated.value;
+            this.getUserNotifications();
+        });
+    }
+    getUserNotifications() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             const userID = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_6__.Storage.get({ key: 'userID' });
             console.log('stored user id : ' + parseInt(userID.value));
             this.auth.setNoOfNotifications(parseInt(userID.value));
             this.auth.userID.next(parseInt(userID.value));
-            this.logined = this.auth.isAuthenticated.value;
-            //this.auth.getStoredUserID();
         });
     }
     logout() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
-            this.auth.getUserIDObservable().subscribe((val) => {
-                this.logoutData = {
-                    lang: this.languageService.getLanguage(),
-                    user_id: val,
-                    device_id: this.util.deviceID,
-                };
-            });
+            // this.auth.getUserIDObservable().subscribe((val) => {
+            this.logoutData = {
+                lang: this.languageService.getLanguage(),
+                user_id: this.auth.userID.value,
+                device_id: this.util.deviceID,
+            };
+            // });
             const alert = yield this.alertController.create({
                 cssClass: 'my-custom-class',
                 message: this.translate.instant('confirm logout'),
@@ -557,14 +554,14 @@ let AuthService = class AuthService {
         this.setUserID((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.id);
         this.storeToken((_b = data === null || data === void 0 ? void 0 : data.data) === null || _b === void 0 ? void 0 : _b.api_token);
         this.store('status', data.status);
-        this.storeUserId((_c = data === null || data === void 0 ? void 0 : data.data) === null || _c === void 0 ? void 0 : _c.id.toString());
+        this.storeUserId((_c = data === null || data === void 0 ? void 0 : data.data) === null || _c === void 0 ? void 0 : _c.id);
         this.setNoOfNotifications((_d = data === null || data === void 0 ? void 0 : data.data) === null || _d === void 0 ? void 0 : _d.id);
     }
     storeUserId(id) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
                 key: "userID",
-                value: id,
+                value: id.toString(),
             });
         });
     }
@@ -830,15 +827,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "InterceptorService": () => (/* binding */ InterceptorService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 9500);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 88377);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 10592);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 9500);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 10592);
 /* harmony import */ var _network_network_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../network/network.service */ 33401);
 /* harmony import */ var _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilities/utilities.service */ 11062);
-
 
 
 
@@ -851,21 +845,23 @@ let InterceptorService = class InterceptorService {
         this.util = util;
     }
     intercept(request, next) {
-        return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)((event) => {
-            if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpResponse) {
-                console.log('http request response', event);
-            }
-            return event;
-        }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.catchError)((error) => {
-            this.network.getNetworkStatus();
-            this.network.getNetworkStatusObservable().subscribe((status) => {
-                console.log('current network status : ' + status);
-                if (!status) {
-                    this.util.showMessage('connection error');
-                }
-            });
+        return next.handle(request).pipe(
+        // map((event: HttpEvent<any>) => {
+        //   if (event instanceof HttpResponse) {
+        //     console.log('http request response', event);
+        //   }
+        //   return event;
+        // }),
+        (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.catchError)((error) => {
+            this.network.listenToNetwork();
+            // this.network.getNetworkStatusObservable().subscribe((status) => {
+            //   console.log('current network status : '+status);
+            //   if (!status) {
+            //     this.util.showMessage('connection error');
+            //   }
+            // });
             console.error(error);
-            return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.throwError)(error);
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.throwError)(error);
         }));
     }
 };
@@ -873,8 +869,8 @@ InterceptorService.ctorParameters = () => [
     { type: _network_network_service__WEBPACK_IMPORTED_MODULE_0__.NetworkService },
     { type: _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__.UtilitiesService }
 ];
-InterceptorService = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)({
+InterceptorService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
         providedIn: 'root',
     })
 ], InterceptorService);
@@ -976,25 +972,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NetworkService": () => (/* binding */ NetworkService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _capacitor_network__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/network */ 35609);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 41119);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 41119);
+/* harmony import */ var _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilities/utilities.service */ 11062);
+
 
 
 
 
 let NetworkService = class NetworkService {
-    constructor() {
-        this.networkStatus = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(false);
+    constructor(util) {
+        this.util = util;
+        this.networkStatus = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject(false);
     }
     listenToNetwork() {
         _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.addListener('networkStatusChange', (status) => {
             console.log('Network status changed', status);
+            if (!status) {
+                this.util.showMessage('connection error');
+            }
+            this.networkStatus.next(status.connected);
         });
     }
     getNetworkStatus() {
         _capacitor_network__WEBPACK_IMPORTED_MODULE_0__.Network.getStatus().then((status) => {
+            if (!status) {
+                this.util.showMessage('connection error');
+            }
             this.networkStatus.next(status.connected);
         });
     }
@@ -1002,9 +1008,11 @@ let NetworkService = class NetworkService {
         return this.networkStatus.asObservable();
     }
 };
-NetworkService.ctorParameters = () => [];
-NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+NetworkService.ctorParameters = () => [
+    { type: _utilities_utilities_service__WEBPACK_IMPORTED_MODULE_1__.UtilitiesService }
+];
+NetworkService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
         providedIn: 'root',
     })
 ], NetworkService);
@@ -1169,16 +1177,18 @@ let UtilitiesService = class UtilitiesService {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             console.log('show loading');
             this.loading = yield this.loadingCtrl.create({
-                mode: 'md',
-                spinner: 'dots',
+                mode: 'ios',
+                spinner: 'crescent',
                 cssClass: 'my-loading-class',
                 backdropDismiss: false,
+                animated: true
             });
             this.loading.present();
             return this.loading;
         });
     }
     dismissLoading() {
+        console.log('hide loading');
         this.loadingCtrl.dismiss();
     }
     getUserLocation() {

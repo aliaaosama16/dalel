@@ -19,7 +19,7 @@ export class AppComponent {
   currentLanguage: string = '';
   selectedIndex: number;
   logoutData: AuthData;
-  logined: boolean=this.auth.isAuthenticated.value;
+  logined: boolean = this.auth.isAuthenticated.value;
 
   pages = [
     {
@@ -72,17 +72,11 @@ export class AppComponent {
     private fcmService: FcmService
   ) {
     this.initializeApp();
-    // this.auth.getLoginedObservable().subscribe((val) => {
-    //   this.logined = val;
-    // });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.languageService.setInitialAppLanguage();
-
-     // this.logined=this.auth.isAuthenticated.value;
-      
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
       this.util.getPlatformType();
@@ -92,35 +86,34 @@ export class AppComponent {
     });
   }
 
- 
-
   async getLoginStatus() {
     const loginStatus = await Storage.get({ key: 'status' });
 
     if (loginStatus.value == Status.Active) {
       this.auth.isLogined();
-      // this.auth.getLoginedObservable().subscribe((val) => {
-      //   this.logined = val;
-      // });
-
-      
     }
+
+    this.logined = this.auth.isAuthenticated.value;
+
+    this.getUserNotifications();
+   
+  }
+
+  async getUserNotifications(){
     const userID = await Storage.get({ key: 'userID' });
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
     this.auth.userID.next(parseInt(userID.value));
-    this.logined=this.auth.isAuthenticated.value;
-    //this.auth.getStoredUserID();
   }
 
   async logout() {
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.logoutData = {
         lang: this.languageService.getLanguage(),
-        user_id: val,
+        user_id: this.auth.userID.value,//val,
         device_id: this.util.deviceID,
       };
-    });
+   // });
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -154,7 +147,7 @@ export class AppComponent {
         (data: AuthResponse) => {
           if (data.key == 1) {
             console.log('login res :' + JSON.stringify(data));
-            
+
             this.auth.removeRegistrationData();
           } else {
             this.util.showMessage(data.msg);

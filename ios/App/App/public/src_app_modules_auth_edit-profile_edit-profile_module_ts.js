@@ -97,15 +97,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EditProfilePage": () => (/* binding */ EditProfilePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
 /* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_edit_profile_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./edit-profile.page.html */ 8413);
 /* harmony import */ var _edit_profile_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit-profile.page.scss */ 61501);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 18346);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 28267);
+
 
 
 
@@ -116,12 +118,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let EditProfilePage = class EditProfilePage {
-    constructor(menuCtrl, formBuilder, util, auth, language) {
+    constructor(menuCtrl, formBuilder, util, auth, language, platform, location) {
         this.menuCtrl = menuCtrl;
         this.formBuilder = formBuilder;
         this.util = util;
         this.auth = auth;
         this.language = language;
+        this.platform = platform;
+        this.location = location;
         this.getData = false;
         this.isProfileSubmitted = false;
         this.inputFocusPerson = false;
@@ -133,6 +137,10 @@ let EditProfilePage = class EditProfilePage {
         this.inputFocusPhone = false;
         this.inputFocusPhoneIcon = './../../../../assets/icon/phone-active.svg';
         this.inputInFocusPhoneIcon = './../../../../assets/icon/phone-inactive.svg';
+        this.platform.backButton.subscribeWithPriority(10, () => {
+            console.log('Handler was called!');
+            this.location.back();
+        });
         this.auth.getUserIDObservable().subscribe((val) => {
             this.userData = {
                 lang: this.language.getLanguage(),
@@ -228,10 +236,12 @@ EditProfilePage.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder },
     { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
     { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__.Location }
 ];
-EditProfilePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+EditProfilePage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-edit-profile',
         template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_edit_profile_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_edit_profile_page_scss__WEBPACK_IMPORTED_MODULE_1__]

@@ -127,7 +127,6 @@ let AboutPage = class AboutPage {
         this.util.showLoadingSpinner().then((__) => {
             this.general.staticPages(data).subscribe((data) => {
                 this.aboutDataResponse = data;
-                console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
@@ -137,7 +136,6 @@ let AboutPage = class AboutPage {
     doRefresh($event) {
         this.general.staticPages(this.aboutData).subscribe((data) => {
             this.aboutDataResponse = data;
-            console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
             $event.target.complete();
         }, (err) => {
             $event.target.complete();

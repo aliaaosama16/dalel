@@ -42,10 +42,10 @@ export class MyReservationsPage implements OnInit {
   }
 
   showOrdersByStatus(orderStatus: OrderStatus, refresh?: boolean,refreshEvent?) {
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.userOrdersData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
         status: orderStatus == 0 ? 'current' : 'finish',
       };
       if (refresh) {
@@ -54,7 +54,7 @@ export class MyReservationsPage implements OnInit {
         this.showAllOrdersByID(this.userOrdersData);
       }
      
-    });
+   // });
   }
 
   showAllOrdersByIDRefreshing(userOrdersData: UserOrdersData,refreshEvent) {

@@ -4,9 +4,11 @@ import {
   InfiniteScrollCustomEvent,
   IonInfiniteScroll,
   MenuController,
+  Platform,
 } from '@ionic/angular';
+import { Location } from '@angular/common';
+
 import { DepartmentResponse, Item, SectionData } from 'src/app/models/item';
-import { SectionsResponse } from 'src/app/models/sections';
 import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -32,10 +34,16 @@ export class CategoryListPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private langaugeservice: LanguageService,
     private util: UtilitiesService,
-    private items: ItemsService
+    private items: ItemsService,
+    private plt: Platform,
+    private location: Location
   ) {
     this.platform = this.util.platform;
     //this.loadItems();
+    this.plt.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   ngOnInit() {

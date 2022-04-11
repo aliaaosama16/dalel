@@ -32,7 +32,7 @@ export class ProfilePage implements OnInit {
       user_id: this.auth.userID.value,
     };
     this.platform = this.util.platform;
-    //   this.util.showLoadingSpinner().then((__) => {
+       this.util.showLoadingSpinner().then((__) => {
     this.auth.userData(this.userData).subscribe(
       (data: UserResponse) => {
         if (data.key == 1) {
@@ -43,14 +43,14 @@ export class ProfilePage implements OnInit {
         } else {
           //  this.util.showMessage(data.msg);
         }
-        //this.util.dismissLoading();
+        this.util.dismissLoading();
       },
       (err) => {
         this.util.dismissLoading();
         //this.getData = false;
       }
     );
-    // });
+     });
     // }
     //});
   }
