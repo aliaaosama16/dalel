@@ -128,13 +128,13 @@ let SearchFilterPage = class SearchFilterPage {
     }
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.userData = {
-                lang: this.langaugeservice.getLanguage(),
-                user_id: val == 0 ? 1 : val,
-            };
-            this.getAllFilterData(this.userData);
-        });
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        this.userData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value, //val == 0 ? 1 : val,
+        };
+        this.getAllFilterData(this.userData);
+        // });
     }
     getAllFilterData(filterData) {
         this.util.showLoadingSpinner().then((__) => {

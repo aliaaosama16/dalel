@@ -52,12 +52,14 @@
   <div class="categories-section ion-padding-horizontal">
     <div class="categories-section-title">
       <div>
-        <h5  class="categories-title fn-18 dalel-Bold">
+        <h5 class="categories-title fn-18 dalel-Bold">
           {{"categories"|translate}}
         </h5>
       </div>
       <div routerLink="/tabs/main/categories">
-        <p class="categories-sub-title fn-14 dalel-Regular">{{"show all"|translate}}</p>
+        <p class="categories-sub-title fn-14 dalel-Regular">
+          {{"show all"|translate}}
+        </p>
       </div>
     </div>
 
@@ -86,12 +88,6 @@
   </div>
 
   <div class="naerby-section ion-padding-horizontal">
-    <!-- <ion-row>
-      <ion-col size="12" class="ion-align-self-start">
-       
-      </ion-col>
-    </ion-row> -->
-
     <div class="naerby-section-title">
       <div>
         <h5 class="fn-18 dalel-Bold">{{"nearby places"|translate}}</h5>
@@ -108,6 +104,7 @@
         <app-custom-card
           [itemDetails]="item"
           [forwardRoute]="'/tabs/main'"
+          [cardBrightness]="'0.62'"
         ></app-custom-card>
       </ng-template>
     </swiper>

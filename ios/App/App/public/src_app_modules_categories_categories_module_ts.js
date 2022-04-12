@@ -130,13 +130,13 @@ let CategoriesPage = class CategoriesPage {
         this.auth = auth;
         this.noCategoriesData = false;
         this.platform = this.util.platform;
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.userData = {
-                lang: this.langaugeservice.getLanguage(),
-                user_id: val == 0 ? 1 : val,
-            };
-            this.getAllSections();
-        });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        this.userData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value, //val == 0 ? 1 : val,
+        };
+        this.getAllSections();
+        // });
     }
     ngOnInit() { }
     getAllSections() {

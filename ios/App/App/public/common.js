@@ -957,6 +957,71 @@ var PaymentMethod;
 
 /***/ }),
 
+/***/ 90098:
+/*!*********************************************************!*\
+  !*** ./src/app/modules/image-modal/image-modal.page.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ImageModalPage": () => (/* binding */ ImageModalPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./image-modal.page.html */ 39715);
+/* harmony import */ var _image_modal_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image-modal.page.scss */ 36024);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+
+
+
+
+
+
+let ImageModalPage = class ImageModalPage {
+    constructor(language, modalCtrl) {
+        this.language = language;
+        this.modalCtrl = modalCtrl;
+        this.currentlangauge = '';
+        this.configSlider = {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: false,
+            effect: 'fade',
+            autoplay: false,
+            zoom: {
+                maxRatio: 5,
+            },
+        };
+    }
+    ngOnInit() {
+        this.currentlangauge = this.language.getLanguage();
+        console.log(JSON.stringify(this.images));
+    }
+    closeModal() {
+        this.modalCtrl.dismiss();
+    }
+};
+ImageModalPage.ctorParameters = () => [
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.ModalController }
+];
+ImageModalPage.propDecorators = {
+    images: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input }]
+};
+ImageModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+        selector: 'app-image-modal',
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        styles: [_image_modal_page_scss__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], ImageModalPage);
+
+
+
+/***/ }),
+
 /***/ 62700:
 /*!***********************************************************!*\
   !*** ./src/app/services/favourites/favourites.service.ts ***!
@@ -1146,6 +1211,30 @@ ReservationsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 ], ReservationsService);
 
 
+
+/***/ }),
+
+/***/ 39715:
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./src/app/modules/image-modal/image-modal.page.html ***!
+  \**************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n\n  <swiper\n    #swiper\n    [config]=\"configSlider\"\n    class=\"item-images-swiper\"\n    [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n  >\n    <ng-template swiperSlide *ngFor=\"let image of images\">\n      <img class=\"slider-image\" [src]=\"image.image\" />\n    </ng-template>\n  </swiper>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n    <ion-fab-button color=\"primary\" (click)=\"closeModal()\">\n      <ion-icon name=\"close\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n");
+
+/***/ }),
+
+/***/ 36024:
+/*!***********************************************************!*\
+  !*** ./src/app/modules/image-modal/image-modal.page.scss ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+module.exports = ".item-images-swiper {\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltYWdlLW1vZGFsLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7QUFDRiIsImZpbGUiOiJpbWFnZS1tb2RhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaXRlbS1pbWFnZXMtc3dpcGVyIHtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuIl19 */";
 
 /***/ })
 

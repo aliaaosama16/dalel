@@ -1,0 +1,21 @@
+<ion-content>
+
+
+  <swiper
+    #swiper
+    [config]="configSlider"
+    class="item-images-swiper"
+    [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+  >
+    <ng-template swiperSlide *ngFor="let image of images">
+      <img class="slider-image" [src]="image.image" />
+    </ng-template>
+  </swiper>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="primary" (click)="closeModal()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -632,14 +632,14 @@ let CodePage = class CodePage {
     confirmVerificationCode() {
         this.code = parseInt(this.codeValues);
         console.log('code is :' + this.codeValues.substring(9));
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.activationData = {
-                lang: this.language.getLanguage(),
-                user_id: val,
-                code: this.codeValues.substring(9),
-                device_id: this.util.deviceID,
-            };
-        });
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        this.activationData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+            code: this.codeValues.substring(9),
+            device_id: this.util.deviceID,
+        };
+        //});
         this.util.showLoadingSpinner().then((__) => {
             this.auth.activeAccount(this.activationData).subscribe((data) => {
                 if (data.key == 1) {

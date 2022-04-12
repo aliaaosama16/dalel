@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController, Platform } from '@ionic/angular';
+import { MenuController, ModalController, Platform } from '@ionic/angular';
 import { GeneralResponse } from 'src/app/models/general';
 import {
   AddRemoveFavourite,
@@ -14,6 +14,7 @@ import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { SwiperOptions } from 'swiper';
+import { ImageModalPage } from '../image-modal/image-modal.page';
 
 @Component({
   selector: 'app-category-details',
@@ -61,7 +62,8 @@ export class CategoryDetailsPage implements OnInit {
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
     private favouritesService: FavouritesService,
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController
   ) {
     this.platform = this.util.platform;
   }
@@ -196,5 +198,16 @@ export class CategoryDetailsPage implements OnInit {
       this.util.showMessage('login now');
       this.router.navigateByUrl('/login-register');
     }
+  }
+
+  async openPreview(itemImages) {
+    const modal = await this.modalCtrl.create({
+      component: ImageModalPage,
+      cssClass: 'transparent-modal',
+      componentProps: {
+        images:itemImages
+      }
+    });
+    modal.present();
   }
 }

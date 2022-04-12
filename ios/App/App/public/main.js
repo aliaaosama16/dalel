@@ -86,6 +86,10 @@ const routes = [
         path: 'chnage-password/:userID',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_modules_auth_chnage-password_chnage-password_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/auth/chnage-password/chnage-password.module */ 3027)).then(m => m.ChnagePasswordPageModule)
     },
+    {
+        path: 'image-modal',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_mjs"), __webpack_require__.e("common"), __webpack_require__.e("src_app_modules_image-modal_image-modal_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./modules/image-modal/image-modal.module */ 75202)).then(m => m.ImageModalPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

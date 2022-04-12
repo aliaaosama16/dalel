@@ -118,16 +118,16 @@ let PolicyPage = class PolicyPage {
         this.general = general;
         this.language = language;
         this.auth = auth;
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('user id :' + val);
-            if (val != 0) {
-                this.conditionData = {
-                    lang: this.language.getLanguage(),
-                    user_id: val,
-                    title: 'condition',
-                };
-            }
-        });
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        // console.log('user id :' + val);
+        // if (val != 0) {
+        this.conditionData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+            title: 'condition',
+        };
+        //   }
+        // });
         this.getIntroData(this.conditionData);
     }
     ngOnInit() { }

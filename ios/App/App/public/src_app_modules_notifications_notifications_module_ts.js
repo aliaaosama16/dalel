@@ -217,25 +217,23 @@ let NotificationsPage = class NotificationsPage {
         });
     }
     doRefresh($event) {
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('user id :' + val);
-            if (val != 0) {
-                this.UserData = {
-                    lang: this.langaugeservice.getLanguage(),
-                    user_id: val,
-                };
-                this.userNotifications.showNotification(this.UserData).subscribe((data) => {
-                    if (data.key == 1) {
-                        if (data.data.length == 0) {
-                            this.noNotifications = true;
-                        }
-                        this.notifications = data.data;
-                    }
-                    $event.target.complete();
-                }, (err) => {
-                    $event.target.complete();
-                });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        //   console.log('user id :' + val);
+        //   if (val != 0) {
+        this.UserData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value, //val,
+        };
+        this.userNotifications.showNotification(this.UserData).subscribe((data) => {
+            if (data.key == 1) {
+                if (data.data.length == 0) {
+                    this.noNotifications = true;
+                }
+                this.notifications = data.data;
             }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
         });
     }
 };

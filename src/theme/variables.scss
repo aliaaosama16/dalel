@@ -1,6 +1,9 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
+// _library.scss
+// $black: #000 !default;
+// $border-radius: 0.25rem !default;
+// $box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -132,7 +135,7 @@
 	--ion-color-gary-tint: #bcbcbc;
 
 }
-
+//$box-shadow:  0 3px 6px rgb(0 0 0 / 16%);
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary);
   --ion-color-base-rgb: var(--ion-color-primary-rgb);

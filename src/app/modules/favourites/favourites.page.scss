@@ -3,6 +3,11 @@
 }
 ion-card {
   border-radius: 10px;
+  img{
+    height: 140px;
+    object-fit: cover;
+    object-position: right;
+  }
   ion-button.button-disabled {
     opacity: 1 !important;
   }
@@ -17,9 +22,6 @@ ion-card {
       padding-inline-end: 10px !important;
     }
   }
-
-
-  //position: relative;
 
   .price-container {
     position: absolute;
@@ -65,5 +67,6 @@ ion-card {
     padding: 4px 13px;
     background-color: rgba(var(--ion-color-secondary-rgb), 0.33);
     margin-top: -3px;
+   
   }
 }

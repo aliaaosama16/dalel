@@ -2113,7 +2113,7 @@ button.swiper-pagination-bullet {
 :root {
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
-  --ion-text-transform:lowercase !important;
+  --ion-text-transform: lowercase !important;
 }
 :root ion-menu {
   --ion-backdrop-color: var(--ion-color-dark-black);
@@ -2133,13 +2133,13 @@ button.swiper-pagination-bullet {
   color: var(--ion-color-primary);
 }
 ion-badge {
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   text-align: center;
 }
 ion-badge span {
-  font-size: 10px;
+  font-size: 9px;
 }
 .badge-color {
   color: var(--ion-color-white);
@@ -2271,24 +2271,19 @@ ion-input {
   margin-bottom: 16px;
 }
 .auth-login-register .auth-page-rest .forget-password {
-  font-size: 14px;
-  font-family: "Cairo-Regular";
   color: var(--ion-color-primary);
   text-align: center;
 }
 .auth-login-register .auth-page-rest .auth-text {
-  font-size: 18px;
-  font-family: "Cairo-SemiBold";
   text-align: center;
 }
 ion-tab-bar {
-  --background: #fad9c5 !important;
+  --background: var(--ion-color-orange-light) !important;
   margin: 16px;
   border-radius: 5px;
 }
 ion-tab-bar ion-tab-button ion-icon {
   width: 16px;
-  height: 14.4px;
 }
 .float-right {
   float: right;
@@ -2326,6 +2321,9 @@ ion-tab-bar ion-tab-button ion-icon {
 .my-loading-class {
   --background: transparent;
   --spinner-color: var(--ion-color-primary);
+}
+ion-fab-button {
+  --box-shadow: none !important;
 }
 
 /*# sourceMappingURL=styles.css.map*/
