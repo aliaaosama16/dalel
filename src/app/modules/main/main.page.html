@@ -51,12 +51,13 @@
 
   <div class="categories-section ion-padding-horizontal">
     <div class="categories-section-title">
-      <div >
-        <h5 appHighlight class="categories-title">{{"categories"|translate}}</h5>
-        
+      <div>
+        <h5  class="categories-title fn-18 dalel-Bold">
+          {{"categories"|translate}}
+        </h5>
       </div>
       <div routerLink="/tabs/main/categories">
-        <p class="categories-sub-title">{{"show all"|translate}}</p>
+        <p class="categories-sub-title fn-14 dalel-Regular">{{"show all"|translate}}</p>
       </div>
     </div>
 
@@ -75,7 +76,7 @@
             <ion-thumbnail>
               <img [src]="cat.image" />
             </ion-thumbnail>
-            <ion-label class="cat-title-text">
+            <ion-label class="cat-title-text fn-16 dalel-SemiBold">
               {{cat.title|translate}}
             </ion-label>
           </ion-item>
@@ -85,11 +86,17 @@
   </div>
 
   <div class="naerby-section ion-padding-horizontal">
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="12" class="ion-align-self-start">
-        <h5 class="categories-title">{{"nearby places"|translate}}</h5>
+       
       </ion-col>
-    </ion-row>
+    </ion-row> -->
+
+    <div class="naerby-section-title">
+      <div>
+        <h5 class="fn-18 dalel-Bold">{{"nearby places"|translate}}</h5>
+      </div>
+    </div>
 
     <swiper
       #swiper

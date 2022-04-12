@@ -72,15 +72,15 @@ export class CategoryDetailsPage implements OnInit {
   }
 
   async getItemDetails() {
-    await this.auth.getUserIDObservable().subscribe((val) => {
+    //await this.auth.getUserIDObservable().subscribe((val) => {
       this.departmentData = {
         lang: this.langaugeservice.getLanguage(),
         department_id: parseInt(
           this.activatedRoute.snapshot.paramMap.get('departmetId')
         ),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value //val == 0 ? 1 : val,
       };
-    });
+   // });
 
     await this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
@@ -158,17 +158,17 @@ export class CategoryDetailsPage implements OnInit {
   reserve() {}
 
   addToFavourite() {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      if (val != 0) {
+    // this.auth.getUserIDObservable().subscribe((val) => {
+    //   if (val != 0) {
         this.favDepartmentData = {
           lang: this.langaugeservice.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, //val,
           department_id: parseInt(
             this.activatedRoute.snapshot.paramMap.get('departmetId')
           ),
         };
-      }
-    });
+    //   }
+    // });
 
     this.util.showLoadingSpinner().then((__) => {
       this.favouritesService

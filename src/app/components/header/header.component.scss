@@ -1,6 +1,6 @@
 ion-header {
   --background: none !important;
-  background: #ffeee3;
+  background: var(--ion-color-orange-light);
 
   min-height: 60px;
   margin-bottom: 50px;

@@ -29,13 +29,13 @@ export class CategoriesPage implements OnInit {
     private auth: AuthService
   ) {
     this.platform = this.util.platform;
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.userData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
       };
       this.getAllSections();
-    });
+   // });
   }
 
   ngOnInit() {}

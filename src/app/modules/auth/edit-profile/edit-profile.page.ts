@@ -50,12 +50,12 @@ export class EditProfilePage implements OnInit {
       console.log('Handler was called!');
       this.location.back();
     });
-    this.auth.getUserIDObservable().subscribe((val) => {
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.userData = {
         lang: this.language.getLanguage(),
-        user_id: val,
+        user_id:this.auth.userID.value //val,
       };
-    });
+   // });
     this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {

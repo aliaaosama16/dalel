@@ -62,15 +62,15 @@ export class ProfilePage implements OnInit {
   }
 
   doRefresh($event) {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('get id from behavour subject if just logined' + val);
-      if (val != 0) {
+    //this.auth.getUserIDObservable().subscribe((val) => {
+      //console.log('get id from behavour subject if just logined' + val);
+     // if (val != 0) {
         this.userData = {
           lang: this.language.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value //val,
         };
-      }
-    });
+      //}
+    //});
     this.platform = this.util.platform;
     // this.util.showLoadingSpinner().then((__) => {
     this.auth.userData(this.userData).subscribe(

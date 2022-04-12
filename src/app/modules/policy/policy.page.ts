@@ -19,16 +19,16 @@ export class PolicyPage implements OnInit {
     private language: LanguageService,
     private auth: AuthService
   ) {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-      if (val != 0) {
+    //this.auth.getUserIDObservable().subscribe((val) => {
+      // console.log('user id :' + val);
+      // if (val != 0) {
         this.conditionData = {
           lang: this.language.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, // val,
           title: 'condition',
         };
-      }
-    });
+    //   }
+    // });
 
     this.getIntroData(this.conditionData);
   }

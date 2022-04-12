@@ -27,13 +27,13 @@ export class FavouritesPage implements OnInit {
     private favService: FavouritesService
   ) {
     this.platform = this.util.platform;
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
       };
       this.showFavourites(this.UserData);
-    });
+   // });
   }
 
   ngOnInit() {}

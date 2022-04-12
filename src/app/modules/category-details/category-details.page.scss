@@ -157,22 +157,34 @@
   }
 }
 
-.btn-custom {
-  margin: 0 5%;
-  --color: var(--ion-color-white);
-  font-size: 16;
-  font-family: "Cairo-Bold";
-  height: 48px;
-}
+// .btn-custom {
+//   margin: 0 5%;
+//   --color: var(--ion-color-white);
+//   font-size: 16;
+//   font-family: "Cairo-Bold";
+//   height: 48px;
+// }
 
-ion-button::part(native) {
-  height: 50px !important;
-  background-image: linear-gradient(
-    to left,
-    var(--ion-color-primary),
-    var(--ion-color-secondary)
-  );
+ion-button{
+  --box-shadow	: 0 3px 6px rgb(0 0 0 / 16%);
+  &::part(native){
+    height: 50px !important;
+    background-image: linear-gradient(
+      to left,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
+  }
 }
+// ion-button::part(native) {
+//   height: 50px !important;
+//   background-image: linear-gradient(
+//     to left,
+//     var(--ion-color-primary),
+//     var(--ion-color-secondary)
+//   );
+// }
+
 .slider-image{
   height: 62px;
 }

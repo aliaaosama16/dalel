@@ -66,14 +66,14 @@ export class CodePage implements OnInit {
     this.code = parseInt(this.codeValues);
     console.log('code is :' + this.codeValues.substring(9));
 
-    this.auth.getUserIDObservable().subscribe((val) => {
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.activationData = {
         lang: this.language.getLanguage(),
-        user_id: val,
+        user_id:this.auth.userID.value, //val,
         code: this.codeValues.substring(9),
         device_id: this.util.deviceID,
       };
-    });
+    //});
     this.util.showLoadingSpinner().then((__) => {
       this.auth.activeAccount(this.activationData).subscribe(
         (data: AuthResponse) => {

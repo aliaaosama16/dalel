@@ -136,12 +136,12 @@ export class NotificationsPage implements OnInit {
     this.auth.setNoOfNotifications(parseInt(userID.value));
   }
   doRefresh($event){
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-      if (val != 0) {
+    // this.auth.getUserIDObservable().subscribe((val) => {
+    //   console.log('user id :' + val);
+    //   if (val != 0) {
         this.UserData = {
           lang: this.langaugeservice.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, //val,
         };
         this.userNotifications.showNotification( this.UserData).subscribe(
           (data: NotificationsResponse) => {
@@ -158,6 +158,6 @@ export class NotificationsPage implements OnInit {
           }
         );
       }
-    });
-  }
+   //});
+  //}
 }

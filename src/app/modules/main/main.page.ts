@@ -31,27 +31,23 @@ export class MainPage implements OnInit {
     spaceBetween: 0,
     pagination: true,
     effect: 'fade',
-    autoplay:true
-    // {
-    //   el: '.swiper-pagination',
-    //   clickable: true,
-    // },
+    autoplay: true,
   };
   configCategories: SwiperOptions = {
-    slidesPerView: 2.5,
+    slidesPerView: 2.1,
     spaceBetween: 10,
     pagination: false,
     breakpoints: {
       '@0.75': {
-        slidesPerView: 3.5,
+        slidesPerView: 3.2,
         spaceBetween: 10,
       },
       '@1.00': {
-        slidesPerView: 4.6,
+        slidesPerView: 4.3,
         spaceBetween: 10,
       },
       '@1.50': {
-        slidesPerView: 5.7,
+        slidesPerView: 5.4,
         spaceBetween: 10,
       },
     },
@@ -91,26 +87,18 @@ export class MainPage implements OnInit {
     private auth: AuthService,
     private items: ItemsService
   ) {
-    
     this.menuCtrl.enable(true, 'main');
     this.util.getUserLocation();
     this.platform = this.util.platform;
-    console.log('curret plt is ' + this.platform);
     this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
     this.auth.getUserToken();
-    console.log(this.auth.userToken);
-   // this.auth.getUserIDObservable().subscribe((val) => {
-      this.UserData = {
-        lang: this.langaugeservice.getLanguage(),
-        user_id:this.auth.userID.value //val == 0 ? 1 : val,
-      };
-      this.getHomeData(this.UserData);
-   // });
+    this.UserData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    this.getHomeData(this.UserData);
   }
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   getHomeData(userData: UserData) {
     this.util.showLoadingSpinner().then((__) => {
@@ -149,14 +137,13 @@ export class MainPage implements OnInit {
   }
 
   getItemsByFilters(searcText: string) {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.filterData = {
-        user_id: val,
+        user_id: this.auth.userID.value,//val,
         title: searcText,
-        lang: this.currentlangauge,
+        lang: this.langaugeservice.getLanguage(),
       };
-    });
+   // });
 
     this.util.setFilters(this.filterData);
 
@@ -173,17 +160,11 @@ export class MainPage implements OnInit {
     this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
   }
 
-  slideNext() {
-    // const swiper = document.querySelector('.swiper').swiper;
-    // Now you can use all slider methods like
-    // swiper.slideNext();
-  }
-
   doRefresh($event) {
-    this.auth.getUserIDObservable().subscribe((val) => {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id: this.auth.userID.value//val == 0 ? 1 : val,
       };
       this.items.home(this.UserData).subscribe(
         (data: HomeResponse) => {
@@ -198,6 +179,6 @@ export class MainPage implements OnInit {
           $event.target.complete();
         }
       );
-    });
+    //});
   }
 }
