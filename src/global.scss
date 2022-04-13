@@ -51,6 +51,9 @@
     --ion-backdrop-color: var(--ion-color-dark-black);
   }
   --ion-text-transform: lowercase !important;
+
+  --highlight-color-valid:var(--ion-color-secondary);
+  --highlight-color-invalid:var(--ion-color-primary);
 }
 
 :root[dir="rtl"] {
@@ -156,8 +159,8 @@ ion-input {
       text-align: center;
       h5 {
         margin: 16px 0px;
-        font-size: 24px;
-        font-family: "Cairo-Bold";
+        //font-size: 24px;
+        //font-family: "Cairo-Bold";
         color: var(--ion-color-primary);
       }
     }
@@ -166,13 +169,15 @@ ion-input {
       text-align: center;
       p {
         margin: 16px 0px;
-        font-size: 14px;
-        font-family: "Cairo-Regular";
+        ///font-size: 14px;
+        //font-family: "Cairo-Regular";
       }
     }
+
     ion-segment {
       border-radius: 0px !important;
     }
+
     ion-segment-button {
       height: 48px;
       --background: rgba(var(--ion-color-secondary-rgb), 0.51);
@@ -242,14 +247,10 @@ ion-input {
     margin-top: 24px;
     margin-bottom: 16px;
     .forget-password {
-      //font-size: 14px;
-      //font-family: "Cairo-Regular";
       color: var(--ion-color-primary);
       text-align: center;
     }
     .auth-text {
-      //font-size: 18px;
-      //font-family: "Cairo-SemiBold";
       text-align: center;
     }
   }

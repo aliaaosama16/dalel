@@ -1,21 +1,7 @@
+
+
 .swiper-slide {
   align-items: self-start;
-}
-
-.search-input {
-  flex-direction: row;
-  flex-grow: 6;
-}
-
-.search-filter {
-  flex-direction: row;
-}
-.margin-right {
-  margin: 0px 12px 0px 0px;
-}
-
-.margin-left {
-  margin: 0px 0px 0px 12px;
 }
 
 .search-section {
@@ -23,44 +9,62 @@
   justify-content: space-around;
   align-items: center;
 
-  .search-bar-input {
-    padding-right: 0px;
-  }
+  .search-input {
+    flex-direction: row;
+    flex-grow: 6;
 
-  .search-wrapper {
-    border: 1px solid #e1e1e1;
-    border-radius: 25px;
-    box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
-    --min-height: 40px;
-  }
+    .search-wrapper {
+      border: 1px solid var(--ion-color-light-gray);
+      border-radius: 25px;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
+      height: 40px !important;
 
-  ion-fab-button {
-    margin: 0px;
-    ion-icon {
-      font-size: 16px;
-    }
-    &::part(native) {
-      button.button-native {
-        height: 40px !important;
-        width: 40px !important;
+      ion-input {
+        --placeholder-color: var(--ion-color-lighted-gray);
+        --placeholder-opacity: 1;
+        font-size: 12px;
+        --padding-top: 0px !important;
+      }
+      ion-icon {
+        margin-bottom: 7px;
       }
     }
   }
 
-  .filter-fab {
-    padding: 0px;
-    margin: 0px;
+  .margin-right {
+    margin: 0px 12px 0px 0px;
+  }
+  
+  .margin-left {
+    margin: 0px 0px 0px 12px;
+  }
 
+  .search-filter {
+    flex-direction: row;
     ion-fab-button {
       margin: 0px;
+      ion-icon {
+        font-size: 16px;
+      }
+      &::part(native) {
+        button.button-native {
+          height: 40px !important;
+          width: 40px !important;
+        }
+      }
     }
+  
   }
 
-  ion-input {
-    --placeholder-color: #d4d4d4;
-    --placeholder-opacity: 1;
-    font-size: 16px;
-  }
+  // .search-bar-input {
+  //   padding-right: 0px;
+  // }
+
+  
+  // .filter-fab {
+  //   padding: 0px;
+  //   margin: 0px;
+  // }
 }
 
 .slider-section {
@@ -89,7 +93,6 @@
     height: 160px;
     width: 100%;
     object-fit: cover;
-    
   }
 }
 
