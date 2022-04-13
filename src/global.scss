@@ -50,6 +50,10 @@
   ion-menu {
     --ion-backdrop-color: var(--ion-color-dark-black);
   }
+  --ion-safe-area-top: 16px;
+  --ion-safe-area-right: 16px;
+  --ion-safe-area-bottom: 16px;
+  --ion-safe-area-left: 16px;
   --ion-text-transform: lowercase !important;
 
   --highlight-color-valid: var(--ion-color-secondary);
@@ -230,7 +234,6 @@ ion-input {
         }
       }
 
-    
       .error-box {
         color: var(--ion-color-danger);
         margin: 10px auto;

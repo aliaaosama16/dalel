@@ -96,7 +96,7 @@
     </div>
   </div>
 
-  <ion-button expand="block" (click)=" storeOrder()">
+  <ion-button expand="block" (click)=" storeOrder()" *ngIf="itemDetails">
     <span class="fn-16 white-color dalel-Bold">
       {{ "reserve now"|translate}}
     </span>
