@@ -1224,7 +1224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n\n  <swiper\n    #swiper\n    [config]=\"configSlider\"\n    class=\"item-images-swiper\"\n    [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n  >\n    <ng-template swiperSlide *ngFor=\"let image of images\">\n      <img class=\"slider-image\" [src]=\"image.image\" />\n    </ng-template>\n  </swiper>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n    <ion-fab-button color=\"primary\" (click)=\"closeModal()\">\n      <ion-icon name=\"close\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n\n  <swiper\n    #swiper\n    [config]=\"configSlider\"\n    class=\"item-images-swiper\"\n    [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n  >\n    <ng-template swiperSlide *ngFor=\"let image of images\">\n      <img class=\"slider-image\" [src]=\"image.image\" />\n    </ng-template>\n  </swiper>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n    <ion-fab-button color=\"primary\" (click)=\"closeModal()\">\n      <ion-icon name=\"close\" color=\"white\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -1234,7 +1234,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************************************/
 /***/ ((module) => {
 
-module.exports = ".item-images-swiper {\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltYWdlLW1vZGFsLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7QUFDRiIsImZpbGUiOiJpbWFnZS1tb2RhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaXRlbS1pbWFnZXMtc3dpcGVyIHtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuIl19 */";
+module.exports = ".item-images-swiper {\n  height: 100%;\n}\n.item-images-swiper img {\n  margin-top: 50%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltYWdlLW1vZGFsLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7QUFDRjtBQUFFO0VBQ0UsZUFBQTtBQUVKIiwiZmlsZSI6ImltYWdlLW1vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pdGVtLWltYWdlcy1zd2lwZXIge1xuICBoZWlnaHQ6IDEwMCU7XG4gIGltZyB7XG4gICAgbWFyZ2luLXRvcDogNTAlO1xuICB9XG59XG4iXX0= */";
 
 /***/ })
 

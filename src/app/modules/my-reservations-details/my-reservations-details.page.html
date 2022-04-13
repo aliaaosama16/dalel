@@ -1,7 +1,7 @@
 <app-header [title]="'my-reservations-details'" [isEditable]="false" [backwardRoute]="'/tabs/my-reservations'"
   [isMain]="false" class="header-height"></app-header>
-<ion-content class="ion-padding">
-  <div class="container">
+<ion-content class="ion-padding" *ngIf="orderDetials ">
+  <div class="container" >
     <img [src]="orderDetials?.department_image " />
   </div>
   <app-custom-details [OrderDetails]="orderDetials" [isDetailed]="false"></app-custom-details>

@@ -2,11 +2,13 @@
   padding:9px !important ;
 }
 ion-card {
+  box-shadow: none !important;
   border-radius: 10px;
   img{
     height: 140px;
     object-fit: cover;
     object-position: right;
+    filter:brightness(0.62);
   }
   ion-button.button-disabled {
     opacity: 1 !important;

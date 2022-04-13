@@ -249,6 +249,9 @@
 .fn-18 {
   font-size: 18px !important;
 }
+.fn-24 {
+  font-size: 24px !important;
+}
 .dalel-Regular {
   font-family: "Cairo-Regular";
 }
@@ -2144,9 +2147,14 @@ button.swiper-pagination-bullet {
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
   --ion-text-transform: lowercase !important;
+  --highlight-color-valid: var(--ion-color-secondary);
+  --highlight-color-invalid: var(--ion-color-primary);
 }
 :root ion-menu {
   --ion-backdrop-color: var(--ion-color-dark-black);
+}
+:root ion-card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) !important;
 }
 :root[dir=rtl] ion-menu::part(container) {
   border-radius: 80px 0px 0px 0px;
@@ -2169,7 +2177,7 @@ ion-badge {
   text-align: center;
 }
 ion-badge span {
-  font-size: 9px;
+  font-size: 7px;
 }
 .badge-color {
   color: var(--ion-color-white);
@@ -2227,8 +2235,6 @@ ion-input {
 }
 .auth-login-register .auth-container .auth-container-title h5 {
   margin: 16px 0px;
-  font-size: 24px;
-  font-family: "Cairo-Bold";
   color: var(--ion-color-primary);
 }
 .auth-login-register .auth-container .auth-container-sub-title {
@@ -2236,8 +2242,6 @@ ion-input {
 }
 .auth-login-register .auth-container .auth-container-sub-title p {
   margin: 16px 0px;
-  font-size: 14px;
-  font-family: "Cairo-Regular";
 }
 .auth-login-register .auth-container ion-segment {
   border-radius: 0px !important;
@@ -2286,14 +2290,9 @@ ion-input {
   height: 50px !important;
   background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));
 }
-.auth-login-register .auth-container .auth-form .auth-btn {
-  font-size: 16px;
-  font-family: "Cairo-Bold";
-}
 .auth-login-register .auth-container .auth-form .error-box {
   color: var(--ion-color-danger);
   margin: 10px auto;
-  font-size: 12px;
   text-align: center;
 }
 .auth-login-register .auth-page-rest {

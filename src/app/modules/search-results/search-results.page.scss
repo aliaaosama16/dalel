@@ -2,8 +2,12 @@
   margin-bottom: 16px;
   border-radius: 10px;
   border: 1px solid var(--ion-color-primary);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
   padding: 11px;
 
+  ion-button{
+    height: 30px;
+  }
   ion-item::part(native) {
     padding-inline-end: 0px !important;
     padding-inline-start: 0px !important;
@@ -13,8 +17,9 @@
   }
 
   .image-margin-right {
-    margin: 0px 0 0 10px !important;
-    margin-inline: 0px 10px !important;
+    // margin: 0px 0 0 10px !important;
+    // margin-inline: 0px 10px !important;
+    margin-top: 0px;
   }
 
   .image-margin-left {

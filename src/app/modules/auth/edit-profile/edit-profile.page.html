@@ -30,14 +30,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl.userName.errors?.required"
         >
           {{'please enter user name' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl.userName.errors?.minlength"
         >
           {{'user name should be min 2 chars long' | translate}}
@@ -60,14 +60,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl .phoneNumber.errors?.required"
         >
           {{'please enter phone number' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl.phoneNumber.errors?.minlength"
         >
           {{'phone number should be 10 numbers' | translate}}
@@ -90,21 +90,21 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl.email.errors?.required "
         >
           {{'please enter email' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isProfileSubmitted && profileErrorControl.email.errors?.pattern "
         >
           {{'please enter valid email' | translate}}
         </div>
 
         <ion-button expand="block" type="submit">
-          <span class="auth-btn"> {{ "save"|translate}} </span>
+          <span class="fn-16 dalel-Bold"> {{ "save"|translate}} </span>
         </ion-button>
       </form>
     </ion-card>

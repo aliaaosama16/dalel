@@ -1,8 +1,8 @@
 ion-content.background {
   --background: url(./../../../../assets/images/boarding.svg) center
-    center/cover no-repeat;
+    100% no-repeat;
 }
-
+//center/cover
 :root[dir="rtl"] {
   .swiper-pagination-bullets {
     top: 23% !important;

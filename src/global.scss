@@ -52,8 +52,13 @@
   }
   --ion-text-transform: lowercase !important;
 
-  --highlight-color-valid:var(--ion-color-secondary);
-  --highlight-color-invalid:var(--ion-color-primary);
+  --highlight-color-valid: var(--ion-color-secondary);
+  --highlight-color-invalid: var(--ion-color-primary);
+  ion-card {
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
+    //  rgb(0 0 0 / 20%) 0px 3px 1px -2px,
+    //   rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px !important;
+  }
 }
 
 :root[dir="rtl"] {
@@ -87,7 +92,7 @@ ion-badge {
   border-radius: 50%;
   text-align: center;
   span {
-    font-size: 9px;
+    font-size: 7px;
   }
 }
 
@@ -159,8 +164,6 @@ ion-input {
       text-align: center;
       h5 {
         margin: 16px 0px;
-        //font-size: 24px;
-        //font-family: "Cairo-Bold";
         color: var(--ion-color-primary);
       }
     }
@@ -169,8 +172,6 @@ ion-input {
       text-align: center;
       p {
         margin: 16px 0px;
-        ///font-size: 14px;
-        //font-family: "Cairo-Regular";
       }
     }
 
@@ -229,15 +230,11 @@ ion-input {
         }
       }
 
-      .auth-btn {
-        font-size: 16px;
-        font-family: "Cairo-Bold";
-      }
-
+    
       .error-box {
         color: var(--ion-color-danger);
         margin: 10px auto;
-        font-size: 12px;
+        //font-size: 12px;
         text-align: center;
       }
     }
