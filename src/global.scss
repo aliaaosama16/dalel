@@ -45,24 +45,31 @@
 //   background-color: transparent;
 // }
 :root {
-  --ion-background-color: var(--ion-color-white);
-  --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
   ion-menu {
     --ion-backdrop-color: var(--ion-color-dark-black);
   }
+
+  ion-card {
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
+  }
+
+  ion-fab-button {
+    --box-shadow: none !important;
+  }
+
+  --ion-background-color: var(--ion-color-white);
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
   --ion-safe-area-top: 16px;
   --ion-safe-area-right: 16px;
   --ion-safe-area-bottom: 16px;
   --ion-safe-area-left: 16px;
   --ion-text-transform: lowercase !important;
-
   --highlight-color-valid: var(--ion-color-secondary);
   --highlight-color-invalid: var(--ion-color-primary);
-  ion-card {
-    box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
-    //  rgb(0 0 0 / 20%) 0px 3px 1px -2px,
-    //   rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px !important;
-  }
+}
+
+ion-input {
+  --color: var(--ion-color-primary) !important;
 }
 
 :root[dir="rtl"] {
@@ -100,10 +107,6 @@ ion-badge {
   }
 }
 
-.badge-color {
-  color: var(--ion-color-white);
-}
-
 .my-custom-class {
   div#alert-1-msg {
     margin-top: 13px !important;
@@ -126,10 +129,6 @@ ion-badge {
   --border-color: var(--ion-color-secondary) !important;
 }
 
-ion-input {
-  --color: var(--ion-color-primary) !important;
-}
-
 .swiper-slide {
   display: block !important;
 }
@@ -145,8 +144,6 @@ ion-input {
 .btn-custom {
   width: 35%;
   --color: var(--ion-color-white);
-  font-size: 16;
-  font-family: "Cairo-Bold";
   height: 48px;
 }
 
@@ -191,10 +188,6 @@ ion-input {
       --background-checked: var(--ion-color-primary);
       --border-radius: 0 10px 0 0;
       --indicator-color: none;
-      ion-label {
-        font-size: 14px;
-        font-family: "Cairo-SemiBold";
-      }
     }
 
     .auth-form {
@@ -211,10 +204,12 @@ ion-input {
         --border-radius: 10px;
         --border-width: 1px;
         margin-bottom: 16px;
+
         ion-icon {
           width: 20px !important;
           height: 20px !important;
         }
+
         ion-input {
           --placeholder-color: var(--ion-color-secondary);
           font-size: 14px;
@@ -222,6 +217,7 @@ ion-input {
           --ion-font-family: "Cairo-Regular";
         }
       }
+
       ion-button {
         --color: var(--ion-color-white);
         &::part(native) {
@@ -237,7 +233,6 @@ ion-input {
       .error-box {
         color: var(--ion-color-danger);
         margin: 10px auto;
-        //font-size: 12px;
         text-align: center;
       }
     }
@@ -246,10 +241,12 @@ ion-input {
   .auth-page-rest {
     margin-top: 24px;
     margin-bottom: 16px;
+
     .forget-password {
       color: var(--ion-color-primary);
       text-align: center;
     }
+
     .auth-text {
       text-align: center;
     }
@@ -283,6 +280,7 @@ ion-tab-bar {
 .alert-head.sc-ion-alert-ios {
   padding: 10px !important;
 }
+
 .swiper-pagination-bullet-active {
   background-color: var(--ion-color-primary) !important;
   height: 10px;
@@ -311,8 +309,4 @@ ion-tab-bar {
 .my-loading-class {
   --background: transparent;
   --spinner-color: var(--ion-color-primary);
-}
-
-ion-fab-button {
-  --box-shadow: none !important;
 }

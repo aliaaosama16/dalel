@@ -29,13 +29,11 @@ export class CategoriesPage implements OnInit {
     private auth: AuthService
   ) {
     this.platform = this.util.platform;
-   // this.auth.getUserIDObservable().subscribe((val) => {
-      this.userData = {
-        lang: this.langaugeservice.getLanguage(),
-        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
-      };
-      this.getAllSections();
-   // });
+    this.userData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    this.getAllSections();
   }
 
   ngOnInit() {}
@@ -66,5 +64,26 @@ export class CategoriesPage implements OnInit {
   openCatList(catID, catName) {
     this.dataService.setData(catID, catName);
     this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
+  }
+
+  doRefresh($event) {
+    this.userData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    this.items.data(this.userData).subscribe(
+      (data: SectionsResponse) => {
+        if (data.key == 1) {
+          if (data.data.sections.length == 0) {
+            this.noCategoriesData = true;
+          }
+          this.sections = data.data.sections;
+        }
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

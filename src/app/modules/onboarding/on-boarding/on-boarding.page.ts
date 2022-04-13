@@ -29,7 +29,7 @@ Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
   styleUrls: ['./on-boarding.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class OnBoardingPage implements OnInit, AfterContentChecked {
+export class OnBoardingPage implements OnInit{//}, AfterContentChecked {
   @ViewChild('swiper') swiper: SwiperComponent;
   slidingNotAvailable: boolean = false;
   nextClicked: number = 0;
@@ -83,7 +83,7 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
   }
 
   nextSlide() {
-    this.swiper.swiperRef.slideNext()
+    this.swiper.swiperRef.slideNext();
   }
 
   start() {
@@ -99,11 +99,11 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     });
   }
 
-  ngAfterContentChecked(): void {
-    if (this.swiper) {
-      this.swiper.updateSwiper({});
-    }
-  }
+  // ngAfterContentChecked(): void {
+  //   if (this.swiper) {
+  //     this.swiper.updateSwiper({});
+  //   }
+  // }
 
   swiperSlideChanged(e) {
     console.log('changed: ', e);

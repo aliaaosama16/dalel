@@ -6,6 +6,9 @@
   class="header-height"
 ></app-header>
 <ion-content class="custom-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="noFavourites" class="no-data">
     <p>{{"no favourites items"|translate}}</p>
    </div>

@@ -7,6 +7,9 @@
 ></app-header>
 
 <ion-content >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="noCategoriesData" class="no-data">
     <p>{{'no Categories'|translate}}</p>
    </div>

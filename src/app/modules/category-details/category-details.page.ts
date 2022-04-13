@@ -74,15 +74,13 @@ export class CategoryDetailsPage implements OnInit {
   }
 
   async getItemDetails() {
-    //await this.auth.getUserIDObservable().subscribe((val) => {
-      this.departmentData = {
-        lang: this.langaugeservice.getLanguage(),
-        department_id: parseInt(
-          this.activatedRoute.snapshot.paramMap.get('departmetId')
-        ),
-        user_id:this.auth.userID.value //val == 0 ? 1 : val,
-      };
-   // });
+    this.departmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+      user_id: this.auth.userID.value,
+    };
 
     await this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
@@ -162,13 +160,13 @@ export class CategoryDetailsPage implements OnInit {
   addToFavourite() {
     // this.auth.getUserIDObservable().subscribe((val) => {
     //   if (val != 0) {
-        this.favDepartmentData = {
-          lang: this.langaugeservice.getLanguage(),
-          user_id:this.auth.userID.value, //val,
-          department_id: parseInt(
-            this.activatedRoute.snapshot.paramMap.get('departmetId')
-          ),
-        };
+    this.favDepartmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value, //val,
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+    };
     //   }
     // });
 
@@ -205,9 +203,37 @@ export class CategoryDetailsPage implements OnInit {
       component: ImageModalPage,
       cssClass: 'transparent-modal',
       componentProps: {
-        images:itemImages
-      }
+        images: itemImages,
+      },
     });
     modal.present();
+  }
+
+  doRefresh($event) {
+    this.departmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+      user_id: this.auth.userID.value,
+    };
+
+      this.items.showDepartmentByID(this.departmentData).subscribe(
+        (data: DepartmentDetailsResponse) => {
+          if (data.key == 1) {
+            this.dataLoaded = true;
+            this.itemDetails = data.data;
+            this.lat = this.itemDetails.lat;
+            this.long = this.itemDetails.lng;
+            this.loadMap();
+            this.loadItemPosition();
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+   
   }
 }
