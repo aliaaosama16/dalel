@@ -5,18 +5,20 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-<ion-content class="ion-padding"  >
+<ion-content class="ion-padding">
   <ion-calendar
+    lockSwipeToPrev="true"
     [(ngModel)]="dateRange"
     (change)="onChange($event)"
     [options]="optionsRange"
     [type]="type"
     [format]="'YYYY-MM-DD'"
+    [dir]="currentLanguage=='ar'?'rtl':'ltr'"
   >
   </ion-calendar>
 
-  <ion-button expand="block" (click)="completeReservation()">
-    <span class="auth-btn fn-16 white-color dalel-Bold">
+  <ion-button expand="block" class="reservation-btn" (click)="completeReservation()">
+    <span class=" fn-16 white-color dalel-Bold">
       {{ "complete reservation"|translate}}
     </span>
   </ion-button>

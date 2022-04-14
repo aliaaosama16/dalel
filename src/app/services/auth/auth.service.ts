@@ -43,14 +43,14 @@ export class AuthService {
     this.setUserID(data?.data?.id);
     this.storeToken(data?.data?.api_token);
     this.store('status', data.status);
-    this.storeUserId( data?.data?.id.toString());
+    this.storeUserId( data?.data?.id);
     this.setNoOfNotifications(data?.data?.id);
   }
 
-  async storeUserId(id:string) {
+  async storeUserId(id:number) {
     await Storage.set({
       key: "userID",
-      value: id,
+      value: id.toString(),
     });
   }
 

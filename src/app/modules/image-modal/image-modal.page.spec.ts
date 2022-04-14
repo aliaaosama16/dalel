@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CustomButtonComponent } from './custom-button.component';
+import { ImageModalPage } from './image-modal.page';
 
-describe('CustomButtonComponent', () => {
-  let component: CustomButtonComponent;
-  let fixture: ComponentFixture<CustomButtonComponent>;
+describe('ImageModalPage', () => {
+  let component: ImageModalPage;
+  let fixture: ComponentFixture<ImageModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomButtonComponent ],
+      declarations: [ ImageModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomButtonComponent);
+    fixture = TestBed.createComponent(ImageModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

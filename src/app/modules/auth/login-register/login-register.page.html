@@ -4,17 +4,17 @@
       <img src="../../../../assets/images/logo.svg" />
     </div>
 
-    <ion-card class="auth-container">
+    <ion-card class="auth-container ion-margin-horizontal">
       <ion-segment
         (ionChange)="authTypeChange($event)"
         value="register"
         [(ngModel)]="authType"
       >
         <ion-segment-button value="register" class="register-btn">
-          <ion-label>{{"register"|translate}}</ion-label>
+          <ion-label class="fn-14 dalel-SemiBold">{{"register"|translate}}</ion-label>
         </ion-segment-button>
         <ion-segment-button value="signin" class="signin-btn">
-          <ion-label>{{"signin"|translate}}</ion-label>
+          <ion-label class="fn-14 dalel-SemiBold">{{"signin"|translate}}</ion-label>
         </ion-segment-button>
       </ion-segment>
 
@@ -40,14 +40,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .userName.errors?.required"
         >
           {{'please enter user name' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .userName.errors?.minlength"
         >
           {{'user name should be min 2 chars long' | translate}}
@@ -68,14 +68,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .phoneNumber.errors?.required"
         >
           {{'please enter phone number' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .phoneNumber.errors?.minlength"
         >
           {{'phone number should be 10 numbers' | translate}}
@@ -97,14 +97,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .email.errors?.required "
         >
           {{'please enter email' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .email.errors?.pattern "
         >
           {{'please enter valid email' | translate}}
@@ -131,7 +131,7 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted && registerErrorControl .password.errors?.required"
         >
           {{'please enter password' | translate}}
@@ -158,14 +158,14 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isRegisterSubmitted &&  (registerErrorControl.confirmPassword.value!=registerErrorControl .password.value)"
         >
           {{'both password and confirm password should be equal' | translate}}
         </div>
 
         <ion-button expand="block" type="submit">
-          <span class="auth-btn"> {{ "sign-up"|translate}} </span>
+          <span class="fn-16 dalel-Bold"> {{ "sign-up"|translate}} </span>
         </ion-button>
       </form>
 
@@ -192,14 +192,14 @@
         </ion-item>
        
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf=" isSignInSubmitted && signinErrorControl.phoneNumber.errors?.required"
         >
           {{'please enter phone number' | translate}}
         </div>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isSignInSubmitted && signinErrorControl.phoneNumber.errors?.minlength"
         >
           {{'phone number should be 10 numbers' | translate}}
@@ -225,23 +225,24 @@
         </ion-item>
 
         <div
-          class="error-box"
+          class="error-box fn-12"
           *ngIf="isSignInSubmitted && signinErrorControl.password.errors?.required"
         >
           {{'please enter password' | translate}}
         </div>
 
         <ion-button expand="block" type="submit">
-          <span class="auth-btn"> {{"login"|translate}} </span>
+          <span class="fn-16 dalel-Bold"> {{"login"|translate}} </span>
         </ion-button>
       </form>
     </ion-card>
+  
     <div class="auth-page-rest">
       <div *ngIf=" authType=='signin'">
-        <p (click)="forgetPassword()" class="forget-password">
+        <p (click)="forgetPassword()" class="forget-password fn-14 dalel-Regular">
           {{"forget-password"|translate}}
         </p>
-        <p (click)="changAuthType('register')" class="auth-text">
+        <p (click)="changAuthType('register')" class="auth-text fn-16 dalel-SemiBold">
           {{"register"|translate}}
         </p>
       </div>

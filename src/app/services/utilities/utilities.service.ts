@@ -58,18 +58,20 @@ export class UtilitiesService {
   }
 
   public async showLoadingSpinner() {
-    console.log('show loading')
+    console.log('show loading');
     this.loading = await this.loadingCtrl.create({
-      mode: 'md',
-      spinner: 'dots',
+      mode: 'ios',
+      spinner: 'crescent',
       cssClass: 'my-loading-class',
       backdropDismiss: false,
+      animated:true
     });
     this.loading.present();
     return this.loading;
   }
 
   public dismissLoading() {
+    console.log('hide loading');
     this.loadingCtrl.dismiss();
   }
   

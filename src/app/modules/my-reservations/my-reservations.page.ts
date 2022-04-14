@@ -33,18 +33,55 @@ export class MyReservationsPage implements OnInit {
     private reservationsService: ReservationsService
   ) {
     this.platform = this.util.platform;
-    this.showOrdersByStatus(OrderStatus.current);
+    this.showOrdersByStatus(OrderStatus.current, false);
   }
 
-  showOrdersByStatus(orderStatus: OrderStatus) {
-    this.auth.getUserIDObservable().subscribe((val) => {
+  ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+  }
+
+  showOrdersByStatus(orderStatus: OrderStatus, refresh?: boolean,refreshEvent?) {
+   // this.auth.getUserIDObservable().subscribe((val) => {
       this.userOrdersData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
         status: orderStatus == 0 ? 'current' : 'finish',
       };
-      this.showAllOrdersByID(this.userOrdersData);
-    });
+      if (refresh) {
+        this.showAllOrdersByIDRefreshing(this.userOrdersData,refreshEvent);
+      }else{
+        this.showAllOrdersByID(this.userOrdersData);
+      }
+     
+   // });
+  }
+
+  showAllOrdersByIDRefreshing(userOrdersData: UserOrdersData,refreshEvent) {
+    console.log(JSON.stringify(userOrdersData));
+    console.log('refreshEvent  :'+JSON.stringify(refreshEvent))
+    this.reservationsService.showAllOrdersByID(userOrdersData).subscribe(
+      (data: OrderResponse) => {
+        if (data.key == 1) {
+          //this.util.showMessage(data.msg);
+          if (userOrdersData.status == 'current') {
+            if (data.data.length == 0) {
+              this.noCurrentOrders = true;
+            }
+            this.currentReservations = data.data;
+          } else if (userOrdersData.status == 'finish') {
+            if (data.data.length == 0) {
+              this.noOldOrders = true;
+            }
+            this.oldReservations = data.data;
+          }
+        }
+        refreshEvent.target.complete();
+      },
+      (err) => {
+        refreshEvent.target.complete();
+      }
+    );
   }
 
   showAllOrdersByID(userOrdersData: UserOrdersData) {
@@ -75,11 +112,6 @@ export class MyReservationsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.currentlangauge = this.langaugeservice.getLanguage();
-    console.log(this.currentlangauge);
-  }
-
   reservationsTypeChange($event) {
     console.log($event.detail.value);
     if ($event.detail.value == 0) {
@@ -87,5 +119,9 @@ export class MyReservationsPage implements OnInit {
     } else if ($event.detail.value == 1) {
       this.showOrdersByStatus(OrderStatus.finish);
     }
+  }
+
+  doRefresh($event) {
+    this.showOrdersByStatus(OrderStatus.current, true,$event);
   }
 }

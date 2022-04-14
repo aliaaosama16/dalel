@@ -96,6 +96,10 @@ const routes: Routes = [
     path: 'chnage-password/:userID',
     loadChildren: () => import('./modules/auth/chnage-password/chnage-password.module').then( m => m.ChnagePasswordPageModule)
   },
+  {
+    path: 'image-modal',
+    loadChildren: () => import('./modules/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
+  },
  
 ];
 

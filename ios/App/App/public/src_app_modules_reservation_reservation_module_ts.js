@@ -2060,7 +2060,7 @@ ReservationPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
             src_app_components_components_module__WEBPACK_IMPORTED_MODULE_2__.ComponentsModule,
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule,
-            ion2_calendar__WEBPACK_IMPORTED_MODULE_3__.CalendarModule
+            ion2_calendar__WEBPACK_IMPORTED_MODULE_3__.CalendarModule,
         ],
         declarations: [_reservation_page__WEBPACK_IMPORTED_MODULE_1__.ReservationPage],
         // providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
@@ -2082,16 +2082,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ReservationPage": () => (/* binding */ ReservationPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation.page.html */ 31421);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation.page.html */ 31421);
 /* harmony import */ var _reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation.page.scss */ 96012);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
-/* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
-/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+/* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
 
 
 
@@ -2103,13 +2101,12 @@ __webpack_require__.r(__webpack_exports__);
 //mport { CalendarComponentOptions } from 'ion2-calendar';
 // import { CalendarComponentOptions } from 'ion2-calendar';
 let ReservationPage = class ReservationPage {
-    constructor(router, dataService, util, auth, langaugeservice, activatedRoute) {
+    constructor(router, dataService, util, activatedRoute, language) {
         this.router = router;
         this.dataService = dataService;
         this.util = util;
-        this.auth = auth;
-        this.langaugeservice = langaugeservice;
         this.activatedRoute = activatedRoute;
+        this.language = language;
         this.optionsRange = {
             pickMode: 'range',
             showAdjacentMonthDay: true,
@@ -2120,19 +2117,13 @@ let ReservationPage = class ReservationPage {
             daysConfig: [],
         };
         this.platform = this.util.platform;
+        this.currentLanguage = this.language.getLanguage();
     }
     onChange(selectedDates) {
         console.log('selecte dates : ' + JSON.stringify(selectedDates));
         this.dateRange = selectedDates;
     }
     ngOnInit() {
-        console.log('item closed dates :' + this.util.itemClosedDates);
-        // this.optionsRange.daysConfig.forEach((date) => {
-        //   this.util.itemClosedDates.forEach((elem) => {
-        //     date.date = new Date(elem);
-        //     date.disable = true;
-        //   });
-        // });
         for (let i = 0; i < this.util.itemClosedDates.length; i++) {
             this.optionsRange.daysConfig.push({
                 date: new Date(this.util.itemClosedDates[i]),
@@ -2156,17 +2147,16 @@ let ReservationPage = class ReservationPage {
     }
 };
 ReservationPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
-    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_3__.DataService },
-    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_5__.UtilitiesService },
-    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_4__.LanguageService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
+    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
+    { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
 ];
-ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-reservation',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ReservationPage);
@@ -2186,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\"  >\n  <ion-calendar\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" (click)=\"completeReservation()\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-calendar\n    lockSwipeToPrev=\"true\"\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n    [dir]=\"currentLanguage=='ar'?'rtl':'ltr'\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" class=\"reservation-btn\" (click)=\"completeReservation()\">\n    <span class=\" fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 
@@ -2197,7 +2187,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 "use strict";
-module.exports = ".btn-custom {\n  margin: 0 5%;\n  --color: var(--ion-color-white);\n  font-size: 16;\n  font-family: \"Cairo-Bold\";\n  height: 48px;\n  --box-shadow:none !important;\n}\n\nion-button::part(native) {\n  height: 50px !important;\n  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));\n}\n\nbutton.days-btn {\n  color: var(--ion-color-secondary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlc2VydmF0aW9uLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7RUFDQSwrQkFBQTtFQUNBLGFBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSw0QkFBQTtBQUNKOztBQUVFO0VBQ0UsdUJBQUE7RUFDQSxnR0FBQTtBQUNKOztBQUtFO0VBQ0UsaUNBQUE7QUFGSiIsImZpbGUiOiJyZXNlcnZhdGlvbi5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnRuLWN1c3RvbSB7XG4gICAgbWFyZ2luOiAwIDUlO1xuICAgIC0tY29sb3I6IHZhcigtLWlvbi1jb2xvci13aGl0ZSk7XG4gICAgZm9udC1zaXplOiAxNjtcbiAgICBmb250LWZhbWlseTogXCJDYWlyby1Cb2xkXCI7XG4gICAgaGVpZ2h0OiA0OHB4O1xuICAgIC0tYm94LXNoYWRvdzpub25lICFpbXBvcnRhbnQ7IFxuICB9XG4gIFxuICBpb24tYnV0dG9uOjpwYXJ0KG5hdGl2ZSkge1xuICAgIGhlaWdodDogNTBweCAhaW1wb3J0YW50O1xuICAgIGJhY2tncm91bmQtaW1hZ2U6IGxpbmVhci1ncmFkaWVudChcbiAgICAgIHRvIGxlZnQsXG4gICAgICB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSksXG4gICAgICB2YXIoLS1pb24tY29sb3Itc2Vjb25kYXJ5KVxuICAgICk7XG4gIH1cbiAgYnV0dG9uLmRheXMtYnRue1xuICAgIGNvbG9yOnZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpXG4gIH0iXX0= */";
+module.exports = "button.days-btn {\n  color: var(--ion-color-secondary);\n}\n\n.reservation-btn {\n  margin-top: 160px !important;\n}\n\n.reservation-btn::part(native) {\n  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);\n  height: 50px !important;\n  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlc2VydmF0aW9uLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFjQTtFQUNFLGlDQUFBO0FBYkY7O0FBZUE7RUFDRSw0QkFBQTtBQVpGOztBQWFFO0VBQ0UseUNBQUE7RUFDQSx1QkFBQTtFQUNBLGdHQUFBO0FBWEoiLCJmaWxlIjoicmVzZXJ2YXRpb24ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG5cbi8vIC5idG4tbWFyZ2lue1xuICBcbi8vIH1cblxuLy8gaW9uLWJ1dHRvbjo6cGFydChuYXRpdmUpIHtcbi8vICAgaGVpZ2h0OiA1MHB4ICFpbXBvcnRhbnQ7XG4vLyAgIGJhY2tncm91bmQtaW1hZ2U6IGxpbmVhci1ncmFkaWVudChcbi8vICAgICB0byBsZWZ0LFxuLy8gICAgIHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KSxcbi8vICAgICB2YXIoLS1pb24tY29sb3Itc2Vjb25kYXJ5KVxuLy8gICApO1xuLy8gfVxuYnV0dG9uLmRheXMtYnRuIHtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpO1xufVxuLnJlc2VydmF0aW9uLWJ0bntcbiAgbWFyZ2luLXRvcDogMTYwcHggIWltcG9ydGFudDtcbiAgJjo6cGFydChuYXRpdmUpIHtcbiAgICBib3gtc2hhZG93OiAwIDNweCA2cHggcmdiKDAgMCAwIC8gMTYlKTtcbiAgICBoZWlnaHQ6IDUwcHggIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiBsaW5lYXItZ3JhZGllbnQoXG4gICAgICB0byBsZWZ0LFxuICAgICAgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpLFxuICAgICAgdmFyKC0taW9uLWNvbG9yLXNlY29uZGFyeSlcbiAgICApO1xuICB9XG59Il19 */";
 
 /***/ })
 

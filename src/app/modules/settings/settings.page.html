@@ -5,8 +5,7 @@
   [isMain]="false"
   class="header-height"
 ></app-header>
-<ion-content class="background ion-padding">
-  <!-- <ion-card class="ion-padding"> -->
+<ion-content class=" ion-padding">
   <div
     class="language"
     [ngClass]="currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'"
@@ -15,7 +14,7 @@
       <ion-radio-group (ionChange)="chooseLanguage($event)">
         <ion-list-header>
           <ion-label>
-            <h5 class="title">{{ "change langauge"|translate}}</h5></ion-label
+            <h5 class="title">{{ "choose langauge"|translate}}</h5></ion-label
           >
         </ion-list-header>
 
@@ -39,23 +38,7 @@
       </ion-radio-group>
     </ion-list>
 
-    <!-- <ion-button
-      expand="block"
-      class="btn-custom"
-      routerLink="/on-boarding"
-      routerDirection="forward"
-    >
-      <span>{{"change"|translate}}</span>
-    </ion-button> -->
+  
   </div>
-  <ion-button
-    class="ion-padding-horizontal"
-    expand="block"
-    routerLink="/tabs/main"
-  >
-    <span class="auth-btn fn-16 white-color dalel-Bold">
-      {{ "change"|translate}}
-    </span>
-  </ion-button>
-  <!-- </ion-card> -->
+ 
 </ion-content>

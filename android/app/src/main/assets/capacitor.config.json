@@ -12,6 +12,11 @@
 			"splashFullScreen": true,
 			"splashImmersive": false
 		},
+		"Keyboard": {
+			"resize": "body",
+			"style": "dark",
+			"resizeOnFullScreen": true
+		},
 		"PushNotifications": {
 			"presentationOptions": [
 				"badge",

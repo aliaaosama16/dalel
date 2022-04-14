@@ -4,9 +4,11 @@ import {
   InfiniteScrollCustomEvent,
   IonInfiniteScroll,
   MenuController,
+  Platform,
 } from '@ionic/angular';
+import { Location } from '@angular/common';
+
 import { DepartmentResponse, Item, SectionData } from 'src/app/models/item';
-import { SectionsResponse } from 'src/app/models/sections';
 import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -18,7 +20,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 })
 export class CategoryListPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  noItems:boolean=false;
+  noItems: boolean = false;
   currentPage: number;
   categoryID: string;
   categoryName: string;
@@ -32,10 +34,16 @@ export class CategoryListPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private langaugeservice: LanguageService,
     private util: UtilitiesService,
-    private items: ItemsService
+    private items: ItemsService,
+    private plt: Platform,
+    private location: Location
   ) {
     this.platform = this.util.platform;
     //this.loadItems();
+    this.plt.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   ngOnInit() {
@@ -62,9 +70,8 @@ export class CategoryListPage implements OnInit {
         (data: DepartmentResponse) => {
           if (data.key == 1) {
             console.log('sections data : ' + JSON.stringify(data));
-            //this.sections = data.data.sections;
-            if(data.data.length==0){
-              this.noItems=true;
+            if (data.data.length == 0) {
+              this.noItems = true;
             }
             this.sectionAllItems = data.data;
           }
@@ -76,6 +83,7 @@ export class CategoryListPage implements OnInit {
       );
     });
   }
+
   loadItems(event?: InfiniteScrollCustomEvent) {
     // call api to get all categorey items
     let newResults = { results: [], totel_pages: 10 };
@@ -93,7 +101,7 @@ export class CategoryListPage implements OnInit {
   openMenu() {
     this.menuCtrl.open();
   }
-  //:InfiniteScrollCustomEvent
+
   loadData(event) {
     this.currentPage++;
     this.loadItems(event);
@@ -107,5 +115,35 @@ export class CategoryListPage implements OnInit {
     //     event.target.disabled = true;
     //   }
     // }, 500);
+  }
+
+  doRefresh($event) {
+    if (this.activatedRoute.snapshot.data['name']) {
+      this.categoryName = this.activatedRoute.snapshot.data['name'];
+      console.log(`categoryName is ${this.categoryName}`);
+    }
+
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log(this.currentlangauge);
+
+    this.sectionData = {
+      lang: this.langaugeservice.getLanguage(),
+      section_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+    };
+    this.items.allDepartmentsBySectionID(this.sectionData).subscribe(
+      (data: DepartmentResponse) => {
+        if (data.key == 1) {
+          console.log('sections data : ' + JSON.stringify(data));
+          if (data.data.length == 0) {
+            this.noItems = true;
+          }
+          this.sectionAllItems = data.data;
+        }
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

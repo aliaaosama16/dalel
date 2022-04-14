@@ -1,6 +1,6 @@
 ion-header {
   --background: none !important;
-  background: #ffeee3;
+  background: var(--ion-color-orange-light);
 
   min-height: 60px;
   margin-bottom: 50px;
@@ -33,6 +33,10 @@ ion-toolbar {
     }
     ion-icon {
       font-size: 40px !important;
+    }
+
+    .direction-en{
+      transform: rotateY(180deg);
     }
   }
   .arrow-edit-btns {

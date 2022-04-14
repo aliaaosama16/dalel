@@ -3,6 +3,8 @@
 
   img {
     border-radius: 16px;
+    width: 100%;
+    filter: brightness(0.53);
   }
 
   .fav-ar {
@@ -20,7 +22,7 @@
 
 .details-container{
   position: absolute;
-  //height: 60px;
+ 
   width: 92%;
   margin: 0 var(--ion-padding, 16px);
   bottom: -60px;
@@ -29,7 +31,6 @@
 }
 .item-details {
   position: absolute;
-  //height: 60px;
   width: 92%;
   margin: 0 var(--ion-padding, 16px);
   bottom: -60px;
@@ -94,14 +95,13 @@
 
 .services {
   display: flex;
-  // border: 1px solid #707070;
   justify-content: space-around;
   border-radius: 10px;
-  background-color: #fcfcfc;
+  background-color: var( --ion-color-white-gray);
   padding: 17px 13px;
   margin-top: 70px;
   margin-bottom: 24px;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 16%); // var(--ion-color-dark-black-rgb, 0.16);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%); 
   div {
     flex-direction: row;
     text-align: center;
@@ -156,22 +156,26 @@
   }
 }
 
-.btn-custom {
-  margin: 0 5%;
-  --color: var(--ion-color-white);
-  font-size: 16;
-  font-family: "Cairo-Bold";
-  height: 48px;
+
+
+ion-button{
+  &::part(native){
+    height: 50px !important;
+    background-image: linear-gradient(
+      to left,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
+  }
 }
 
-ion-button::part(native) {
-  height: 50px !important;
-  background-image: linear-gradient(
-    to left,
-    var(--ion-color-primary),
-    var(--ion-color-secondary)
-  );
-}
+
 .slider-image{
-  height: 62px;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: right;
 }
+
+
+

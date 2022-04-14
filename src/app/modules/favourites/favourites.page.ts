@@ -19,7 +19,7 @@ export class FavouritesPage implements OnInit {
   platform: any;
   favourites: Item[];
   UserData: UserData;
-  noFavourites:boolean=false;
+  noFavourites: boolean = false;
   constructor(
     private util: UtilitiesService,
     private auth: AuthService,
@@ -27,13 +27,11 @@ export class FavouritesPage implements OnInit {
     private favService: FavouritesService
   ) {
     this.platform = this.util.platform;
-    this.auth.getUserIDObservable().subscribe((val) => {
-      this.UserData = {
-        lang: this.langaugeservice.getLanguage(),
-        user_id: val == 0 ? 1 : val,
-      };
-      this.showFavourites(this.UserData);
-    });
+    this.UserData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    this.showFavourites(this.UserData);
   }
 
   ngOnInit() {}
@@ -44,8 +42,8 @@ export class FavouritesPage implements OnInit {
         (data: DepartmentResponse) => {
           if (data.key == 1) {
             //this.util.showMessage(data.msg);
-            if(data.data.length==0){
-              this.noFavourites=true;
+            if (data.data.length == 0) {
+              this.noFavourites = true;
             }
             this.favourites = data.data;
           }
@@ -56,5 +54,26 @@ export class FavouritesPage implements OnInit {
         }
       );
     });
+  }
+
+  doRefresh($event) {
+    this.UserData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    this.favService.showFavourites(this.UserData).subscribe(
+      (data: DepartmentResponse) => {
+        if (data.key == 1) {
+          if (data.data.length == 0) {
+            this.noFavourites = true;
+          }
+          this.favourites = data.data;
+        }
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

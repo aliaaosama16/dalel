@@ -2,8 +2,12 @@
   margin-bottom: 16px;
   border-radius: 10px;
   border: 1px solid var(--ion-color-primary);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
   padding: 11px;
 
+  ion-button{
+    height: 30px;
+  }
   ion-item::part(native) {
     padding-inline-end: 0px !important;
     padding-inline-start: 0px !important;
@@ -12,12 +16,13 @@
     }
   }
 
-  .image-margin-right{
-    margin: 0px 0 0 10px !important;
-    margin-inline: 0px 10px !important;
+  .image-margin-right {
+    // margin: 0px 0 0 10px !important;
+    // margin-inline: 0px 10px !important;
+    margin-top: 0px;
   }
 
-  .image-margin-left{
+  .image-margin-left {
     margin: 0px 10px 0 0px !important;
     margin-inline: 0px 10px !important;
   }
@@ -25,6 +30,9 @@
   ion-thumbnail {
     width: 100px;
     height: 100px;
+    img{
+      border-radius: 10px;
+    }
   }
   ion-label {
     margin-top: -3px !important;
@@ -50,18 +58,15 @@
     }
 
     .price-container {
-      ion-button::part(native) {
-        box-shadow: none !important;
-      }
       margin-top: 4px;
       .rating {
         display: flex;
-
-        .rating-icon {
-          ion-icon {
-            font-size: 15px;
-          }
+        .rating-icon{
+          margin: 1px 4px;
         }
+      }
+      ion-button::part(native) {
+        box-shadow: none !important;
       }
     }
   }

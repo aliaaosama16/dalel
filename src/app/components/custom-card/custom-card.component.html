@@ -1,6 +1,6 @@
 <ion-card class="margin-bottom" (click)="navigate(forwardRoute)">
   <div class="container">
-    <img [src]="itemDetails.first_image" [style.opacity]="cardOpacity" />
+    <img [src]="itemDetails.first_image" [style.filter]="cardBrightness" />
     <div class="title" [ngClass]="currentlangauge == 'ar' ? 'title-ar':'title-en'">
       <p class="fn-14 dalel-Bold white-color">{{ itemDetails.title }}</p>
     </div>

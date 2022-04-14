@@ -11,16 +11,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 28267);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78099);
-/* harmony import */ var _custom_button_custom_button_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom-button/custom-button.component */ 7001);
-/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header/header.component */ 37899);
-/* harmony import */ var _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./custom-details/custom-details.component */ 29379);
-/* harmony import */ var _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./custom-card/custom-card.component */ 46463);
-
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 28267);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header/header.component */ 37899);
+/* harmony import */ var _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-details/custom-details.component */ 29379);
+/* harmony import */ var _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./custom-card/custom-card.component */ 46463);
 
 
 
@@ -31,67 +29,25 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
         declarations: [
-            _custom_button_custom_button_component__WEBPACK_IMPORTED_MODULE_0__.CustomButtonComponent,
-            _header_header_component__WEBPACK_IMPORTED_MODULE_1__.HeaderComponent,
-            _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_2__.CustomDetailsComponent,
-            _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_3__.CustomCardComponent
+            _header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent,
+            _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_1__.CustomDetailsComponent,
+            _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_2__.CustomCardComponent,
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule,
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateModule.forChild(),
+            _angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule,
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateModule.forChild(),
         ],
         exports: [
-            _custom_button_custom_button_component__WEBPACK_IMPORTED_MODULE_0__.CustomButtonComponent,
-            _header_header_component__WEBPACK_IMPORTED_MODULE_1__.HeaderComponent,
-            _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_2__.CustomDetailsComponent,
-            _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_3__.CustomCardComponent
+            _header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent,
+            _custom_details_custom_details_component__WEBPACK_IMPORTED_MODULE_1__.CustomDetailsComponent,
+            _custom_card_custom_card_component__WEBPACK_IMPORTED_MODULE_2__.CustomCardComponent
         ]
     })
 ], ComponentsModule);
-
-
-
-/***/ }),
-
-/***/ 7001:
-/*!*********************************************************************!*\
-  !*** ./src/app/components/custom-button/custom-button.component.ts ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CustomButtonComponent": () => (/* binding */ CustomButtonComponent)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-button.component.html */ 31495);
-/* harmony import */ var _custom_button_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-button.component.scss */ 11932);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
-
-
-
-
-let CustomButtonComponent = class CustomButtonComponent {
-    constructor() { }
-    ngOnInit() { }
-    openMenu() {
-    }
-};
-CustomButtonComponent.ctorParameters = () => [];
-CustomButtonComponent.propDecorators = {
-    title: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
-};
-CustomButtonComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
-        selector: 'app-custom-button',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_button_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
-        styles: [_custom_button_component_scss__WEBPACK_IMPORTED_MODULE_1__]
-    })
-], CustomButtonComponent);
 
 
 
@@ -108,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CustomCardComponent": () => (/* binding */ CustomCardComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-card.component.html */ 74427);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-card.component.html */ 74427);
 /* harmony import */ var _custom_card_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-card.component.scss */ 99617);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -127,6 +83,8 @@ let CustomCardComponent = class CustomCardComponent {
     }
     ngOnInit() {
         this.currentlangauge = this.languageService.getLanguage();
+        console.log('custom card : ' + this.cardBrightness);
+        this.cardBrightness = `brightness(${this.cardBrightness})`;
     }
     navigate(route) {
         this.router.navigateByUrl(`/${route}/categories/${this.itemDetails.section_id}/${this.itemDetails.id}`);
@@ -137,7 +95,7 @@ CustomCardComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router }
 ];
 CustomCardComponent.propDecorators = {
-    cardOpacity: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    cardBrightness: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
     itemDetails: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
     forwardRoute: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
     navigateTo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Output }]
@@ -145,7 +103,7 @@ CustomCardComponent.propDecorators = {
 CustomCardComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-custom-card',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_card_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_custom_card_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CustomCardComponent);
@@ -165,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CustomDetailsComponent": () => (/* binding */ CustomDetailsComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-details.component.html */ 28372);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./custom-details.component.html */ 28372);
 /* harmony import */ var _custom_details_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-details.component.scss */ 99075);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
@@ -194,7 +152,7 @@ CustomDetailsComponent.propDecorators = {
 CustomDetailsComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-custom-details',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_custom_details_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_custom_details_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CustomDetailsComponent);
@@ -213,12 +171,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./header.component.html */ 20669);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./header.component.html */ 20669);
 /* harmony import */ var _header_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss */ 70228);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 13252);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
+
 
 
 
@@ -226,12 +186,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HeaderComponent = class HeaderComponent {
-    constructor(menuCtrl, router) {
+    constructor(menuCtrl, language, router) {
         this.menuCtrl = menuCtrl;
+        this.language = language;
         this.router = router;
-        this.navigateTo = new _angular_core__WEBPACK_IMPORTED_MODULE_2__.EventEmitter();
+        this.navigateTo = new _angular_core__WEBPACK_IMPORTED_MODULE_3__.EventEmitter();
     }
-    ngOnInit() { }
+    ngOnInit() {
+        this.currentLanguage = this.language.getLanguage();
+    }
     openMenu() {
         this.menuCtrl.open();
     }
@@ -242,40 +205,27 @@ let HeaderComponent = class HeaderComponent {
     }
 };
 HeaderComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.MenuController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController },
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router }
 ];
 HeaderComponent.propDecorators = {
-    title: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    isEditable: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    isMain: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    forwardRoute: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    backwardRoute: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    navigateTo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Output }]
+    title: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    isEditable: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    isMain: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    forwardRoute: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    backwardRoute: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    navigateTo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Output }]
 };
-HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-header',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_header_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_header_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], HeaderComponent);
 
 
-
-/***/ }),
-
-/***/ 31495:
-/*!**************************************************************************************************************************************!*\
-  !*** ./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./src/app/components/custom-button/custom-button.component.html ***!
-  \**************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-button expand=\"block\" routerLink=\"/tabs/main/reservation\">\n    <span class=\"auth-btn fn-16 white-color dalel-Bold\"> {{ \"confirm reservation\"|translate}} </span>\n  </ion-button>");
 
 /***/ }),
 
@@ -289,7 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-card class=\"margin-bottom\" (click)=\"navigate(forwardRoute)\">\n  <div class=\"container\">\n    <img [src]=\"itemDetails.first_image\" [style.opacity]=\"cardOpacity\" />\n    <div class=\"title\" [ngClass]=\"currentlangauge == 'ar' ? 'title-ar':'title-en'\">\n      <p class=\"fn-14 dalel-Bold white-color\">{{ itemDetails.title }}</p>\n    </div>\n    <div class=\"location\" [ngClass]=\"currentlangauge == 'ar' ? 'location-ar':'location-en'    \">\n      <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </div>\n    <div class=\"location-address\" [ngClass]=\"currentlangauge == 'ar'? 'location-address-ar':'location-address-en'\">\n      <p class=\"fn-14 dalel-Regular white-color\">{{ itemDetails.city_title }}</p>\n    </div>\n    <div class=\"address-detail\" [ngClass]=\"currentlangauge == 'ar'? 'address-detail-ar':'address-detail-en'\">\n      <ion-icon name=\"arrow-forward-circle-outline\" color=\"white\"></ion-icon>\n    </div>\n  </div>\n</ion-card>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-card class=\"margin-bottom\" (click)=\"navigate(forwardRoute)\">\n  <div class=\"container\">\n    <img [src]=\"itemDetails.first_image\" [style.filter]=\"cardBrightness\" />\n    <div class=\"title\" [ngClass]=\"currentlangauge == 'ar' ? 'title-ar':'title-en'\">\n      <p class=\"fn-14 dalel-Bold white-color\">{{ itemDetails.title }}</p>\n    </div>\n    <div class=\"location\" [ngClass]=\"currentlangauge == 'ar' ? 'location-ar':'location-en'    \">\n      <ion-icon name=\"location-sharp\" color=\"primary\"></ion-icon>\n    </div>\n    <div class=\"location-address\" [ngClass]=\"currentlangauge == 'ar'? 'location-address-ar':'location-address-en'\">\n      <p class=\"fn-14 dalel-Regular white-color\">{{ itemDetails.city_title }}</p>\n    </div>\n    <div class=\"address-detail\" [ngClass]=\"currentlangauge == 'ar'? 'address-detail-ar':'address-detail-en'\">\n      <ion-icon name=\"arrow-forward-circle-outline\" color=\"white\"></ion-icon>\n    </div>\n  </div>\n</ion-card>");
 
 /***/ }),
 
@@ -317,17 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar class=\"my-toolbar\">\n    <ion-buttons slot=\"start\" class=\"menu-icon\">\n      <ion-button (click)=\"openMenu()\">\n        <ion-icon src=\"./../../../assets/icon/menu.svg\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title\n      class=\"ion-text-start primary-color dalel-Bold fn-18 custom-title\"\n      >{{ title | translate }}</ion-title\n    >\n    <ion-buttons slot=\"end\" class=\"arrow-edit-btns\">\n      <ion-button  *ngIf=\"isEditable\" (click)=\"navigate(forwardRoute)\">\n        <ion-icon\n          slot=\"icon-only\"\n          src=\"./../../../assets/icon/edit.svg\"\n        ></ion-icon>\n      </ion-button>\n      <ion-button  *ngIf=\"!isMain\" (click)=\"navigate(backwardRoute)\">\n        <ion-icon\n          slot=\"icon-only\"\n          name=\"arrow-forward-outline\"\n          color=\"primary\"\n        ></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<!-- <section >\n\n \n\n  <div class=\"curve\"></div>\n  <div style=\"display: flex;  align-items: center;\">\n    <div style=\"flex-direction: row;\">\n      <ion-button  (click)=\"openMenu()\">\n        <ion-icon  src=\"./../../../assets/icon/menu.svg\"></ion-icon>\n      </ion-button>\n    </div>\n    <div style=\"flex-direction: row;\">\n      <ion-title class=\"ion-text-start primary-color dalel-Bold fn-18 custom-title\">{{ title | translate }}</ion-title>\n\n    </div>\n  </div>\n</section> -->\n");
-
-/***/ }),
-
-/***/ 11932:
-/*!***********************************************************************!*\
-  !*** ./src/app/components/custom-button/custom-button.component.scss ***!
-  \***********************************************************************/
-/***/ ((module) => {
-
-module.exports = ".btn-custom {\n  margin: 0 5%;\n  --color: var(--ion-color-white);\n  font-size: 16;\n  font-family: \"Cairo-Bold\";\n  height: 48px;\n}\n\nion-button::part(native) {\n  height: 50px !important;\n  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1idXR0b24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxZQUFBO0VBQ0EsK0JBQUE7RUFDQSxhQUFBO0VBQ0EseUJBQUE7RUFDQSxZQUFBO0FBQ0o7O0FBRUU7RUFDRSx1QkFBQTtFQUNBLGdHQUFBO0FBQ0oiLCJmaWxlIjoiY3VzdG9tLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idG4tY3VzdG9tIHtcbiAgICBtYXJnaW46IDAgNSU7XG4gICAgLS1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXdoaXRlKTtcbiAgICBmb250LXNpemU6IDE2O1xuICAgIGZvbnQtZmFtaWx5OiBcIkNhaXJvLUJvbGRcIjtcbiAgICBoZWlnaHQ6IDQ4cHg7XG4gIH1cbiAgXG4gIGlvbi1idXR0b246OnBhcnQobmF0aXZlKSB7XG4gICAgaGVpZ2h0OiA1MHB4ICFpbXBvcnRhbnQ7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KFxuICAgICAgdG8gbGVmdCxcbiAgICAgIHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KSxcbiAgICAgIHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpXG4gICAgKTtcbiAgfVxuICAiXX0= */";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar class=\"my-toolbar\">\n    <ion-buttons slot=\"start\" class=\"menu-icon\">\n      <ion-button (click)=\"openMenu()\">\n        <ion-icon [ngClass]=\"currentLanguage=='ar'? '':'direction-en'\" src=\"./../../../assets/icon/menu.svg\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title appHighLight\n      class=\"ion-text-start primary-color dalel-Bold fn-18 custom-title\"\n      >{{ title | translate }}</ion-title\n    >\n    <ion-buttons slot=\"end\" class=\"arrow-edit-btns\">\n      <ion-button  *ngIf=\"isEditable\" (click)=\"navigate(forwardRoute)\">\n        <ion-icon\n          slot=\"icon-only\"\n          src=\"./../../../assets/icon/edit.svg\"\n        ></ion-icon>\n      </ion-button>\n      <ion-button  *ngIf=\"!isMain\" (click)=\"navigate(backwardRoute)\">\n        <ion-icon\n          slot=\"icon-only\"\n          name=\"arrow-forward-outline\"\n          color=\"primary\"\n        ></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<!-- <section >\n\n \n\n  <div class=\"curve\"></div>\n  <div style=\"display: flex;  align-items: center;\">\n    <div style=\"flex-direction: row;\">\n      <ion-button  (click)=\"openMenu()\">\n        <ion-icon  src=\"./../../../assets/icon/menu.svg\"></ion-icon>\n      </ion-button>\n    </div>\n    <div style=\"flex-direction: row;\">\n      <ion-title class=\"ion-text-start primary-color dalel-Bold fn-18 custom-title\">{{ title | translate }}</ion-title>\n\n    </div>\n  </div>\n</section> -->\n");
 
 /***/ }),
 
@@ -337,7 +277,7 @@ module.exports = ".btn-custom {\n  margin: 0 5%;\n  --color: var(--ion-color-whi
   \*******************************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-card {\n  margin: 0 0 16px 0 !important;\n}\n\n.container {\n  position: relative;\n  height: 140px;\n}\n\n.container img {\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n  object-position: initial;\n  border-radius: 5px;\n  opacity: 0.62;\n}\n\n.container .title {\n  position: absolute;\n  bottom: 30px;\n}\n\n.container .title p {\n  margin: 0px;\n}\n\n.container .location {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .location ion-icon {\n  font-size: 20px;\n}\n\n.container .location-address {\n  position: absolute;\n  bottom: 9px;\n}\n\n.container .location-address p {\n  margin: 0px;\n}\n\n.container .address-detail {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .address-detail ion-icon {\n  font-size: 25px;\n}\n\n.container .title-ar {\n  right: 13px;\n}\n\n.container .title-en {\n  left: 13px;\n}\n\n.container .location-ar {\n  right: 10px;\n}\n\n.container .location-en {\n  left: 10px;\n}\n\n.container .location-address-ar {\n  right: 30px;\n}\n\n.container .location-address-en {\n  left: 30px;\n}\n\n.container .address-detail-ar {\n  left: 10px;\n}\n\n.container .address-detail-en {\n  right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1jYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQUE7QUFDRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0EsYUFBQTtBQUVGOztBQURFO0VBQ0UsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLHdCQUFBO0VBRUEsa0JBQUE7RUFDQSxhQUFBO0FBRUo7O0FBQ0U7RUFDRSxrQkFBQTtFQUNBLFlBQUE7QUFDSjs7QUFBSTtFQUNFLFdBQUE7QUFFTjs7QUFFRTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtBQUFKOztBQUVJO0VBQ0UsZUFBQTtBQUFOOztBQUlFO0VBQ0Usa0JBQUE7RUFFQSxXQUFBO0FBSEo7O0FBSUk7RUFDRSxXQUFBO0FBRk47O0FBTUU7RUFDRSxrQkFBQTtFQUNBLFdBQUE7QUFKSjs7QUFLSTtFQUNFLGVBQUE7QUFITjs7QUFPRTtFQUNFLFdBQUE7QUFMSjs7QUFRRTtFQUNFLFVBQUE7QUFOSjs7QUFTRTtFQUNFLFdBQUE7QUFQSjs7QUFVRTtFQUNFLFVBQUE7QUFSSjs7QUFXRTtFQUNFLFdBQUE7QUFUSjs7QUFZRTtFQUNFLFVBQUE7QUFWSjs7QUFhRTtFQUNFLFVBQUE7QUFYSjs7QUFjRTtFQUNFLFdBQUE7QUFaSiIsImZpbGUiOiJjdXN0b20tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jYXJkIHtcbiAgbWFyZ2luOiAwIDAgMTZweCAwICFpbXBvcnRhbnQ7XG59XG4uY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDE0MHB4O1xuICBpbWcge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTQwcHg7XG4gICAgb2JqZWN0LWZpdDogY292ZXI7XG4gICAgb2JqZWN0LXBvc2l0aW9uOiBpbml0aWFsO1xuXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIG9wYWNpdHk6IDAuNjI7XG4gIH1cblxuICAudGl0bGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDMwcHg7XG4gICAgcCB7XG4gICAgICBtYXJnaW46IDBweDtcbiAgICB9XG4gIH1cblxuICAubG9jYXRpb24ge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDVweDtcblxuICAgIGlvbi1pY29uIHtcbiAgICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgICB9XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuXG4gICAgYm90dG9tOiA5cHg7XG4gICAgcCB7XG4gICAgICBtYXJnaW46IDBweDtcbiAgICB9XG4gIH1cblxuICAuYWRkcmVzcy1kZXRhaWwge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDVweDtcbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDI1cHg7XG4gICAgfVxuICB9XG5cbiAgLnRpdGxlLWFyIHtcbiAgICByaWdodDogMTNweDtcbiAgfVxuXG4gIC50aXRsZS1lbiB7XG4gICAgbGVmdDogMTNweDtcbiAgfVxuXG4gIC5sb2NhdGlvbi1hciB7XG4gICAgcmlnaHQ6IDEwcHg7XG4gIH1cblxuICAubG9jYXRpb24tZW4ge1xuICAgIGxlZnQ6IDEwcHg7XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcy1hciB7XG4gICAgcmlnaHQ6IDMwcHg7XG4gIH1cblxuICAubG9jYXRpb24tYWRkcmVzcy1lbiB7XG4gICAgbGVmdDogMzBweDtcbiAgfVxuXG4gIC5hZGRyZXNzLWRldGFpbC1hciB7XG4gICAgbGVmdDogMTBweDtcbiAgfVxuXG4gIC5hZGRyZXNzLWRldGFpbC1lbiB7XG4gICAgcmlnaHQ6IDEwcHg7XG4gIH1cbn1cbiJdfQ== */";
+module.exports = "ion-card {\n  margin: 0 0 16px 0 !important;\n}\n\n.container {\n  position: relative;\n  height: 140px;\n}\n\n.container img {\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n  object-position: initial;\n  border-radius: 5px;\n}\n\n.container .title {\n  position: absolute;\n  bottom: 30px;\n}\n\n.container .title p {\n  margin: 0px;\n}\n\n.container .location {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .location ion-icon {\n  font-size: 20px;\n}\n\n.container .location-address {\n  position: absolute;\n  bottom: 9px;\n}\n\n.container .location-address p {\n  margin: 0px;\n}\n\n.container .address-detail {\n  position: absolute;\n  bottom: 5px;\n}\n\n.container .address-detail ion-icon {\n  font-size: 28px;\n}\n\n.container .title-ar {\n  right: 13px;\n}\n\n.container .title-en {\n  left: 13px;\n}\n\n.container .location-ar {\n  right: 10px;\n}\n\n.container .location-en {\n  left: 10px;\n}\n\n.container .location-address-ar {\n  right: 30px;\n}\n\n.container .location-address-en {\n  left: 30px;\n}\n\n.container .address-detail-ar {\n  left: 10px;\n}\n\n.container .address-detail-en {\n  right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1jYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQUE7QUFDRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0EsYUFBQTtBQUVGOztBQURFO0VBQ0UsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLHdCQUFBO0VBRUEsa0JBQUE7QUFFSjs7QUFHRTtFQUNFLGtCQUFBO0VBQ0EsWUFBQTtBQURKOztBQUVJO0VBQ0UsV0FBQTtBQUFOOztBQUlFO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0FBRko7O0FBSUk7RUFDRSxlQUFBO0FBRk47O0FBTUU7RUFDRSxrQkFBQTtFQUVBLFdBQUE7QUFMSjs7QUFNSTtFQUNFLFdBQUE7QUFKTjs7QUFRRTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtBQU5KOztBQU9JO0VBQ0UsZUFBQTtBQUxOOztBQVNFO0VBQ0UsV0FBQTtBQVBKOztBQVVFO0VBQ0UsVUFBQTtBQVJKOztBQVdFO0VBQ0UsV0FBQTtBQVRKOztBQVlFO0VBQ0UsVUFBQTtBQVZKOztBQWFFO0VBQ0UsV0FBQTtBQVhKOztBQWNFO0VBQ0UsVUFBQTtBQVpKOztBQWVFO0VBQ0UsVUFBQTtBQWJKOztBQWdCRTtFQUNFLFdBQUE7QUFkSiIsImZpbGUiOiJjdXN0b20tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jYXJkIHtcbiAgbWFyZ2luOiAwIDAgMTZweCAwICFpbXBvcnRhbnQ7XG59XG4uY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDE0MHB4O1xuICBpbWcge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTQwcHg7XG4gICAgb2JqZWN0LWZpdDogY292ZXI7XG4gICAgb2JqZWN0LXBvc2l0aW9uOiBpbml0aWFsO1xuXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIC8vb3BhY2l0eTogMC42MjtcbiAgICAvL2ZpbHRlcjogYnJpZ2h0bmVzcygwLjYyKTtcbiAgfVxuXG4gIC50aXRsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGJvdHRvbTogMzBweDtcbiAgICBwIHtcbiAgICAgIG1hcmdpbjogMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5sb2NhdGlvbiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGJvdHRvbTogNXB4O1xuXG4gICAgaW9uLWljb24ge1xuICAgICAgZm9udC1zaXplOiAyMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5sb2NhdGlvbi1hZGRyZXNzIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG5cbiAgICBib3R0b206IDlweDtcbiAgICBwIHtcbiAgICAgIG1hcmdpbjogMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5hZGRyZXNzLWRldGFpbCB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGJvdHRvbTogNXB4O1xuICAgIGlvbi1pY29uIHtcbiAgICAgIGZvbnQtc2l6ZTogMjhweDtcbiAgICB9XG4gIH1cblxuICAudGl0bGUtYXIge1xuICAgIHJpZ2h0OiAxM3B4O1xuICB9XG5cbiAgLnRpdGxlLWVuIHtcbiAgICBsZWZ0OiAxM3B4O1xuICB9XG5cbiAgLmxvY2F0aW9uLWFyIHtcbiAgICByaWdodDogMTBweDtcbiAgfVxuXG4gIC5sb2NhdGlvbi1lbiB7XG4gICAgbGVmdDogMTBweDtcbiAgfVxuXG4gIC5sb2NhdGlvbi1hZGRyZXNzLWFyIHtcbiAgICByaWdodDogMzBweDtcbiAgfVxuXG4gIC5sb2NhdGlvbi1hZGRyZXNzLWVuIHtcbiAgICBsZWZ0OiAzMHB4O1xuICB9XG5cbiAgLmFkZHJlc3MtZGV0YWlsLWFyIHtcbiAgICBsZWZ0OiAxMHB4O1xuICB9XG5cbiAgLmFkZHJlc3MtZGV0YWlsLWVuIHtcbiAgICByaWdodDogMTBweDtcbiAgfVxufVxuIl19 */";
 
 /***/ }),
 
@@ -357,7 +297,7 @@ module.exports = ".item-details .name-rating-container {\n  display: flex;\n  ju
   \*********************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-header {\n  --background: none !important;\n  background: #ffeee3;\n  min-height: 60px;\n  margin-bottom: 50px;\n  position: relative;\n}\nion-header::before {\n  content: \"\";\n  position: absolute;\n  bottom: -30px;\n  background: url('wave00.png');\n  background-size: 100% 100%;\n  width: 100%;\n  height: 100px;\n}\nion-toolbar {\n  --background: none !important;\n}\nion-toolbar .toolbar-container {\n  padding-inline-start: 0px !important;\n  padding-inline-end: 0px !important;\n}\nion-toolbar .custom-title {\n  padding: 0px !important;\n  margin-top: 18px !important;\n}\nion-toolbar .menu-icon ion-button::part(native) {\n  width: 50px !important;\n  height: 50px !important;\n}\nion-toolbar .menu-icon ion-icon {\n  font-size: 40px !important;\n}\nion-toolbar .arrow-edit-btns ion-button::part(native) {\n  margin-top: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZCQUFBO0VBQ0EsbUJBQUE7RUFFQSxnQkFBQTtFQUNBLG1CQUFBO0VBQ0Esa0JBQUE7QUFBRjtBQUNFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLDZCQUFBO0VBQ0EsMEJBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUNKO0FBRUE7RUFDRSw2QkFBQTtBQUNGO0FBQUU7RUFDRSxvQ0FBQTtFQUNBLGtDQUFBO0FBRUo7QUFBRTtFQUNFLHVCQUFBO0VBQ0EsMkJBQUE7QUFFSjtBQUVJO0VBQ0Usc0JBQUE7RUFDQSx1QkFBQTtBQUFOO0FBRUk7RUFDRSwwQkFBQTtBQUFOO0FBSUk7RUFDRSxnQkFBQTtBQUZOIiwiZmlsZSI6ImhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1oZWFkZXIge1xuICAtLWJhY2tncm91bmQ6IG5vbmUgIWltcG9ydGFudDtcbiAgYmFja2dyb3VuZDogI2ZmZWVlMztcblxuICBtaW4taGVpZ2h0OiA2MHB4O1xuICBtYXJnaW4tYm90dG9tOiA1MHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICY6OmJlZm9yZSB7XG4gICAgY29udGVudDogXCJcIjtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm90dG9tOiAtMzBweDtcbiAgICBiYWNrZ3JvdW5kOiB1cmwoXCIuLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvd2F2ZTAwLnBuZ1wiKTtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IDEwMCUgMTAwJTtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IDEwMHB4O1xuICB9XG59XG5pb24tdG9vbGJhciB7XG4gIC0tYmFja2dyb3VuZDogbm9uZSAhaW1wb3J0YW50O1xuICAudG9vbGJhci1jb250YWluZXIge1xuICAgIHBhZGRpbmctaW5saW5lLXN0YXJ0OiAwcHggIWltcG9ydGFudDtcbiAgICBwYWRkaW5nLWlubGluZS1lbmQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gIC5jdXN0b20tdGl0bGUge1xuICAgIHBhZGRpbmc6IDBweCAhaW1wb3J0YW50OyAvLzAgMjBweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi10b3A6IDE4cHggIWltcG9ydGFudDtcbiAgfVxuXG4gIC5tZW51LWljb24ge1xuICAgIGlvbi1idXR0b246OnBhcnQobmF0aXZlKSB7XG4gICAgICB3aWR0aDogNTBweCAhaW1wb3J0YW50O1xuICAgICAgaGVpZ2h0OiA1MHB4ICFpbXBvcnRhbnQ7XG4gICAgfVxuICAgIGlvbi1pY29uIHtcbiAgICAgIGZvbnQtc2l6ZTogNDBweCAhaW1wb3J0YW50O1xuICAgIH1cbiAgfVxuICAuYXJyb3ctZWRpdC1idG5zIHtcbiAgICBpb24tYnV0dG9uOjpwYXJ0KG5hdGl2ZSkge1xuICAgICAgbWFyZ2luLXRvcDogMTBweDtcbiAgICB9XG4gIH1cbn1cbiJdfQ== */";
+module.exports = "ion-header {\n  --background: none !important;\n  background: var(--ion-color-orange-light);\n  min-height: 60px;\n  margin-bottom: 50px;\n  position: relative;\n}\nion-header::before {\n  content: \"\";\n  position: absolute;\n  bottom: -30px;\n  background: url('wave00.png');\n  background-size: 100% 100%;\n  width: 100%;\n  height: 100px;\n}\nion-toolbar {\n  --background: none !important;\n}\nion-toolbar .toolbar-container {\n  padding-inline-start: 0px !important;\n  padding-inline-end: 0px !important;\n}\nion-toolbar .custom-title {\n  padding: 0px !important;\n  margin-top: 18px !important;\n}\nion-toolbar .menu-icon ion-button::part(native) {\n  width: 50px !important;\n  height: 50px !important;\n}\nion-toolbar .menu-icon ion-icon {\n  font-size: 40px !important;\n}\nion-toolbar .menu-icon .direction-en {\n  transform: rotateY(180deg);\n}\nion-toolbar .arrow-edit-btns ion-button::part(native) {\n  margin-top: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZCQUFBO0VBQ0EseUNBQUE7RUFFQSxnQkFBQTtFQUNBLG1CQUFBO0VBQ0Esa0JBQUE7QUFBRjtBQUNFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLDZCQUFBO0VBQ0EsMEJBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUNKO0FBRUE7RUFDRSw2QkFBQTtBQUNGO0FBQUU7RUFDRSxvQ0FBQTtFQUNBLGtDQUFBO0FBRUo7QUFBRTtFQUNFLHVCQUFBO0VBQ0EsMkJBQUE7QUFFSjtBQUVJO0VBQ0Usc0JBQUE7RUFDQSx1QkFBQTtBQUFOO0FBRUk7RUFDRSwwQkFBQTtBQUFOO0FBR0k7RUFDRSwwQkFBQTtBQUROO0FBS0k7RUFDRSxnQkFBQTtBQUhOIiwiZmlsZSI6ImhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1oZWFkZXIge1xuICAtLWJhY2tncm91bmQ6IG5vbmUgIWltcG9ydGFudDtcbiAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLW9yYW5nZS1saWdodCk7XG5cbiAgbWluLWhlaWdodDogNjBweDtcbiAgbWFyZ2luLWJvdHRvbTogNTBweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAmOjpiZWZvcmUge1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGJvdHRvbTogLTMwcHg7XG4gICAgYmFja2dyb3VuZDogdXJsKFwiLi8uLi8uLi8uLi9hc3NldHMvaW1hZ2VzL3dhdmUwMC5wbmdcIik7XG4gICAgYmFja2dyb3VuZC1zaXplOiAxMDAlIDEwMCU7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiAxMDBweDtcbiAgfVxufVxuaW9uLXRvb2xiYXIge1xuICAtLWJhY2tncm91bmQ6IG5vbmUgIWltcG9ydGFudDtcbiAgLnRvb2xiYXItY29udGFpbmVyIHtcbiAgICBwYWRkaW5nLWlubGluZS1zdGFydDogMHB4ICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZy1pbmxpbmUtZW5kOiAwcHggIWltcG9ydGFudDtcbiAgfVxuICAuY3VzdG9tLXRpdGxlIHtcbiAgICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDsgLy8wIDIwcHggIWltcG9ydGFudDtcbiAgICBtYXJnaW4tdG9wOiAxOHB4ICFpbXBvcnRhbnQ7XG4gIH1cblxuICAubWVudS1pY29uIHtcbiAgICBpb24tYnV0dG9uOjpwYXJ0KG5hdGl2ZSkge1xuICAgICAgd2lkdGg6IDUwcHggIWltcG9ydGFudDtcbiAgICAgIGhlaWdodDogNTBweCAhaW1wb3J0YW50O1xuICAgIH1cbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDQwcHggIWltcG9ydGFudDtcbiAgICB9XG5cbiAgICAuZGlyZWN0aW9uLWVue1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGVZKDE4MGRlZyk7XG4gICAgfVxuICB9XG4gIC5hcnJvdy1lZGl0LWJ0bnMge1xuICAgIGlvbi1idXR0b246OnBhcnQobmF0aXZlKSB7XG4gICAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIH1cbiAgfVxufVxuIl19 */";
 
 /***/ })
 

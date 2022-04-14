@@ -115,6 +115,20 @@
   --ion-color-gary-contrast-rgb: 0,0,0;
   --ion-color-gary-shade: #9f9f9f;
   --ion-color-gary-tint: #bcbcbc;
+  /** light-gray **/
+  --ion-color-light-gray: #e1e1e1;
+  --ion-color-light-gray-rgb: 225,225,225;
+  --ion-color-light-gray-contrast: #000000;
+  --ion-color-light-gray-contrast-rgb: 0,0,0;
+  --ion-color-light-gray-shade: #c6c6c6;
+  --ion-color-light-gray-tint: #e4e4e4;
+  /** lighted-gray **/
+  --ion-color-lighted-gray: #d4d4d4;
+  --ion-color-lighted-gray-rgb: 212,212,212;
+  --ion-color-lighted-gray-contrast: #000000;
+  --ion-color-lighted-gray-contrast-rgb: 0,0,0;
+  --ion-color-lighted-gray-shade: #bbbbbb;
+  --ion-color-lighted-gray-tint: #d8d8d8;
 }
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary);
@@ -180,6 +194,22 @@
   --ion-color-shade: var(--ion-color-gary-shade);
   --ion-color-tint: var(--ion-color-gary-tint);
 }
+.ion-color-lighted-gray {
+  --ion-color-base: var(--ion-color-lighted-gray);
+  --ion-color-base-rgb: var(--ion-color-lighted-gray-rgb);
+  --ion-color-contrast: var(--ion-color-lighted-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-lighted-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-lighted-gray-shade);
+  --ion-color-tint: var(--ion-color-lighted-gray-tint);
+}
+.ion-color-light-gray {
+  --ion-color-base: var(--ion-color-light-gray);
+  --ion-color-base-rgb: var(--ion-color-light-gray-rgb);
+  --ion-color-contrast: var(--ion-color-light-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-light-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-light-gray-shade);
+  --ion-color-tint: var(--ion-color-light-gray-tint);
+}
 .primary-color {
   color: var(--ion-color-primary) !important;
 }
@@ -218,6 +248,9 @@
 }
 .fn-18 {
   font-size: 18px !important;
+}
+.fn-24 {
+  font-size: 24px !important;
 }
 .dalel-Regular {
   font-family: "Cairo-Regular";
@@ -2113,6 +2146,15 @@ button.swiper-pagination-bullet {
 :root {
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
+  --ion-text-transform: lowercase !important;
+  --highlight-color-valid: var(--ion-color-secondary);
+  --highlight-color-invalid: var(--ion-color-primary);
+}
+:root ion-menu {
+  --ion-backdrop-color: var(--ion-color-dark-black);
+}
+:root ion-card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) !important;
 }
 :root[dir=rtl] ion-menu::part(container) {
   border-radius: 80px 0px 0px 0px;
@@ -2129,13 +2171,13 @@ button.swiper-pagination-bullet {
   color: var(--ion-color-primary);
 }
 ion-badge {
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   text-align: center;
 }
 ion-badge span {
-  font-size: 10px;
+  font-size: 7px;
 }
 .badge-color {
   color: var(--ion-color-white);
@@ -2193,8 +2235,6 @@ ion-input {
 }
 .auth-login-register .auth-container .auth-container-title h5 {
   margin: 16px 0px;
-  font-size: 24px;
-  font-family: "Cairo-Bold";
   color: var(--ion-color-primary);
 }
 .auth-login-register .auth-container .auth-container-sub-title {
@@ -2202,8 +2242,6 @@ ion-input {
 }
 .auth-login-register .auth-container .auth-container-sub-title p {
   margin: 16px 0px;
-  font-size: 14px;
-  font-family: "Cairo-Regular";
 }
 .auth-login-register .auth-container ion-segment {
   border-radius: 0px !important;
@@ -2252,14 +2290,9 @@ ion-input {
   height: 50px !important;
   background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));
 }
-.auth-login-register .auth-container .auth-form .auth-btn {
-  font-size: 16px;
-  font-family: "Cairo-Bold";
-}
 .auth-login-register .auth-container .auth-form .error-box {
   color: var(--ion-color-danger);
   margin: 10px auto;
-  font-size: 12px;
   text-align: center;
 }
 .auth-login-register .auth-page-rest {
@@ -2267,24 +2300,19 @@ ion-input {
   margin-bottom: 16px;
 }
 .auth-login-register .auth-page-rest .forget-password {
-  font-size: 14px;
-  font-family: "Cairo-Regular";
   color: var(--ion-color-primary);
   text-align: center;
 }
 .auth-login-register .auth-page-rest .auth-text {
-  font-size: 18px;
-  font-family: "Cairo-SemiBold";
   text-align: center;
 }
 ion-tab-bar {
-  --background: #fad9c5 !important;
+  --background: var(--ion-color-orange-light) !important;
   margin: 16px;
   border-radius: 5px;
 }
 ion-tab-bar ion-tab-button ion-icon {
   width: 16px;
-  height: 14.4px;
 }
 .float-right {
   float: right;
@@ -2293,10 +2321,10 @@ ion-tab-bar ion-tab-button ion-icon {
   float: left;
 }
 .alert-head.sc-ion-alert-md {
-  padding: 0px !important;
+  padding: 10px !important;
 }
 .alert-head.sc-ion-alert-ios {
-  padding: 0px !important;
+  padding: 10px !important;
 }
 .swiper-pagination-bullet-active {
   background-color: var(--ion-color-primary) !important;
@@ -2318,6 +2346,13 @@ ion-tab-bar ion-tab-button ion-icon {
   width: 15px;
   border-radius: 10px;
   opacity: 0.5;
+}
+.my-loading-class {
+  --background: transparent;
+  --spinner-color: var(--ion-color-primary);
+}
+ion-fab-button {
+  --box-shadow: none !important;
 }
 
 /*# sourceMappingURL=styles.css.map*/

@@ -43,16 +43,16 @@ export class NotificationsPage implements OnInit {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     console.log(this.currentlangauge);
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-      if (val != 0) {
+    // this.auth.getUserIDObservable().subscribe((val) => {
+    //   console.log('user id :' + val);
+    //   if (val != 0) {
         this.UserData = {
           lang: this.langaugeservice.getLanguage(),
-          user_id: val,
+          user_id: this.auth.userID.value,
         };
         this.showNotification(this.UserData);
-      }
-    });
+      //}
+    ///});
   }
 
   openMenu() {
@@ -60,6 +60,7 @@ export class NotificationsPage implements OnInit {
   }
 
   showNotification(notificationData: UserData) {
+    this.util.showLoadingSpinner().then((__) => {
     this.userNotifications.showNotification(notificationData).subscribe(
       (data: NotificationsResponse) => {
         if (data.key == 1) {
@@ -68,9 +69,13 @@ export class NotificationsPage implements OnInit {
           }
           this.notifications = data.data;
         }
+        this.util.dismissLoading();
       },
-      (err) => {}
+      (err) => {
+        this.util.dismissLoading();
+      }
     );
+    });
   }
 
   openOrederDetails(orderID) {
@@ -131,12 +136,12 @@ export class NotificationsPage implements OnInit {
     this.auth.setNoOfNotifications(parseInt(userID.value));
   }
   doRefresh($event){
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-      if (val != 0) {
+    // this.auth.getUserIDObservable().subscribe((val) => {
+    //   console.log('user id :' + val);
+    //   if (val != 0) {
         this.UserData = {
           lang: this.langaugeservice.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, //val,
         };
         this.userNotifications.showNotification( this.UserData).subscribe(
           (data: NotificationsResponse) => {
@@ -153,6 +158,6 @@ export class NotificationsPage implements OnInit {
           }
         );
       }
-    });
-  }
+   //});
+  //}
 }

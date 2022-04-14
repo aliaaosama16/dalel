@@ -1,13 +1,24 @@
-.btn-custom {
-    margin: 0 5%;
-    --color: var(--ion-color-white);
-    font-size: 16;
-    font-family: "Cairo-Bold";
-    height: 48px;
-    --box-shadow:none !important; 
-  }
+
+
+// .btn-margin{
   
-  ion-button::part(native) {
+// }
+
+// ion-button::part(native) {
+//   height: 50px !important;
+//   background-image: linear-gradient(
+//     to left,
+//     var(--ion-color-primary),
+//     var(--ion-color-secondary)
+//   );
+// }
+button.days-btn {
+  color: var(--ion-color-secondary);
+}
+.reservation-btn{
+  margin-top: 160px !important;
+  &::part(native) {
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
     height: 50px !important;
     background-image: linear-gradient(
       to left,
@@ -15,6 +26,4 @@
       var(--ion-color-secondary)
     );
   }
-  button.days-btn{
-    color:var(--ion-color-secondary)
-  }
+}

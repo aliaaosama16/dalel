@@ -1,13 +1,16 @@
 <app-header
   [title]="'details'"
   [isEditable]="false"
-  [backwardRoute]="'/tabs/main'"
+  [backwardRoute]='"/tabs/main/categories/"'
   [isMain]="false"
   class="header-height"
 ></app-header>
 
 <ion-content class="ion-padding" >
-  <div class="item-image">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="item-image" *ngIf="itemDetails">
     <img [src]="itemDetails?.first_image" />
     <ion-icon
       (click)="addToFavourite()"
@@ -24,7 +27,7 @@
     </div>
   </div>
 
-  <div class="services">
+  <div class="services" *ngIf="itemDetails">
     <div>
       <ion-icon src="./../../../assets/icon/icon1.svg"></ion-icon>
       <p class="fn-14 dalel-Regular secondary-color">
@@ -51,12 +54,12 @@
     </div>
   </div>
 
-  <div class="description">
+  <div class="description" *ngIf="itemDetails">
     <h5 class="fn-16 dalel-SemiBold">{{"description"|translate}}</h5>
     <p class="fn-12 dalel-Regular">{{itemDetails?.desc}}</p>
   </div>
 
-  <div class="place-images">
+  <div class="place-images" *ngIf="itemDetails">
     <div class="header">
       <div>
         <h5 class="fn-16 dalel-SemiBold">{{"place-images"|translate}}</h5>
@@ -72,8 +75,8 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let image of itemDetails?.images">
-        <img class="slider-image" [src]="image.image" />
+      <ng-template swiperSlide *ngFor="let image of itemDetails?.images" >
+        <img (click)="openPreview(itemDetails?.images)" class="slider-image" [src]="image.image" />
       </ng-template>
     </swiper>
   </div>
@@ -87,22 +90,17 @@
     <div #map class="map"></div>
   </div>
 
-  <div class="rules">
+  <div class="rules" *ngIf="itemDetails">
     <div class="header">
-      <div>
-        <h5 class="fn-16 dalel-SemiBold">{{"reservation-rules"|translate}}</h5>
-      </div>
+      <h5 class="fn-16 dalel-SemiBold">{{"reservation-rules"|translate}}</h5>
     </div>
     <div>
       <p class="fn-12 dalel-Regular">{{itemDetails?.order_desc}}</p>
     </div>
   </div>
 
-  <ion-button
-    expand="block"
-    (click)=" storeOrder()"
-  >
-    <span class="auth-btn fn-16 white-color dalel-Bold">
+  <ion-button expand="block" (click)=" storeOrder()" *ngIf="itemDetails">
+    <span class="fn-16 white-color dalel-Bold">
       {{ "reserve now"|translate}}
     </span>
   </ion-button>

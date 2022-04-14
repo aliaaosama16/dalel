@@ -1,6 +1,9 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
+// _library.scss
+// $black: #000 !default;
+// $border-radius: 0.25rem !default;
+// $box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -123,15 +126,39 @@
   --ion-color-dark-black-shade: #000000;
   --ion-color-dark-black-tint: #1a1a1a;
 
-    /** gary **/
-  --ion-color-gary: #B5B5B5;
-	--ion-color-gary-rgb: 181,181,181;
-	--ion-color-gary-contrast: #000000;
-	--ion-color-gary-contrast-rgb: 0,0,0;
-	--ion-color-gary-shade: #9f9f9f;
-	--ion-color-gary-tint: #bcbcbc;
-}
+  /** gary **/
+  --ion-color-gary: #b5b5b5;
+  --ion-color-gary-rgb: 181, 181, 181;
+  --ion-color-gary-contrast: #000000;
+  --ion-color-gary-contrast-rgb: 0, 0, 0;
+  --ion-color-gary-shade: #9f9f9f;
+  --ion-color-gary-tint: #bcbcbc;
 
+  /** light-gray **/
+  --ion-color-light-gray: #e1e1e1;
+  --ion-color-light-gray-rgb: 225, 225, 225;
+  --ion-color-light-gray-contrast: #000000;
+  --ion-color-light-gray-contrast-rgb: 0, 0, 0;
+  --ion-color-light-gray-shade: #c6c6c6;
+  --ion-color-light-gray-tint: #e4e4e4;
+
+  /** lighted-gray **/
+  --ion-color-lighted-gray: #d4d4d4;
+  --ion-color-lighted-gray-rgb: 212, 212, 212;
+  --ion-color-lighted-gray-contrast: #000000;
+  --ion-color-lighted-gray-contrast-rgb: 0, 0, 0;
+  --ion-color-lighted-gray-shade: #bbbbbb;
+  --ion-color-lighted-gray-tint: #d8d8d8;
+
+  /** white-gray **/
+  --ion-color-white-gray: #fcfcfc;
+  --ion-color-white-gray-rgb: 252, 252, 252;
+  --ion-color-white-gray-contrast: #000000;
+  --ion-color-white-gray-contrast-rgb: 0, 0, 0;
+  --ion-color-white-gray-shade: #dedede;
+  --ion-color-white-gray-tint: #fcfcfc;
+}
+//$box-shadow:  0 3px 6px rgb(0 0 0 / 16%);
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary);
   --ion-color-base-rgb: var(--ion-color-primary-rgb);
@@ -196,12 +223,39 @@
 }
 
 .ion-color-gary {
-	--ion-color-base: var(--ion-color-gary);
-	--ion-color-base-rgb: var(--ion-color-gary-rgb);
-	--ion-color-contrast: var(--ion-color-gary-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-gary-contrast-rgb);
-	--ion-color-shade: var(--ion-color-gary-shade);
-	--ion-color-tint: var(--ion-color-gary-tint);
+  --ion-color-base: var(--ion-color-gary);
+  --ion-color-base-rgb: var(--ion-color-gary-rgb);
+  --ion-color-contrast: var(--ion-color-gary-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-gary-contrast-rgb);
+  --ion-color-shade: var(--ion-color-gary-shade);
+  --ion-color-tint: var(--ion-color-gary-tint);
+}
+
+.ion-color-lighted-gray {
+  --ion-color-base: var(--ion-color-lighted-gray);
+  --ion-color-base-rgb: var(--ion-color-lighted-gray-rgb);
+  --ion-color-contrast: var(--ion-color-lighted-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-lighted-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-lighted-gray-shade);
+  --ion-color-tint: var(--ion-color-lighted-gray-tint);
+}
+
+.ion-color-light-gray {
+  --ion-color-base: var(--ion-color-light-gray);
+  --ion-color-base-rgb: var(--ion-color-light-gray-rgb);
+  --ion-color-contrast: var(--ion-color-light-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-light-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-light-gray-shade);
+  --ion-color-tint: var(--ion-color-light-gray-tint);
+}
+
+.ion-color-white-gray {
+	--ion-color-base: var(--ion-color-white-gray);
+	--ion-color-base-rgb: var(--ion-color-white-gray-rgb);
+	--ion-color-contrast: var(--ion-color-white-gray-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-white-gray-contrast-rgb);
+	--ion-color-shade: var(--ion-color-white-gray-shade);
+	--ion-color-tint: var(--ion-color-white-gray-tint);
 }
 
 .primary-color {
@@ -220,15 +274,15 @@
   color: var(--ion-color-dark-black) !important;
 }
 
-.gray-color{
-  color:var(--ion-color-gary);
+.gray-color {
+  color: var(--ion-color-gary);
 }
 
 .gray-black-color {
   color: var(--ion-color-gray-black) !important;
 }
 
-.black-color{
+.black-color {
   color: var(--ion-color-dark-black) !important;
 }
 
@@ -256,6 +310,10 @@
   font-size: 18px !important;
 }
 
+.fn-24 {
+  font-size: 24px !important;
+}
+
 .dalel-Regular {
   font-family: "Cairo-Regular";
 }
@@ -267,8 +325,6 @@
 .dalel-SemiBold {
   font-family: "Cairo-SemiBold";
 }
-
-
 
 :root[dir="rtl"] {
   .register-btn {
@@ -289,6 +345,7 @@
     --border-radius: 0 10px 0 0 !important;
   }
 }
+
 // @media (prefers-color-scheme: dark) {
 //   /*
 //    * Dark Colors

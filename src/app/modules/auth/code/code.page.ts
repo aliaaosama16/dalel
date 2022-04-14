@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { ActivationData } from 'src/app/models/activationData';
 import { AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-code',
@@ -44,9 +45,15 @@ export class CodePage implements OnInit {
     private auth: AuthService,
     private menuCtrl: MenuController,
     private util: UtilitiesService,
-    private language: LanguageService
+    private language: LanguageService,
+    private platform: Platform,
+    private location: Location
   ) {
     this.menuCtrl.enable(false, 'main');
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   // ionViewWillEnter() {
@@ -59,14 +66,14 @@ export class CodePage implements OnInit {
     this.code = parseInt(this.codeValues);
     console.log('code is :' + this.codeValues.substring(9));
 
-    this.auth.getUserIDObservable().subscribe((val) => {
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.activationData = {
         lang: this.language.getLanguage(),
-        user_id: val,
+        user_id:this.auth.userID.value, //val,
         code: this.codeValues.substring(9),
         device_id: this.util.deviceID,
       };
-    });
+    //});
     this.util.showLoadingSpinner().then((__) => {
       this.auth.activeAccount(this.activationData).subscribe(
         (data: AuthResponse) => {

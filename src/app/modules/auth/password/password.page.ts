@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { ForgetPasswordData } from 'src/app/models/forgetPassword';
 import { AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-password',
@@ -29,11 +30,16 @@ export class PasswordPage implements OnInit {
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private platform: Platform,
+    private location: Location
   ) {
-    
     this.menuCtrl.enable(false, 'main');
     this.buildForm();
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   ngOnInit() {}

@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CategoriesPage": () => (/* binding */ CategoriesPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
 /* harmony import */ var _categories_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories.page.scss */ 21205);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -130,13 +130,13 @@ let CategoriesPage = class CategoriesPage {
         this.auth = auth;
         this.noCategoriesData = false;
         this.platform = this.util.platform;
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.userData = {
-                lang: this.langaugeservice.getLanguage(),
-                user_id: val == 0 ? 1 : val,
-            };
-            this.getAllSections();
-        });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        this.userData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value, //val == 0 ? 1 : val,
+        };
+        this.getAllSections();
+        // });
     }
     ngOnInit() { }
     getAllSections() {
@@ -174,7 +174,7 @@ CategoriesPage.ctorParameters = () => [
 CategoriesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-categories',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_categories_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoriesPage);
@@ -193,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label> {{cat.title|translate}} </ion-label>\n          </ion-item>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <!-- <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n          </ion-item> -->\n          <div class=\"cat-container\">\n            <div class=\"cat-image\">\n              <img [src]=\"cat.image\" />\n            </div>\n            <div class=\"cat-title\">\n              <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n            </div>\n          </div>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 
@@ -203,7 +203,7 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************************************/
 /***/ ((module) => {
 
-module.exports = ".menu-container {\n  position: relative;\n}\n.menu-container img {\n  width: 100%;\n}\nion-card {\n  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px !important;\n}\nion-header .menu-icon {\n  position: absolute;\n  top: 30%;\n  right: 16px;\n}\nion-header .menu-icon img {\n  width: 40px;\n  height: 40px;\n}\nion-header .menu-title {\n  position: absolute;\n  top: 35%;\n  right: 18%;\n  font-size: 18px;\n  color: var(--ion-color-primary);\n  font-weight: bold;\n}\nion-header .menu-title p {\n  margin: 0px;\n}\nion-header .back-icon {\n  position: absolute;\n  top: 33%;\n  left: 16px;\n}\nion-header .back-icon ion-icon {\n  font-size: 25px;\n}\nion-card ion-item::part(native) {\n  padding-inline-start: 0px;\n}\nion-card ion-thumbnail {\n  margin: 15px;\n}\nion-card ion-thumbnail img {\n  border-radius: 5px;\n}\nion-card ion-label {\n  font-size: 16px;\n  font-family: \"Cairo-SemiBold\";\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhdGVnb3JpZXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQUE7QUFDRjtBQUFFO0VBQ0UsV0FBQTtBQUVKO0FBQ0E7RUFDRSxvSUFBQTtBQUVGO0FBRUU7RUFDRSxrQkFBQTtFQUNBLFFBQUE7RUFDQSxXQUFBO0FBQ0o7QUFBSTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBRU47QUFFRTtFQUNFLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxlQUFBO0VBQ0EsK0JBQUE7RUFDQSxpQkFBQTtBQUFKO0FBQ0k7RUFDRSxXQUFBO0FBQ047QUFHRTtFQUNFLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7QUFESjtBQUVJO0VBQ0UsZUFBQTtBQUFOO0FBTUU7RUFDRSx5QkFBQTtBQUhKO0FBTUU7RUFDRSxZQUFBO0FBSko7QUFNSTtFQUNFLGtCQUFBO0FBSk47QUFRRTtFQUNFLGVBQUE7RUFDQSw2QkFBQTtBQU5KIiwiZmlsZSI6ImNhdGVnb3JpZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1lbnUtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBpbWcge1xuICAgIHdpZHRoOiAxMDAlO1xuICB9XG59XG5pb24tY2FyZCB7XG4gIGJveC1zaGFkb3c6IHJnYigwIDAgMCAvIDIwJSkgMHB4IDNweCAxcHggLTJweCxcbiAgICByZ2IoMCAwIDAgLyAxNCUpIDBweCAycHggMnB4IDBweCwgcmdiKDAgMCAwIC8gMTIlKSAwcHggMXB4IDVweCAwcHggIWltcG9ydGFudDtcbn1cbmlvbi1oZWFkZXIge1xuICAubWVudS1pY29uIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAzMCU7XG4gICAgcmlnaHQ6IDE2cHg7XG4gICAgaW1nIHtcbiAgICAgIHdpZHRoOiA0MHB4O1xuICAgICAgaGVpZ2h0OiA0MHB4O1xuICAgIH1cbiAgfVxuXG4gIC5tZW51LXRpdGxlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAzNSU7XG4gICAgcmlnaHQ6IDE4JTtcbiAgICBmb250LXNpemU6IDE4cHg7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBwIHtcbiAgICAgIG1hcmdpbjogMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5iYWNrLWljb24ge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDMzJTtcbiAgICBsZWZ0OiAxNnB4O1xuICAgIGlvbi1pY29uIHtcbiAgICAgIGZvbnQtc2l6ZTogMjVweDtcbiAgICB9XG4gIH1cbn1cblxuaW9uLWNhcmQge1xuICBpb24taXRlbTo6cGFydChuYXRpdmUpIHtcbiAgICBwYWRkaW5nLWlubGluZS1zdGFydDogMHB4O1xuICB9XG5cbiAgaW9uLXRodW1ibmFpbCB7XG4gICAgbWFyZ2luOiAxNXB4O1xuXG4gICAgaW1nIHtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICB9XG4gIH1cblxuICBpb24tbGFiZWwge1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBmb250LWZhbWlseTogXCJDYWlyby1TZW1pQm9sZFwiO1xuICB9XG59XG4iXX0= */";
+module.exports = "ion-card {\n  height: 80px;\n}\nion-card .cat-container {\n  display: flex;\n  justify-items: center;\n  align-items: center;\n  margin: 15px;\n}\nion-card .cat-container .cat-image,\nion-card .cat-container .cat-title {\n  flex-direction: row;\n}\nion-card .cat-container .cat-image > img {\n  height: 50px;\n  width: 50px;\n  border-radius: 5px;\n  object-fit: cover;\n  object-position: center;\n}\nion-card .cat-container .cat-title {\n  margin: 0 7px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhdGVnb3JpZXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBd0JFLFlBQUE7QUF0QkY7QUF1QkU7RUFDRSxhQUFBO0VBQ0EscUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7QUFyQko7QUFzQkk7O0VBRUUsbUJBQUE7QUFwQk47QUFzQkk7RUFDRSxZQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSx1QkFBQTtBQXBCTjtBQXNCSTtFQUNFLGFBQUE7QUFwQk4iLCJmaWxlIjoiY2F0ZWdvcmllcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY2FyZCB7XG4gIC8vIGlvbi1pdGVtIHtcbiAgLy8gICAmOjpwYXJ0KG5hdGl2ZSkge1xuICAvLyAgICAgcGFkZGluZy1pbmxpbmUtc3RhcnQ6IDBweDtcbiAgLy8gICAgIC5pdGVtLW5uZXJ7XG4gIC8vICAgICAgIC5pbnB1dC13cmFwcGVye1xuICAvLyAgICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIC8vICAgICAgIH1cbiAgLy8gICAgIH1cbiAgLy8gICB9XG5cbiAgLy8gICBoZWlnaHQ6IDgwcHg7XG5cbiAgLy8gICBpb24tdGh1bWJuYWlsIHtcbiAgLy8gICAgIG1hcmdpbjogMTVweDtcblxuICAvLyAgICAgaW1nIHtcbiAgLy8gICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAvLyAgICAgICBoZWlnaHQ6IDUwcHg7XG4gIC8vICAgICAgIHdpZHRoOiA1MHB4O1xuICAvLyAgICAgfVxuICAvLyAgIH1cbiAgLy8gfVxuXG4gIGhlaWdodDogODBweDtcbiAgLmNhdC1jb250YWluZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgbWFyZ2luOiAxNXB4O1xuICAgIC5jYXQtaW1hZ2UsXG4gICAgLmNhdC10aXRsZSB7XG4gICAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAgIH1cbiAgICAuY2F0LWltYWdlID4gaW1nIHtcbiAgICAgIGhlaWdodDogNTBweDtcbiAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgICAgb2JqZWN0LWZpdDogY292ZXI7XG4gICAgICBvYmplY3QtcG9zaXRpb246IGNlbnRlcjtcbiAgICB9XG4gICAgLmNhdC10aXRsZSB7XG4gICAgICBtYXJnaW46IDAgN3B4O1xuICAgIH1cbiAgfVxufVxuIl19 */";
 
 /***/ })
 

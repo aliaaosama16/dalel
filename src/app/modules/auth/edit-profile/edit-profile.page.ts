@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { UserData } from 'src/app/models/general';
 import { UpdateUserData,  UserResponse } from 'src/app/models/userData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -41,14 +42,20 @@ export class EditProfilePage implements OnInit {
     private formBuilder: FormBuilder,
     private util: UtilitiesService,
     private auth: AuthService,
-    private language: LanguageService
+    private language: LanguageService,
+    private platform: Platform,
+    private location: Location
   ) {
-    this.auth.getUserIDObservable().subscribe((val) => {
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.userData = {
         lang: this.language.getLanguage(),
-        user_id: val,
+        user_id:this.auth.userID.value //val,
       };
-    });
+   // });
     this.util.showLoadingSpinner().then((__) => {
       this.auth.userData(this.userData).subscribe(
         (data: UserResponse) => {

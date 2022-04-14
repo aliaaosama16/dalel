@@ -6,7 +6,7 @@
   class="header-height"
 ></app-header>
 <ion-content class="ion-padding">
-  <div class="container">
+  <div class="container" *ngIf="itemDetails?.first_image">
     <img [src]="itemDetails?.first_image " />
   </div>
 
@@ -55,14 +55,15 @@
     <h5 class="fn-14 dalel-Bold primary-color">{{ "fees"|translate }}</h5>
 
     <div class="fees-details">
+      
       <div>
-        <p class="fn-14 dalel-Bold">
-          {{itemDetails?.price}} {{'currency' |translate}}
+        <p class="fn-14 dalel-Regular">
+          {{itemDetails?.price}} {{'one night' |translate}}
         </p>
       </div>
       <div>
-        <p class="fn-14 dalel-Bold">
-          {{itemDetails?.price}} {{'one night' |translate}}
+        <p class="fn-14 dalel-Regular">
+          {{itemDetails?.price}} {{'currency' |translate}}
         </p>
       </div>
     </div>
@@ -100,7 +101,7 @@
   </div>
 
   <ion-button expand="block" (click)="setOrderData()">
-    <span class="auth-btn fn-16 white-color dalel-Bold">
+    <span class=" fn-16 white-color dalel-Bold">
       {{ "confirm reservation"|translate}}
     </span>
   </ion-button>

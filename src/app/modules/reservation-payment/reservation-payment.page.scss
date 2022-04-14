@@ -6,6 +6,7 @@
     object-fit: cover;
     object-position: initial;
     border-radius: 10px;
+    filter: brightness(0.34);
   }
 }
 
@@ -22,9 +23,14 @@ ion-button {
   &::part(native) {
     padding-inline-start: 10px !important;
     padding-inline-end: 10px !important;
+    height: 50px !important;
+    background-image: linear-gradient(
+      to left,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
   }
 }
-
 
 .name-rating-container {
   display: flex;
@@ -67,6 +73,7 @@ ion-button {
   p {
     margin: 0px !important;
   }
+  
   h5 {
     margin: 0px !important;
   }
@@ -80,12 +87,15 @@ ion-button {
   .arrival-date-spacer {
     margin-top: 6px;
   }
+
   .left-date-spacer {
     margin-top: 10px;
   }
+
   .margin-left {
     margin-left: 6px;
   }
+
   .margin-right {
     margin-right: 6px;
   }
@@ -102,25 +112,27 @@ ion-button {
   }
 
   .fees-details {
-      p{
-          margin: 0px;
-      }
+    p {
+      margin: 0px;
+    }
     display: flex;
     justify-content: space-between;
 
     div {
       flex-direction: row;
       p {
-        color: var(--ion-color-gray-black)
+        color: var(--ion-color-gray-black);
       }
     }
   }
+
   .separator {
     background-color: var(--ion-color-secondary);
   }
+
   .fees-total {
-    p{
-        margin: 0px;
+    p {
+      margin: 0px;
     }
     display: flex;
     justify-content: space-between;
@@ -137,43 +149,30 @@ ion-button {
   padding: 10px 12px;
   margin-bottom: 16px;
 
-  ion-item::part(native) {
-    text-align: center;
-    padding-inline-end: 0px !important;
-    padding-inline-start: 0px !important;
-    background:  var(--ion-color-orange-light);
-    .item-inner {
-      --inner-border-width: 0px;
+  ion-item {
+    &::part(native) {
+      text-align: center;
+      padding-inline-end: 0px !important;
+      padding-inline-start: 0px !important;
+      background: var(--ion-color-orange-light);
+      .item-inner {
+        --inner-border-width: 0px;
+      }
     }
   }
-  ion-checkbox{
-    --checkmark-color	:var(--ion-color-white);
-    --border-radius	:3px;
-    --size	:20px;
-    --border-color:var(--ion-color-secondary);
+
+  ion-checkbox {
+    --checkmark-color: var(--ion-color-white);
+    --border-radius: 3px;
+    --size: 20px;
+    --border-color: var(--ion-color-secondary);
   }
 
-  .align-right{
+  .align-right {
     text-align: right;
   }
 
-  .align-left{
+  .align-left {
     text-align: left;
   }
-}
-.btn-custom {
-  margin: 0 5%;
-  --color: var(--ion-color-white);
-  font-size: 16;
-  font-family: "Cairo-Bold";
-  height: 48px;
-}
-
-ion-button::part(native) {
-  height: 50px !important;
-  background-image: linear-gradient(
-    to left,
-    var(--ion-color-primary),
-    var(--ion-color-secondary)
-  );
 }

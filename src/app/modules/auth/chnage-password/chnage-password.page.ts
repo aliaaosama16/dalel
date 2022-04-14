@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
-import {
-  ChangePasswordData,
-  ForgetPasswordData,
-} from 'src/app/models/forgetPassword';
+import { MenuController, Platform } from '@ionic/angular';
+import { ChangePasswordData } from 'src/app/models/forgetPassword';
 import { AuthResponse } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-chnage-password',
@@ -53,10 +50,16 @@ export class ChnagePasswordPage implements OnInit {
     private util: UtilitiesService,
     private router: Router,
     private auth: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private platform: Platform,
+    private location: Location
   ) {
     this.menuCtrl.enable(false, 'main');
     this.buildForm();
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      console.log('Handler was called!');
+      this.location.back();
+    });
   }
 
   ngOnInit() {}
@@ -71,7 +74,9 @@ export class ChnagePasswordPage implements OnInit {
         this.changePasswordForm.value.password ==
         this.changePasswordForm.value.confirmPassword
       ) {
-        console.log('user id : '+this.activatedRoute.snapshot.paramMap.get('userID'));
+        console.log(
+          'user id : ' + this.activatedRoute.snapshot.paramMap.get('userID')
+        );
         this.changePasswordData = {
           user_id: parseInt(
             this.activatedRoute.snapshot.paramMap.get('userID')

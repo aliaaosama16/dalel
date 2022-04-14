@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AboutPage": () => (/* binding */ AboutPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./about.page.html */ 1844);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./about.page.html */ 1844);
 /* harmony import */ var _about_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./about.page.scss */ 61601);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_general_general_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/general/general.service */ 55731);
@@ -127,11 +127,18 @@ let AboutPage = class AboutPage {
         this.util.showLoadingSpinner().then((__) => {
             this.general.staticPages(data).subscribe((data) => {
                 this.aboutDataResponse = data;
-                console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
                 this.util.dismissLoading();
             }, (err) => {
                 this.util.dismissLoading();
             });
+        });
+    }
+    doRefresh($event) {
+        this.general.staticPages(this.aboutData).subscribe((data) => {
+            this.aboutDataResponse = data;
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
         });
     }
 };
@@ -143,7 +150,7 @@ AboutPage.ctorParameters = () => [
 AboutPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-about',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_about_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_about_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], AboutPage);
@@ -162,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"aboutDataResponse?.data?.title\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-no-margin\" *ngIf=\"aboutDataResponse?.data?.desc\">\n    <div class=\"logo\">\n      <img [src]=\"aboutDataResponse?.data?.image\" />\n    </div>\n    <div class=\"ion-padding content\">\n      <p class=\"fn-14 dalel-Regular gray-black-color\">\n        {{aboutDataResponse?.data?.desc}}\n      </p>\n    </div>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"aboutDataResponse?.data?.title\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-card class=\"ion-no-margin\" *ngIf=\"aboutDataResponse?.data?.desc\">\n    <div class=\"logo\">\n      <img [src]=\"aboutDataResponse?.data?.image\" />\n    </div>\n    <div class=\"ion-padding content\">\n      <p class=\"fn-14 dalel-Regular gray-black-color\">\n        {{aboutDataResponse?.data?.desc}}\n      </p>\n    </div>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 

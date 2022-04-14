@@ -10,6 +10,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class LanguagePage implements OnInit {
   currentlangauge: string;
+  selectLanguage: boolean;
   constructor(
     private langaugeservice: LanguageService,
     private menuCtrl: MenuController
@@ -23,6 +24,9 @@ export class LanguagePage implements OnInit {
 
   chooseLanguage(ev) {
     console.log(ev.detail.value);
+    if (ev.detail.value) {
+      this.selectLanguage = true;
+    }
     this.langaugeservice.setLanguage(ev.detail.value);
 
     if (ev.detail.value == 'ar') {
@@ -30,6 +34,6 @@ export class LanguagePage implements OnInit {
     } else {
       document.documentElement.dir = 'ltr';
     }
-   // window.location.reload();
+    // window.location.reload();
   }
 }

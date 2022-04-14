@@ -15,7 +15,7 @@ export class AboutPage implements OnInit {
   aboutDataResponse: StaticPageResponse;
   constructor(
     private util: UtilitiesService,
-    private general:GeneralService,
+    private general: GeneralService,
     private language: LanguageService
   ) {
     this.aboutData = {
@@ -33,7 +33,6 @@ export class AboutPage implements OnInit {
       this.general.staticPages(data).subscribe(
         (data: StaticPageResponse) => {
           this.aboutDataResponse = data;
-          console.log('aboutData ' + JSON.stringify(this.aboutDataResponse));
           this.util.dismissLoading();
         },
         (err) => {
@@ -41,5 +40,18 @@ export class AboutPage implements OnInit {
         }
       );
     });
+  }
+
+  doRefresh($event) {
+      this.general.staticPages( this.aboutData).subscribe(
+        (data: StaticPageResponse) => {
+          this.aboutDataResponse = data;
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+ 
   }
 }

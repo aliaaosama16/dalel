@@ -10,7 +10,8 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class CustomCardComponent implements OnInit {
   currentlangauge: string;
-  @Input() cardOpacity: number;
+
+  @Input() cardBrightness: string;
   @Input() itemDetails: Item;
   @Input() forwardRoute: string;
   @Output() navigateTo = new EventEmitter<string>();
@@ -22,6 +23,8 @@ export class CustomCardComponent implements OnInit {
 
   ngOnInit() {
     this.currentlangauge = this.languageService.getLanguage();
+    console.log('custom card : '+this.cardBrightness);
+    this.cardBrightness=`brightness(${this.cardBrightness})`
   }
 
   navigate(route) {

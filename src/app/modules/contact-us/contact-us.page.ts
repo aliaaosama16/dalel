@@ -100,7 +100,7 @@ export class ContactUsPage implements OnInit {
       this.general.contactUs(this.contactData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
-            console.log('contact us  res :' + JSON.stringify(data));
+            
             this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);

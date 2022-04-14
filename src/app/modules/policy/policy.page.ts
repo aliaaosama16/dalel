@@ -19,16 +19,16 @@ export class PolicyPage implements OnInit {
     private language: LanguageService,
     private auth: AuthService
   ) {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      console.log('user id :' + val);
-      if (val != 0) {
+    //this.auth.getUserIDObservable().subscribe((val) => {
+      // console.log('user id :' + val);
+      // if (val != 0) {
         this.conditionData = {
           lang: this.language.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, // val,
           title: 'condition',
         };
-      }
-    });
+    //   }
+    // });
 
     this.getIntroData(this.conditionData);
   }
@@ -40,9 +40,6 @@ export class PolicyPage implements OnInit {
       this.general.staticPages(data).subscribe(
         (data: StaticPageResponse) => {
           this.conditionDataResponse = data;
-          console.log(
-            'conditionData ' + JSON.stringify(this.conditionDataResponse)
-          );
           this.util.dismissLoading();
         },
         (err) => {
@@ -50,5 +47,27 @@ export class PolicyPage implements OnInit {
         }
       );
     });
+  }
+
+  doRefresh($event) {
+    this.auth.getUserIDObservable().subscribe((val) => {
+      console.log('user id :' + val);
+      if (val != 0) {
+        this.conditionData = {
+          lang: this.language.getLanguage(),
+          user_id: val,
+          title: 'condition',
+        };
+      }
+    });
+    this.general.staticPages(this.conditionData).subscribe(
+      (data: StaticPageResponse) => {
+        this.conditionDataResponse = data;
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

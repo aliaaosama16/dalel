@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController, Platform } from '@ionic/angular';
+import { MenuController, ModalController, Platform } from '@ionic/angular';
 import { GeneralResponse } from 'src/app/models/general';
 import {
   AddRemoveFavourite,
@@ -14,6 +14,7 @@ import { ItemsService } from 'src/app/services/items/items.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { SwiperOptions } from 'swiper';
+import { ImageModalPage } from '../image-modal/image-modal.page';
 
 @Component({
   selector: 'app-category-details',
@@ -61,7 +62,8 @@ export class CategoryDetailsPage implements OnInit {
     private items: ItemsService,
     private activatedRoute: ActivatedRoute,
     private favouritesService: FavouritesService,
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController
   ) {
     this.platform = this.util.platform;
   }
@@ -72,15 +74,13 @@ export class CategoryDetailsPage implements OnInit {
   }
 
   async getItemDetails() {
-    await this.auth.getUserIDObservable().subscribe((val) => {
-      this.departmentData = {
-        lang: this.langaugeservice.getLanguage(),
-        department_id: parseInt(
-          this.activatedRoute.snapshot.paramMap.get('departmetId')
-        ),
-        user_id: val == 0 ? 1 : val,
-      };
-    });
+    this.departmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+      user_id: this.auth.userID.value,
+    };
 
     await this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
@@ -158,17 +158,17 @@ export class CategoryDetailsPage implements OnInit {
   reserve() {}
 
   addToFavourite() {
-    this.auth.getUserIDObservable().subscribe((val) => {
-      if (val != 0) {
-        this.favDepartmentData = {
-          lang: this.langaugeservice.getLanguage(),
-          user_id: val,
-          department_id: parseInt(
-            this.activatedRoute.snapshot.paramMap.get('departmetId')
-          ),
-        };
-      }
-    });
+    // this.auth.getUserIDObservable().subscribe((val) => {
+    //   if (val != 0) {
+    this.favDepartmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value, //val,
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+    };
+    //   }
+    // });
 
     this.util.showLoadingSpinner().then((__) => {
       this.favouritesService
@@ -196,5 +196,44 @@ export class CategoryDetailsPage implements OnInit {
       this.util.showMessage('login now');
       this.router.navigateByUrl('/login-register');
     }
+  }
+
+  async openPreview(itemImages) {
+    const modal = await this.modalCtrl.create({
+      component: ImageModalPage,
+      cssClass: 'transparent-modal',
+      componentProps: {
+        images: itemImages,
+      },
+    });
+    modal.present();
+  }
+
+  doRefresh($event) {
+    this.departmentData = {
+      lang: this.langaugeservice.getLanguage(),
+      department_id: parseInt(
+        this.activatedRoute.snapshot.paramMap.get('departmetId')
+      ),
+      user_id: this.auth.userID.value,
+    };
+
+      this.items.showDepartmentByID(this.departmentData).subscribe(
+        (data: DepartmentDetailsResponse) => {
+          if (data.key == 1) {
+            this.dataLoaded = true;
+            this.itemDetails = data.data;
+            this.lat = this.itemDetails.lat;
+            this.long = this.itemDetails.lng;
+            this.loadMap();
+            this.loadItemPosition();
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+   
   }
 }

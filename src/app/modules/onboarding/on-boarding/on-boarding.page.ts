@@ -18,7 +18,7 @@ import Swiper, {
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import {  Intro, IntroData } from 'src/app/models/intro';
+import { Intro, IntroData } from 'src/app/models/intro';
 import { GeneralService } from 'src/app/services/general/general.service';
 
 Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
@@ -29,7 +29,7 @@ Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
   styleUrls: ['./on-boarding.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class OnBoardingPage implements OnInit, AfterContentChecked {
+export class OnBoardingPage implements OnInit{//}, AfterContentChecked {
   @ViewChild('swiper') swiper: SwiperComponent;
   slidingNotAvailable: boolean = false;
   nextClicked: number = 0;
@@ -38,10 +38,10 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     slidesPerView: 1,
     spaceBetween: 0,
     pagination: true,
-    //allowTouchMove: false,
+    allowTouchMove: false,
   };
   introData: Intro;
-  getIntro:boolean=false;
+  getIntro: boolean = false;
 
   constructor(
     private langaugeservice: LanguageService,
@@ -72,31 +72,24 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
           this.introData = data;
           console.log('INTRO ' + JSON.stringify(this.introData));
           this.util.dismissLoading();
-          this.getIntro=true;
+          this.getIntro = true;
         },
         (err) => {
           this.util.dismissLoading();
-          this.getIntro=false;
+          this.getIntro = false;
         }
       );
     });
   }
 
-  nextSlide(ev) {
-    console.log('pointerId : ' + ev.pointerId);
-    if (this.nextClicked < 3) {
-      this.nextClicked++;
-    } else {
-      // this.setBoarding();
-
-      // this.router.navigateByUrl('/tabs/main');
-    }
+  nextSlide() {
+    this.swiper.swiperRef.slideNext();
   }
 
-  start(){
+  start() {
     this.setBoarding();
 
-      this.router.navigateByUrl('/tabs/main');
+    this.router.navigateByUrl('/tabs/main');
   }
 
   async setBoarding() {
@@ -106,11 +99,11 @@ export class OnBoardingPage implements OnInit, AfterContentChecked {
     });
   }
 
-  ngAfterContentChecked(): void {
-    if (this.swiper) {
-      this.swiper.updateSwiper({});
-    }
-  }
+  // ngAfterContentChecked(): void {
+  //   if (this.swiper) {
+  //     this.swiper.updateSwiper({});
+  //   }
+  // }
 
   swiperSlideChanged(e) {
     console.log('changed: ', e);

@@ -7,6 +7,9 @@
 ></app-header>
 
 <ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-segment
     (ionChange)="reservationsTypeChange($event)"
     [value]="current"
@@ -16,14 +19,14 @@
       [value]="current"
       [ngClass]="reservationsType==current ?'selected':'old-unselected'"
     >
-      <ion-label>{{"current"|translate}}</ion-label>
+      <ion-label class="fn-14 dalel-SemiBold">{{"current"|translate}}</ion-label>
     </ion-segment-button>
 
     <ion-segment-button
       [value]="old"
       [ngClass]="reservationsType==old ?'selected':'current-unselected'"
     >
-      <ion-label>{{"old"|translate}}</ion-label>
+      <ion-label class="fn-14 dalel-SemiBold">{{"old"|translate}}</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -39,17 +42,17 @@
       <div class="container">
         <img [src]="item?.department_image" />
 
-        <div class="price">
-          <p class="fn-15 dalel-SemiBold secondary-color">
+        <div class="price" [ngClass]="currentlangauge=='ar'  ?'price-ar':'price-en' ">
+          <p class="fn-14 dalel-Bold secondary-color ion-no-margin">
             {{item.department_price}} {{'currency'|translate}}/ {{'one night'|translate}}
           </p>
         </div>
 
         <div
-          class="title"
+          class="title "
           [ngStyle]="currentlangauge=='ar'?{'right': '13px'} : {'left': '13px'}"
         >
-          <p class="fn-14 dalel-Bold white-color">
+          <p class="fn-14 dalel-Bold white-color ion-no-margin">
             {{item.department_title|translate}}
           </p>
         </div>

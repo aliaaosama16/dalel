@@ -27,7 +27,7 @@ export class CanEnterLoginPageGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.logined) {
+    if (this.authService.isAuthenticated) {
       return true;
     } else {
       this.util.showMessage('please login first');

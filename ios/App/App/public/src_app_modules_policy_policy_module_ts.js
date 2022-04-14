@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PolicyPage": () => (/* binding */ PolicyPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./policy.page.html */ 18072);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./policy.page.html */ 18072);
 /* harmony import */ var _policy_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./policy.page.scss */ 38033);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
@@ -118,6 +118,30 @@ let PolicyPage = class PolicyPage {
         this.general = general;
         this.language = language;
         this.auth = auth;
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        // console.log('user id :' + val);
+        // if (val != 0) {
+        this.conditionData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+            title: 'condition',
+        };
+        //   }
+        // });
+        this.getIntroData(this.conditionData);
+    }
+    ngOnInit() { }
+    getIntroData(data) {
+        this.util.showLoadingSpinner().then((__) => {
+            this.general.staticPages(data).subscribe((data) => {
+                this.conditionDataResponse = data;
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
+    }
+    doRefresh($event) {
         this.auth.getUserIDObservable().subscribe((val) => {
             console.log('user id :' + val);
             if (val != 0) {
@@ -128,18 +152,11 @@ let PolicyPage = class PolicyPage {
                 };
             }
         });
-        this.getIntroData(this.conditionData);
-    }
-    ngOnInit() { }
-    getIntroData(data) {
-        this.util.showLoadingSpinner().then((__) => {
-            this.general.staticPages(data).subscribe((data) => {
-                this.conditionDataResponse = data;
-                console.log('conditionData ' + JSON.stringify(this.conditionDataResponse));
-                this.util.dismissLoading();
-            }, (err) => {
-                this.util.dismissLoading();
-            });
+        this.general.staticPages(this.conditionData).subscribe((data) => {
+            this.conditionDataResponse = data;
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
         });
     }
 };
@@ -152,7 +169,7 @@ PolicyPage.ctorParameters = () => [
 PolicyPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-policy',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_policy_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], PolicyPage);
@@ -171,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"conditionDataResponse?.data?.title\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-card class=\"ion-padding\" *ngIf=\"conditionDataResponse?.data?.desc\">\n    <div class=\"content\">\n      <p\n        class=\"fn-14 dalel-Regular gray-black-color\"\n        [innerHtml]=\"conditionDataResponse?.data?.desc\"\n      ></p>\n    </div>\n  </ion-card>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"conditionDataResponse?.data?.title\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-card class=\"ion-padding\" *ngIf=\"conditionDataResponse?.data?.desc\">\n    <div class=\"content\">\n      <p\n        class=\"fn-14 dalel-Regular gray-black-color\"\n        [innerHtml]=\"conditionDataResponse?.data?.desc\"\n      ></p>\n    </div>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 

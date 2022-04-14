@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "NotificationsPage": () => (/* binding */ NotificationsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./notifications.page.html */ 74289);
 /* harmony import */ var _notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.page.scss */ 87326);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -138,29 +138,34 @@ let NotificationsPage = class NotificationsPage {
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         console.log(this.currentlangauge);
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('user id :' + val);
-            if (val != 0) {
-                this.UserData = {
-                    lang: this.langaugeservice.getLanguage(),
-                    user_id: val,
-                };
-                this.showNotification(this.UserData);
-            }
-        });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        //   console.log('user id :' + val);
+        //   if (val != 0) {
+        this.UserData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value,
+        };
+        this.showNotification(this.UserData);
+        //}
+        ///});
     }
     openMenu() {
         this.menuCtrl.open();
     }
     showNotification(notificationData) {
-        this.userNotifications.showNotification(notificationData).subscribe((data) => {
-            if (data.key == 1) {
-                if (data.data.length == 0) {
-                    this.noNotifications = true;
+        this.util.showLoadingSpinner().then((__) => {
+            this.userNotifications.showNotification(notificationData).subscribe((data) => {
+                if (data.key == 1) {
+                    if (data.data.length == 0) {
+                        this.noNotifications = true;
+                    }
+                    this.notifications = data.data;
                 }
-                this.notifications = data.data;
-            }
-        }, (err) => { });
+                this.util.dismissLoading();
+            }, (err) => {
+                this.util.dismissLoading();
+            });
+        });
     }
     openOrederDetails(orderID) {
         this.router.navigateByUrl(`/tabs/my-reservations/my-reservations-details/` + orderID);
@@ -212,25 +217,23 @@ let NotificationsPage = class NotificationsPage {
         });
     }
     doRefresh($event) {
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('user id :' + val);
-            if (val != 0) {
-                this.UserData = {
-                    lang: this.langaugeservice.getLanguage(),
-                    user_id: val,
-                };
-                this.userNotifications.showNotification(this.UserData).subscribe((data) => {
-                    if (data.key == 1) {
-                        if (data.data.length == 0) {
-                            this.noNotifications = true;
-                        }
-                        this.notifications = data.data;
-                    }
-                    $event.target.complete();
-                }, (err) => {
-                    $event.target.complete();
-                });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        //   console.log('user id :' + val);
+        //   if (val != 0) {
+        this.UserData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value, //val,
+        };
+        this.userNotifications.showNotification(this.UserData).subscribe((data) => {
+            if (data.key == 1) {
+                if (data.data.length == 0) {
+                    this.noNotifications = true;
+                }
+                this.notifications = data.data;
             }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
         });
     }
 };
@@ -247,7 +250,7 @@ NotificationsPage.ctorParameters = () => [
 NotificationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-notifications',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_notifications_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_notifications_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], NotificationsPage);

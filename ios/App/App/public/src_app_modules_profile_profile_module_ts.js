@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ProfilePage": () => (/* binding */ ProfilePage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_profile_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./profile.page.html */ 73400);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_profile_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./profile.page.html */ 73400);
 /* harmony import */ var _profile_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile.page.scss */ 37444);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78099);
@@ -120,26 +120,24 @@ let ProfilePage = class ProfilePage {
         this.language = language;
         this.getData = false;
         // this.auth.getStoredUserID();
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('get id from behavour subject if just logined' + val);
-            if (val != 0) {
-                this.userData = {
-                    lang: this.language.getLanguage(),
-                    user_id: val,
-                };
-            }
-        });
+        // this.auth.getUserIDObservable().subscribe((val) => {
+        // console.log('get id from behavour subject if just logined' + val);
+        // if (val != 0) {
+        this.userData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+        };
         this.platform = this.util.platform;
         this.util.showLoadingSpinner().then((__) => {
             this.auth.userData(this.userData).subscribe((data) => {
                 if (data.key == 1) {
                     this.userResponse = data;
                     console.log('user all data :' + JSON.stringify(this.userResponse));
-                    this.auth.getStoredUserID();
+                    //this.auth.getStoredUserID();
                     // this.getData = true;
                 }
                 else {
-                    this.util.showMessage(data.msg);
+                    //  this.util.showMessage(data.msg);
                 }
                 this.util.dismissLoading();
             }, (err) => {
@@ -147,39 +145,41 @@ let ProfilePage = class ProfilePage {
                 //this.getData = false;
             });
         });
+        // }
+        //});
     }
     ngOnInit() { }
     openMenu() {
         this.menuCtrl.open();
     }
     doRefresh($event) {
-        this.auth.getUserIDObservable().subscribe((val) => {
-            console.log('get id from behavour subject if just logined' + val);
-            if (val != 0) {
-                this.userData = {
-                    lang: this.language.getLanguage(),
-                    user_id: val,
-                };
-            }
-        });
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        //console.log('get id from behavour subject if just logined' + val);
+        // if (val != 0) {
+        this.userData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value //val,
+        };
+        //}
+        //});
         this.platform = this.util.platform;
-        this.util.showLoadingSpinner().then((__) => {
-            this.auth.userData(this.userData).subscribe((data) => {
-                if (data.key == 1) {
-                    this.userResponse = data;
-                    // console.log('user all data :' + JSON.stringify(this.userResponse));
-                    // this.auth.getStoredUserID();
-                    // this.getData = true;
-                }
-                else {
-                    this.util.showMessage(data.msg);
-                }
-                $event.target.complete();
-            }, (err) => {
-                $event.target.complete();
-                // this.getData = false;
-            });
+        // this.util.showLoadingSpinner().then((__) => {
+        this.auth.userData(this.userData).subscribe((data) => {
+            if (data.key == 1) {
+                this.userResponse = data;
+                // console.log('user all data :' + JSON.stringify(this.userResponse));
+                // this.auth.getStoredUserID();
+                // this.getData = true;
+            }
+            else {
+                this.util.showMessage(data.msg);
+            }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
+            // this.getData = false;
         });
+        //});
     }
 };
 ProfilePage.ctorParameters = () => [
@@ -191,7 +191,7 @@ ProfilePage.ctorParameters = () => [
 ProfilePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-profile',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_profile_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_profile_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_profile_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ProfilePage);
@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  class=\"header-height\"\n  [title]=\"'profile'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\"\n  [isMain]=\"false\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <div class=\"profile-card-wrapper\" >\n    <ion-card class=\"ion-no-margin ion-padding\">\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/profile.png\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-16 dalel-Bold name\">\n          {{userResponse?.data?.first_name}}\n        </h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/person-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.first_name\"\n          type=\"text\"\n        ></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/phone-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.phone\"\n          type=\"nummber\"\n        ></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/email-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.email\"\n          type=\"email\"\n        ></ion-input>\n      </ion-item>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  class=\"header-height\"\n  [title]=\"'profile'\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [forwardRoute]=\"'/tabs/profile/edit-profile'\"\n  [isEditable]=\"true\"\n  [isMain]=\"false\"\n></app-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <div class=\"profile-card-wrapper\" >\n    <ion-card class=\"ion-no-margin ion-padding\">\n      <div class=\"img-wrapper\">\n        <img src=\"./../../../assets/icon/profile.png\" />\n      </div>\n      <div class=\"ion-text-center\">\n        <h4 class=\"dark-black-color fn-18 dalel-Bold name\">\n          {{userResponse?.data?.first_name}}\n        </h4>\n      </div>\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/person-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.first_name\"\n          type=\"text\"\n        ></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/phone-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.phone\"\n          type=\"nummber\"\n        ></ion-input>\n      </ion-item>\n\n      <ion-item lines=\"none\">\n        <ion-icon\n          item-start\n          color=\"primary\"\n          src=\"'./../../../../assets/icon/email-inactive.svg\"\n        ></ion-icon>\n        <ion-input\n          readonly=\"true\"\n          [value]=\"userResponse?.data?.email\"\n          type=\"email\"\n        ></ion-input>\n      </ion-item>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

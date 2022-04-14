@@ -1,8 +1,17 @@
-.custom-padding{
-  padding:9px !important ;
+.custom-padding {
+  padding: 9px !important ;
 }
 ion-card {
+  box-shadow: none !important;
   border-radius: 10px;
+
+  img {
+    height: 140px;
+    object-fit: cover;
+    object-position: right;
+    filter: brightness(0.62);
+  }
+
   ion-button.button-disabled {
     opacity: 1 !important;
   }
@@ -17,9 +26,6 @@ ion-card {
       padding-inline-end: 10px !important;
     }
   }
-
-
-  //position: relative;
 
   .price-container {
     position: absolute;
@@ -51,6 +57,7 @@ ion-card {
         font-size: 12px;
         margin: 2px;
       }
+
       span {
         margin: 2px;
       }
@@ -64,6 +71,6 @@ ion-card {
   ion-card-content {
     padding: 4px 13px;
     background-color: rgba(var(--ion-color-secondary-rgb), 0.33);
-    margin-top: -3px;
+    margin-top: -9px;
   }
 }

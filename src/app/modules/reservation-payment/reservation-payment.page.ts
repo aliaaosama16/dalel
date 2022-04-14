@@ -48,10 +48,10 @@ export class ReservationPaymentPage implements OnInit {
   }
 
   getIntialOrderData() {
-    this.auth.getUserIDObservable().subscribe((val) => {
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.orderData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: val,
+        user_id:this.auth.userID.value, //val,
         department_id: parseInt(
           this.activatedRoute.snapshot.paramMap.get('departmetId')
         ),
@@ -87,19 +87,19 @@ export class ReservationPaymentPage implements OnInit {
         ),
       };
       console.log('order data intial :' + JSON.stringify(this.orderData));
-    });
+    //});
   }
 
   getItemDetails() {
-    this.auth.getUserIDObservable().subscribe((val) => {
+    //this.auth.getUserIDObservable().subscribe((val) => {
       this.departmentData = {
         lang: this.langaugeservice.getLanguage(),
         department_id: parseInt(
           this.activatedRoute.snapshot.paramMap.get('departmetId')
         ),
-        user_id: val == 0 ? 1 : val,
+        user_id:this.auth.userID.value, //val == 0 ? 1 : val,
       };
-    });
+   // });
 
     this.util.showLoadingSpinner().then((__) => {
       this.items.showDepartmentByID(this.departmentData).subscribe(
@@ -126,10 +126,10 @@ export class ReservationPaymentPage implements OnInit {
 
   setOrderData() {
     if (this.paymentMethod) {
-      this.auth.getUserIDObservable().subscribe((val) => {
+      //this.auth.getUserIDObservable().subscribe((val) => {
         this.orderData = {
           lang: this.langaugeservice.getLanguage(),
-          user_id: val,
+          user_id:this.auth.userID.value, //val,
           department_id: parseInt(
             this.activatedRoute.snapshot.paramMap.get('departmetId')
           ),
@@ -186,7 +186,7 @@ export class ReservationPaymentPage implements OnInit {
               this.dataService.getDates().to
             )
         );
-      });
+    //  });
       this.storeOrder(this.orderData);
     } else {
       console.log('please choose payment method');

@@ -15,6 +15,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
   styleUrls: ['./reservation.page.scss'],
 })
 export class ReservationPage implements OnInit {
+  currentLanguage: string;
   platform: any;
   dateRange: { from: string; to: string };
   type: 'string';
@@ -24,6 +25,8 @@ export class ReservationPage implements OnInit {
     showAdjacentMonthDay: true,
     showMonthPicker: true,
     showToggleButtons: true,
+  
+    
     color: 'primary',
     from: new Date(),
     daysConfig: [],
@@ -32,11 +35,11 @@ export class ReservationPage implements OnInit {
     private router: Router,
     private dataService: DataService,
     private util: UtilitiesService,
-    private auth: AuthService,
-    private langaugeservice: LanguageService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private language: LanguageService
   ) {
     this.platform = this.util.platform;
+    this.currentLanguage = this.language.getLanguage();
   }
 
   onChange(selectedDates) {
@@ -45,14 +48,6 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('item closed dates :' + this.util.itemClosedDates);
-    // this.optionsRange.daysConfig.forEach((date) => {
-    //   this.util.itemClosedDates.forEach((elem) => {
-    //     date.date = new Date(elem);
-    //     date.disable = true;
-    //   });
-    // });
-
     for (let i = 0; i < this.util.itemClosedDates.length; i++) {
       this.optionsRange.daysConfig.push({
         date: new Date(this.util.itemClosedDates[i]),

@@ -20,10 +20,9 @@ import { CalendarModule } from 'ion2-calendar';
     ComponentsModule,
     TranslateModule,
     FormsModule,
-   CalendarModule
+    CalendarModule,
   ],
   declarations: [ReservationPage],
   // providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
 })
 export class ReservationPageModule {}
-

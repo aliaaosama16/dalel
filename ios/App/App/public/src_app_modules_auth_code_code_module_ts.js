@@ -568,15 +568,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CodePage": () => (/* binding */ CodePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./code.page.html */ 20083);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./code.page.html */ 20083);
 /* harmony import */ var _code_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./code.page.scss */ 47180);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 28267);
+
 
 
 
@@ -587,12 +589,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CodePage = class CodePage {
-    constructor(router, auth, menuCtrl, util, language) {
+    constructor(router, auth, menuCtrl, util, language, platform, location) {
         this.router = router;
         this.auth = auth;
         this.menuCtrl = menuCtrl;
         this.util = util;
         this.language = language;
+        this.platform = platform;
+        this.location = location;
         this.inputFocusNumber1 = false;
         this.inputFocusNumber2 = false;
         this.inputFocusNumber3 = false;
@@ -616,6 +620,10 @@ let CodePage = class CodePage {
             allowNumbersOnly: true,
         };
         this.menuCtrl.enable(false, 'main');
+        this.platform.backButton.subscribeWithPriority(10, () => {
+            console.log('Handler was called!');
+            this.location.back();
+        });
     }
     // ionViewWillEnter() {
     //   this.menuCtrl.enable(false);
@@ -624,14 +632,14 @@ let CodePage = class CodePage {
     confirmVerificationCode() {
         this.code = parseInt(this.codeValues);
         console.log('code is :' + this.codeValues.substring(9));
-        this.auth.getUserIDObservable().subscribe((val) => {
-            this.activationData = {
-                lang: this.language.getLanguage(),
-                user_id: val,
-                code: this.codeValues.substring(9),
-                device_id: this.util.deviceID,
-            };
-        });
+        //this.auth.getUserIDObservable().subscribe((val) => {
+        this.activationData = {
+            lang: this.language.getLanguage(),
+            user_id: this.auth.userID.value,
+            code: this.codeValues.substring(9),
+            device_id: this.util.deviceID,
+        };
+        //});
         this.util.showLoadingSpinner().then((__) => {
             this.auth.activeAccount(this.activationData).subscribe((data) => {
                 if (data.key == 1) {
@@ -700,12 +708,14 @@ CodePage.ctorParameters = () => [
     { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
     { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_4__.UtilitiesService },
-    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService }
+    { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_3__.LanguageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__.Location }
 ];
-CodePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+CodePage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-code',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_code_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_code_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CodePage);
@@ -724,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n    <!-- <ion-card>\n      <ng-otp-input\n        (onInputChange)=\"onOtpChange($event)\"\n        [config]=\"config\"\n      ></ng-otp-input>\n    </ion-card> -->\n    <ion-card class=\"auth-container\">\n      <div class=\"auth-container-title\">\n        <h5>{{\"code-verification\"|translate}}</h5>\n      </div>\n\n      <div class=\"auth-container-sub-title\">\n        <p>{{\"enter code sent to mobile\"|translate}}</p>\n      </div>\n\n      <form class=\"auth-form\" (ngSubmit)=\"confirmVerificationCode()\">\n        <ion-row>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber1 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n1\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n2)\"\n              \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col size=\"3\">\n            <ion-item\n              lines=\"none\"\n              [ngClass]=\"inputFocusNumber2 ? 'focused' : 'unfocused' \"\n            >\n              <ion-input\n                class=\"otp\"\n                #n2\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n3)\"\n               \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber3 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n3\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n4)\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber4 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n4\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,'')\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\"auth-btn\"> {{\"confirm\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div class=\"auth-login-register\">\n    <div class=\"logo\">\n      <img src=\"../../../../assets/images/logo.svg\" />\n    </div>\n    <!-- <ion-card>\n      <ng-otp-input\n        (onInputChange)=\"onOtpChange($event)\"\n        [config]=\"config\"\n      ></ng-otp-input>\n    </ion-card> -->\n    <ion-card class=\"auth-container\">\n      <div class=\"auth-container-title\">\n        <h5 class=\"fn-24 dalel-Bold\">{{\"code-verification\"|translate}}</h5>\n      </div>\n\n      <div class=\"auth-container-sub-title fn-14 dalel-Regular\">\n        <p>{{\"enter code sent to mobile\"|translate}}</p>\n      </div>\n\n      <form class=\"auth-form\" (ngSubmit)=\"confirmVerificationCode()\">\n        <ion-row>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber1 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n1\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n2)\"\n              \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col size=\"3\">\n            <ion-item\n              lines=\"none\"\n              [ngClass]=\"inputFocusNumber2 ? 'focused' : 'unfocused' \"\n            >\n              <ion-input\n                class=\"otp\"\n                #n2\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n3)\"\n               \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber3 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n3\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,n4)\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n          <ion-col\n            size=\"3\"\n            [ngClass]=\"inputFocusNumber4 ? 'focused' : 'unfocused' \"\n          >\n            <ion-item lines=\"none\">\n              <ion-input\n                class=\"otp\"\n                #n4\n                min=\"0\"\n                max=\"9\"\n                maxlength=\"1\"\n                (keyup)=\"next($event,'')\"\n                \n                type=\"tel\"\n              ></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-button expand=\"block\" type=\"submit\">\n          <span class=\" fn-16 dalel-Bold\"> {{\"confirm\"|translate}} </span>\n        </ion-button>\n      </form>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
