@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CategoriesPage": () => (/* binding */ CategoriesPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
 /* harmony import */ var _categories_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories.page.scss */ 21205);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -130,13 +130,11 @@ let CategoriesPage = class CategoriesPage {
         this.auth = auth;
         this.noCategoriesData = false;
         this.platform = this.util.platform;
-        // this.auth.getUserIDObservable().subscribe((val) => {
         this.userData = {
             lang: this.langaugeservice.getLanguage(),
-            user_id: this.auth.userID.value, //val == 0 ? 1 : val,
+            user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
         };
         this.getAllSections();
-        // });
     }
     ngOnInit() { }
     getAllSections() {
@@ -161,6 +159,23 @@ let CategoriesPage = class CategoriesPage {
         this.dataService.setData(catID, catName);
         this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
     }
+    doRefresh($event) {
+        this.userData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+        };
+        this.items.data(this.userData).subscribe((data) => {
+            if (data.key == 1) {
+                if (data.data.sections.length == 0) {
+                    this.noCategoriesData = true;
+                }
+                this.sections = data.data.sections;
+            }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
+        });
+    }
 };
 CategoriesPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
@@ -174,7 +189,7 @@ CategoriesPage.ctorParameters = () => [
 CategoriesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-categories',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_categories_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoriesPage);
@@ -193,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <!-- <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n          </ion-item> -->\n          <div class=\"cat-container\">\n            <div class=\"cat-image\">\n              <img [src]=\"cat.image\" />\n            </div>\n            <div class=\"cat-title\">\n              <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n            </div>\n          </div>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <!-- <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n          </ion-item> -->\n          <div class=\"cat-container\">\n            <div class=\"cat-image\">\n              <img [src]=\"cat.image\" />\n            </div>\n            <div class=\"cat-title\">\n              <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n            </div>\n          </div>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 

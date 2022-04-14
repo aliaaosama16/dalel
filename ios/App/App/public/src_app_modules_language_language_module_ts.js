@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LanguagePage": () => (/* binding */ LanguagePage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_language_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./language.page.html */ 42026);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_language_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./language.page.html */ 42026);
 /* harmony import */ var _language_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./language.page.scss */ 92077);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
@@ -139,7 +139,7 @@ LanguagePage.ctorParameters = () => [
 LanguagePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-language',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_language_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_language_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_language_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], LanguagePage);
@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div\n    class=\"language\"\n    [ngClass]=\"currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'\"\n  >\n    <ion-list >\n      <ion-radio-group (ionChange)=\"chooseLanguage($event)\">\n        <ion-list-header >\n          <ion-label>\n            <h5 class=\"title\">{{ \"choose_langauge\"|translate}}</h5></ion-label\n          >\n        </ion-list-header>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"ar\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'ar' ? 'arabic' : 'english'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\">{{'arabic'|translate}}</ion-label>\n        </ion-item>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"en\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'en' ? 'english' : 'arabic'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\"> {{'english'|translate}}</ion-label>\n        </ion-item>\n      </ion-radio-group>\n    </ion-list>\n\n    <ion-button expand=\"block\" [disabled]=\"!selectLanguage\" class=\"btn-custom\" routerLink=\"/on-boarding\" routerDirection=\"forward\">\n      <span>{{\"start\"|translate}}</span>\n    </ion-button>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content class=\"background\">\n  <div\n    class=\"language\"\n    [ngClass]=\"currentlangauge == 'ar' ? 'arabic_padding' : 'english_padding'\"\n  >\n    <ion-list>\n      <ion-radio-group (ionChange)=\"chooseLanguage($event)\">\n        <ion-list-header>\n          <ion-label>\n            <h5 class=\"title\">{{ \"choose_langauge\"|translate}}</h5></ion-label\n          >\n        </ion-list-header>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"ar\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'ar' ? 'arabic' : 'english'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\">{{'arabic'|translate}}</ion-label>\n        </ion-item>\n\n        <ion-item class=\"lang-item\" lines=\"none\">\n          <ion-radio\n            value=\"en\"\n            slot=\"start\"\n            [ngClass]=\"currentlangauge == 'en' ? 'english' : 'arabic'\"\n          ></ion-radio>\n          <ion-label class=\"lang-label\"> {{'english'|translate}}</ion-label>\n        </ion-item>\n      </ion-radio-group>\n    </ion-list>\n\n    <ion-button\n      expand=\"block\"\n      [disabled]=\"!selectLanguage\"\n      class=\"btn-custom fn-16 dalel-Bold\"\n      routerLink=\"/on-boarding\"\n      routerDirection=\"forward\"\n    >\n      <span>{{\"start\"|translate}}</span>\n    </ion-button>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

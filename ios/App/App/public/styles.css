@@ -109,26 +109,33 @@
   --ion-color-dark-black-shade: #000000;
   --ion-color-dark-black-tint: #1a1a1a;
   /** gary **/
-  --ion-color-gary: #B5B5B5;
-  --ion-color-gary-rgb: 181,181,181;
+  --ion-color-gary: #b5b5b5;
+  --ion-color-gary-rgb: 181, 181, 181;
   --ion-color-gary-contrast: #000000;
-  --ion-color-gary-contrast-rgb: 0,0,0;
+  --ion-color-gary-contrast-rgb: 0, 0, 0;
   --ion-color-gary-shade: #9f9f9f;
   --ion-color-gary-tint: #bcbcbc;
   /** light-gray **/
   --ion-color-light-gray: #e1e1e1;
-  --ion-color-light-gray-rgb: 225,225,225;
+  --ion-color-light-gray-rgb: 225, 225, 225;
   --ion-color-light-gray-contrast: #000000;
-  --ion-color-light-gray-contrast-rgb: 0,0,0;
+  --ion-color-light-gray-contrast-rgb: 0, 0, 0;
   --ion-color-light-gray-shade: #c6c6c6;
   --ion-color-light-gray-tint: #e4e4e4;
   /** lighted-gray **/
   --ion-color-lighted-gray: #d4d4d4;
-  --ion-color-lighted-gray-rgb: 212,212,212;
+  --ion-color-lighted-gray-rgb: 212, 212, 212;
   --ion-color-lighted-gray-contrast: #000000;
-  --ion-color-lighted-gray-contrast-rgb: 0,0,0;
+  --ion-color-lighted-gray-contrast-rgb: 0, 0, 0;
   --ion-color-lighted-gray-shade: #bbbbbb;
   --ion-color-lighted-gray-tint: #d8d8d8;
+  /** white-gray **/
+  --ion-color-white-gray: #fcfcfc;
+  --ion-color-white-gray-rgb: 252, 252, 252;
+  --ion-color-white-gray-contrast: #000000;
+  --ion-color-white-gray-contrast-rgb: 0, 0, 0;
+  --ion-color-white-gray-shade: #dedede;
+  --ion-color-white-gray-tint: #fcfcfc;
 }
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary);
@@ -210,6 +217,14 @@
   --ion-color-shade: var(--ion-color-light-gray-shade);
   --ion-color-tint: var(--ion-color-light-gray-tint);
 }
+.ion-color-white-gray {
+  --ion-color-base: var(--ion-color-white-gray);
+  --ion-color-base-rgb: var(--ion-color-white-gray-rgb);
+  --ion-color-contrast: var(--ion-color-white-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-white-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-white-gray-shade);
+  --ion-color-tint: var(--ion-color-white-gray-tint);
+}
 .primary-color {
   color: var(--ion-color-primary) !important;
 }
@@ -260,18 +275,6 @@
 }
 .dalel-SemiBold {
   font-family: "Cairo-SemiBold";
-}
-:root[dir=rtl] .register-btn {
-  --border-radius: 0 10px 0 0 !important;
-}
-:root[dir=rtl] .signin-btn {
-  --border-radius: 10px 0 0 0 !important;
-}
-:root[dir=ltr] .register-btn {
-  --border-radius: 10px 0 0 0 !important;
-}
-:root[dir=ltr] .signin-btn {
-  --border-radius: 0 10px 0 0 !important;
 }
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].rules[0].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].rules[0].oneOf[1].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].rules[1].use[0]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].rules[1].use[1]!./src/global.scss ***!
@@ -2156,6 +2159,12 @@ button.swiper-pagination-bullet {
 :root ion-card {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) !important;
 }
+:root ion-fab-button {
+  --box-shadow: none !important;
+}
+ion-input {
+  --color: var(--ion-color-primary) !important;
+}
 :root[dir=rtl] ion-menu::part(container) {
   border-radius: 80px 0px 0px 0px;
 }
@@ -2179,9 +2188,6 @@ ion-badge {
 ion-badge span {
   font-size: 7px;
 }
-.badge-color {
-  color: var(--ion-color-white);
-}
 .my-custom-class div#alert-1-msg {
   margin-top: 13px !important;
   color: var(--ion-color-dark-black) !important;
@@ -2199,9 +2205,6 @@ ion-badge span {
 .unfocused {
   --border-color: var(--ion-color-secondary) !important;
 }
-ion-input {
-  --color: var(--ion-color-primary) !important;
-}
 .swiper-slide {
   display: block !important;
 }
@@ -2214,8 +2217,6 @@ ion-input {
 .btn-custom {
   width: 35%;
   --color: var(--ion-color-white);
-  font-size: 16;
-  font-family: "Cairo-Bold";
   height: 48px;
 }
 .auth-login-register .logo {
@@ -2228,7 +2229,8 @@ ion-input {
   width: 108.48 !important;
 }
 .auth-login-register .auth-container {
-  margin-top: 24px;
+  margin: 24px 20px 0px;
+  border-radius: 10px;
 }
 .auth-login-register .auth-container .auth-container-title {
   text-align: center;
@@ -2246,18 +2248,13 @@ ion-input {
 .auth-login-register .auth-container ion-segment {
   border-radius: 0px !important;
 }
-.auth-login-register .auth-container ion-segment-button {
+.auth-login-register .auth-container ion-segment ion-segment-button {
   height: 48px;
   --background: rgba(var(--ion-color-secondary-rgb), 0.51);
   --color-checked: var(--ion-color-white);
   --color: var(--ion-color-secondary);
   --background-checked: var(--ion-color-primary);
-  --border-radius: 0 10px 0 0;
   --indicator-color: none;
-}
-.auth-login-register .auth-container ion-segment-button ion-label {
-  font-size: 14px;
-  font-family: "Cairo-SemiBold";
 }
 .auth-login-register .auth-container .auth-form {
   margin: 24px 16px;
@@ -2350,9 +2347,6 @@ ion-tab-bar ion-tab-button ion-icon {
 .my-loading-class {
   --background: transparent;
   --spinner-color: var(--ion-color-primary);
-}
-ion-fab-button {
-  --box-shadow: none !important;
 }
 
 /*# sourceMappingURL=styles.css.map*/

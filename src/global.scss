@@ -144,7 +144,7 @@ ion-badge {
 .btn-custom {
   width: 35%;
   --color: var(--ion-color-white);
-  height: 48px;
+  height: 50px;
 }
 
 .auth-login-register {
@@ -182,7 +182,7 @@ ion-badge {
       border-radius: 0px !important;
 
       ion-segment-button {
-        height: 48px;
+        height: 50px;
         --background: rgba(var(--ion-color-secondary-rgb), 0.51);
         --color-checked: var(--ion-color-white);
         --color: var(--ion-color-secondary);
