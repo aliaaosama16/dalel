@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,mBAAmB,CAAC;EAClB,MAAM,EAAE,IAAI;CAIb;;AALD,AAEE,mBAFiB,CAEjB,GAAG,CAAC;EACF,UAAU,EAAE,GAAG;CAChB",
+    "sources": [
+        "image-modal.page.scss"
+    ],
+    "names": [],
+    "file": "image-modal.page.css"
+}

@@ -1,0 +1,37 @@
+ion-card {
+  height: 80px;
+}
+
+ion-card .cat-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px;
+}
+
+ion-card .cat-container .cat-image,
+ion-card .cat-container .cat-title {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+ion-card .cat-container .cat-image > img {
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+ion-card .cat-container .cat-title {
+  margin: 0 7px;
+}
+/*# sourceMappingURL=categories.page.css.map */

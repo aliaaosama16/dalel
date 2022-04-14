@@ -24,7 +24,7 @@ export class PolicyPage implements OnInit {
       // if (val != 0) {
         this.conditionData = {
           lang: this.language.getLanguage(),
-          user_id:this.auth.userID.value, // val,
+          user_id:this.auth.userID.value==0?1:this.auth.userID.value, // val,
           title: 'condition',
         };
     //   }

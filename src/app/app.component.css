@@ -1,0 +1,55 @@
+.header-image img {
+  height: 250px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.header-image .image-right {
+  border-radius: 0px 0px 80px 0px !important;
+}
+
+.header-image .image-left {
+  border-radius: 0px 0px 80px 0px !important;
+}
+
+.my-menu-content ion-item ion-icon {
+  font-size: 16px;
+}
+
+.my-menu-content ion-item .icon-ar {
+  margin: 0px 8px 0 0;
+}
+
+.my-menu-content ion-item .icon-en {
+  margin: 0px 0 0 8px;
+}
+
+.my-menu-content ion-item .icon-margin-left {
+  margin: 0 0 0 10px;
+}
+
+.my-menu-content ion-item .icon-margin-right {
+  margin: 0 10px 0 0;
+}
+
+.my-menu-content .selected ion-item::part(native) {
+  background-image: -webkit-gradient(linear, right top, left top, from(var(--ion-color-primary)), to(var(--ion-color-secondary)));
+  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));
+  border-radius: 30px;
+  width: 80%;
+  color: var(--ion-color-white);
+}
+
+.my-menu-content ion-label {
+  font-size: 16px;
+}
+
+.logout-section ion-item {
+  margin-bottom: 8px;
+}
+
+.logout-section ion-item ion-icon {
+  font-size: 18px;
+}
+/*# sourceMappingURL=app.component.css.map */

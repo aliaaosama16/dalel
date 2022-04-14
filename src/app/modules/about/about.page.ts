@@ -16,11 +16,12 @@ export class AboutPage implements OnInit {
   constructor(
     private util: UtilitiesService,
     private general: GeneralService,
-    private language: LanguageService
+    private language: LanguageService,
+    private auth:AuthService
   ) {
     this.aboutData = {
       lang: this.language.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
       title: 'about',
     };
     this.getIntroData(this.aboutData);

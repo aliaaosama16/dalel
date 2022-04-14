@@ -129,7 +129,7 @@ export class EditProfilePage implements OnInit {
     this.auth.getUserIDObservable().subscribe((val) => {
       this.updateUserData = {
         lang: this.language.getLanguage(),
-        user_id: val,
+        user_id: this.auth.userID.value,
         first_name:this.profileForm.value.userName,
         email:this.profileForm.value.email,
         phone:this.profileForm.value.phoneNumber

@@ -1,0 +1,117 @@
+.item-details .name-rating-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.item-details .name-rating-container .name {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.item-details .name-rating-container .name h5 {
+  margin-top: 6px !important;
+}
+
+.item-details .name-rating-container .rating .rating-address-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-details .name-rating-container .rating .rating-address-container div {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.item-details .name-rating-container .rating .rating-address-container .address-container ion-icon {
+  font-size: 18px;
+  height: 20px;
+}
+
+.item-details .name-rating-container .rating .rating-address-container .rating-container {
+  background-color: var(--ion-color-primary);
+  border-radius: 5px;
+  padding: 12px 6px;
+}
+
+.item-details .name-rating-container .rating .rating-address-container .rating-container ion-icon {
+  font-size: 12px;
+}
+
+.item-details .name-rating-container .rating .rating-address-container .rating-container span {
+  margin: -6px 4px;
+}
+
+.item-details .address-price-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-details .address-price-container .address,
+.item-details .address-price-container .price {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.item-details .address-price-container .address p,
+.item-details .address-price-container .price p {
+  display: inline-block;
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.item-details .address-price-container .address ion-icon,
+.item-details .address-price-container .price ion-icon {
+  margin: 0px;
+}
+
+.item-details .address-price-container .address > ion-label {
+  margin-bottom: 6px;
+}
+
+.item-details .address-price-container ion-item {
+  --background: var(--ion-color-white);
+}
+
+.item-details .address-price-container ion-item::part(native) {
+  text-align: center;
+  -webkit-padding-end: 0px !important;
+          padding-inline-end: 0px !important;
+  -webkit-padding-start: 0px !important;
+          padding-inline-start: 0px !important;
+}
+
+.item-details .address-price-container ion-item::part(native) .item-inner {
+  --inner-border-width: 0px;
+}
+
+.item-details .address-price-container .details {
+  --background: var(--ion-color-orange-light) !important ;
+}
+/*# sourceMappingURL=custom-details.component.css.map */

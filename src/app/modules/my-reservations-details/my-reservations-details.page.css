@@ -1,0 +1,133 @@
+.container {
+  margin-bottom: 16px;
+}
+
+.container img {
+  width: 100%;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: initial;
+     object-position: initial;
+  border-radius: 10px;
+  -webkit-filter: brightness(0.34);
+          filter: brightness(0.34);
+}
+
+ion-button.button-disabled {
+  opacity: 1 !important;
+}
+
+ion-button {
+  margin: 0px;
+}
+
+ion-button ion-icon {
+  font-size: 16px;
+}
+
+ion-button::part(native) {
+  -webkit-padding-start: 10px !important;
+          padding-inline-start: 10px !important;
+  -webkit-padding-end: 10px !important;
+          padding-inline-end: 10px !important;
+}
+
+.name-rating-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.name-rating-container .name, .name-rating-container .rating {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.name-rating-container .name h5, .name-rating-container .rating h5 {
+  margin-top: 10px !important;
+}
+
+.address-price-container {
+  margin-top: 13px;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.address-price-container .address, .address-price-container .price {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.address-price-container .address p, .address-price-container .price p {
+  display: inline-block;
+  margin: 0px;
+}
+
+.nameandrating h5 {
+  margin: 10px 0;
+}
+
+.addressandprice {
+  margin-bottom: 16px;
+}
+
+.addressandprice p {
+  margin: 0px !important;
+}
+
+.addressandprice ion-col ion-icon {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.details {
+  background-color: var(--ion-color-orange-light);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.details p {
+  margin: 0px !important;
+}
+
+.details h5 {
+  margin: 0px !important;
+}
+
+.details .arrival img {
+  display: inline-block;
+}
+
+.details .arrival-date-spacer {
+  margin-top: 6px;
+}
+
+.details .left-date-spacer {
+  margin-top: 10px;
+}
+
+.details .margin-left {
+  margin-left: 6px;
+}
+
+.details .margin-right {
+  margin-right: 6px;
+}
+/*# sourceMappingURL=my-reservations-details.page.css.map */

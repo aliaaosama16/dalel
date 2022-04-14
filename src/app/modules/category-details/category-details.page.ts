@@ -79,7 +79,7 @@ export class CategoryDetailsPage implements OnInit {
       department_id: parseInt(
         this.activatedRoute.snapshot.paramMap.get('departmetId')
       ),
-      user_id: this.auth.userID.value,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
     };
 
     await this.util.showLoadingSpinner().then((__) => {
@@ -162,7 +162,7 @@ export class CategoryDetailsPage implements OnInit {
     //   if (val != 0) {
     this.favDepartmentData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: this.auth.userID.value, //val,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value, //val,
       department_id: parseInt(
         this.activatedRoute.snapshot.paramMap.get('departmetId')
       ),
@@ -215,7 +215,7 @@ export class CategoryDetailsPage implements OnInit {
       department_id: parseInt(
         this.activatedRoute.snapshot.paramMap.get('departmetId')
       ),
-      user_id: this.auth.userID.value,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
     };
 
       this.items.showDepartmentByID(this.departmentData).subscribe(

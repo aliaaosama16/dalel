@@ -94,7 +94,7 @@ export class MainPage implements OnInit {
     this.auth.getUserToken();
     this.UserData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: this.auth.userID.value,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
     };
     this.getHomeData(this.UserData);
   }
@@ -139,7 +139,7 @@ export class MainPage implements OnInit {
   getItemsByFilters(searcText: string) {
    // this.auth.getUserIDObservable().subscribe((val) => {
       this.filterData = {
-        user_id: this.auth.userID.value,//val,
+        user_id: this.auth.userID.value==0?1:this.auth.userID.value,//val,
         title: searcText,
         lang: this.langaugeservice.getLanguage(),
       };
@@ -164,7 +164,7 @@ export class MainPage implements OnInit {
    // this.auth.getUserIDObservable().subscribe((val) => {
       this.UserData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: this.auth.userID.value//val == 0 ? 1 : val,
+        user_id: this.auth.userID.value==0?1:this.auth.userID.value,//e//val == 0 ? 1 : val,
       };
       this.items.home(this.UserData).subscribe(
         (data: HomeResponse) => {
