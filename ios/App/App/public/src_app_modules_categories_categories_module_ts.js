@@ -130,13 +130,11 @@ let CategoriesPage = class CategoriesPage {
         this.auth = auth;
         this.noCategoriesData = false;
         this.platform = this.util.platform;
-        // this.auth.getUserIDObservable().subscribe((val) => {
         this.userData = {
             lang: this.langaugeservice.getLanguage(),
-            user_id: this.auth.userID.value, //val == 0 ? 1 : val,
+            user_id: this.auth.userID.value,
         };
         this.getAllSections();
-        // });
     }
     ngOnInit() { }
     getAllSections() {
@@ -160,6 +158,23 @@ let CategoriesPage = class CategoriesPage {
     openCatList(catID, catName) {
         this.dataService.setData(catID, catName);
         this.router.navigateByUrl(`/tabs/main/categories/${catID}`);
+    }
+    doRefresh($event) {
+        this.userData = {
+            lang: this.langaugeservice.getLanguage(),
+            user_id: this.auth.userID.value,
+        };
+        this.items.data(this.userData).subscribe((data) => {
+            if (data.key == 1) {
+                if (data.data.sections.length == 0) {
+                    this.noCategoriesData = true;
+                }
+                this.sections = data.data.sections;
+            }
+            $event.target.complete();
+        }, (err) => {
+            $event.target.complete();
+        });
     }
 };
 CategoriesPage.ctorParameters = () => [
@@ -193,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <!-- <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n          </ion-item> -->\n          <div class=\"cat-container\">\n            <div class=\"cat-image\">\n              <img [src]=\"cat.image\" />\n            </div>\n            <div class=\"cat-title\">\n              <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n            </div>\n          </div>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'categories'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content >\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <div *ngIf=\"noCategoriesData\" class=\"no-data\">\n    <p>{{'no Categories'|translate}}</p>\n   </div>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" *ngFor=\"let cat of sections\">\n        <ion-card class=\"ion-no-margin\" (click)=\"openCatList(cat.id,cat.title)\">\n          <!-- <ion-item>\n            <ion-thumbnail>\n              <img [src]=\"cat.image\" />\n            </ion-thumbnail>\n            <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n          </ion-item> -->\n          <div class=\"cat-container\">\n            <div class=\"cat-image\">\n              <img [src]=\"cat.image\" />\n            </div>\n            <div class=\"cat-title\">\n              <ion-label class=\"fn-16 dalel-SemiBold\"> {{cat.title|translate}} </ion-label>\n            </div>\n          </div>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 
