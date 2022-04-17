@@ -37,15 +37,17 @@
     }
   }
   .selected {
-    ion-item::part(native) {
-      background-image: linear-gradient(
-        to left,
-        var(--ion-color-primary),
-        var(--ion-color-secondary)
-      );
-      border-radius: 30px;
-      width: 80%;
-      color: var(--ion-color-white);
+    ion-item {
+      &::part(native) {
+        background-image: linear-gradient(
+          to left,
+          var(--ion-color-primary),
+          var(--ion-color-secondary)
+        );
+        border-radius: 30px;
+        width: 80%;
+        color: var(--ion-color-white);
+      }
     }
   }
 

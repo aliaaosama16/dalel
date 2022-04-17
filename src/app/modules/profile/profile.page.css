@@ -1,0 +1,57 @@
+.profile-card-wrapper ion-card {
+  overflow: visible;
+  position: relative;
+  padding-top: 60px;
+  margin-top: 25px;
+}
+
+.profile-card-wrapper ion-card .img-wrapper {
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.profile-card-wrapper ion-card .img-wrapper img {
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+}
+
+.profile-card-wrapper ion-card .name {
+  margin-bottom: 24px;
+  margin-top: 0px;
+}
+
+.profile-card-wrapper ion-item {
+  --border-color: var(--ion-color-secondary);
+  --border-radius: 10px;
+  --border-width: 1px;
+  margin-bottom: 16px;
+  --highlight-color-focused: var(--ion-color-primary);
+  --highlight-color-valid: var(--ion-color-primary);
+  --highlight-color-invalid: var(--ion-color-primary);
+}
+
+.profile-card-wrapper ion-item ion-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.profile-card-wrapper ion-item ion-input {
+  --color: var(--ion-color-secondary);
+  font-size: 14px;
+  margin: 0 5px;
+  --ion-font-family: "Cairo-Regular";
+}
+
+.profile-card-wrapper .picture-wrapper {
+  width: 80px;
+  margin: auto;
+}
+
+.profile-card-wrapper .picture-wrapper ion-icon {
+  font-size: 45px;
+}
+/*# sourceMappingURL=profile.page.css.map */

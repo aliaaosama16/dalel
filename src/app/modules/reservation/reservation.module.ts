@@ -9,7 +9,7 @@ import { ReservationPageRoutingModule } from './reservation-routing.module';
 import { ReservationPage } from './reservation.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { CalendarModule } from 'ion2-calendar';
+  import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({
   imports: [

@@ -63,7 +63,7 @@ export class AuthService {
     await Storage.remove({ key: 'activation-status' });
     await Storage.remove({ key: 'confirmation-status' });
     await Storage.remove({ key: 'status' });
-    await Storage.clear();
+    //await Storage.clear();
   }
 
   isLogined() {

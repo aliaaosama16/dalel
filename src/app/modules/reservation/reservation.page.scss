@@ -1,7 +1,5 @@
-
-
 // .btn-margin{
-  
+
 // }
 
 // ion-button::part(native) {
@@ -12,10 +10,43 @@
 //     var(--ion-color-secondary)
 //   );
 // }
+span.button-inner{
+  --background: var(--ion-color-secondary) !important;
+}
+ion-button.forward.md.button.button-clear.button-has-icon-only.ion-activatable.ion-focusable.hydrated{
+  --background: var(--ion-color-secondary) !important;
+}
+
+ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydrated{
+  color: red;
+}  
+
+.title{
+  height: 100px !important;
+}
+.my-custom-calender   {
+
+  ion-button{
+    color: green !important;
+  }
+  // [_nghost-kdt-c178] .title[_ngcontent-kdt-c178]{
+  //   height: 100px;
+  // }
+  
+    // ion-button {
+    //   &::part(native) {
+    //     .buuton-inner {
+    //       color: var(--ion-color-white) !important;
+    //       background: var(--ion-color-secondary) !important;
+    //     }
+    //   }
+    // }
+  
+}
 button.days-btn {
   color: var(--ion-color-secondary);
 }
-.reservation-btn{
+.reservation-btn {
   margin-top: 160px !important;
   &::part(native) {
     box-shadow: 0 3px 6px rgb(0 0 0 / 16%);

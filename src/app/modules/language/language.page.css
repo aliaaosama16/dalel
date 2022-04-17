@@ -1,0 +1,56 @@
+ion-content.background {
+  --background: url(../../../assets/images/bg.svg) center center/cover no-repeat;
+}
+
+.language ion-list-header {
+  -webkit-padding-start: 0px !important;
+          padding-inline-start: 0px !important;
+}
+
+.language ion-item::part(native) {
+  text-align: center;
+  -webkit-padding-end: 0px !important;
+          padding-inline-end: 0px !important;
+  -webkit-padding-start: 0px !important;
+          padding-inline-start: 0px !important;
+}
+
+.language ion-item::part(native) .item-inner {
+  --inner-border-width: 0px;
+}
+
+.language .title {
+  font-family: "Cairo-Bold";
+  font-size: 22px;
+}
+
+.language ion-list {
+  background: none;
+  padding-top: 50px;
+}
+
+.language ion-list .lang-item {
+  --background: none;
+}
+
+.language ion-list .lang-item .input-wrapper {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  margin-left: auto;
+}
+
+.language ion-list .lang-item .lang-label {
+  font-family: "Cairo-SemiBold";
+  font-size: 16px;
+  display: contents;
+}
+
+.language ion-list .lang-item .arabic {
+  margin-left: 10px;
+}
+
+.language ion-list .lang-item .english {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=language.page.css.map */

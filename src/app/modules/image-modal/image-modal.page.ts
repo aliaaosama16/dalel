@@ -1,8 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language/language.service';
-import { SwiperOptions } from 'swiper';
-
+import Swiper, {
+  Navigation,
+  Pagination,
+  SwiperOptions,
+  EffectCards,
+  Zoom,
+} from 'swiper';
+Swiper.use([Navigation, Pagination, EffectCards,Zoom]);
 @Component({
   selector: 'app-image-modal',
   templateUrl: './image-modal.page.html',

@@ -8,37 +8,9 @@
   >
     <ng-template swiperSlide>
       <div class="boarding">
-        <h5 class="boardng-title">{{introData?.data?.first_title}}</h5>
+        <h5 class="boardng-title fn-24 dalel-Bold">{{introData?.data?.first_title}}</h5>
 
-        <p class="boardng-subtitle">{{introData?.data?.first_desc}}</p>
-
-        <div
-          class="boarding-buttons"
-          [ngClass]="currentlangauge=='ar' ? '':'custom-row'"
-        >
-          <div>
-            <ion-button
-              [disabled]="slidingNotAvailable"
-              expand="block"
-              class="btn-custom fn-16 dalel-Bold"
-              (click)="nextSlide()"
-            >
-              <span>{{"next"|translate}}</span>
-            </ion-button>
-          </div>
-          <div (click)="skipBoarding()">
-            <div class="ion-text-center skip">
-              <span> {{"skip"|translate}} </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template swiperSlide>
-      <div class="boarding">
-        <h5 class="boardng-title">{{introData?.data?.second_title}}</h5>
-
-        <p class="boardng-subtitle">{{introData?.data?.second_desc}}</p>
+        <p class="boardng-subtitle fn-14 dalel-Regular">{{introData?.data?.first_desc}}</p>
 
         <div
           class="boarding-buttons"
@@ -64,9 +36,37 @@
     </ng-template>
     <ng-template swiperSlide>
       <div class="boarding">
-        <h5 class="boardng-title">{{introData?.data?.third_title}}</h5>
+        <h5 class="boardng-title fn-24 dalel-Bold">{{introData?.data?.second_title}}</h5>
 
-        <p class="boardng-subtitle">{{introData?.data?.third_desc}}</p>
+        <p class="boardng-subtitle fn-14 dalel-Regular">{{introData?.data?.second_desc}}</p>
+
+        <div
+          class="boarding-buttons"
+          [ngClass]="currentlangauge=='ar' ? '':'custom-row'"
+        >
+          <div>
+            <ion-button
+              [disabled]="slidingNotAvailable"
+              expand="block"
+              class="btn-custom fn-16 dalel-Bold"
+              (click)="nextSlide()"
+            >
+              <span>{{"next"|translate}}</span>
+            </ion-button>
+          </div>
+          <div (click)="skipBoarding()">
+            <div class="ion-text-center skip">
+              <span> {{"skip"|translate}} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="boarding">
+        <h5 class="boardng-title fn-24 dalel-Bold">{{introData?.data?.third_title}}</h5>
+
+        <p class="boardng-subtitle fn-14 dalel-Regular">{{introData?.data?.third_desc}}</p>
 
         <div
           class="boarding-buttons"

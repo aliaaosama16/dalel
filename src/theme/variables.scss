@@ -326,25 +326,25 @@
   font-family: "Cairo-SemiBold";
 }
 
-:root[dir="rtl"] {
-  .register-btn {
-    --border-radius: 0 10px 0 0 !important;
-  }
+// :root[dir="rtl"] {
+//   .register-btn {
+//     --border-radius: 0 10px 0 0 !important;
+//   }
 
-  .signin-btn {
-    --border-radius: 10px 0 0 0 !important;
-  }
-}
+//   .signin-btn {
+//     --border-radius: 10px 0 0 0 !important;
+//   }
+// }
 
-:root[dir="ltr"] {
-  .register-btn {
-    --border-radius: 10px 0 0 0 !important;
-  }
+// :root[dir="ltr"] {
+//   .register-btn {
+//     --border-radius: 10px 0 0 0 !important;
+//   }
 
-  .signin-btn {
-    --border-radius: 0 10px 0 0 !important;
-  }
-}
+//   .signin-btn {
+//     --border-radius: 0 10px 0 0 !important;
+//   }
+// }
 
 // @media (prefers-color-scheme: dark) {
 //   /*

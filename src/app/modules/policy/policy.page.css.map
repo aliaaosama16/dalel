@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,QADI,CACJ,CAAC,CAAA;EACG,MAAM,EAAE,cAAc;EACtB,UAAU,EAAE,iBAAiB;CAChC",
+    "sources": [
+        "policy.page.scss"
+    ],
+    "names": [],
+    "file": "policy.page.css"
+}

@@ -31,7 +31,7 @@ export class CategoriesPage implements OnInit {
     this.platform = this.util.platform;
     this.userData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: this.auth.userID.value,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
     };
     this.getAllSections();
   }
@@ -69,7 +69,7 @@ export class CategoriesPage implements OnInit {
   doRefresh($event) {
     this.userData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: this.auth.userID.value,
+      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
     };
     this.items.data(this.userData).subscribe(
       (data: SectionsResponse) => {

@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CategoryDetailsPage": () => (/* binding */ CategoryDetailsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-details.page.html */ 39917);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-details.page.html */ 39917);
 /* harmony import */ var _category_details_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category-details.page.scss */ 13576);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -169,7 +169,11 @@ let CategoryDetailsPage = class CategoryDetailsPage {
             this.departmentData = {
                 lang: this.langaugeservice.getLanguage(),
                 department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+<<<<<<< HEAD
                 user_id: this.auth.userID.value,
+=======
+                user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+>>>>>>> 23187d64016205d0a47c24d6316c287b3714c6f7
             };
             yield this.util.showLoadingSpinner().then((__) => {
                 this.items.showDepartmentByID(this.departmentData).subscribe((data) => {
@@ -238,7 +242,7 @@ let CategoryDetailsPage = class CategoryDetailsPage {
         //   if (val != 0) {
         this.favDepartmentData = {
             lang: this.langaugeservice.getLanguage(),
-            user_id: this.auth.userID.value,
+            user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
             department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
         };
         //   }
@@ -284,7 +288,11 @@ let CategoryDetailsPage = class CategoryDetailsPage {
         this.departmentData = {
             lang: this.langaugeservice.getLanguage(),
             department_id: parseInt(this.activatedRoute.snapshot.paramMap.get('departmetId')),
+<<<<<<< HEAD
             user_id: this.auth.userID.value,
+=======
+            user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+>>>>>>> 23187d64016205d0a47c24d6316c287b3714c6f7
         };
         this.items.showDepartmentByID(this.departmentData).subscribe((data) => {
             if (data.key == 1) {
@@ -319,7 +327,7 @@ CategoryDetailsPage.propDecorators = {
 CategoryDetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-category-details',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_details_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_category_details_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoryDetailsPage);

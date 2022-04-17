@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LoginRegisterPage": () => (/* binding */ LoginRegisterPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./login-register.page.html */ 48231);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./login-register.page.html */ 48231);
 /* harmony import */ var _login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login-register.page.scss */ 18066);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -353,7 +353,7 @@ LoginRegisterPage.ctorParameters = () => [
 LoginRegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
         selector: 'app-login-register',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], LoginRegisterPage);
@@ -382,7 +382,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.bg-left {\n  --background: url('authBg-left.png') 0 0 /100% 100% no-repeat;\n}\n\nion-content.bg-right {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n\nion-item {\n  --highlight-color-focused:var(--ion-color-primary);\n  --highlight-color-valid:var(--ion-color-primary);\n  --highlight-color-invalid:var(--ion-color-primary);\n}\n\nion-segment {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZEQUFBO0FBQ0Y7O0FBRUE7RUFDRTthQUFBO0FBRUY7O0FBR0E7RUFDRSxrREFBQTtFQUNBLGdEQUFBO0VBQ0Esa0RBQUE7QUFBRjs7QUFHQTtFQUNFLGFBQUE7RUFDQSw4QkFBQTtBQUFGIiwiZmlsZSI6ImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJnLWxlZnQge1xuICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLWxlZnQucG5nKSAwIDAgLzEwMCUgMTAwJSBuby1yZXBlYXQ7XG59XG5cbmlvbi1jb250ZW50LmJnLXJpZ2h0IHtcbiAgLS1iYWNrZ3JvdW5kOiB1cmwoLi8uLi8uLi8uLi8uLi9hc3NldHMvaW1hZ2VzL2F1dGhCZy1yaWdodC5wbmcpIDAgMCAvMTAwJSAxMDAlXG4gICAgbm8tcmVwZWF0O1xufVxuXG5cbmlvbi1pdGVte1xuICAtLWhpZ2hsaWdodC1jb2xvci1mb2N1c2VkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1oaWdobGlnaHQtY29sb3ItdmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAtLWhpZ2hsaWdodC1jb2xvci1pbnZhbGlkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbn1cblxuaW9uLXNlZ21lbnR7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbn0iXX0= */";
+module.exports = "ion-content.bg-left {\n  --background: url('authBg-left.png') 0 0 /100% 100% no-repeat;\n}\n\nion-content.bg-right {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n\nion-item::part(native) {\n  border-bottom-color: var(--ion-color-secondary) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZEQUFBO0FBQ0Y7O0FBRUE7RUFDRTthQUFBO0FBRUY7O0FBWUU7RUFDRSwwREFBQTtBQVRKIiwiZmlsZSI6ImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJnLWxlZnQge1xuICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLWxlZnQucG5nKSAwIDAgLzEwMCUgMTAwJSBuby1yZXBlYXQ7XG59XG5cbmlvbi1jb250ZW50LmJnLXJpZ2h0IHtcbiAgLS1iYWNrZ3JvdW5kOiB1cmwoLi8uLi8uLi8uLi8uLi9hc3NldHMvaW1hZ2VzL2F1dGhCZy1yaWdodC5wbmcpIDAgMCAvMTAwJSAxMDAlXG4gICAgbm8tcmVwZWF0O1xufVxuXG4vLyA6aG9zdCguaXRlbS1maWxsLW5vbmUuaXRlbS1pbnRlcmFjdGl2ZS5pb24tZm9jdXMpXG4vLyAuaXRlbS1uYXRpdmUsIDpob3N0KC5pdGVtLWZpbGwtbm9uZS5pdGVtLWludGVyYWN0aXZlLml0ZW0taGFzLWZvY3VzKVxuLy8gLml0ZW0tbmF0aXZlLCA6aG9zdCguaXRlbS1maWxsLW5vbmUuaXRlbS1pbnRlcmFjdGl2ZS5pb24tdG91Y2hlZC5pb24taW52YWxpZClcbi8vIC5pdGVtLW5hdGl2ZXtcblxuLy8gICBib3JkZXItYm90dG9tLWNvbG9yOnZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpICFpbXBvcnRhbnQ7XG5cbi8vIH1cblxuaW9uLWl0ZW0ge1xuICAmOjpwYXJ0KG5hdGl2ZSkge1xuICAgIGJvcmRlci1ib3R0b20tY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpICFpbXBvcnRhbnQ7XG4gIH1cbn1cblxuLy8gaW9uLXNlZ21lbnR7XG4vLyAgIGRpc3BsYXk6IGZsZXg7XG4vLyAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbi8vIH1cbiJdfQ== */";
 
 /***/ })
 

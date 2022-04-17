@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,AAAA,QAAQ,CAAC;EAClB,YAAY,CAAA,0EAAC;CACd;;AAED,AAAA,WAAW,AAAA,SAAS,CAAC;EACnB,YAAY,CAAA;aAAC;CAEd;;AAWD,AACE,QADM,AACL,MAAO,CAAA,MAAM,EAAC;EACb,mBAAmB,EAAE,0BAA0B,CAAC,UAAU;CAC3D",
+    "sources": [
+        "login-register.page.scss"
+    ],
+    "names": [],
+    "file": "login-register.page.css"
+}

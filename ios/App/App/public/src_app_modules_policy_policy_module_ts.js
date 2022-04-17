@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PolicyPage": () => (/* binding */ PolicyPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./policy.page.html */ 18072);
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./policy.page.html */ 18072);
 /* harmony import */ var _policy_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./policy.page.scss */ 38033);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
@@ -123,7 +123,7 @@ let PolicyPage = class PolicyPage {
         // if (val != 0) {
         this.conditionData = {
             lang: this.language.getLanguage(),
-            user_id: this.auth.userID.value,
+            user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
             title: 'condition',
         };
         //   }
@@ -169,7 +169,7 @@ PolicyPage.ctorParameters = () => [
 PolicyPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-policy',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_policy_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_policy_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], PolicyPage);

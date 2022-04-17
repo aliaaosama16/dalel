@@ -1,0 +1,52 @@
+ion-header {
+  --background: none !important;
+  background: var(--ion-color-orange-light);
+  min-height: 60px;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+ion-header::before {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  background: url("./../../../assets/images/wave00.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100px;
+}
+
+ion-toolbar {
+  --background: none !important;
+}
+
+ion-toolbar .toolbar-container {
+  -webkit-padding-start: 0px !important;
+          padding-inline-start: 0px !important;
+  -webkit-padding-end: 0px !important;
+          padding-inline-end: 0px !important;
+}
+
+ion-toolbar .custom-title {
+  padding: 0px !important;
+  margin-top: 18px !important;
+}
+
+ion-toolbar .menu-icon ion-button::part(native) {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+ion-toolbar .menu-icon ion-icon {
+  font-size: 40px !important;
+}
+
+ion-toolbar .menu-icon .direction-en {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+ion-toolbar .arrow-edit-btns ion-button::part(native) {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=header.component.css.map */

@@ -53,13 +53,12 @@ export class SearchFilterPage implements OnInit {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
 
-    //this.auth.getUserIDObservable().subscribe((val) => {
       this.userData = {
         lang: this.langaugeservice.getLanguage(),
-        user_id: this.auth.userID.value,//val == 0 ? 1 : val,
+        user_id: this.auth.userID.value== 0 ? 1 : this.auth.userID.value,
       };
       this.getAllFilterData(this.userData);
-   // });
+  
   }
 
   getAllFilterData(filterData: UserData) {

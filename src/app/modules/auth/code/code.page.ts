@@ -69,7 +69,7 @@ export class CodePage implements OnInit {
     //this.auth.getUserIDObservable().subscribe((val) => {
       this.activationData = {
         lang: this.language.getLanguage(),
-        user_id:this.auth.userID.value, //val,
+        user_id:this.auth.userID.value==0?1:this.auth.userID.value, //val,
         code: this.codeValues.substring(9),
         device_id: this.util.deviceID,
       };

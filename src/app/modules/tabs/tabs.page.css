@@ -1,0 +1,74 @@
+@-webkit-keyframes updown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  25% {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  50% {
+    -webkit-transform: translateY(-25%);
+            transform: translateY(-25%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@keyframes updown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  25% {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  50% {
+    -webkit-transform: translateY(-25%);
+            transform: translateY(-25%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+.selected-label {
+  color: var(--ion-color-primary);
+}
+
+.selected ion-icon {
+  -webkit-animation: updown 1s cubic-bezier(0.1, 0.7, 0.55, 1.01);
+          animation: updown 1s cubic-bezier(0.1, 0.7, 0.55, 1.01);
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+ion-tab-button {
+  position: relative;
+}
+
+ion-tab-button::before {
+  background-color: transparent;
+  display: block;
+  content: "";
+  margin: 0 auto;
+  width: 20px;
+  height: 2px;
+}
+
+ion-tab-button.tab-selected::before {
+  width: 15%;
+  height: 16px;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  top: -20%;
+  right: 42%;
+  margin: 0 auto;
+  background-color: var(--ion-color-primary);
+}
+/*# sourceMappingURL=tabs.page.css.map */

@@ -36,7 +36,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "ion2-calendar": "^3.0.0-rc.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "ng-otp-input": "^1.8.5",
     "rxjs": "~6.6.0",
     "swiper": "^8.0.6",
