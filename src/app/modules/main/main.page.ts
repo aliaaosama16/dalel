@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, ModalController } from '@ionic/angular';
+import { IonDatetime, MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
@@ -21,6 +21,8 @@ import { HomeResponse } from 'src/app/models/home';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
+  @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
+  
   searchText: string = '';
   currentlangauge: string;
   platform: string = '';
@@ -99,7 +101,20 @@ export class MainPage implements OnInit {
     this.getHomeData(this.UserData);
   }
   ngOnInit() {}
+  getDate($event){
+    console.log($event.target.value)
+  }
 
+  isDateEnabled(dateIsoString) {
+    const date = new Date(dateIsoString);
+    if (date.getUTCFullYear() === 2022 
+      && date.getUTCMonth() === 0 
+      && date.getUTCDate() === 1) {
+      // Disables January 1, 2022
+      return false;
+    }
+    return true;
+  }
   getHomeData(userData: UserData) {
     this.util.showLoadingSpinner().then((__) => {
       this.items.home(userData).subscribe(

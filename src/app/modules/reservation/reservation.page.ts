@@ -18,7 +18,7 @@ export class ReservationPage implements OnInit {
   currentLanguage: string;
   platform: any;
   dateRange: { from: string; to: string };
-  type: 'string';
+  type: 'time';
 
   optionsRange: CalendarComponentOptions = {
     pickMode: 'range',

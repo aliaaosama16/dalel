@@ -21,9 +21,18 @@ ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydra
   color: red;
 }  
 
-.my-custom-calender {
-  .title {
-    height: 100px;
+.title{
+  height: 100px !important;
+}
+.my-custom-calender   {
+
+  ion-button{
+    color: green !important;
+  }
+  // [_nghost-kdt-c178] .title[_ngcontent-kdt-c178]{
+  //   height: 100px;
+  // }
+  
     // ion-button {
     //   &::part(native) {
     //     .buuton-inner {
@@ -32,7 +41,7 @@ ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydra
     //     }
     //   }
     // }
-  }
+  
 }
 button.days-btn {
   color: var(--ion-color-secondary);

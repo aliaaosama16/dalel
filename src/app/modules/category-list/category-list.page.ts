@@ -46,6 +46,9 @@ export class CategoryListPage implements OnInit {
     });
   }
 
+  goBack(){
+    this.location.back();
+  }
   ngOnInit() {
     console.log(
       `category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`

@@ -1,9 +1,10 @@
 <app-header
   title="{{categoryName|translate}}"
   [isEditable]="false"
-  [backwardRoute]="'/tabs/main'"
+  [backwardRoute]="'/tabs/main/categories'"
   [isMain]="false"
   class="header-height"
+  (back)="goBack()"
 ></app-header>
 
 <ion-content class="ion-padding" >
