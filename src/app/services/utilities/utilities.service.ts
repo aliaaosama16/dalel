@@ -64,7 +64,13 @@ export class UtilitiesService {
       spinner: 'crescent',
       cssClass: 'my-loading-class',
       backdropDismiss: false,
-      animated:true
+      animated:true,
+      // message: `
+      // <div class="custom-spinner-container">
+      //   <div class="custom-spinner-box">
+      //     <p>جار التحميل</p>
+      //   </div>
+      // </div>`,
     });
     this.loading.present();
     return this.loading;

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserData } from 'src/app/models/general';
 import {
-
   NotificationsInfo,
   NotificationsResponse,
 } from 'src/app/models/notifications';

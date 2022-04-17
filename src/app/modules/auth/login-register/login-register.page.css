@@ -1,0 +1,13 @@
+ion-content.bg-left {
+  --background: url(./../../../../assets/images/authBg-left.png) 0 0 /100% 100% no-repeat;
+}
+
+ion-content.bg-right {
+  --background: url(./../../../../assets/images/authBg-right.png) 0 0 /100% 100%
+    no-repeat;
+}
+
+/* ion-item::part(native) {
+  border-bottom-color: var(--ion-color-secondary) !important;
+} */
+/*# sourceMappingURL=login-register.page.css.map */
