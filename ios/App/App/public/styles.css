@@ -2162,7 +2162,8 @@ button.swiper-pagination-bullet {
 :root ion-fab-button {
   --box-shadow: none !important;
 }
-:root ion-button, :root ion-menu-toggle:focus {
+:root ion-button,
+:root ion-menu-toggle:focus {
   outline: none !important;
 }
 ion-input {
@@ -2201,9 +2202,6 @@ ion-badge span {
 }
 .my-custom-class .alert-button-group.sc-ion-alert-md button.alert-button.ion-focusable.ion-activatable.sc-ion-alert-md {
   font-size: 18px !important;
-}
-.ng-otp-input-wrapper[_ngcontent-vvk-c142] .otp-input[_ngcontent-vvk-c142] {
-  margin-right: 8px !important;
 }
 .unfocused::part(native) {
   --border-color: var(--ion-color-secondary) !important;
