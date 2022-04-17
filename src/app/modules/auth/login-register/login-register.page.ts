@@ -9,6 +9,7 @@ import { AuthData, AuthResponse, Status } from 'src/app/models/loginData';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { RegisterData } from 'src/app/models/registerData';
 import { TranslateService } from '@ngx-translate/core';
+import { DataService } from 'src/app/services/data/data.service';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.page.html',
@@ -30,7 +31,7 @@ export class LoginRegisterPage implements OnInit {
   iconRegisterConfirmName: string = 'eye-off-outline';
   inputRegisterConfirmType: any = 'password';
 
-  authType: string = 'signin';
+  authType: string = '';
   inputFocusPerson: boolean = false;
   inputFocusPersonIcon: string = './../../../../assets/icon/person-active.svg';
   inputInFocusPersonIcon: string =
@@ -72,7 +73,8 @@ export class LoginRegisterPage implements OnInit {
     private auth: AuthService,
     private translate: TranslateService,
     private platform: Platform,
-    private location: Location
+    private location: Location,
+    private data: DataService
   ) {
     this.menuCtrl.enable(false, 'main');
     this.platform.backButton.subscribeWithPriority(10, () => {
@@ -84,6 +86,10 @@ export class LoginRegisterPage implements OnInit {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
     this.buildForm();
+    this.authType =
+      this.data.getPreviousPage() == ''
+        ? 'signin'
+        : this.data.getPreviousPage();
   }
 
   buildForm() {
@@ -93,10 +99,9 @@ export class LoginRegisterPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^05/),
+          ///Validators.pattern(/^05/),
           Validators.minLength(10),
           Validators.maxLength(10),
-          //10
         ],
       ],
       email: [
@@ -116,10 +121,9 @@ export class LoginRegisterPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^05/),
+          /// Validators.pattern(/^05/),
           Validators.minLength(10),
           Validators.maxLength(10),
-          //10
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -146,7 +150,7 @@ export class LoginRegisterPage implements OnInit {
         this.registerForm.value.password ==
         this.registerForm.value.confirmPassword
       ) {
-        console.log('registerForm valid' );
+        console.log('registerForm valid');
         this.registerData = {
           lang: this.langaugeservice.getLanguage(),
           first_name: this.registerForm.value.userName,
@@ -163,6 +167,7 @@ export class LoginRegisterPage implements OnInit {
                 this.auth.userID.next(data.data.id);
                 this.auth.storeStatusAfterRegisteration(data);
                 this.router.navigateByUrl('/code');
+                this.registerForm.reset();
               } else {
                 this.util.showMessage(data.msg);
               }
@@ -205,6 +210,7 @@ export class LoginRegisterPage implements OnInit {
 
                 this.auth.storeStatusAfterLogin(data);
                 this.auth.setUserID(data.data.id);
+                this.signinForm.reset();
               } else if (data.status == Status.NonActive) {
                 this.router.navigateByUrl('/code');
               } else if (data.status == Status.Blocked) {

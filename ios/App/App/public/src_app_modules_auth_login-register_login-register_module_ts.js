@@ -94,19 +94,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LoginRegisterPage": () => (/* binding */ LoginRegisterPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./login-register.page.html */ 48231);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./login-register.page.html */ 48231);
 /* harmony import */ var _login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login-register.page.scss */ 18066);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 13252);
 /* harmony import */ var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/language/language.service */ 40301);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 28267);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 18346);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 28267);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 18346);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/utilities/utilities.service */ 11062);
 /* harmony import */ var src_app_models_loginData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/models/loginData */ 80261);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/data/data.service */ 34257);
+
 
 
 
@@ -121,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginRegisterPage = class LoginRegisterPage {
-    constructor(langaugeservice, router, formBuilder, menuCtrl, util, auth, translate, platform, location) {
+    constructor(langaugeservice, router, formBuilder, menuCtrl, util, auth, translate, platform, location, data) {
         this.langaugeservice = langaugeservice;
         this.router = router;
         this.formBuilder = formBuilder;
@@ -131,13 +133,14 @@ let LoginRegisterPage = class LoginRegisterPage {
         this.translate = translate;
         this.platform = platform;
         this.location = location;
+        this.data = data;
         this.inputLoginType = 'password';
         this.iconLoginName = 'eye-off-outline';
         this.iconRegisterName = 'eye-off-outline';
         this.inputRegisterType = 'password';
         this.iconRegisterConfirmName = 'eye-off-outline';
         this.inputRegisterConfirmType = 'password';
-        this.authType = 'signin';
+        this.authType = '';
         this.inputFocusPerson = false;
         this.inputFocusPersonIcon = './../../../../assets/icon/person-active.svg';
         this.inputInFocusPersonIcon = './../../../../assets/icon/person-inactive.svg';
@@ -164,43 +167,45 @@ let LoginRegisterPage = class LoginRegisterPage {
     ngOnInit() {
         this.currentlangauge = this.langaugeservice.getLanguage();
         this.buildForm();
+        this.authType =
+            this.data.getPreviousPage() == ''
+                ? 'signin'
+                : this.data.getPreviousPage();
     }
     buildForm() {
         this.registerForm = this.formBuilder.group({
-            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(2)]],
+            userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(2)]],
             phoneNumber: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.pattern(/^05/),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(10),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.maxLength(10),
-                    //10
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required,
+                    ///Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.maxLength(10),
                 ],
             ],
             email: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.email,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.email,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
                 ],
             ],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(6)]],
-            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(6)]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(6)]],
+            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(6)]],
         });
         this.signinForm = this.formBuilder.group({
             phoneNumber: [
                 '',
                 [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.pattern(/^05/),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(10),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.maxLength(10),
-                    //10
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required,
+                    /// Validators.pattern(/^05/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(10),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.maxLength(10),
                 ],
             ],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.minLength(6)]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.minLength(6)]],
         });
     }
     authTypeChange(ev) {
@@ -218,6 +223,7 @@ let LoginRegisterPage = class LoginRegisterPage {
         if (this.registerForm.valid) {
             if (this.registerForm.value.password ==
                 this.registerForm.value.confirmPassword) {
+                console.log('registerForm valid');
                 this.registerData = {
                     lang: this.langaugeservice.getLanguage(),
                     first_name: this.registerForm.value.userName,
@@ -233,6 +239,7 @@ let LoginRegisterPage = class LoginRegisterPage {
                             this.auth.userID.next(data.data.id);
                             this.auth.storeStatusAfterRegisteration(data);
                             this.router.navigateByUrl('/code');
+                            this.registerForm.reset();
                         }
                         else {
                             this.util.showMessage(data.msg);
@@ -270,6 +277,7 @@ let LoginRegisterPage = class LoginRegisterPage {
                             this.router.navigateByUrl('/tabs/main');
                             this.auth.storeStatusAfterLogin(data);
                             this.auth.setUserID(data.data.id);
+                            this.signinForm.reset();
                         }
                         else if (data.status == src_app_models_loginData__WEBPACK_IMPORTED_MODULE_4__.Status.NonActive) {
                             this.router.navigateByUrl('/code');
@@ -341,19 +349,20 @@ let LoginRegisterPage = class LoginRegisterPage {
 };
 LoginRegisterPage.ctorParameters = () => [
     { type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_2__.LanguageService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.MenuController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormBuilder },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.MenuController },
     { type: src_app_services_utilities_utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService },
     { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.Platform },
-    { type: _angular_common__WEBPACK_IMPORTED_MODULE_10__.Location }
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.Platform },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_11__.Location },
+    { type: src_app_services_data_data_service__WEBPACK_IMPORTED_MODULE_6__.DataService }
 ];
-LoginRegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
+LoginRegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
         selector: 'app-login-register',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_login_register_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_login_register_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], LoginRegisterPage);
@@ -382,7 +391,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.bg-left {\n  --background: url('authBg-left.png') 0 0 /100% 100% no-repeat;\n}\n\nion-content.bg-right {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n\nion-item::part(native) {\n  border-bottom-color: var(--ion-color-secondary) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZEQUFBO0FBQ0Y7O0FBRUE7RUFDRTthQUFBO0FBRUY7O0FBWUU7RUFDRSwwREFBQTtBQVRKIiwiZmlsZSI6ImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LmJnLWxlZnQge1xuICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLWxlZnQucG5nKSAwIDAgLzEwMCUgMTAwJSBuby1yZXBlYXQ7XG59XG5cbmlvbi1jb250ZW50LmJnLXJpZ2h0IHtcbiAgLS1iYWNrZ3JvdW5kOiB1cmwoLi8uLi8uLi8uLi8uLi9hc3NldHMvaW1hZ2VzL2F1dGhCZy1yaWdodC5wbmcpIDAgMCAvMTAwJSAxMDAlXG4gICAgbm8tcmVwZWF0O1xufVxuXG4vLyA6aG9zdCguaXRlbS1maWxsLW5vbmUuaXRlbS1pbnRlcmFjdGl2ZS5pb24tZm9jdXMpXG4vLyAuaXRlbS1uYXRpdmUsIDpob3N0KC5pdGVtLWZpbGwtbm9uZS5pdGVtLWludGVyYWN0aXZlLml0ZW0taGFzLWZvY3VzKVxuLy8gLml0ZW0tbmF0aXZlLCA6aG9zdCguaXRlbS1maWxsLW5vbmUuaXRlbS1pbnRlcmFjdGl2ZS5pb24tdG91Y2hlZC5pb24taW52YWxpZClcbi8vIC5pdGVtLW5hdGl2ZXtcblxuLy8gICBib3JkZXItYm90dG9tLWNvbG9yOnZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpICFpbXBvcnRhbnQ7XG5cbi8vIH1cblxuaW9uLWl0ZW0ge1xuICAmOjpwYXJ0KG5hdGl2ZSkge1xuICAgIGJvcmRlci1ib3R0b20tY29sb3I6IHZhcigtLWlvbi1jb2xvci1zZWNvbmRhcnkpICFpbXBvcnRhbnQ7XG4gIH1cbn1cblxuLy8gaW9uLXNlZ21lbnR7XG4vLyAgIGRpc3BsYXk6IGZsZXg7XG4vLyAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbi8vIH1cbiJdfQ== */";
+module.exports = "ion-content.bg-left {\n  --background: url('authBg-left.png') 0 0 /100% 100% no-repeat;\n}\n\nion-content.bg-right {\n  --background: url('authBg-right.png') 0 0 /100% 100%\n    no-repeat;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luLXJlZ2lzdGVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZEQUFBO0FBQ0Y7O0FBRUE7RUFDRTthQUFBO0FBRUYiLCJmaWxlIjoibG9naW4tcmVnaXN0ZXIucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQuYmctbGVmdCB7XG4gIC0tYmFja2dyb3VuZDogdXJsKC4vLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9hdXRoQmctbGVmdC5wbmcpIDAgMCAvMTAwJSAxMDAlIG5vLXJlcGVhdDtcbn1cblxuaW9uLWNvbnRlbnQuYmctcmlnaHQge1xuICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLXJpZ2h0LnBuZykgMCAwIC8xMDAlIDEwMCVcbiAgICBuby1yZXBlYXQ7XG59XG5cbi8vIGlvbi1pdGVtIHtcbi8vICAgJjo6cGFydChuYXRpdmUpIHtcbi8vICAgICBib3JkZXItYm90dG9tLWNvbG9yOiB2YXIoLS1pb24tY29sb3Itc2Vjb25kYXJ5KSAhaW1wb3J0YW50O1xuLy8gICB9XG4vLyB9XG4iXX0= */";
 
 /***/ })
 

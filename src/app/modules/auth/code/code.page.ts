@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Location } from '@angular/common';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-code',
@@ -21,7 +22,6 @@ export class CodePage implements OnInit {
   codeValues: string;
   code: number;
   activationData: ActivationData;
- 
 
   constructor(
     private router: Router,
@@ -30,7 +30,8 @@ export class CodePage implements OnInit {
     private util: UtilitiesService,
     private language: LanguageService,
     private platform: Platform,
-    private location: Location
+    private location: Location,
+    private data:DataService
   ) {
     this.menuCtrl.enable(false, 'main');
     this.platform.backButton.subscribeWithPriority(10, () => {
@@ -45,14 +46,13 @@ export class CodePage implements OnInit {
     this.code = parseInt(this.codeValues);
     console.log('code is :' + this.codeValues.substring(9));
 
-    //this.auth.getUserIDObservable().subscribe((val) => {
     this.activationData = {
       lang: this.language.getLanguage(),
-      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value, //val,
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
       code: this.codeValues.substring(9),
       device_id: this.util.deviceID,
     };
-    //});
+
     this.util.showLoadingSpinner().then((__) => {
       this.auth.activeAccount(this.activationData).subscribe(
         (data: AuthResponse) => {
@@ -60,6 +60,7 @@ export class CodePage implements OnInit {
             console.log('activeAccount  res :' + JSON.stringify(data));
             this.util.showMessage(data.msg);
             this.util.showMessage('login now');
+            this.data.setPreviousPage('signin');
             this.router.navigateByUrl('/login-register');
           } else {
             this.util.showMessage(data.msg);
@@ -73,29 +74,9 @@ export class CodePage implements OnInit {
     });
   }
 
-  // focusNumber1(focusStatus: boolean) {
-  //   console.log('input focus' + focusStatus);
-  //   this.inputFocusNumber1 = focusStatus;
-  // }
+  next(ev, nextInput, current) {
+    console.log('input value :  ' + ev.target.value, nextInput);
 
-  // focusNumber2(focusStatus: boolean) {
-  //   console.log('input focus' + focusStatus);
-  //   this.inputFocusNumber2 = focusStatus;
-  // }
-
-  // focusNumber3(focusStatus: boolean) {
-  //   console.log('input focus' + focusStatus);
-  //   this.inputFocusNumber3 = focusStatus;
-  // }
-
-  // focusNumber4(focusStatus: boolean) {
-  //   console.log('input focus' + focusStatus);
-  //   this.inputFocusNumber4 = focusStatus;
-  // }
-
-  next(ev, nextInput,current) {
-    console.log('input value :  '+ev.target.value,nextInput);
-   
     if (current == 'n1') {
       this.inputFocusNumber1 = true;
     } else if (current == 'n2') {
@@ -116,20 +97,6 @@ export class CodePage implements OnInit {
       nextInput.setFocus();
     }
   }
-
-  inputFocuced(nextInput){
-    if (nextInput == 'n2') {
-      this.inputFocusNumber1 = true;
-    } else if (nextInput == 'n3') {
-      this.inputFocusNumber2 = true;
-    } else if (nextInput == 'n4') {
-      this.inputFocusNumber3 = true;
-    } else if (nextInput == '') {
-      this.inputFocusNumber4 = true;
-    }
-  }
-
-  focusFristNumber() {}
 
   onOtpChange($event) {
     console.log('numbers' + JSON.stringify($event));

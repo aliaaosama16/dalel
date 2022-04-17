@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PasswordPage": () => (/* binding */ PasswordPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./password.page.html */ 66933);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./password.page.html */ 66933);
 /* harmony import */ var _password_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./password.page.scss */ 58565);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 18346);
@@ -197,7 +197,7 @@ PasswordPage.ctorParameters = () => [
 PasswordPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-password',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_password_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_password_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], PasswordPage);
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************************************/
 /***/ ((module) => {
 
-module.exports = "ion-content.background {\n  --background: url('authBg-left.png') 0 0 /100% 100%\n    no-repeat;\n}\n\nion-item::part(native) {\n  border-bottom-color: var(--ion-color-secondary) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhc3N3b3JkLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO2FBQUE7QUFFSjs7QUFVRTtFQUNFLDBEQUFBO0FBUEoiLCJmaWxlIjoicGFzc3dvcmQucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQuYmFja2dyb3VuZCB7XG4gICAgLS1iYWNrZ3JvdW5kOiB1cmwoLi8uLi8uLi8uLi8uLi9hc3NldHMvaW1hZ2VzL2F1dGhCZy1sZWZ0LnBuZykgMCAwIC8xMDAlIDEwMCVcbiAgICAgIG5vLXJlcGVhdDtcbiAgfVxuXG4gIFxuLy8gaW9uLWl0ZW17XG4vLyAgIC0taGlnaGxpZ2h0LWNvbG9yLWZvY3VzZWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuLy8gICAtLWhpZ2hsaWdodC1jb2xvci12YWxpZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4vLyAgIC0taGlnaGxpZ2h0LWNvbG9yLWludmFsaWQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuLy8gfVxuXG5pb24taXRlbSB7XG4gICY6OnBhcnQobmF0aXZlKSB7XG4gICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXNlY29uZGFyeSkgIWltcG9ydGFudDtcbiAgfVxufSJdfQ== */";
+module.exports = "ion-content.background {\n  --background: url('authBg-left.png') 0 0 /100% 100%\n    no-repeat;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhc3N3b3JkLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO2FBQUE7QUFFSiIsImZpbGUiOiJwYXNzd29yZC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudC5iYWNrZ3JvdW5kIHtcbiAgICAtLWJhY2tncm91bmQ6IHVybCguLy4uLy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvYXV0aEJnLWxlZnQucG5nKSAwIDAgLzEwMCUgMTAwJVxuICAgICAgbm8tcmVwZWF0O1xuICB9XG5cbiAgXG4vLyBpb24taXRlbXtcbi8vICAgLS1oaWdobGlnaHQtY29sb3ItZm9jdXNlZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4vLyAgIC0taGlnaGxpZ2h0LWNvbG9yLXZhbGlkOnZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbi8vICAgLS1oaWdobGlnaHQtY29sb3ItaW52YWxpZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4vLyB9XG5cbi8vIGlvbi1pdGVtIHtcbi8vICAgJjo6cGFydChuYXRpdmUpIHtcbi8vICAgICBib3JkZXItYm90dG9tLWNvbG9yOiB2YXIoLS1pb24tY29sb3Itc2Vjb25kYXJ5KSAhaW1wb3J0YW50O1xuLy8gICB9XG4vLyB9Il19 */";
 
 /***/ })
 

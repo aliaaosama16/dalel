@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 75158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 30836);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -198,6 +198,10 @@ let AppComponent = class AppComponent {
             },
         ];
         this.initializeApp();
+        this.auth.getLoginedObservable().subscribe((val) => {
+            this.logined = val;
+        });
+        console.log('logined : ' + this.logined);
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -216,7 +220,6 @@ let AppComponent = class AppComponent {
             if (loginStatus.value == _models_loginData__WEBPACK_IMPORTED_MODULE_2__.Status.Active) {
                 this.auth.isLogined();
             }
-            this.logined = this.auth.isAuthenticated.value;
             this.getUserNotifications();
         });
     }
@@ -230,13 +233,11 @@ let AppComponent = class AppComponent {
     }
     logout() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
-            // this.auth.getUserIDObservable().subscribe((val) => {
             this.logoutData = {
                 lang: this.languageService.getLanguage(),
                 user_id: this.auth.userID.value,
                 device_id: this.util.deviceID,
             };
-            // });
             const alert = yield this.alertController.create({
                 cssClass: 'my-custom-class',
                 message: this.translate.instant('confirm logout'),
@@ -294,7 +295,7 @@ AppComponent.ctorParameters = () => [
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
         selector: 'app-root',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], AppComponent);
@@ -719,6 +720,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let DataService = class DataService {
     constructor() {
+        this.previousPage = '';
         this.data = [];
         this.dates = { from: '', to: '' };
     }
@@ -728,6 +730,12 @@ let DataService = class DataService {
     }
     getData(id) {
         return this.data[id];
+    }
+    setPreviousPage(val) {
+        this.previousPage = val;
+    }
+    getPreviousPage() {
+        return this.previousPage;
     }
     setDates(dates) {
         this.dates = dates;

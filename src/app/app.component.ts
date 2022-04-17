@@ -72,6 +72,11 @@ export class AppComponent {
     private fcmService: FcmService
   ) {
     this.initializeApp();
+  
+    this.auth.getLoginedObservable().subscribe((val)=>{
+      this.logined = val;
+    })
+    console.log('logined : '+this.logined)
   }
 
   initializeApp() {
@@ -93,13 +98,10 @@ export class AppComponent {
       this.auth.isLogined();
     }
 
-    this.logined = this.auth.isAuthenticated.value;
-
     this.getUserNotifications();
-   
   }
 
-  async getUserNotifications(){
+  async getUserNotifications() {
     const userID = await Storage.get({ key: 'userID' });
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
@@ -107,13 +109,11 @@ export class AppComponent {
   }
 
   async logout() {
-   // this.auth.getUserIDObservable().subscribe((val) => {
-      this.logoutData = {
-        lang: this.languageService.getLanguage(),
-        user_id: this.auth.userID.value,//val,
-        device_id: this.util.deviceID,
-      };
-   // });
+    this.logoutData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      device_id: this.util.deviceID,
+    };
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

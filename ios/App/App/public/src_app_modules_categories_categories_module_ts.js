@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CategoriesPage": () => (/* binding */ CategoriesPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./categories.page.html */ 28114);
 /* harmony import */ var _categories_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories.page.scss */ 21205);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -132,11 +132,7 @@ let CategoriesPage = class CategoriesPage {
         this.platform = this.util.platform;
         this.userData = {
             lang: this.langaugeservice.getLanguage(),
-<<<<<<< HEAD
-            user_id: this.auth.userID.value,
-=======
             user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
->>>>>>> 23187d64016205d0a47c24d6316c287b3714c6f7
         };
         this.getAllSections();
     }
@@ -166,11 +162,7 @@ let CategoriesPage = class CategoriesPage {
     doRefresh($event) {
         this.userData = {
             lang: this.langaugeservice.getLanguage(),
-<<<<<<< HEAD
-            user_id: this.auth.userID.value,
-=======
             user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
->>>>>>> 23187d64016205d0a47c24d6316c287b3714c6f7
         };
         this.items.data(this.userData).subscribe((data) => {
             if (data.key == 1) {
@@ -197,7 +189,7 @@ CategoriesPage.ctorParameters = () => [
 CategoriesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-categories',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_categories_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_categories_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoriesPage);

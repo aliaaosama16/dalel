@@ -6,7 +6,7 @@
   </div>
   <app-custom-details [OrderDetails]="orderDetials" [isDetailed]="false"></app-custom-details>
 
-  <div class="details">
+  <div class="details" *ngIf="orderDetials">
     <h5 class="fn-14 dalel-Bold primary-color">
       {{"my-reservations-details"|translate}}
     </h5>

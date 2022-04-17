@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CategoryListPage": () => (/* binding */ CategoryListPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-list.page.html */ 47728);
+/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./category-list.page.html */ 47728);
 /* harmony import */ var _category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category-list.page.scss */ 97800);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -132,6 +132,9 @@ let CategoryListPage = class CategoryListPage {
             console.log('Handler was called!');
             this.location.back();
         });
+    }
+    goBack() {
+        this.location.back();
     }
     ngOnInit() {
         console.log(`category list data ${JSON.stringify(this.activatedRoute.snapshot.data)}`);
@@ -231,7 +234,7 @@ CategoryListPage.propDecorators = {
 CategoryListPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-category-list',
-        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_category_list_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_category_list_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], CategoryListPage);
@@ -250,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <div *ngIf=\"noItems\" class=\"no-data\">\n    <p>{{\"no items in this section\"|translate}}</p>\n   </div>\n  \n  <app-custom-card\n    [itemDetails]=\"item\"\n    [forwardRoute]=\"'/tabs/main'\"\n    [cardBrightness]=\"'0.53'\"\n    *ngFor=\"let item of sectionAllItems\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  title=\"{{categoryName|translate}}\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main/categories'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n  (back)=\"goBack()\"\n></app-header>\n\n<ion-content class=\"ion-padding\" >\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <div *ngIf=\"noItems\" class=\"no-data\">\n    <p>{{\"no items in this section\"|translate}}</p>\n   </div>\n  \n  <app-custom-card\n    [itemDetails]=\"item\"\n    [forwardRoute]=\"'/tabs/main'\"\n    [cardBrightness]=\"'0.53'\"\n    *ngFor=\"let item of sectionAllItems\"\n  ></app-custom-card>\n\n  <ion-infinite-scroll threshold=\"100px\" (ionInfinite)=\"loadData($event)\">\n    <ion-infinite-scroll-content\n      loadingSpinner=\"bubbles\"\n      loadingText=\"Loading more data...\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n");
 
 /***/ }),
 
