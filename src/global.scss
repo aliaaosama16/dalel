@@ -57,6 +57,10 @@
     --box-shadow: none !important;
   }
 
+  ion-button:focus{
+    outline: none !important;
+  }
+
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
   // --ion-safe-area-top: 16px;
@@ -126,7 +130,19 @@ ion-badge {
 }
 
 .unfocused {
-  --border-color: var(--ion-color-secondary) !important;
+ // --border-color: var(--ion-color-secondary) !important;
+  &::part(native) {
+    --border-color: var(--ion-color-secondary) !important;
+    border-bottom-color:var(--ion-color-secondary) !important;
+  }
+}
+
+.focused {
+  //--border-color: var(--ion-color-primary) !important;
+  &::part(native) {
+    --border-color: var(--ion-color-primary) !important;
+    border-bottom-color:var(--ion-color-primary) !important;
+  }
 }
 
 .swiper-slide {

@@ -146,6 +146,7 @@ export class LoginRegisterPage implements OnInit {
         this.registerForm.value.password ==
         this.registerForm.value.confirmPassword
       ) {
+        console.log('registerForm valid' );
         this.registerData = {
           lang: this.langaugeservice.getLanguage(),
           first_name: this.registerForm.value.userName,

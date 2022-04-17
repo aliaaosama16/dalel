@@ -7,22 +7,8 @@ ion-content.bg-right {
     no-repeat;
 }
 
-// :host(.item-fill-none.item-interactive.ion-focus)
-// .item-native, :host(.item-fill-none.item-interactive.item-has-focus)
-// .item-native, :host(.item-fill-none.item-interactive.ion-touched.ion-invalid)
-// .item-native{
-
-//   border-bottom-color:var(--ion-color-secondary) !important;
-
-// }
-
-ion-item {
-  &::part(native) {
-    border-bottom-color: var(--ion-color-secondary) !important;
-  }
-}
-
-// ion-segment{
-//   display: flex;
-//   justify-content: space-between;
+// ion-item {
+//   &::part(native) {
+//     border-bottom-color: var(--ion-color-secondary) !important;
+//   }
 // }

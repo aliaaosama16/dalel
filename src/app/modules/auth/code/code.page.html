@@ -3,12 +3,7 @@
     <div class="logo">
       <img src="../../../../assets/images/logo.svg" />
     </div>
-    <!-- <ion-card>
-      <ng-otp-input
-        (onInputChange)="onOtpChange($event)"
-        [config]="config"
-      ></ng-otp-input>
-    </ion-card> -->
+
     <ion-card class="auth-container">
       <div class="auth-container-title">
         <h5 class="fn-24 dalel-Bold">{{"code-verification"|translate}}</h5>
@@ -19,28 +14,27 @@
       </div>
 
       <form class="auth-form" (ngSubmit)="confirmVerificationCode()">
-        <ion-row>
-          <ion-col
-            size="3"
-            [ngClass]="inputFocusNumber1 ? 'focused' : 'unfocused' "
-          >
-            <ion-item lines="none">
+        <div class="code-conatiner">
+          <div>
+            <ion-item
+              lines="none"
+              [ngClass]="inputFocusNumber1 ? 'code-focused' : 'code-unfocused' "
+            >
               <ion-input
                 class="otp"
                 #n1
                 min="0"
                 max="9"
                 maxlength="1"
-                (keyup)="next($event,n2)"
-              
+                (keyup)="next($event,n2,'n1')"
                 type="tel"
               ></ion-input>
             </ion-item>
-          </ion-col>
-          <ion-col size="3">
+          </div>
+          <div>
             <ion-item
               lines="none"
-              [ngClass]="inputFocusNumber2 ? 'focused' : 'unfocused' "
+              [ngClass]="inputFocusNumber2 ? 'code-focused' : 'code-unfocused' "
             >
               <ion-input
                 class="otp"
@@ -48,49 +42,46 @@
                 min="0"
                 max="9"
                 maxlength="1"
-                (keyup)="next($event,n3)"
-               
+                (keyup)="next($event,n3,'n2')"
                 type="tel"
               ></ion-input>
             </ion-item>
-          </ion-col>
-          <ion-col
-            size="3"
-            [ngClass]="inputFocusNumber3 ? 'focused' : 'unfocused' "
-          >
-            <ion-item lines="none">
+          </div>
+          <div>
+            <ion-item
+              lines="none"
+              [ngClass]="inputFocusNumber3 ? 'code-focused' : 'code-unfocused' "
+            >
               <ion-input
                 class="otp"
                 #n3
                 min="0"
                 max="9"
                 maxlength="1"
-                (keyup)="next($event,n4)"
-                
+                (keyup)="next($event,n4,'n3')"
                 type="tel"
               ></ion-input>
             </ion-item>
-          </ion-col>
-          <ion-col
-            size="3"
-            [ngClass]="inputFocusNumber4 ? 'focused' : 'unfocused' "
-          >
-            <ion-item lines="none">
+          </div>
+          <div>
+            <ion-item
+              lines="none"
+              [ngClass]="inputFocusNumber4 ? 'code-focused' : 'code-unfocused' "
+            >
               <ion-input
                 class="otp"
                 #n4
                 min="0"
                 max="9"
                 maxlength="1"
-                (keyup)="next($event,'')"
-                
+                (keyup)="next($event,'','n4')"
                 type="tel"
               ></ion-input>
             </ion-item>
-          </ion-col>
-        </ion-row>
+          </div>
+        </div>
         <ion-button expand="block" type="submit">
-          <span class=" fn-16 dalel-Bold"> {{"confirm"|translate}} </span>
+          <span class="fn-16 dalel-Bold"> {{"confirm"|translate}} </span>
         </ion-button>
       </form>
     </ion-card>

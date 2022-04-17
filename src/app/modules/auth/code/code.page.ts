@@ -21,24 +21,7 @@ export class CodePage implements OnInit {
   codeValues: string;
   code: number;
   activationData: ActivationData;
-  config: any = {
-    length: 4,
-    inputStyles: {
-      'border': '1px solid var(--ion-color-secondary)',
-      'color': 'var(--ion-color-primary)',
-      'outline': 'none',
-      'background-color': 'var(--ion-color-white)',
-      'border-radius':'10px',
-      'width':'100%',
-      'height':'60px',
-      'font-size':' 25px',
-    },
-    containerStyles:{
-      'display': 'flex',
-      'justify-content':'space-between'
-    },
-    allowNumbersOnly: true,
-  };
+ 
 
   constructor(
     private router: Router,
@@ -56,10 +39,6 @@ export class CodePage implements OnInit {
     });
   }
 
-  // ionViewWillEnter() {
-  //   this.menuCtrl.enable(false);
-  // }
-
   ngOnInit() {}
 
   confirmVerificationCode() {
@@ -67,12 +46,12 @@ export class CodePage implements OnInit {
     console.log('code is :' + this.codeValues.substring(9));
 
     //this.auth.getUserIDObservable().subscribe((val) => {
-      this.activationData = {
-        lang: this.language.getLanguage(),
-        user_id:this.auth.userID.value==0?1:this.auth.userID.value, //val,
-        code: this.codeValues.substring(9),
-        device_id: this.util.deviceID,
-      };
+    this.activationData = {
+      lang: this.language.getLanguage(),
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value, //val,
+      code: this.codeValues.substring(9),
+      device_id: this.util.deviceID,
+    };
     //});
     this.util.showLoadingSpinner().then((__) => {
       this.auth.activeAccount(this.activationData).subscribe(
@@ -94,38 +73,38 @@ export class CodePage implements OnInit {
     });
   }
 
-  focusNumber1(focusStatus: boolean) {
-    console.log('input focus' + focusStatus);
-    this.inputFocusNumber1 = focusStatus;
-  }
+  // focusNumber1(focusStatus: boolean) {
+  //   console.log('input focus' + focusStatus);
+  //   this.inputFocusNumber1 = focusStatus;
+  // }
 
-  focusNumber2(focusStatus: boolean) {
-    console.log('input focus' + focusStatus);
-    this.inputFocusNumber2 = focusStatus;
-  }
+  // focusNumber2(focusStatus: boolean) {
+  //   console.log('input focus' + focusStatus);
+  //   this.inputFocusNumber2 = focusStatus;
+  // }
 
-  focusNumber3(focusStatus: boolean) {
-    console.log('input focus' + focusStatus);
-    this.inputFocusNumber3 = focusStatus;
-  }
+  // focusNumber3(focusStatus: boolean) {
+  //   console.log('input focus' + focusStatus);
+  //   this.inputFocusNumber3 = focusStatus;
+  // }
 
-  focusNumber4(focusStatus: boolean) {
-    console.log('input focus' + focusStatus);
-    this.inputFocusNumber4 = focusStatus;
-  }
+  // focusNumber4(focusStatus: boolean) {
+  //   console.log('input focus' + focusStatus);
+  //   this.inputFocusNumber4 = focusStatus;
+  // }
 
-  next(ev, nextInput) {
-    console.log(ev.target.value);
-    if(nextInput=='n2'){
-      this.inputFocusNumber1=true;
-    }else if(nextInput=='n3'){
-      this.inputFocusNumber2=true;
-    }else if(nextInput=='n4'){
-      this.inputFocusNumber3=true;
-    }else if(nextInput==''){
-      this.inputFocusNumber4=true;
+  next(ev, nextInput,current) {
+    console.log('input value :  '+ev.target.value,nextInput);
+   
+    if (current == 'n1') {
+      this.inputFocusNumber1 = true;
+    } else if (current == 'n2') {
+      this.inputFocusNumber2 = true;
+    } else if (current == 'n3') {
+      this.inputFocusNumber3 = true;
+    } else if (current == 'n4') {
+      this.inputFocusNumber4 = true;
     }
-
     const input = ev.target;
     const length = input.value.length;
     console.log('length is ' + length);
@@ -135,6 +114,18 @@ export class CodePage implements OnInit {
     console.log(this.codeValues);
     if (length >= maxLength) {
       nextInput.setFocus();
+    }
+  }
+
+  inputFocuced(nextInput){
+    if (nextInput == 'n2') {
+      this.inputFocusNumber1 = true;
+    } else if (nextInput == 'n3') {
+      this.inputFocusNumber2 = true;
+    } else if (nextInput == 'n4') {
+      this.inputFocusNumber3 = true;
+    } else if (nextInput == '') {
+      this.inputFocusNumber4 = true;
     }
   }
 
