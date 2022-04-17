@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import {
   CountryData,
   CountryResponse,
@@ -46,12 +47,12 @@ export class ItemsService {
       data
     );
   }
-
-  home(data: UserData): Observable<HomeResponse> {
+// :Observable<HomeResponse>
+  home(data: UserData): any {
     return this.httpclient.post<HomeResponse>(
       `${environment.BASE_URL}home`,
       data
-    );
+    ).pipe(catchError(val => of(`I caught: ${val}`)));;
   }
 
   allDepartments(data: Language): Observable<DepartmentResponse> {

@@ -1,15 +1,4 @@
-// .btn-margin{
 
-// }
-
-// ion-button::part(native) {
-//   height: 50px !important;
-//   background-image: linear-gradient(
-//     to left,
-//     var(--ion-color-primary),
-//     var(--ion-color-secondary)
-//   );
-// }
 span.button-inner{
   --background: var(--ion-color-secondary) !important;
 }
@@ -24,30 +13,12 @@ ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydra
 .title{
   height: 100px !important;
 }
-.my-custom-calender   {
 
-  ion-button{
-    color: green !important;
-  }
-  // [_nghost-kdt-c178] .title[_ngcontent-kdt-c178]{
-  //   height: 100px;
-  // }
-  
-    // ion-button {
-    //   &::part(native) {
-    //     .buuton-inner {
-    //       color: var(--ion-color-white) !important;
-    //       background: var(--ion-color-secondary) !important;
-    //     }
-    //   }
-    // }
-  
-}
 button.days-btn {
   color: var(--ion-color-secondary);
 }
 .reservation-btn {
-  margin-top: 160px !important;
+  margin-top: 140px !important;
   &::part(native) {
     box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
     height: 50px !important;
