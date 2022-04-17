@@ -204,6 +204,7 @@ export class ReservationPaymentPage implements OnInit {
         (data: OrderDataResponse) => {
           if (data.key == 1) {
             this.util.showMessage(data.msg);
+            this.auth.setNoOfNotifications(this.auth.userID.value);
             this.router.navigateByUrl('/tabs/my-reservations');
           }
           this.util.dismissLoading();

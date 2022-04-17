@@ -8,7 +8,10 @@
     [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
   >
     <ng-template swiperSlide *ngFor="let image of images">
-      <img class="slider-image" [src]="image.image" />
+      <div class="swiper-zoom-container">
+        <img class="slider-image" [src]="image.image" />
+      </div>
+      
     </ng-template>
   </swiper>
 
