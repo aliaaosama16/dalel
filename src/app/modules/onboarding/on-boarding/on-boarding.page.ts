@@ -99,12 +99,6 @@ export class OnBoardingPage implements OnInit{
     });
   }
 
-  // ngAfterContentChecked(): void {
-  //   if (this.swiper) {
-  //     this.swiper.updateSwiper({});
-  //   }
-  // }
-
   swiperSlideChanged(e) {
     console.log('changed: ', e);
   }
