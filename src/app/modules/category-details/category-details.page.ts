@@ -198,12 +198,13 @@ export class CategoryDetailsPage implements OnInit {
     }
   }
 
-  async openPreview(itemImages) {
+  async openPreview(itemImages,currentImage) {
     const modal = await this.modalCtrl.create({
       component: ImageModalPage,
       cssClass: 'transparent-modal',
       componentProps: {
         images: itemImages,
+        imageID:currentImage
       },
     });
     modal.present();

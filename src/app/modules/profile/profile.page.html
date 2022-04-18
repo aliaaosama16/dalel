@@ -12,7 +12,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div class="profile-card-wrapper" >
+  <div class="profile-card-wrapper" *ngIf="userResponse?.data" >
     <ion-card class="ion-no-margin ion-padding">
       <div class="img-wrapper">
         <img src="./../../../assets/icon/profile.png" />

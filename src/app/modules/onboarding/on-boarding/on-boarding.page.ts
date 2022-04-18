@@ -29,7 +29,7 @@ Swiper.use([Navigation, Pagination, EffectCards, EffectFade]);
   styleUrls: ['./on-boarding.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class OnBoardingPage implements OnInit{//}, AfterContentChecked {
+export class OnBoardingPage implements OnInit{
   @ViewChild('swiper') swiper: SwiperComponent;
   slidingNotAvailable: boolean = false;
   nextClicked: number = 0;

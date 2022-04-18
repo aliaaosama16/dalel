@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonDatetime, MenuController, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
@@ -19,22 +19,17 @@ import { HomeResponse } from 'src/app/models/home';
   selector: 'app-main',
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MainPage implements OnInit {
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
-  
+
   searchText: string = '';
   currentlangauge: string;
   platform: string = '';
   UserData: UserData;
 
-  configSlider: SwiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    pagination: true,
-    effect: 'fade',
-    autoplay: true,
-  };
+  configSlider: SwiperOptions;
   configCategories: SwiperOptions = {
     slidesPerView: 2.1,
     spaceBetween: 10,
@@ -96,21 +91,32 @@ export class MainPage implements OnInit {
     this.auth.getUserToken();
     this.UserData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: this.auth.userID.value==0?1:this.auth.userID.value,
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
     };
     this.getHomeData(this.UserData);
   }
-  ngOnInit() {}
-  getDate($event){
-    console.log($event.target.value)
+
+  ngOnInit() {
+    this.configSlider = {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      pagination: true,
+      effect: 'fade',
+      autoplay: true,
+    };
+  }
+
+  getDate($event) {
+    console.log($event.target.value);
   }
 
   isDateEnabled(dateIsoString) {
     const date = new Date(dateIsoString);
-    if (date.getUTCFullYear() === 2022 
-      && date.getUTCMonth() === 0 
-      && date.getUTCDate() === 1) {
-      // Disables January 1, 2022
+    if (
+      date.getUTCFullYear() === 2022 &&
+      date.getUTCMonth() === 0 &&
+      date.getUTCDate() === 1
+    ) {
       return false;
     }
     return true;
@@ -152,13 +158,11 @@ export class MainPage implements OnInit {
   }
 
   getItemsByFilters(searcText: string) {
-   // this.auth.getUserIDObservable().subscribe((val) => {
-      this.filterData = {
-        user_id: this.auth.userID.value==0?1:this.auth.userID.value,//val,
-        title: searcText,
-        lang: this.langaugeservice.getLanguage(),
-      };
-   // });
+    this.filterData = {
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+      title: searcText,
+      lang: this.langaugeservice.getLanguage(),
+    };
 
     this.util.setFilters(this.filterData);
 
@@ -176,24 +180,22 @@ export class MainPage implements OnInit {
   }
 
   doRefresh($event) {
-   // this.auth.getUserIDObservable().subscribe((val) => {
-      this.UserData = {
-        lang: this.langaugeservice.getLanguage(),
-        user_id: this.auth.userID.value==0?1:this.auth.userID.value,//e//val == 0 ? 1 : val,
-      };
-      this.items.home(this.UserData).subscribe(
-        (data: HomeResponse) => {
-          if (data.key == 1) {
-            this.sections = data.data.sections;
-            this.Sliders = data.data.sliders;
-            this.nearDepartments = data.data.near_departments;
-          }
-          $event.target.complete();
-        },
-        (err) => {
-          $event.target.complete();
+    this.UserData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+    };
+    this.items.home(this.UserData).subscribe(
+      (data: HomeResponse) => {
+        if (data.key == 1) {
+          this.sections = data.data.sections;
+          this.Sliders = data.data.sliders;
+          this.nearDepartments = data.data.near_departments;
         }
-      );
-    //});
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

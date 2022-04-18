@@ -23,6 +23,5 @@ import { TranslateModule } from '@ngx-translate/core';
     CalendarModule,
   ],
   declarations: [ReservationPage],
-  // providers: [{ provide: LOCALE_ID, useValue: 'ar-SA' }]
 })
 export class ReservationPageModule {}

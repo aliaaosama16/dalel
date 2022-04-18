@@ -57,22 +57,41 @@
 .slider-section {
   position: relative;
 
-  .swiper-pagination-bullets {
-    position: absolute;
-    text-align: center !important;
-    height: 10px;
-    width: 15px;
-    bottom: 0 !important;
-    background-color: var(--ion-color-primary) !important;
-  }
+  .swiper-pagination {
+    bottom: 10px;
 
-  .swiper-pagination-bullet {
-    height: 10px !important;
-    width: 15px !important;
-    display: inline-block;
-    border-radius: 10px !important;
-    background: var(--ion-color-secondary) !important;
-    opacity: rgb(var(--ion-color-secondary-rgb), 0.5) !important;
+    top: auto !important;
+    text-align: center;
+
+    .swiper-pagination-bullet {
+      background: var(--ion-color-primary) !important;
+      top: 70% !important;
+      right: 50% !important;
+      height: 10px !important;
+      width: 15px !important;
+      border-radius: 10px;
+      opacity: 0.5 !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: var(--ion-color-primary) !important;
+      top: 70% !important;
+      right: 50% !important;
+      height: 10px !important;
+      width: 30px !important;
+      border-radius: 10px;
+      opacity: 1 !important;
+    }
+
+    .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+    .swiper-pagination-horizontal.swiper-pagination-bullets
+      .swiper-pagination-bullet {
+      background-color: rgba(var(--ion-color-primary-rgb), 0.5) !important;
+      height: 10px;
+      width: 15px;
+      border-radius: 10px;
+      right: 50%;
+    }
   }
 
   img {
@@ -93,24 +112,26 @@
     flex-direction: row;
   }
 
-  .cat-title-text {
-    margin: 10px;
-  }
-
-  ion-thumbnail {
-    margin: 0px;
-    img {
-      border-radius: 5px;
+  ion-card {
+    ion-thumbnail {
+      margin: 0px;
+      img {
+        border-radius: 5px;
+      }
+    }
+    ion-item {
+      .cat-title-text {
+        margin: 10px;
+      }
+      &::part(native) {
+        padding-inline-start: 0px;
+      }
     }
   }
 
   .categories-sub-title {
     color: var(--ion-color-primary);
     white-space: nowrap;
-  }
-
-  ion-item::part(native) {
-    padding-inline-start: 0px;
   }
 }
 

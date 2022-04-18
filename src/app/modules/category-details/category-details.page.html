@@ -76,8 +76,8 @@
       class="custom-swiper"
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
-      <ng-template swiperSlide *ngFor="let image of itemDetails?.images" >
-        <img (click)="openPreview(itemDetails?.images)" class="slider-image" [src]="image.image" />
+      <ng-template swiperSlide *ngFor="let image of itemDetails?.images; let i = index" >
+        <img (click)="openPreview(itemDetails?.images,i)" class="slider-image" [src]="image.image" />
       </ng-template>
     </swiper>
   </div>
