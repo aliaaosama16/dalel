@@ -999,8 +999,14 @@ let ImageModalPage = class ImageModalPage {
         };
     }
     ngOnInit() {
+        console.log('this.currentImage ' + this.imageID);
         this.currentlangauge = this.language.getLanguage();
         console.log(JSON.stringify(this.images));
+        this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
+    }
+    ngAfterViewInit() {
+        this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
+        console.log(this.imageSwiper.swiperRef);
     }
     closeModal() {
         this.modalCtrl.dismiss();
@@ -1011,7 +1017,9 @@ ImageModalPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController }
 ];
 ImageModalPage.propDecorators = {
-    images: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }]
+    images: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }],
+    imageID: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }],
+    imageSwiper: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ViewChild, args: ['swiper',] }]
 };
 ImageModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
@@ -1122,10 +1130,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ItemsService": () => (/* binding */ ItemsService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 83981);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 83981);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 18252);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 10592);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 18260);
+
+
 
 
 
@@ -1143,8 +1155,10 @@ let ItemsService = class ItemsService {
     getNeighborhoodsByCityID(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}neighborhoods`, data);
     }
+    // :Observable<HomeResponse>
     home(data) {
-        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}home`, data);
+        return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}home`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(val => (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(`I caught: ${val}`)));
+        ;
     }
     allDepartments(data) {
         return this.httpclient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.BASE_URL}all-departments`, data);
@@ -1160,10 +1174,10 @@ let ItemsService = class ItemsService {
     }
 };
 ItemsService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient }
 ];
-ItemsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+ItemsService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
         providedIn: 'root',
     })
 ], ItemsService);
@@ -1227,7 +1241,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n\n  <swiper\n    #swiper\n    [config]=\"configSlider\"\n    class=\"item-images-swiper\"\n    [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n  >\n    <ng-template swiperSlide *ngFor=\"let image of images\">\n      <div class=\"swiper-zoom-container\">\n        <img class=\"slider-image\" [src]=\"image.image\" />\n      </div>\n      \n    </ng-template>\n  </swiper>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n    <ion-fab-button color=\"primary\" (click)=\"closeModal()\">\n      <ion-icon name=\"close\" color=\"white\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <swiper\n    #swiper\n    [config]=\"configSlider\"\n    class=\"item-images-swiper\"\n    [dir]=\"currentlangauge == 'ar' ? 'rtl' : 'ltr'\"\n  >\n    <ng-template swiperSlide *ngFor=\"let image of images\">\n      <div class=\"swiper-zoom-container\">\n        <img class=\"slider-image\" [src]=\"image.image\" />\n      </div>\n    </ng-template>\n  </swiper>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n    <ion-fab-button color=\"primary\" (click)=\"closeModal()\">\n      <ion-icon name=\"close\" color=\"white\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n</ion-content>\n");
 
 /***/ }),
 
