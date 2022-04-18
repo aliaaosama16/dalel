@@ -47,7 +47,6 @@ export class ImageModalPage implements OnInit {
     this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
 
     console.log(this.imageSwiper.swiperRef);
-    //Swiper instance will be displayed in console
   }
   
   closeModal() {
