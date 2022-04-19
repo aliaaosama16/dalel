@@ -1,4 +1,14 @@
 
+.calendar-arrows {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -49px;
+  padding: 0 27px !important;
+  ion-icon {
+    font-size: 22px;
+  }
+}
+
 span.button-inner{
   --background: var(--ion-color-secondary) !important;
 }
