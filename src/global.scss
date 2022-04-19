@@ -45,8 +45,9 @@
 //   background-color: transparent;
 // }
 :root {
-
- 
+  * {
+    text-transform: lowercase;
+  }
   ion-menu {
     --ion-backdrop-color: var(--ion-color-dark-black);
   }
@@ -309,12 +310,10 @@ ion-tab-bar {
   height: auto !important;
 }
 
-
-
 .transparent-modal {
   --background: rgba(44, 39, 45, 0.2);
-  
+
   &::part(content) {
-      backdrop-filter: blur(12px);
-    }
+    backdrop-filter: blur(12px);
+  }
 }
