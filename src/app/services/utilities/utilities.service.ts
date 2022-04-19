@@ -16,8 +16,8 @@ export class UtilitiesService {
   platform: any;
   deviceID: string;
   userLocation = { lat: 0, lng: 0 };
-  filtersData:FilterData;
-  closedDates:Array<string>
+  filtersData: FilterData;
+  closedDates: Array<string>;
   constructor(
     private translate: TranslateService,
     private loadingCtrl: LoadingController,
@@ -64,7 +64,7 @@ export class UtilitiesService {
       spinner: 'crescent',
       cssClass: 'my-loading-class',
       backdropDismiss: false,
-      animated:true,
+      animated: true,
       // message: `
       // <div class="custom-spinner-container">
       //   <div class="custom-spinner-box">
@@ -80,7 +80,7 @@ export class UtilitiesService {
     console.log('hide loading');
     this.loadingCtrl.dismiss();
   }
-  
+
   getUserLocation() {
     return new Promise(async (resolve, reject) => {
       const locationStatus = await Geolocation.requestPermissions().then(
@@ -90,12 +90,20 @@ export class UtilitiesService {
             console.log(coordinates);
             this.userLocation.lat = coordinates['coords'].latitude;
             this.userLocation.lng = coordinates['coords'].longitude;
+            this.setUserLocation(coordinates['coords'].latitude,coordinates['coords'].longitude);
           }
         }
       );
       resolve(locationStatus);
     });
   }
+
+  setUserLocation(lat, long) {
+    this.userLocation.lat = lat;
+    this.userLocation.lng = long;
+  }
+
+  
 
   getPlatformType() {
     return new Promise((resolve, reject) => {
@@ -113,20 +121,19 @@ export class UtilitiesService {
     this.setDeviceID(device);
   }
 
-  
-  setFilters(filtersData:any){
-    this.filtersData=filtersData;
+  setFilters(filtersData: any) {
+    this.filtersData = filtersData;
   }
 
-  get filters(){
+  get filters() {
     return this.filtersData;
   }
 
-  setClosedDates(closedDates:Array<string> ){
-    this.closedDates=closedDates;
+  setClosedDates(closedDates: Array<string>) {
+    this.closedDates = closedDates;
   }
 
-  get itemClosedDates(){
+  get itemClosedDates() {
     return this.closedDates;
   }
 
@@ -154,5 +161,4 @@ export class UtilitiesService {
     );
     return days;
   }
-
 }

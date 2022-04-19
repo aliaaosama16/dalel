@@ -2154,6 +2154,9 @@ button.swiper-pagination-bullet {
   --highlight-color-valid: var(--ion-color-secondary);
   --highlight-color-invalid: var(--ion-color-primary);
 }
+:root * {
+  text-transform: lowercase;
+}
 :root ion-menu {
   --ion-backdrop-color: var(--ion-color-dark-black);
 }

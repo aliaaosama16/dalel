@@ -121,6 +121,7 @@ export class MainPage implements OnInit {
     }
     return true;
   }
+  
   getHomeData(userData: UserData) {
     this.util.showLoadingSpinner().then((__) => {
       this.items.home(userData).subscribe(

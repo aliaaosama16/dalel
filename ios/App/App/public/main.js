@@ -1217,10 +1217,15 @@ let UtilitiesService = class UtilitiesService {
                     console.log(coordinates);
                     this.userLocation.lat = coordinates['coords'].latitude;
                     this.userLocation.lng = coordinates['coords'].longitude;
+                    this.setUserLocation(coordinates['coords'].latitude, coordinates['coords'].longitude);
                 }
             }));
             resolve(locationStatus);
         }));
+    }
+    setUserLocation(lat, long) {
+        this.userLocation.lat = lat;
+        this.userLocation.lng = long;
     }
     getPlatformType() {
         return new Promise((resolve, reject) => {
