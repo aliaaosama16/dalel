@@ -78,6 +78,23 @@
   --highlight-color-invalid: var(--ion-color-primary);
 }
 
+.header-image {
+  img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .image-right {
+    border-radius: 0px 0px 80px 0px !important;
+  }
+
+  .image-left {
+    border-radius: 0px 0px 0px 80px !important;
+  }
+}
+
+
 ion-input {
   --color: var(--ion-color-primary) !important;
 }
