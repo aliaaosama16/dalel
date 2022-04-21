@@ -11,7 +11,7 @@
   </ion-refresher>
   <div *ngIf="noFavourites" class="no-data">
     <p>{{"no favourites items"|translate}}</p>
-   </div>
+  </div>
   <ion-grid>
     <ion-row>
       <ion-col
@@ -22,39 +22,38 @@
         sizeMd="4"
         *ngFor="let item of favourites"
       >
-        <ion-card
-          class="ion-no-margin"
-          routerLink="/tabs/main/categories/{{item.section_id}}/{{item.id}}"
-          *ngIf="item!=null"
-        >
-          <img [src]="item?.first_image" />
+        <ion-card class="ion-no-margin">
+          <div class="fav-container">
+            <div class="fav-part price">
+              <img [src]="item?.first_image" />
 
-          <div class="price-container">
-            <span class="white-color fn-12 dalel-Regular"
-              >{{item.price}} {{'currency'|translate}}</span
-            >
-          </div>
-
-          <ion-card-content>
-            <div class="name">
-              <p class="fn-14 dalel-Bold dark-black-color">{{item.title}}</p>
-            </div>
-            <div class="rating-address-container">
-              <div class="address-container">
-                <ion-icon name="location-sharp" color="primary"></ion-icon>
-                <p class="fn-14 dalel-Regular dark-black-color">
-                   {{item.city_title}}
-                </p>
-              </div>
-
-              <div class="rating-container" *ngIf="item.saler_rate!=0">
-                <ion-icon color="secondary" slot="end" name="star"></ion-icon>
-                <span class="white-color fn-10 dalel-Regular"
-                  >{{item.rate}}</span
+              <div class="price-container">
+                <span class="white-color fn-12 dalel-Regular"
+                  >{{item.price}} {{'currency'|translate}}</span
                 >
               </div>
             </div>
-          </ion-card-content>
+            <div class="fav-part details">
+              <div class="name">
+                <p class="fn-14 dalel-Bold dark-black-color">{{item.title}}</p>
+              </div>
+              <div class="rating-address-container">
+                <div class="address-container">
+                  <ion-icon name="location-sharp" color="primary"></ion-icon>
+                  <p class="fn-14 dalel-Regular dark-black-color">
+                     {{item.city_title}}
+                  </p>
+                </div>
+
+                <div class="rating-container" *ngIf="item.saler_rate!=0">
+                  <ion-icon color="secondary" slot="end" name="star"></ion-icon>
+                  <span class="white-color fn-10 dalel-Regular"
+                    >{{item.rate}}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>

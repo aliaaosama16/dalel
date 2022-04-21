@@ -53,12 +53,11 @@ export class SearchFilterPage implements OnInit {
   ngOnInit() {
     this.currentlangauge = this.langaugeservice.getLanguage();
 
-      this.userData = {
-        lang: this.langaugeservice.getLanguage(),
-        user_id: this.auth.userID.value== 0 ? 1 : this.auth.userID.value,
-      };
-      this.getAllFilterData(this.userData);
-  
+    this.userData = {
+      lang: this.langaugeservice.getLanguage(),
+      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+    };
+    this.getAllFilterData(this.userData);
   }
 
   getAllFilterData(filterData: UserData) {
@@ -96,6 +95,8 @@ export class SearchFilterPage implements OnInit {
       console.log('user id :' + val);
       this.filterData = {
         user_id: val,
+        lat:this.util.userLocation.lat,
+        lng:this.util.userLocation.lng,
         title: this.title,
         lang: this.langaugeservice.getLanguage(),
         categories: JSON.stringify(this.selectedCategories).replace(/\\/g, ''),
@@ -168,5 +169,4 @@ export class SearchFilterPage implements OnInit {
     console.log('country : ' + $event);
     this.neighborhood_id = $event.detail.value;
   }
-
 }

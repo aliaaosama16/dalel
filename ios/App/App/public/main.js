@@ -158,6 +158,7 @@ let AppComponent = class AppComponent {
         this.menuCtrl = menuCtrl;
         this.fcmService = fcmService;
         this.currentLanguage = '';
+        this.language = '';
         this.logined = this.auth.isAuthenticated.value;
         this.pages = [
             {
@@ -200,6 +201,9 @@ let AppComponent = class AppComponent {
         this.initializeApp();
         this.auth.getLoginedObservable().subscribe((val) => {
             this.logined = val;
+        });
+        this.languageService.getUpdatedLanguage().subscribe((val) => {
+            this.language = val;
         });
         console.log('logined : ' + this.logined);
     }
@@ -902,11 +906,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LanguageService": () => (/* binding */ LanguageService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 14001);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 78099);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 98806);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 78099);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/storage */ 872);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ 90466);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 41119);
+
 
 
 
@@ -917,9 +923,10 @@ let LanguageService = class LanguageService {
         this.platform = platform;
         this.translate = translate;
         this.selected = '';
+        this.language = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject('');
     }
     setInitialAppLanguage() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
             const lang = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_0__.Storage.get({ key: 'lang' });
             console.log(`stored lang is ${lang.value}`);
             console.log(`stored lang is obj ` + JSON.stringify(lang));
@@ -948,7 +955,7 @@ let LanguageService = class LanguageService {
         return this.platform.isRTL ? 'ar' : 'en';
     }
     setLanguage(lng) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
             console.log('set this language :' + lng);
             this.translate.use(lng);
             this.selected = lng;
@@ -956,15 +963,19 @@ let LanguageService = class LanguageService {
                 key: 'lang',
                 value: lng,
             });
+            this.language.next(lng);
         });
+    }
+    getUpdatedLanguage() {
+        return this.language.asObservable();
     }
 };
 LanguageService.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.Platform },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.Platform },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__.TranslateService }
 ];
-LanguageService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+LanguageService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
         providedIn: 'root',
     })
 ], LanguageService);
@@ -1217,10 +1228,15 @@ let UtilitiesService = class UtilitiesService {
                     console.log(coordinates);
                     this.userLocation.lat = coordinates['coords'].latitude;
                     this.userLocation.lng = coordinates['coords'].longitude;
+                    this.setUserLocation(coordinates['coords'].latitude, coordinates['coords'].longitude);
                 }
             }));
             resolve(locationStatus);
         }));
+    }
+    setUserLocation(lat, long) {
+        this.userLocation.lat = lat;
+        this.userLocation.lng = long;
     }
     getPlatformType() {
         return new Promise((resolve, reject) => {
@@ -1608,7 +1624,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"main\">\n      <ion-header class=\"header-image ion-no-border\">\n        <img\n          [ngClass]=\"currentLanguage == 'ar' ? 'image-right' : 'image-left'\"\n          src=\"./../assets/images/512.png\"\n        />\n      </ion-header>\n\n      <ion-content class=\"my-menu-content\">\n        <ion-list class=\"ion-padding\">\n          <ion-menu-toggle\n            auto-hide=\"false\"\n            *ngFor=\"let p of pages; let i = index\"\n            (click)=\"selectedIndex = i\"\n            routerDirection=\"root\"\n            [routerLink]=\"[p.url]\"\n            [class.selected]=\"selectedIndex == i\"\n          >\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon\n                slot=\"start\"\n                [src]=\"selectedIndex == i ? p.iconActive : p.iconInActive\"\n                [ngClass]=\"currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'\"\n              ></ion-icon>\n              <ion-label\n                [ngStyle]=\"\n                  currentLanguage == 'ar'\n                    ? { 'margin-right': '10px' }\n                    : { 'margin-left': '10px' }\n                \"\n                >{{ p.title | translate }}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n\n      <ion-footer *ngIf=\"logined\" class=\"ion-padding logout-section ion-no-border\">\n        <ion-item lines=\"none\" detail=\"false\" (click)=\"logout()\">\n          <ion-icon slot=\"start\" src=\"./../assets/icon/logout.svg\"></ion-icon>\n          <ion-label>{{ \"logout\" | translate }}</ion-label>\n        </ion-item>\n      </ion-footer>\n    </ion-menu>\n\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"main\">\n      <ion-header class=\"header-image ion-no-border\">\n        <img\n          [ngClass]=\"language == 'ar' ? 'image-right' : 'image-left'\"\n          src=\"./../assets/images/512.png\"\n        />\n      </ion-header>\n\n      <ion-content class=\"my-menu-content\">\n        <ion-list class=\"ion-padding\">\n          <ion-menu-toggle\n            auto-hide=\"false\"\n            *ngFor=\"let p of pages; let i = index\"\n            (click)=\"selectedIndex = i\"\n            routerDirection=\"root\"\n            [routerLink]=\"[p.url]\"\n            [class.selected]=\"selectedIndex == i\"\n          >\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon\n                slot=\"start\"\n                [src]=\"selectedIndex == i ? p.iconActive : p.iconInActive\"\n                [ngClass]=\"currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'\"\n              ></ion-icon>\n              <ion-label\n                [ngStyle]=\"\n                  currentLanguage == 'ar'\n                    ? { 'margin-right': '10px' }\n                    : { 'margin-left': '10px' }\n                \"\n                >{{ p.title | translate }}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n\n      <ion-footer *ngIf=\"logined\" class=\"ion-padding logout-section ion-no-border\">\n        <ion-item lines=\"none\" detail=\"false\" (click)=\"logout()\">\n          <ion-icon slot=\"start\" src=\"./../assets/icon/logout.svg\"></ion-icon>\n          <ion-label>{{ \"logout\" | translate }}</ion-label>\n        </ion-item>\n      </ion-footer>\n    </ion-menu>\n\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
 
 /***/ }),
 
@@ -1920,7 +1936,7 @@ webpackContext.id = 46700;
 /***/ ((module) => {
 
 "use strict";
-module.exports = ".header-image img {\n  height: 250px;\n  width: 100%;\n  object-fit: cover;\n}\n.header-image .image-right {\n  border-radius: 0px 0px 80px 0px !important;\n}\n.header-image .image-left {\n  border-radius: 0px 0px 80px 0px !important;\n}\n.my-menu-content ion-item ion-icon {\n  font-size: 16px;\n}\n.my-menu-content ion-item .icon-ar {\n  margin: 0px 8px 0 0;\n}\n.my-menu-content ion-item .icon-en {\n  margin: 0px 0 0 8px;\n}\n.my-menu-content ion-item .icon-margin-left {\n  margin: 0 0 0 10px;\n}\n.my-menu-content ion-item .icon-margin-right {\n  margin: 0 10px 0 0;\n}\n.my-menu-content .selected ion-item::part(native) {\n  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));\n  border-radius: 30px;\n  width: 80%;\n  color: var(--ion-color-white);\n}\n.my-menu-content ion-label {\n  font-size: 16px;\n}\n.logout-section ion-item {\n  margin-bottom: 8px;\n}\n.logout-section ion-item ion-icon {\n  font-size: 18px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDRTtFQUNFLGFBQUE7RUFDQSxXQUFBO0VBQ0EsaUJBQUE7QUFBSjtBQUdFO0VBQ0UsMENBQUE7QUFESjtBQUlFO0VBQ0UsMENBQUE7QUFGSjtBQVFJO0VBQ0UsZUFBQTtBQUxOO0FBUUk7RUFDRSxtQkFBQTtBQU5OO0FBU0k7RUFDRSxtQkFBQTtBQVBOO0FBVUk7RUFDRSxrQkFBQTtBQVJOO0FBV0k7RUFDRSxrQkFBQTtBQVROO0FBY007RUFDRSxnR0FBQTtFQUtBLG1CQUFBO0VBQ0EsVUFBQTtFQUNBLDZCQUFBO0FBaEJSO0FBcUJFO0VBQ0UsZUFBQTtBQW5CSjtBQXdCRTtFQUNFLGtCQUFBO0FBckJKO0FBc0JJO0VBQ0UsZUFBQTtBQXBCTiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVyLWltYWdlIHtcbiAgaW1nIHtcbiAgICBoZWlnaHQ6IDI1MHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG9iamVjdC1maXQ6IGNvdmVyO1xuICB9XG5cbiAgLmltYWdlLXJpZ2h0IHtcbiAgICBib3JkZXItcmFkaXVzOiAwcHggMHB4IDgwcHggMHB4ICFpbXBvcnRhbnQ7XG4gIH1cblxuICAuaW1hZ2UtbGVmdCB7XG4gICAgYm9yZGVyLXJhZGl1czogMHB4IDBweCA4MHB4IDBweCAhaW1wb3J0YW50O1xuICB9XG59XG5cbi5teS1tZW51LWNvbnRlbnQge1xuICBpb24taXRlbSB7XG4gICAgaW9uLWljb24ge1xuICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgIH1cblxuICAgIC5pY29uLWFyIHtcbiAgICAgIG1hcmdpbjogMHB4IDhweCAwIDA7XG4gICAgfVxuXG4gICAgLmljb24tZW4ge1xuICAgICAgbWFyZ2luOiAwcHggMCAwIDhweDtcbiAgICB9XG5cbiAgICAuaWNvbi1tYXJnaW4tbGVmdCB7XG4gICAgICBtYXJnaW46IDAgMCAwIDEwcHg7XG4gICAgfVxuXG4gICAgLmljb24tbWFyZ2luLXJpZ2h0IHtcbiAgICAgIG1hcmdpbjogMCAxMHB4IDAgMDtcbiAgICB9XG4gIH1cbiAgLnNlbGVjdGVkIHtcbiAgICBpb24taXRlbSB7XG4gICAgICAmOjpwYXJ0KG5hdGl2ZSkge1xuICAgICAgICBiYWNrZ3JvdW5kLWltYWdlOiBsaW5lYXItZ3JhZGllbnQoXG4gICAgICAgICAgdG8gbGVmdCxcbiAgICAgICAgICB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSksXG4gICAgICAgICAgdmFyKC0taW9uLWNvbG9yLXNlY29uZGFyeSlcbiAgICAgICAgKTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMzBweDtcbiAgICAgICAgd2lkdGg6IDgwJTtcbiAgICAgICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci13aGl0ZSk7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgaW9uLWxhYmVsIHtcbiAgICBmb250LXNpemU6IDE2cHg7XG4gIH1cbn1cblxuLmxvZ291dC1zZWN0aW9uIHtcbiAgaW9uLWl0ZW0ge1xuICAgIG1hcmdpbi1ib3R0b206IDhweDtcbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDE4cHg7XG4gICAgfVxuICB9XG59XG4iXX0= */";
+module.exports = ".my-menu-content ion-item ion-icon {\n  font-size: 16px;\n}\n.my-menu-content ion-item .icon-ar {\n  margin: 0px 8px 0 0;\n}\n.my-menu-content ion-item .icon-en {\n  margin: 0px 0 0 8px;\n}\n.my-menu-content ion-item .icon-margin-left {\n  margin: 0 0 0 10px;\n}\n.my-menu-content ion-item .icon-margin-right {\n  margin: 0 10px 0 0;\n}\n.my-menu-content .selected ion-item::part(native) {\n  background-image: linear-gradient(to left, var(--ion-color-primary), var(--ion-color-secondary));\n  border-radius: 30px;\n  width: 80%;\n  color: var(--ion-color-white);\n}\n.my-menu-content ion-label {\n  font-size: 16px;\n}\n.logout-section ion-item {\n  margin-bottom: 8px;\n}\n.logout-section ion-item ion-icon {\n  font-size: 18px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHSTtFQUNFLGVBQUE7QUFGTjtBQUtJO0VBQ0UsbUJBQUE7QUFITjtBQU1JO0VBQ0UsbUJBQUE7QUFKTjtBQU9JO0VBQ0Usa0JBQUE7QUFMTjtBQVFJO0VBQ0Usa0JBQUE7QUFOTjtBQVdNO0VBQ0UsZ0dBQUE7RUFLQSxtQkFBQTtFQUNBLFVBQUE7RUFDQSw2QkFBQTtBQWJSO0FBa0JFO0VBQ0UsZUFBQTtBQWhCSjtBQXFCRTtFQUNFLGtCQUFBO0FBbEJKO0FBbUJJO0VBQ0UsZUFBQTtBQWpCTiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5teS1tZW51LWNvbnRlbnQge1xuICBpb24taXRlbSB7XG4gICAgaW9uLWljb24ge1xuICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgIH1cblxuICAgIC5pY29uLWFyIHtcbiAgICAgIG1hcmdpbjogMHB4IDhweCAwIDA7XG4gICAgfVxuXG4gICAgLmljb24tZW4ge1xuICAgICAgbWFyZ2luOiAwcHggMCAwIDhweDtcbiAgICB9XG5cbiAgICAuaWNvbi1tYXJnaW4tbGVmdCB7XG4gICAgICBtYXJnaW46IDAgMCAwIDEwcHg7XG4gICAgfVxuXG4gICAgLmljb24tbWFyZ2luLXJpZ2h0IHtcbiAgICAgIG1hcmdpbjogMCAxMHB4IDAgMDtcbiAgICB9XG4gIH1cbiAgLnNlbGVjdGVkIHtcbiAgICBpb24taXRlbSB7XG4gICAgICAmOjpwYXJ0KG5hdGl2ZSkge1xuICAgICAgICBiYWNrZ3JvdW5kLWltYWdlOiBsaW5lYXItZ3JhZGllbnQoXG4gICAgICAgICAgdG8gbGVmdCxcbiAgICAgICAgICB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSksXG4gICAgICAgICAgdmFyKC0taW9uLWNvbG9yLXNlY29uZGFyeSlcbiAgICAgICAgKTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMzBweDtcbiAgICAgICAgd2lkdGg6IDgwJTtcbiAgICAgICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci13aGl0ZSk7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgaW9uLWxhYmVsIHtcbiAgICBmb250LXNpemU6IDE2cHg7XG4gIH1cbn1cblxuLmxvZ291dC1zZWN0aW9uIHtcbiAgaW9uLWl0ZW0ge1xuICAgIG1hcmdpbi1ib3R0b206IDhweDtcbiAgICBpb24taWNvbiB7XG4gICAgICBmb250LXNpemU6IDE4cHg7XG4gICAgfVxuICB9XG59XG4iXX0= */";
 
 /***/ })
 

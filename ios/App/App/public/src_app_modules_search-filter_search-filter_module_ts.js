@@ -161,6 +161,8 @@ let SearchFilterPage = class SearchFilterPage {
             console.log('user id :' + val);
             this.filterData = {
                 user_id: val,
+                lat: this.util.userLocation.lat,
+                lng: this.util.userLocation.lng,
                 title: this.title,
                 lang: this.langaugeservice.getLanguage(),
                 categories: JSON.stringify(this.selectedCategories).replace(/\\/g, ''),

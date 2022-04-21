@@ -17,6 +17,7 @@ import { FcmService } from './services/fcm/fcm.service';
 })
 export class AppComponent {
   currentLanguage: string = '';
+  language:string='';
   selectedIndex: number;
   logoutData: AuthData;
   logined: boolean = this.auth.isAuthenticated.value;
@@ -76,7 +77,11 @@ export class AppComponent {
     this.auth.getLoginedObservable().subscribe((val)=>{
       this.logined = val;
     })
-    console.log('logined : '+this.logined)
+
+    this.languageService.getUpdatedLanguage().subscribe((val)=>{
+      this.language = val;
+    })
+    console.log('logined : '+this.logined);
   }
 
   initializeApp() {

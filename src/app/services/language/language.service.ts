@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@capacitor/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LanguageService {
   selected: string = '';
+  language = new BehaviorSubject('');
   constructor(
     private platform: Platform,
     private translate: TranslateService
@@ -48,5 +50,12 @@ export class LanguageService {
       key: 'lang',
       value: lng,
     });
+
+    this.language.next(lng);
   }
+
+  getUpdatedLanguage(): Observable<string> {
+    return this.language.asObservable();
+  }
+  
 }

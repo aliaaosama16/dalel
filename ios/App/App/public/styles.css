@@ -2154,6 +2154,9 @@ button.swiper-pagination-bullet {
   --highlight-color-valid: var(--ion-color-secondary);
   --highlight-color-invalid: var(--ion-color-primary);
 }
+:root * {
+  text-transform: lowercase;
+}
 :root ion-menu {
   --ion-backdrop-color: var(--ion-color-dark-black);
 }
@@ -2166,6 +2169,17 @@ button.swiper-pagination-bullet {
 :root ion-button,
 :root ion-menu-toggle:focus {
   outline: none !important;
+}
+.header-image img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+.header-image .image-right {
+  border-radius: 0px 0px 80px 0px !important;
+}
+.header-image .image-left {
+  border-radius: 0px 0px 0px 80px !important;
 }
 ion-input {
   --color: var(--ion-color-primary) !important;

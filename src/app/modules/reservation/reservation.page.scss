@@ -8,7 +8,21 @@
   }
 }
 
+<<<<<<< HEAD
 span.button-inner {
+=======
+.calendar-arrows {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -44px;
+  padding: 0 27px !important;
+  ion-icon {
+    font-size: 22px;
+  }
+}
+
+span.button-inner{
+>>>>>>> 5c206acf1755ec66ada6152212e12d7999c6adc8
   --background: var(--ion-color-secondary) !important;
 }
 
