@@ -1,22 +1,33 @@
+.calendar-arrows {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -49px;
+  padding: 0 27px !important;
+  ion-icon {
+    font-size: 22px;
+  }
+}
 
-span.button-inner{
+span.button-inner {
   --background: var(--ion-color-secondary) !important;
 }
-ion-button.forward.md.button.button-clear.button-has-icon-only.ion-activatable.ion-focusable.hydrated{
+
+ion-button.forward.md.button.button-clear.button-has-icon-only.ion-activatable.ion-focusable.hydrated {
   --background: var(--ion-color-secondary) !important;
 }
 
-ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydrated{
+ion-button.switch-btn.md.button.button-clear.ion-activatable.ion-focusable.hydrated {
   color: red;
-}  
+}
 
-.title{
+.title {
   height: 100px !important;
 }
 
 button.days-btn {
   color: var(--ion-color-secondary);
 }
+
 .reservation-btn {
   margin-top: 140px !important;
   &::part(native) {
