@@ -43,7 +43,7 @@ button.days-btn {
 .reservation-btn {
   margin-top: 140px !important;
   &::part(native) {
-    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+    box-shadow: var(--custom-box-shadow);//0 3px 6px rgb(0 0 0 / 16%);
     height: 50px !important;
     background-image: linear-gradient(
       to left,

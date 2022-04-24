@@ -45,15 +45,26 @@
 //   background-color: transparent;
 // }
 :root {
+  --custom-box-shadow:0 3px 6px rgb(0 0 0 / 16%) !important;
+  --custom-menu: radial-gradient(
+        circle farthest-corner at 10% 20%,
+        rgba(246, 133, 133, 1) 16.3%,
+        rgba(172, 131, 241, 1) 90%
+    );
   * {
     text-transform: lowercase;
   }
   ion-menu {
-    --ion-backdrop-color: var(--ion-color-dark-black);
+    --ion-background-color: var(--custom-menu);
+   // --ion-backdrop-color: var(--ion-color-dark-black);
   }
 
+  ion-menu::part(backdrop) {
+    opacity: 0.1;
+}
+
   ion-card {
-    box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
+    box-shadow: var(--custom-box-shadow);
   }
 
   ion-fab-button {
@@ -65,7 +76,7 @@
     outline: none !important;
   }
 
-  --main-box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
+  //--main-box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
 
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
