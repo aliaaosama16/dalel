@@ -97,7 +97,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MyReservationsPage": () => (/* binding */ MyReservationsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 98806);
+<<<<<<< HEAD
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations.page.html */ 80017);
+=======
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./my-reservations.page.html */ 80017);
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
 /* harmony import */ var _my_reservations_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-reservations.page.scss */ 50938);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_models_orders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/models/orders */ 76857);
@@ -218,7 +222,11 @@ MyReservationsPage.ctorParameters = () => [
 MyReservationsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-my-reservations',
+<<<<<<< HEAD
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+=======
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_my_reservations_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
         styles: [_my_reservations_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], MyReservationsPage);

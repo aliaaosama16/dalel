@@ -204,7 +204,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 62783);
+=======
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 62783);
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
 /* harmony import */ var _helpers_6e1e5b65_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-6e1e5b65.js */ 77074);
 
 
@@ -214,7 +218,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const attachComponent = /*#__PURE__*/function () {
+<<<<<<< HEAD
   var _ref = (0,_Users_efadhmac_Desktop_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+=======
+  var _ref = (0,_Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
     if (delegate) {
       return delegate.attachViewToDom(container, component, componentProps, cssClasses);
     }
@@ -261,7 +269,11 @@ const CoreDelegate = () => {
   let Reference;
 
   const attachViewToDom = /*#__PURE__*/function () {
+<<<<<<< HEAD
     var _ref2 = (0,_Users_efadhmac_Desktop_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+=======
+    var _ref2 = (0,_Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
       BaseComponent = parentElement;
       /**
        * If passing in a component via the `component` props
@@ -858,7 +870,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "h": () => (/* binding */ hostContext),
 /* harmony export */   "o": () => (/* binding */ openURL)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 62783);
+=======
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 62783);
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
 
 
 /*!
@@ -897,7 +913,11 @@ const getClassMap = classes => {
 const SCHEME = /^[a-z][a-z0-9+\-.]*:/;
 
 const openURL = /*#__PURE__*/function () {
+<<<<<<< HEAD
   var _ref = (0,_Users_efadhmac_Desktop_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, ev, direction, animation) {
+=======
+  var _ref = (0,_Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, ev, direction, animation) {
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
     if (url != null && url[0] !== '#' && !SCHEME.test(url)) {
       const router = document.querySelector('ion-router');
 
@@ -968,7 +988,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ImageModalPage": () => (/* binding */ ImageModalPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
+<<<<<<< HEAD
 /* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./image-modal.page.html */ 39715);
+=======
+/* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./image-modal.page.html */ 39715);
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
 /* harmony import */ var _image_modal_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image-modal.page.scss */ 36024);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78099);
@@ -1024,7 +1048,11 @@ ImageModalPage.propDecorators = {
 ImageModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-image-modal',
+<<<<<<< HEAD
         template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+=======
+        template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_image_modal_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+>>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
         styles: [_image_modal_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ImageModalPage);

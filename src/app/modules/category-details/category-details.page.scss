@@ -101,7 +101,7 @@
   padding: 17px 13px;
   margin-top: 70px;
   margin-bottom: 24px;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 16%); 
+  box-shadow: var(--custom-box-shadow);//0 3px 6px rgb(0 0 0 / 16%); 
   div {
     flex-direction: row;
     text-align: center;
