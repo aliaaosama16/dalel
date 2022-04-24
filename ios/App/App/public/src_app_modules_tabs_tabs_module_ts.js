@@ -257,7 +257,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TabsPage": () => (/* binding */ TabsPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 98806);
-/* harmony import */ var _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./tabs.page.html */ 26618);
+/* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./tabs.page.html */ 26618);
 /* harmony import */ var _tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.scss */ 88835);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth/auth.service */ 9171);
@@ -319,7 +319,7 @@ TabsPage.propDecorators = {
 TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-tabs',
-        template: _Users_efadhmac_Desktop_dalil_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_tabs_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_tabs_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], TabsPage);
@@ -338,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-tabs #tabs (ionTabsDidChange)=\"setCurrentTab()\">\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button\n      [ngClass]=\"selectedTab==tab.tabName?'selected':''\"\n      [tab]=\"tab.tabName\"\n      *ngFor=\"let tab of tabsData\"\n    >\n      <ion-badge\n        *ngIf=\"tab.tabName=='notifications' && noOfNotifications!=0 && isLogined\"\n        color=\"primary\"\n      >\n        <span class=\"white-color\">{{noOfNotifications}}</span>\n      </ion-badge>\n      <ion-icon\n        [src]=\"selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon\"\n      ></ion-icon>\n      <ion-label\n        class=\"fn-12 dalel-Regular\"\n        color=\"secondary\"\n        [ngClass]=\"selectedTab==tab.tabName?'selected-label':''\"\n      >\n        {{tab.tabName|translate}}\n      </ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-tabs #tabs (ionTabsDidChange)=\"setCurrentTab()\">\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button\n      [ngClass]=\"selectedTab==tab.tabName?'selected':''\"\n      [tab]=\"tab.tabName\"\n      *ngFor=\"let tab of tabsData\"\n    >\n      <ion-badge\n        *ngIf=\"tab.tabName=='notifications' && noOfNotifications!=0 && isLogined\"\n        color=\"primary\"\n      >\n        <span class=\"white-color\">{{noOfNotifications}}</span>\n      </ion-badge>\n      <ion-icon\n        [src]=\"selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon\"\n      ></ion-icon>\n      <ion-label \n        class=\"fn-12 dalel-Regular animate__fadeInDown\"\n        color=\"secondary\"\n       \n      >\n        {{tab.tabName|translate}}\n      </ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs>\n<!-- [ngClass]=\"selectedTab==tab.tabName?'selected-label':''\" -->");
 
 /***/ }),
 
