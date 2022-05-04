@@ -14,13 +14,14 @@
       <ion-icon
         [src]="selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon"
       ></ion-icon>
-      <ion-label
-        class="fn-12 dalel-Regular"
+      <ion-label 
+        class="fn-12 dalel-Regular animate__fadeInDown"
         color="secondary"
-        [ngClass]="selectedTab==tab.tabName?'selected-label':''"
+       
       >
         {{tab.tabName|translate}}
       </ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+<!-- [ngClass]="selectedTab==tab.tabName?'selected-label':''" -->
