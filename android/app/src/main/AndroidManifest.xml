@@ -15,6 +15,7 @@
             android:name="com.efada.dalel.MainActivity"
             android:label="@string/title_activity_main"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">
             <intent-filter>

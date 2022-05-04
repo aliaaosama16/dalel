@@ -54,6 +54,10 @@
   * {
     text-transform: lowercase;
   }
+  :focus {
+    outline: 0 !important;
+  }
+
   ion-menu {
    // --ion-background-color: var(--custom-menu);
     --ion-backdrop-color: var(--ion-color-dark-black);

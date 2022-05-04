@@ -2147,7 +2147,7 @@ button.swiper-pagination-bullet {
   overflow: hidden;
 }
 :root {
-  --main-box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
+  --custom-box-shadow:0 3px 6px rgb(0 0 0 / 16%) !important;
   --ion-background-color: var(--ion-color-white);
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
   --ion-text-transform: lowercase !important;
@@ -2160,8 +2160,11 @@ button.swiper-pagination-bullet {
 :root ion-menu {
   --ion-backdrop-color: var(--ion-color-dark-black);
 }
+:root ion-menu::part(backdrop) {
+  opacity: 0.1;
+}
 :root ion-card {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) !important;
+  box-shadow: var(--custom-box-shadow);
 }
 :root ion-fab-button {
   --box-shadow: none !important;
