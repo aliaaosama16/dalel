@@ -2082,11 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ReservationPage": () => (/* binding */ ReservationPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 98806);
-<<<<<<< HEAD
-/* harmony import */ var _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation.page.html */ 31421);
-=======
 /* harmony import */ var _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./reservation.page.html */ 31421);
->>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
 /* harmony import */ var _reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reservation.page.scss */ 96012);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 14001);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 13252);
@@ -2159,11 +2155,7 @@ ReservationPage.ctorParameters = () => [
 ReservationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-reservation',
-<<<<<<< HEAD
-        template: _Users_efadhmac_Desktop_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
-=======
         template: _Users_aliaaosama_Desktop_ionic_projects_dalel_node_modules_ngtools_webpack_src_loaders_direct_resource_js_reservation_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
->>>>>>> 834fbd3340ffd4e17fcb852b513b68d626caa195
         styles: [_reservation_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ReservationPage);
@@ -2183,7 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <div class=\"calendar-arrows \">\n    <div >\n      <ion-icon name=\"chevron-back-outline\"></ion-icon>\n    </div>\n    <div>\n      <ion-icon name=\"chevron-forward-outline\"></ion-icon>\n    </div>\n  </div>\n<<<<<<< HEAD\n=======\n  \n>>>>>>> 5c206acf1755ec66ada6152212e12d7999c6adc8\n  <ion-calendar\n    lockSwipeToPrev=\"true\"\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n    [dir]=\"currentLanguage=='ar'?'rtl':'ltr'\"\n    class=\"my-custom-calender\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" class=\"reservation-btn\" (click)=\"completeReservation()\">\n    <span class=\" fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<app-header\n  [title]=\"'reservation'\"\n  [isEditable]=\"false\"\n  [backwardRoute]=\"'/tabs/main'\"\n  [isMain]=\"false\"\n  class=\"header-height\"\n></app-header>\n<ion-content class=\"ion-padding\">\n  <div class=\"calendar-arrows \">\n    <div >\n      <ion-icon name=\"chevron-back-outline\"></ion-icon>\n    </div>\n    <div>\n      <ion-icon name=\"chevron-forward-outline\"></ion-icon>\n    </div>\n  </div>\n  <ion-calendar\n    lockSwipeToPrev=\"true\"\n    [(ngModel)]=\"dateRange\"\n    (change)=\"onChange($event)\"\n    [options]=\"optionsRange\"\n    [type]=\"type\"\n    [format]=\"'YYYY-MM-DD'\"\n    [dir]=\"currentLanguage=='ar'?'rtl':'ltr'\"\n    class=\"my-custom-calender\"\n  >\n  </ion-calendar>\n\n  <ion-button expand=\"block\" class=\"reservation-btn\" (click)=\"completeReservation()\">\n    <span class=\" fn-16 white-color dalel-Bold\">\n      {{ \"complete reservation\"|translate}}\n    </span>\n  </ion-button>\n</ion-content>\n");
 
 /***/ }),
 

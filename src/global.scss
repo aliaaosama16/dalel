@@ -46,21 +46,11 @@
   * {
     text-transform: lowercase;
   }
-<<<<<<< HEAD
   :focus {
     outline: 0 !important;
   }
-=======
 
-  --custom-box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
-
-  --ion-background-color: var(--ion-color-white);
-  --ion-font-family: -apple-system, BlinkMacSystemFont, "Cairo-Regular";
-
-  --ion-text-transform: lowercase !important;
-  --highlight-color-valid: var(--ion-color-secondary);
-  --highlight-color-invalid: var(--ion-color-primary);
->>>>>>> 926872ebe32aef25c14da550f98fd98db9a3725e
+  --ion-background-color:var(--ion-color-white);
 
   ion-menu {
     --ion-backdrop-color: var(--ion-color-dark-black);

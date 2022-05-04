@@ -22,7 +22,7 @@
         sizeMd="4"
         *ngFor="let item of favourites"
       >
-        <ion-card class="ion-no-margin">
+        <ion-card class="ion-no-margin" routerLink="/tabs/main/categories/{{item.section_id}}/{{item.id}}">
           <div class="fav-container">
             <div class="fav-part price">
               <img [src]="item?.first_image" />

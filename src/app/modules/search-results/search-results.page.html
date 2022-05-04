@@ -8,7 +8,7 @@
    </div>
   
   <div class="search-result" *ngFor="let item of resultItems ">
-    <ion-item lines="none"  detail="false" routerLink="/tabs/main/categories/1/{{item.id}}">
+    <ion-item lines="none"  detail="false" routerLink="/tabs/main/categories/{{item.section_id}}/{{item.id}}">
       <ion-thumbnail slot="start" [ngClass]="  currentlangauge == 'ar' ? 'image-margin-right' : 'image-margin-left'  ">
         <img [src]="item.first_image">
       </ion-thumbnail>
